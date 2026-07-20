@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-07-20T07:05:07+03:00",
+  lastUpdated: "2026-07-20T14:30:00+03:00",
   agents: [
     {
       id: "seo",
@@ -277,6 +277,36 @@ window.AGENT_DATA = {
                       "assetLabel": "Open affected page"
                 }
           ]
+    },
+    {
+        "id": "quora",
+        "name": "Quora Agent",
+        "role": "Human-reviewed community answers",
+        "initials": "QA",
+        "status": "active",
+        "color": "#f3e2dc",
+        "ink": "#7a3d2a",
+        "task": "Finds relevant Quora questions about email marketing, website popups, and conversion optimization, then prepares three to four original answers in one consistent, practical voice. Drafts remain in the private agent repository and publishing stays human-controlled.",
+        "owner": "Community & Growth",
+        "cadence": "Daily at 10:15 IDT",
+        "priority": "Medium",
+        "activities": [
+            {
+                "type": "past",
+                "title": "Prepared first answer review batch",
+                "detail": "Created three original, non-promotional answers and stored them in the private review queue.",
+                "date": "2026-07-20T14:08:51+03:00",
+                "assetStatus": "Available after GitHub authentication"
+            },
+            {
+                "type": "scheduled",
+                "title": "Prepare daily Quora answer batch",
+                "detail": "Find three to four relevant questions, prevent repeats, validate answer quality, and create a private review queue.",
+                "date": "2026-07-21T10:15:00+03:00",
+                "assetStatus": "Runs in the private agent repository"
+            }
+        ]
     }
   ]
 };
+
