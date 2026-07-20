@@ -192,14 +192,21 @@ async function getOptimizationGithubToken() {
 
 async function dispatchOptimization(recommendationId) {
   const token = await getOptimizationGithubToken();
+  const accessCheck = await fetch("https://api.github.com/repos/poptins/poptin-agents", {
+    headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"}
+  });
+  if (!accessCheck.ok) {
+    sessionStorage.removeItem("optimizationGithubToken");
+    throw new Error(`The token cannot access the private poptins/poptin-agents repository (${accessCheck.status}). Regenerate it with resource owner poptins and select poptin-agents.`);
+  }
   const response = await fetch("https://api.github.com/repos/poptins/poptin-agents/actions/workflows/optimization-agent.yml/dispatches", {
     method: "POST",
     headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"},
     body: JSON.stringify({ref:"main",inputs:{recommendation_id:recommendationId,decision:"approve"}})
   });
   if (response.status === 204) return;
-  if (response.status === 401 || response.status === 403) sessionStorage.removeItem("optimizationGithubToken");
-  throw new Error(`GitHub rejected the approval (${response.status}). Check that the token has Actions: write permission.`);
+  if ([401, 403, 404].includes(response.status)) sessionStorage.removeItem("optimizationGithubToken");
+  throw new Error(`GitHub rejected the approval (${response.status}). The saved token was cleared; verify poptin-agents is selected and Actions is set to Read and write.`);
 }
 
 var permanentlyRemovedRecommendations = new Set();
@@ -415,6 +422,7 @@ function renderRecommendationQueue() {
 
 renderRecommendationQueue();
 loadPermanentDismissals();
+
 
 
 
