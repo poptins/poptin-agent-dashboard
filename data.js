@@ -158,5 +158,125 @@ window.AGENT_DATA = {
         }
       ]
     }
+  ,
+    {
+          "id": "optimization",
+          "name": "Optimization Agent",
+          "role": "Search Console & approved site optimization",
+          "initials": "OP",
+          "status": "active",
+          "color": "#dff0ee",
+          "ink": "#17645c",
+          "task": "Analyzes English-language Search Console performance and SEO briefs across poptin.com, the Blog, and Academy. It lists verified recommendations in this dashboard and executes only individually approved changes.",
+          "owner": "Growth & SEO",
+          "cadence": "Mondays at 08:30 IDT + on demand",
+          "priority": "High",
+          "activities": [
+                {
+                      "type": "past",
+                      "title": "Homepage",
+                      "detail": "Improve the search snippet for this high-impression English page.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "http://www.poptin.com/",
+                      "assetLabel": "Open affected page"
+                },
+                {
+                      "type": "past",
+                      "title": "Pricing page",
+                      "detail": "Improve the search snippet for this high-impression English page.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "https://www.poptin.com/pricing/",
+                      "assetLabel": "Open affected page"
+                },
+                {
+                      "type": "past",
+                      "title": "About Us page",
+                      "detail": "Improve the search snippet for this high-impression English page.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "https://www.poptin.com/about-us/",
+                      "assetLabel": "Open affected page"
+                },
+                {
+                      "type": "past",
+                      "title": "Careers site",
+                      "detail": "Investigate the material organic click decline before proposing an edit.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "https://careers.poptin.com/",
+                      "assetLabel": "Open affected page"
+                },
+                {
+                      "type": "past",
+                      "title": "Sales funnel examples article",
+                      "detail": "Improve the search snippet for this high-impression English article.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "https://www.poptin.com/blog/9-ultimate-sales-funnel-examples-that-convert/",
+                      "assetLabel": "Open affected page"
+                },
+                {
+                      "type": "past",
+                      "title": "Types of email marketing article",
+                      "detail": "Improve the search snippet for this high-impression English article.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "https://www.poptin.com/blog/types-of-email-marketing/",
+                      "assetLabel": "Open affected page"
+                },
+                {
+                      "type": "past",
+                      "title": "Blog homepage",
+                      "detail": "Improve the search snippet for this high-impression English page.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "https://www.poptin.com/blog/",
+                      "assetLabel": "Open affected page"
+                },
+                {
+                      "type": "past",
+                      "title": "Free image banks article",
+                      "detail": "Improve the search snippet for this high-impression English article.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "https://www.poptin.com/blog/30-free-banks-images-icons-vectors-visually-appealing-content/",
+                      "assetLabel": "Open affected page"
+                },
+                {
+                      "type": "past",
+                      "title": "What is a pop-up article",
+                      "detail": "Improve the search snippet for this high-impression English article.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "https://www.poptin.com/blog/what-is-a-pop-up-the-only-guide-you-need/",
+                      "assetLabel": "Open affected page"
+                },
+                {
+                      "type": "past",
+                      "title": "Brand recognition article",
+                      "detail": "Improve the search snippet for this high-impression English article.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "https://www.poptin.com/blog/6-ways-increase-brand-recognition-business/",
+                      "assetLabel": "Open affected page"
+                },
+                {
+                      "type": "past",
+                      "title": "Chaty Pro review",
+                      "detail": "Improve the search snippet for this high-impression English article.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "https://www.poptin.com/blog/is-chaty-pro-the-best-wordpress-chat-plugin-for-you-a-review/",
+                      "assetLabel": "Open affected page"
+                },
+                {
+                      "type": "past",
+                      "title": "Scroll Trigger glossary page",
+                      "detail": "Improve the search snippet for this high-impression English glossary page.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "https://www.poptin.com/academy/glossary/scroll-trigger/",
+                      "assetLabel": "Open affected page"
+                },
+                {
+                      "type": "past",
+                      "title": "Flash Sale glossary page",
+                      "detail": "Improve the search snippet for this high-impression English glossary page.",
+                      "date": "2026-07-20T10:50:00+03:00",
+                      "url": "https://www.poptin.com/academy/glossary/flash-sale/",
+                      "assetLabel": "Open affected page"
+                }
+          ]
+    }
   ]
 };
