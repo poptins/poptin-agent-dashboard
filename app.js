@@ -159,3 +159,65 @@ renderAgentDetail();
 renderActivityAgentFilter();
 renderTimeline();
 setUpdatedTime();
+
+
+function recommendationKey(item) {
+  return (item.url || item.title).replace(/[^a-z0-9]+/gi, "-").toLowerCase();
+}
+
+function proposedChange(item) {
+  if (item.url && item.url.includes("careers.poptin.com")) {
+    return {
+      current: "Organic clicks declined materially versus the previous comparison period.",
+      proposed: "Investigate query mix, rankings, seasonality, and recent page changes before proposing any page edit.",
+      ready: false
+    };
+  }
+  return {
+    current: "The live SEO title and meta description still need to be captured as the protected before-state.",
+    proposed: "Replace the English SEO title and meta description with an exact, query-aligned version after the before/after patch is generated.",
+    ready: false
+  };
+}
+
+function renderRecommendationQueue() {
+  const grid = $("#recommendationGrid");
+  if (!grid) return;
+  const agent = data.agents.find(item => item.id === "optimization");
+  const cancelled = new Set(JSON.parse(sessionStorage.getItem("cancelledOptimizationRecommendations") || "[]"));
+  const items = (agent?.activities || []).filter(item => item.type === "past" && !cancelled.has(recommendationKey(item)));
+  grid.innerHTML = items.length ? items.map(item => {
+    const change = proposedChange(item);
+    const key = recommendationKey(item);
+    return `
+      <article class="recommendation-card">
+        <div class="recommendation-top">
+          <span class="property-pill">${item.url?.includes("/academy/") ? "poptin.com/academy" : item.url?.includes("/blog/") ? "poptin.com/blog" : "poptin.com"}</span>
+          <span class="readiness ${change.ready ? "ready" : "blocked"}">${change.ready ? "Ready to approve" : "Exact patch pending"}</span>
+        </div>
+        <h3>${item.title}</h3>
+        <a class="recommendation-url" href="${item.url}" target="_blank" rel="noopener">${item.url} ↗</a>
+        <div class="change-preview">
+          <div><span>CURRENT</span><p>${change.current}</p></div>
+          <div><span>PROPOSED CHANGE</span><p>${change.proposed}</p></div>
+        </div>
+        <div class="recommendation-actions">
+          <button class="approve-button" type="button" data-approve="${key}">Approve</button>
+          <button class="cancel-button" type="button" data-cancel="${key}">Cancel</button>
+        </div>
+      </article>
+    `;
+  }).join("") : '<div class="empty-state">No optimization recommendations in the queue.</div>';
+
+  grid.querySelectorAll("[data-approve]").forEach(button => button.addEventListener("click", () => {
+    $("#approvalStatus").textContent = "This item cannot execute yet: the agent must first capture the live SEO title and meta description and publish an exact before/after patch for approval.";
+  }));
+  grid.querySelectorAll("[data-cancel]").forEach(button => button.addEventListener("click", () => {
+    cancelled.add(button.dataset.cancel);
+    sessionStorage.setItem("cancelledOptimizationRecommendations", JSON.stringify([...cancelled]));
+    $("#approvalStatus").textContent = "Recommendation cancelled for this browser session.";
+    renderRecommendationQueue();
+  }));
+}
+
+renderRecommendationQueue();
