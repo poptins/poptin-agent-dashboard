@@ -22,28 +22,32 @@ window.AGENT_DATA = {
           title: "Published welcome-email sequence article",
           detail: "Published “Welcome Email Sequence After Popup Signup: 7 Emails That Turn New Leads Into Customers” and refreshed the social handoff.",
           date: "2026-07-19T10:54:42+03:00",
-          url: "https://www.poptin.com/blog/welcome-email-sequence-after-popup-signup/"
+          url: "https://www.poptin.com/blog/welcome-email-sequence-after-popup-signup/",
+          assetLabel: "View blog post"
         },
         {
           type: "past",
           title: "Delivered weekly SEO brief",
           detail: "Audited current public pages and competitors, then prioritized technical, content, integration, and trust-signal improvements.",
           date: "2026-07-19T13:08:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/issues/4"
+          url: "https://github.com/poptins/poptin-agents/issues/4",
+          assetLabel: "View SEO brief"
         },
         {
           type: "past",
           title: "Published ecommerce campaign-planning article",
           detail: "Published the 90-day holiday email marketing workflow and made it available to the social handoff.",
           date: "2026-07-18T15:13:00+03:00",
-          url: "https://www.poptin.com/blog/holiday-email-marketing-campaign-planning-ecommerce/"
+          url: "https://www.poptin.com/blog/holiday-email-marketing-campaign-planning-ecommerce/",
+          assetLabel: "View blog post"
         },
         {
           type: "scheduled",
           title: "Monthly SEO publishing plan",
           detail: "Create four new posts and refresh six eligible older posts while preserving their URLs.",
           date: "2026-08-01T08:00:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/actions/workflows/seo-agent.yml"
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/seo-agent.yml",
+          assetLabel: "View workflow"
         }
       ]
     },
@@ -65,28 +69,32 @@ window.AGENT_DATA = {
           title: "Shared welcome-email article on three channels",
           detail: "Scheduled distinct LinkedIn, Facebook, and X posts through Buffer and stored channel-level deduplication state.",
           date: "2026-07-19T13:57:34+03:00",
-          url: "https://www.poptin.com/blog/welcome-email-sequence-after-popup-signup/"
+          url: "https://www.poptin.com/blog/welcome-email-sequence-after-popup-signup/",
+          assetLabel: "View shared article"
         },
         {
           type: "past",
           title: "Delivered weekly social media pack",
           detail: "Produced a CRO-focused campaign pack with LinkedIn, X, Facebook, video, visual, alt-text, and editorial-review guidance.",
           date: "2026-07-19T13:08:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/issues/1"
+          url: "https://github.com/poptins/poptin-agents/issues/1",
+          assetLabel: "View social pack"
         },
         {
           type: "past",
           title: "Shared holiday campaign article",
           detail: "Scheduled channel-specific posts to LinkedIn, Facebook, and X through Buffer.",
           date: "2026-07-18T18:27:18+03:00",
-          url: "https://www.poptin.com/blog/holiday-email-marketing-campaign-planning-ecommerce/"
+          url: "https://www.poptin.com/blog/holiday-email-marketing-campaign-planning-ecommerce/",
+          assetLabel: "View shared article"
         },
         {
           type: "scheduled",
           title: "Check SEO publishing handoff",
           detail: "Run at minute 17, share any newly published SEO article, and skip future or already shared posts.",
           date: "2026-07-20T10:17:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/actions"
+          url: "https://github.com/poptins/poptin-agents/actions",
+          assetLabel: "View workflow runs"
         }
       ]
     },
@@ -108,14 +116,16 @@ window.AGENT_DATA = {
           title: "Delivered academic best-practices brief",
           detail: "Researched accessibility, consent design, experimentation, persuasive design, and evidence-quality guidance for Poptin content.",
           date: "2026-07-19T13:08:34+03:00",
-          url: "https://github.com/poptins/poptin-agents/issues/2"
+          url: "https://github.com/poptins/poptin-agents/issues/2",
+          assetLabel: "View Academy brief"
         },
         {
           type: "scheduled",
           title: "Generate daily Academy guide draft",
           detail: "Create and validate one 1,000–1,500 word guide, then save it to WordPress as a draft for review.",
           date: "2026-07-21T09:30:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/actions/workflows/academic-best-practices-agent.yml"
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/academic-best-practices-agent.yml",
+          assetLabel: "View workflow"
         }
       ]
     },
@@ -137,14 +147,16 @@ window.AGENT_DATA = {
           title: "Proposed 10 glossary entries",
           detail: "Researched terms including key event, UTM parameters, incremental lift, modal focus management, consent records, and holdout groups.",
           date: "2026-07-19T13:08:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/issues/3"
+          url: "https://github.com/poptins/poptin-agents/issues/3",
+          assetLabel: "View glossary proposals"
         },
         {
           type: "scheduled",
           title: "Publish daily glossary term",
           detail: "Validate one unique 150–250 word definition and practical example, then publish it to the live Poptin glossary.",
           date: "2026-07-21T09:15:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/actions/workflows/glossary-poptin-agent.yml"
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/glossary-poptin-agent.yml",
+          assetLabel: "View workflow"
         }
       ]
     }

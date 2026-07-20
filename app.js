@@ -1,6 +1,7 @@
 const data = window.AGENT_DATA;
 let selectedAgentId = data.agents[0]?.id;
 let activityFilter = "all";
+let activityAgentFilter = "all";
 
 const $ = (selector) => document.querySelector(selector);
 const dateFormat = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" });
@@ -57,7 +58,11 @@ function renderAgentDetail() {
   const past = agent.activities.filter(item => item.type === "past").slice(0, 2);
   const scheduled = agent.activities.filter(item => item.type === "scheduled").slice(0, 2);
   const compact = (items, type) => items.length ? items.map(item => `
-    <div class="compact-item ${type}"><strong>${item.url ? `<a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>` : item.title}</strong><span>${dateFormat.format(new Date(item.date))} · ${timeFormat.format(new Date(item.date))}</span></div>
+    <div class="compact-item ${type}">
+      <strong>${item.title}</strong>
+      <span>${dateFormat.format(new Date(item.date))} · ${timeFormat.format(new Date(item.date))}</span>
+      ${item.url ? `<a class="asset-link compact-asset" href="${item.url}" target="_blank" rel="noopener">${item.assetLabel || (type === "scheduled" ? "View workflow" : "View asset")} ↗</a>` : ""}
+    </div>
   `).join("") : `<span class="agent-role">Nothing here yet.</span>`;
 
   $("#agentDetail").innerHTML = `
@@ -88,12 +93,17 @@ function renderAgentDetail() {
 function renderTimeline() {
   const activities = allActivities()
     .filter(item => activityFilter === "all" || item.type === activityFilter)
+    .filter(item => activityAgentFilter === "all" || item.agent.id === activityAgentFilter)
     .sort((a, b) => activityFilter === "past" ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date));
 
   $("#activityTimeline").innerHTML = activities.length ? activities.map(item => `
     <article class="activity-card">
       <span class="timeline-icon ${item.type}">${item.type === "past" ? "✓" : "→"}</span>
-      <div><h3>${item.url ? `<a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>` : item.title}</h3><p>${item.agent.name} · ${item.detail}</p></div>
+      <div>
+        <h3>${item.title}</h3>
+        <p>${item.agent.name} · ${item.detail}</p>
+        ${item.url ? `<a class="asset-link" href="${item.url}" target="_blank" rel="noopener">${item.assetLabel || (item.type === "scheduled" ? "View workflow" : "View asset")} ↗</a>` : ""}
+      </div>
       <div class="activity-date"><strong>${dateFormat.format(new Date(item.date))}</strong><span>${timeFormat.format(new Date(item.date))}</span></div>
     </article>
   `).join("") : `<div class="empty-state">No activity in this view.</div>`;
@@ -102,6 +112,13 @@ function renderTimeline() {
 function setUpdatedTime() {
   const date = new Date(data.lastUpdated);
   $("#lastUpdated").textContent = `${dateFormat.format(date)}, ${timeFormat.format(date)}`;
+}
+
+function renderActivityAgentFilter() {
+  $("#activityAgentFilter").innerHTML = `
+    <option value="all">All agents</option>
+    ${data.agents.map(agent => `<option value="${agent.id}">${agent.name}</option>`).join("")}
+  `;
 }
 
 $("#agentSearch").addEventListener("input", event => renderAgents(event.target.value));
@@ -116,6 +133,10 @@ document.querySelectorAll(".filter").forEach(button => button.addEventListener("
   document.querySelectorAll(".filter").forEach(item => item.classList.toggle("active", item === button));
   renderTimeline();
 }));
+$("#activityAgentFilter").addEventListener("change", event => {
+  activityAgentFilter = event.target.value;
+  renderTimeline();
+});
 $("#themeToggle").addEventListener("click", () => {
   document.body.classList.toggle("dark");
   $("#themeToggle").textContent = document.body.classList.contains("dark") ? "☀" : "☾";
@@ -128,5 +149,6 @@ $("#logoutButton").addEventListener("click", () => {
 renderStats();
 renderAgents();
 renderAgentDetail();
+renderActivityAgentFilter();
 renderTimeline();
 setUpdatedTime();

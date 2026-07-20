@@ -67,10 +67,16 @@
             <p class="eyebrow">ACTIVITY</p>
             <h2>Everything in motion</h2>
           </div>
-          <div class="filters" role="group" aria-label="Filter activities">
-            <button class="filter active" data-filter="all" type="button">All</button>
-            <button class="filter" data-filter="past" type="button">Completed</button>
-            <button class="filter" data-filter="scheduled" type="button">Scheduled</button>
+          <div class="activity-controls">
+            <label class="agent-filter-label" for="activityAgentFilter">
+              <span>Agent</span>
+              <select id="activityAgentFilter" aria-label="Filter activity by agent"></select>
+            </label>
+            <div class="filters" role="group" aria-label="Filter activities by status">
+              <button class="filter active" data-filter="all" type="button">All</button>
+              <button class="filter" data-filter="past" type="button">Completed</button>
+              <button class="filter" data-filter="scheduled" type="button">Scheduled</button>
+            </div>
           </div>
         </div>
         <div class="timeline" id="activityTimeline"></div>
