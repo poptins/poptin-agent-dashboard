@@ -187,3 +187,9 @@ body.dark { --bg: #121816; --surface: #19211e; --surface-2: #202a26; --ink: #edf
 .recommendation-card.cancelled { opacity: .72; border-style: dashed; }
 .recommendation-actions button:disabled { cursor: not-allowed; opacity: .55; }
 
+
+.recommendation-card { position: relative; }
+.recommendation-top { padding-right: 34px; }
+.remove-recommendation { position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); background: var(--surface); font-size: 18px; line-height: 1; }
+.remove-recommendation:hover { color: #a33; border-color: #d9a6a6; background: #fff2f2; }
+
