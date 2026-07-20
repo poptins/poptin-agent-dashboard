@@ -190,7 +190,7 @@ async function getOptimizationGithubToken() {
   return token;
 }
 
-async function dispatchOptimization(recommendationId) {
+async function dispatchOptimization(recommendationId, decision = "approve") {
   const token = await getOptimizationGithubToken();
   const accessCheck = await fetch("https://api.github.com/repos/poptins/poptin-agents", {
     headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"}
@@ -202,7 +202,7 @@ async function dispatchOptimization(recommendationId) {
   const response = await fetch("https://api.github.com/repos/poptins/poptin-agents/actions/workflows/optimization-agent.yml/dispatches", {
     method: "POST",
     headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"},
-    body: JSON.stringify({ref:"main",inputs:{recommendation_id:recommendationId,decision:"approve"}})
+    body: JSON.stringify({ref:"main",inputs:{recommendation_id:recommendationId,decision}})
   });
   if (response.status === 204) return;
   if ([401, 403, 404].includes(response.status)) sessionStorage.removeItem("optimizationGithubToken");
@@ -366,7 +366,7 @@ function renderRecommendationQueue() {
           <div><span>SUGGESTED META DESCRIPTION</span><p>${escapeHtml(patch.suggestedDescription)}</p></div>
         </div>
         <div class="recommendation-actions">
-          <button class="approve-button" type="button" disabled>Approvals paused</button>
+          <button class="approve-button" type="button" ${isCancelled || patch.investigation ? "disabled" : ""}>${patch.investigation ? "Not executable yet" : isCancelled ? "Cancelled" : "Approve"}</button>
           <button class="cancel-button" type="button" ${isCancelled ? "disabled" : ""}>${isCancelled ? "Cancelled" : "Cancel"}</button>
         </div>
         <p class="card-feedback" aria-live="polite">${isCancelled ? "This recommendation is cancelled and will not be executed." : ""}</p>
@@ -399,9 +399,9 @@ function renderRecommendationQueue() {
     feedback.classList.remove("error");
     feedback.textContent = "Submitting approval to the credentialed Optimization workflow…";
     try {
-      await dispatchOptimization(card.dataset.executionId);
+      await dispatchOptimization(card.dataset.executionId, "approve");
       button.textContent = "Approved";
-      feedback.innerHTML = 'Approval submitted. Existing WordPress credentials will resolve and validate the target before applying the exact metadata. <a href="https://github.com/poptins/poptin-agents/actions/workflows/optimization-agent.yml" target="_blank" rel="noopener">Follow the workflow run ↗</a>';
+      feedback.innerHTML = 'Approval submitted. The workflow will use authenticated WordPress API reads, verify the protected before-state, and apply only the displayed metadata. <a href="https://github.com/poptins/poptin-agents/actions/workflows/optimization-agent.yml" target="_blank" rel="noopener">Follow the workflow run ↗</a>';
       status.textContent = "Approval submitted successfully.";
     } catch (error) {
       button.disabled = false;
@@ -411,12 +411,25 @@ function renderRecommendationQueue() {
       status.textContent = error.message;
     }
   }));
-  grid.querySelectorAll(".cancel-button").forEach(button => button.addEventListener("click", () => {
+  grid.querySelectorAll(".cancel-button").forEach(button => button.addEventListener("click", async () => {
     const card = button.closest(".recommendation-card");
-    cancelled.add(card.dataset.recommendation);
-    localStorage.setItem("cancelledOptimizationRecommendations", JSON.stringify([...cancelled]));
-    status.textContent = "Recommendation cancelled. It remains visible and will not be executed.";
-    renderRecommendationQueue();
+    const feedback = card.querySelector(".card-feedback");
+    button.disabled = true;
+    button.textContent = "Cancelling…";
+    feedback.classList.remove("error");
+    try {
+      await dispatchOptimization(card.dataset.executionId, "cancel");
+      cancelled.add(card.dataset.recommendation);
+      localStorage.setItem("cancelledOptimizationRecommendations", JSON.stringify([...cancelled]));
+      status.textContent = "Recommendation cancelled. No WordPress write was made.";
+      renderRecommendationQueue();
+    } catch (error) {
+      button.disabled = false;
+      button.textContent = "Cancel";
+      feedback.classList.add("error");
+      feedback.textContent = error.message;
+      status.textContent = error.message;
+    }
   }));
 }
 
