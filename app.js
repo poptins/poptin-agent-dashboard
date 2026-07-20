@@ -172,6 +172,31 @@ function recommendationKey(item) {
   return (item.url || item.title).replace(/[^a-z0-9]+/gi, "-").toLowerCase();
 }
 
+function recommendationExecutionId(item) {
+  const afterHost = item.url.includes("://") ? item.url.split("://")[1].split("/").slice(1) : [];
+  const parts = afterHost.filter(Boolean);
+  const last = parts.length ? parts[parts.length - 1] : "homepage";
+  return `gsc-meta-${last.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
+}
+
+async function dispatchOptimization(recommendationId) {
+  let token = sessionStorage.getItem("optimizationGithubToken");
+  if (!token) {
+    token = window.prompt("Enter a fine-grained GitHub token with Actions: write access to poptins/poptin-agents. It is stored only for this browser session.");
+    if (!token) throw new Error("Approval was not submitted because no GitHub token was provided.");
+    token = token.trim();
+    sessionStorage.setItem("optimizationGithubToken", token);
+  }
+  const response = await fetch("https://api.github.com/repos/poptins/poptin-agents/actions/workflows/optimization-agent.yml/dispatches", {
+    method: "POST",
+    headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"},
+    body: JSON.stringify({ref:"main",inputs:{recommendation_id:recommendationId,decision:"approve"}})
+  });
+  if (response.status === 204) return;
+  if (response.status === 401 || response.status === 403) sessionStorage.removeItem("optimizationGithubToken");
+  throw new Error(`GitHub rejected the approval (${response.status}). Check that the token has Actions: write permission.`);
+}
+
 var exactOptimizationPatches = {
   "http://www.poptin.com/": {
     currentTitle: "Email Marketing Automation & Newsletters | Exit intent Popups - Poptin",
@@ -268,8 +293,8 @@ function renderRecommendationQueue() {
 
   const agent = data.agents.find(item => item.id === "optimization");
   const items = agent?.activities || [];
-  const cancelled = new Set(JSON.parse(sessionStorage.getItem("cancelledOptimizationRecommendations") || "[]"));
-  const removed = new Set(JSON.parse(sessionStorage.getItem("removedOptimizationRecommendations") || "[]"));
+  const cancelled = new Set(JSON.parse(localStorage.getItem("cancelledOptimizationRecommendations") || "[]"));
+  const removed = new Set(JSON.parse(localStorage.getItem("removedOptimizationRecommendations") || "[]"));
   grid.innerHTML = items.filter(item => !removed.has(recommendationKey(item))).map(item => {
     const patch = exactOptimizationPatches[item.url] || {
       currentTitle: "Current value unavailable",
@@ -280,9 +305,10 @@ function renderRecommendationQueue() {
     };
     const property = item.url.includes("/academy/") ? "poptin.com/academy" : item.url.includes("/blog/") ? "poptin.com/blog" : "poptin.com";
     const key = recommendationKey(item);
+    const executionId = recommendationExecutionId(item);
     const isCancelled = cancelled.has(key);
     return `
-      <article class="recommendation-card ${isCancelled ? "cancelled" : ""}" data-recommendation="${escapeHtml(key)}">
+      <article class="recommendation-card ${isCancelled ? "cancelled" : ""}" data-recommendation="${escapeHtml(key)}" data-execution-id="${escapeHtml(executionId)}">
         <div class="recommendation-top">
           <span class="property-pill">${property}</span>
           <span class="readiness ${isCancelled || patch.investigation ? "blocked" : "ready"}">${isCancelled ? "Cancelled" : patch.investigation ? "Investigation required" : "Suggested text ready"}</span>
@@ -307,29 +333,42 @@ function renderRecommendationQueue() {
 
   grid.querySelectorAll(".remove-recommendation").forEach(button => button.addEventListener("click", () => {
     removed.add(button.dataset.remove);
-    sessionStorage.setItem("removedOptimizationRecommendations", JSON.stringify([...removed]));
+    localStorage.setItem("removedOptimizationRecommendations", JSON.stringify([...removed]));
     status.textContent = "Recommendation removed from this browser session.";
     renderRecommendationQueue();
   }));
 
-  grid.querySelectorAll(".approve-button").forEach(button => button.addEventListener("click", () => {
+  grid.querySelectorAll(".approve-button").forEach(button => button.addEventListener("click", async () => {
     const card = button.closest(".recommendation-card");
     const feedback = card.querySelector(".card-feedback");
-    feedback.textContent = "Approval blocked: the exact WordPress resource ID and protected before-state are not connected yet. No live change was made.";
-    feedback.classList.add("error");
-    button.textContent = "Not executable yet";
-    status.textContent = feedback.textContent;
+    button.disabled = true;
+    button.textContent = "Submitting…";
+    feedback.classList.remove("error");
+    feedback.textContent = "Submitting approval to the credentialed Optimization workflow…";
+    try {
+      await dispatchOptimization(card.dataset.executionId);
+      button.textContent = "Approved";
+      feedback.innerHTML = 'Approval submitted. Existing WordPress credentials will resolve and validate the target before applying the exact metadata. <a href="https://github.com/poptins/poptin-agents/actions/workflows/optimization-agent.yml" target="_blank" rel="noopener">Follow the workflow run ↗</a>';
+      status.textContent = "Approval submitted successfully.";
+    } catch (error) {
+      button.disabled = false;
+      button.textContent = "Approve";
+      feedback.classList.add("error");
+      feedback.textContent = error.message;
+      status.textContent = error.message;
+    }
   }));
   grid.querySelectorAll(".cancel-button").forEach(button => button.addEventListener("click", () => {
     const card = button.closest(".recommendation-card");
     cancelled.add(card.dataset.recommendation);
-    sessionStorage.setItem("cancelledOptimizationRecommendations", JSON.stringify([...cancelled]));
+    localStorage.setItem("cancelledOptimizationRecommendations", JSON.stringify([...cancelled]));
     status.textContent = "Recommendation cancelled. It remains visible and will not be executed.";
     renderRecommendationQueue();
   }));
 }
 
 renderRecommendationQueue();
+
 
 
 
