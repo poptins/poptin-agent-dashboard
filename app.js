@@ -268,6 +268,7 @@ function renderRecommendationQueue() {
 
   const agent = data.agents.find(item => item.id === "optimization");
   const items = agent?.activities || [];
+  const cancelled = new Set(JSON.parse(sessionStorage.getItem("cancelledOptimizationRecommendations") || "[]"));
   grid.innerHTML = items.map(item => {
     const patch = exactOptimizationPatches[item.url] || {
       currentTitle: "Current value unavailable",
@@ -277,11 +278,13 @@ function renderRecommendationQueue() {
       investigation: true
     };
     const property = item.url.includes("/academy/") ? "poptin.com/academy" : item.url.includes("/blog/") ? "poptin.com/blog" : "poptin.com";
+    const key = recommendationKey(item);
+    const isCancelled = cancelled.has(key);
     return `
-      <article class="recommendation-card" data-recommendation="${escapeHtml(recommendationKey(item))}">
+      <article class="recommendation-card ${isCancelled ? "cancelled" : ""}" data-recommendation="${escapeHtml(key)}">
         <div class="recommendation-top">
           <span class="property-pill">${property}</span>
-          <span class="readiness ${patch.investigation ? "blocked" : "ready"}">${patch.investigation ? "Investigation required" : "Suggested text ready"}</span>
+          <span class="readiness ${isCancelled || patch.investigation ? "blocked" : "ready"}">${isCancelled ? "Cancelled" : patch.investigation ? "Investigation required" : "Suggested text ready"}</span>
         </div>
         <h3>${escapeHtml(item.title)}</h3>
         <a class="recommendation-url" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.url)} ↗</a>
@@ -292,21 +295,31 @@ function renderRecommendationQueue() {
           <div><span>SUGGESTED META DESCRIPTION</span><p>${escapeHtml(patch.suggestedDescription)}</p></div>
         </div>
         <div class="recommendation-actions">
-          <button class="approve-button" type="button">Approve</button>
-          <button class="cancel-button" type="button">Cancel</button>
+          <button class="approve-button" type="button" ${isCancelled ? "disabled" : ""}>Approve</button>
+          <button class="cancel-button" type="button" ${isCancelled ? "disabled" : ""}>${isCancelled ? "Cancelled" : "Cancel"}</button>
         </div>
+        <p class="card-feedback" aria-live="polite">${isCancelled ? "This recommendation is cancelled and will not be executed." : ""}</p>
       </article>
     `;
   }).join("");
 
   grid.querySelectorAll(".approve-button").forEach(button => button.addEventListener("click", () => {
-    status.textContent = "Suggested text is ready, but execution still requires the exact WordPress resource ID and protected before-state. No live change was made.";
+    const card = button.closest(".recommendation-card");
+    const feedback = card.querySelector(".card-feedback");
+    feedback.textContent = "Approval blocked: the exact WordPress resource ID and protected before-state are not connected yet. No live change was made.";
+    feedback.classList.add("error");
+    button.textContent = "Not executable yet";
+    status.textContent = feedback.textContent;
   }));
   grid.querySelectorAll(".cancel-button").forEach(button => button.addEventListener("click", () => {
-    button.closest(".recommendation-card")?.classList.add("cancelled");
-    status.textContent = "Recommendation marked as cancelled. It remains visible for review.";
+    const card = button.closest(".recommendation-card");
+    cancelled.add(card.dataset.recommendation);
+    sessionStorage.setItem("cancelledOptimizationRecommendations", JSON.stringify([...cancelled]));
+    status.textContent = "Recommendation cancelled. It remains visible and will not be executed.";
+    renderRecommendationQueue();
   }));
 }
 
 renderRecommendationQueue();
+
 
