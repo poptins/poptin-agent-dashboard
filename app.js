@@ -331,8 +331,7 @@ function renderRecommendationQueue() {
   const agent = data.agents.find(item => item.id === "optimization");
   const items = agent?.activities || [];
   const cancelled = new Set(JSON.parse(localStorage.getItem("cancelledOptimizationRecommendations") || "[]"));
-  const removed = new Set(JSON.parse(localStorage.getItem("removedOptimizationRecommendations") || "[]"));
-  grid.innerHTML = items.filter(item => !removed.has(recommendationKey(item)) && !permanentlyRemovedRecommendations.has(recommendationExecutionId(item))).map(item => {
+  grid.innerHTML = items.filter(item => !permanentlyRemovedRecommendations.has(recommendationExecutionId(item))).map(item => {
     const patch = exactOptimizationPatches[item.url] || {
       currentTitle: "Current value unavailable",
       suggestedTitle: item.title,
@@ -375,8 +374,6 @@ function renderRecommendationQueue() {
     status.textContent = "Removing recommendation for every browser…";
     try {
       await removeRecommendationPermanently(executionId);
-      removed.add(button.dataset.remove);
-      localStorage.setItem("removedOptimizationRecommendations", JSON.stringify([...removed]));
       status.textContent = "Recommendation permanently removed.";
       renderRecommendationQueue();
     } catch (error) {
@@ -418,6 +415,7 @@ function renderRecommendationQueue() {
 
 renderRecommendationQueue();
 loadPermanentDismissals();
+
 
 
 
