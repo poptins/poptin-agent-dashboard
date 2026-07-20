@@ -30,8 +30,7 @@ window.AGENT_DATA = {
           title: "Delivered weekly SEO brief",
           detail: "Audited current public pages and competitors, then prioritized technical, content, integration, and trust-signal improvements.",
           date: "2026-07-19T13:08:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/issues/4",
-          assetLabel: "View SEO brief"
+          assetStatus: "Internal brief — not published publicly"
         },
         {
           type: "past",
@@ -45,9 +44,7 @@ window.AGENT_DATA = {
           type: "scheduled",
           title: "Monthly SEO publishing plan",
           detail: "Create four new posts and refresh six eligible older posts while preserving their URLs.",
-          date: "2026-08-01T08:00:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/actions/workflows/seo-agent.yml",
-          assetLabel: "View workflow"
+          date: "2026-08-01T08:00:00+03:00"
         }
       ]
     },
@@ -67,34 +64,29 @@ window.AGENT_DATA = {
         {
           type: "past",
           title: "Shared welcome-email article on three channels",
-          detail: "Scheduled distinct LinkedIn, Facebook, and X posts through Buffer and stored channel-level deduplication state.",
+          detail: "Scheduled distinct LinkedIn, Facebook, and X posts through Buffer. The final public post URLs were not saved by the automation.",
           date: "2026-07-19T13:57:34+03:00",
-          url: "https://www.poptin.com/blog/welcome-email-sequence-after-popup-signup/",
-          assetLabel: "View shared article"
+          assetStatus: "Published social URLs not recorded"
         },
         {
           type: "past",
           title: "Delivered weekly social media pack",
           detail: "Produced a CRO-focused campaign pack with LinkedIn, X, Facebook, video, visual, alt-text, and editorial-review guidance.",
           date: "2026-07-19T13:08:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/issues/1",
-          assetLabel: "View social pack"
+          assetStatus: "Internal content pack — not published publicly"
         },
         {
           type: "past",
           title: "Shared holiday campaign article",
-          detail: "Scheduled channel-specific posts to LinkedIn, Facebook, and X through Buffer.",
+          detail: "Scheduled channel-specific posts to LinkedIn, Facebook, and X through Buffer. The final public post URLs were not saved by the automation.",
           date: "2026-07-18T18:27:18+03:00",
-          url: "https://www.poptin.com/blog/holiday-email-marketing-campaign-planning-ecommerce/",
-          assetLabel: "View shared article"
+          assetStatus: "Published social URLs not recorded"
         },
         {
           type: "scheduled",
           title: "Check SEO publishing handoff",
           detail: "Run at minute 17, share any newly published SEO article, and skip future or already shared posts.",
-          date: "2026-07-20T10:17:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/actions",
-          assetLabel: "View workflow runs"
+          date: "2026-07-20T10:17:00+03:00"
         }
       ]
     },
@@ -113,19 +105,17 @@ window.AGENT_DATA = {
       activities: [
         {
           type: "past",
-          title: "Delivered academic best-practices brief",
-          detail: "Researched accessibility, consent design, experimentation, persuasive design, and evidence-quality guidance for Poptin content.",
-          date: "2026-07-19T13:08:34+03:00",
-          url: "https://github.com/poptins/poptin-agents/issues/2",
-          assetLabel: "View Academy brief"
+          title: "Published preference-based welcome workflow guide",
+          detail: "Published an Academy guide showing how subscriber preferences can improve welcome workflows and buyer relevance.",
+          date: "2026-07-19T10:20:20+03:00",
+          url: "https://www.poptin.com/academy/guides/turn-new-subscribers-into-better-buyers-with-a-preference-based-welcome-workflow/",
+          assetLabel: "View Academy guide"
         },
         {
           type: "scheduled",
           title: "Generate daily Academy guide draft",
           detail: "Create and validate one 1,000–1,500 word guide, then save it to WordPress as a draft for review.",
-          date: "2026-07-21T09:30:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/actions/workflows/academic-best-practices-agent.yml",
-          assetLabel: "View workflow"
+          date: "2026-07-21T09:30:00+03:00"
         }
       ]
     },
@@ -144,19 +134,17 @@ window.AGENT_DATA = {
       activities: [
         {
           type: "past",
-          title: "Proposed 10 glossary entries",
-          detail: "Researched terms including key event, UTM parameters, incremental lift, modal focus management, consent records, and holdout groups.",
-          date: "2026-07-19T13:08:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/issues/3",
-          assetLabel: "View glossary proposals"
+          title: "Published Progressive Profiling glossary term",
+          detail: "Published a plain-English definition and practical explanation of progressive profiling in the Poptin glossary.",
+          date: "2026-07-19T09:12:04+03:00",
+          url: "https://www.poptin.com/academy/glossary/progressive-profiling/",
+          assetLabel: "View glossary term"
         },
         {
           type: "scheduled",
           title: "Publish daily glossary term",
           detail: "Validate one unique 150–250 word definition and practical example, then publish it to the live Poptin glossary.",
-          date: "2026-07-21T09:15:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/actions/workflows/glossary-poptin-agent.yml",
-          assetLabel: "View workflow"
+          date: "2026-07-21T09:15:00+03:00"
         }
       ]
     }

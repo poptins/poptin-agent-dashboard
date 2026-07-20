@@ -31,6 +31,13 @@ function avatarStyle(agent) {
   return `--avatar-bg:${agent.color};--avatar-ink:${agent.ink}`;
 }
 
+function renderAsset(item, compact = false) {
+  if (item.url) {
+    return `<a class="asset-link ${compact ? "compact-asset" : ""}" href="${item.url}" target="_blank" rel="noopener">${item.assetLabel || "View published asset"} ↗</a>`;
+  }
+  return item.assetStatus ? `<span class="asset-note">${item.assetStatus}</span>` : "";
+}
+
 function renderAgents(query = "") {
   const normalized = query.trim().toLowerCase();
   const agents = data.agents.filter(agent => `${agent.name} ${agent.role}`.toLowerCase().includes(normalized));
@@ -61,7 +68,7 @@ function renderAgentDetail() {
     <div class="compact-item ${type}">
       <strong>${item.title}</strong>
       <span>${dateFormat.format(new Date(item.date))} · ${timeFormat.format(new Date(item.date))}</span>
-      ${item.url ? `<a class="asset-link compact-asset" href="${item.url}" target="_blank" rel="noopener">${item.assetLabel || (type === "scheduled" ? "View workflow" : "View asset")} ↗</a>` : ""}
+      ${renderAsset(item, true)}
     </div>
   `).join("") : `<span class="agent-role">Nothing here yet.</span>`;
 
@@ -102,7 +109,7 @@ function renderTimeline() {
       <div>
         <h3>${item.title}</h3>
         <p>${item.agent.name} · ${item.detail}</p>
-        ${item.url ? `<a class="asset-link" href="${item.url}" target="_blank" rel="noopener">${item.assetLabel || (item.type === "scheduled" ? "View workflow" : "View asset")} ↗</a>` : ""}
+        ${renderAsset(item)}
       </div>
       <div class="activity-date"><strong>${dateFormat.format(new Date(item.date))}</strong><span>${timeFormat.format(new Date(item.date))}</span></div>
     </article>
