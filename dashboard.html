@@ -1,13 +1,4 @@
-      <section class="activity-section recommendation-section">
-        <div class="section-heading">
-          <div><p class="eyebrow">APPROVAL QUEUE</p><h2>Optimization recommendations</h2></div>
-          <span class="sync-status">Exact changes require individual approval</span>
-        </div>
-        <div class="recommendation-grid" id="recommendationGrid"></div>
-        <p class="approval-note" id="approvalStatus" role="status"></p>
-      </section>
-
-<section class="activity-section"><!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -40,7 +31,7 @@
         <div>
           <p class="eyebrow">WORKSPACE OVERVIEW</p>
           <h1>Your team, at a glance.</h1>
-          <p class="hero-copy">Live operations view for the SEO, Social Media, Academy, and Glossary agents in <strong>poptin-agents</strong>.</p>
+          <p class="hero-copy">Live operations view for all five marketing agents in <strong>poptin-agents</strong>.</p>
         </div>
         <div class="updated-card">
           <span>LAST UPDATED</span>
@@ -54,33 +45,20 @@
       <section class="workspace-grid">
         <aside class="panel agent-panel">
           <div class="panel-heading">
-            <div>
-              <p class="eyebrow">TEAM</p>
-              <h2>Agents</h2>
-            </div>
+            <div><p class="eyebrow">TEAM</p><h2>Agents</h2></div>
             <span class="count-badge" id="agentCount">0</span>
           </div>
-          <label class="search-box">
-            <span aria-hidden="true">⌕</span>
-            <input id="agentSearch" type="search" placeholder="Search agents" autocomplete="off">
-          </label>
+          <label class="search-box"><span aria-hidden="true">⌕</span><input id="agentSearch" type="search" placeholder="Search agents" autocomplete="off"></label>
           <div class="agent-list" id="agentList"></div>
         </aside>
-
         <section class="panel detail-panel" id="agentDetail" aria-live="polite"></section>
       </section>
 
       <section class="activity-section">
         <div class="section-heading">
-          <div>
-            <p class="eyebrow">ACTIVITY</p>
-            <h2>Everything in motion</h2>
-          </div>
+          <div><p class="eyebrow">ACTIVITY</p><h2>Everything in motion</h2></div>
           <div class="activity-controls">
-            <label class="agent-filter-label" for="activityAgentFilter">
-              <span>Agent</span>
-              <select id="activityAgentFilter" aria-label="Filter activity by agent"></select>
-            </label>
+            <label class="agent-filter-label" for="activityAgentFilter"><span>Agent</span><select id="activityAgentFilter" aria-label="Filter activity by agent"></select></label>
             <div class="filters" role="group" aria-label="Filter activities by status">
               <button class="filter active" data-filter="all" type="button">All</button>
               <button class="filter" data-filter="past" type="button">Completed</button>
@@ -89,13 +67,12 @@
           </div>
         </div>
         <div class="timeline" id="activityTimeline"></div>
+        <div class="recommendation-grid" id="recommendationGrid" hidden></div>
+        <p class="approval-note" id="approvalStatus" role="status" hidden></p>
       </section>
     </main>
 
-    <footer>
-      <span>Agent Operations</span>
-      <span>Activity snapshot sourced from poptins/poptin-agents</span>
-    </footer>
+    <footer><span>Agent Operations</span><span>Activity snapshot sourced from poptins/poptin-agents</span></footer>
   </div>
   <script src="data.js"></script>
   <script src="app.js"></script>
