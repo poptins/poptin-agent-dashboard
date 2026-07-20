@@ -193,3 +193,13 @@ body.dark { --bg: #121816; --surface: #19211e; --surface-2: #202a26; --ink: #edf
 .remove-recommendation { position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); background: var(--surface); font-size: 18px; line-height: 1; }
 .remove-recommendation:hover { color: #a33; border-color: #d9a6a6; background: #fff2f2; }
 
+
+
+/* Quora publishing queue */
+.quora-answer-card { gap: 16px; }
+.answer-preview { max-height: 280px; overflow: auto; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); }
+.answer-preview p { margin: 0 0 12px; color: var(--ink); font-size: 13px; line-height: 1.65; }
+.answer-preview p:last-child { margin-bottom: 0; }
+.quora-publish-button { min-width: 120px; }
+.quora-load-copy { margin: 0; color: var(--muted); line-height: 1.6; }
+
