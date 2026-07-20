@@ -55,6 +55,7 @@ function renderAgents(query = "") {
       selectedAgentId = button.dataset.agentId;
       renderAgents($("#agentSearch").value);
       renderAgentDetail();
+      renderRecommendationQueue();
     });
   });
 }
@@ -356,3 +357,4 @@ function renderRecommendationQueue() {
 
 $("#agentList").addEventListener("click", () => setTimeout(renderRecommendationQueue, 0));
 renderRecommendationQueue();
+
