@@ -176,19 +176,19 @@ var exactOptimizationPatches = {
   "http://www.poptin.com/": {
     currentTitle: "Email Marketing Automation & Newsletters | Exit intent Popups - Poptin",
     currentDescription: "Create email campaigns, email automations, popups & forms in minutes. Grow audience, capture leads, and drive sales. Start for free - no credit card required.",
-    suggestedTitle: "Email Marketing Automation & Popups for Lead Growth | Poptin",
+    suggestedTitle: "Email Marketing Automation & Exit Intent Popups - Poptin",
     suggestedDescription: "Create email campaigns, automations, popups, and forms that capture leads and drive sales. Start free with Poptin—no credit card required."
   },
   "https://www.poptin.com/pricing/": {
     currentTitle: "Pricing - Poptin",
     currentDescription: "Explore affordable pricing plans for popups, forms, email campaigns, and email marketing automation. Choose the plan that fits your business.",
-    suggestedTitle: "Poptin Pricing: Email Marketing, Popups & Forms Plans",
+    suggestedTitle: "Email Marketing, Popups & Forms Pricing - Poptin",
     suggestedDescription: "Compare Poptin plans for email marketing, automation, popups, and forms. Choose the right features and limits for your business."
   },
   "https://www.poptin.com/about-us/": {
     currentTitle: "About Us - Poptin",
     currentDescription: "(No meta description is currently published.)",
-    suggestedTitle: "About Poptin | Our Team and Marketing Platform",
+    suggestedTitle: "About Us - Poptin",
     suggestedDescription: "Meet the team behind Poptin and learn how our email marketing, popup, and form tools help businesses capture leads and grow."
   },
   "https://careers.poptin.com/": {
@@ -201,55 +201,55 @@ var exactOptimizationPatches = {
   "https://www.poptin.com/blog/9-ultimate-sales-funnel-examples-that-convert/": {
     currentTitle: "9 Ultimate Sales Funnel Examples That Convert Like Crazy - Poptin blog",
     currentDescription: "Learn from these effective sales funnel examples by big brands that help track the buyer’s journey to better target them and convert them into sales faster.",
-    suggestedTitle: "9 Sales Funnel Examples That Convert (With Tips) | Poptin",
+    suggestedTitle: "9 Sales Funnel Examples That Convert (With Tips) - Poptin blog",
     suggestedDescription: "Explore nine proven sales funnel examples from leading brands and learn practical ways to improve targeting, conversions, and the buyer journey."
   },
   "https://www.poptin.com/blog/types-of-email-marketing/": {
     currentTitle: "Types of Email Marketing: A Complete Guide for Successful Campaigns - Poptin blog",
     currentDescription: "Discover the different types of email marketing and learn how to strategically use each one. Boost engagement and conversions with transactional, promotional, and informational emails, plus more!",
-    suggestedTitle: "Types of Email Marketing: 10 Campaigns to Use | Poptin",
+    suggestedTitle: "Types of Email Marketing: 10 Campaigns to Use - Poptin blog",
     suggestedDescription: "Learn the main types of email marketing campaigns, when to use each one, and how transactional, promotional, and educational emails drive results."
   },
   "https://www.poptin.com/blog/": {
     currentTitle: "Poptin blog - Pop Ups, Email Marketing, CRO & Digital Marketing Tips",
     currentDescription: "Pop Ups, Email Marketing, CRO & Digital Marketing Tips",
-    suggestedTitle: "Poptin Blog: Email Marketing, Popups & CRO Tips",
+    suggestedTitle: "Poptin blog - Pop Ups, Email Marketing, CRO & Digital Marketing Tips",
     suggestedDescription: "Practical guides for email marketing, popups, lead generation, ecommerce, and conversion optimization from the Poptin team."
   },
   "https://www.poptin.com/blog/30-free-banks-images-icons-vectors-visually-appealing-content/": {
     currentTitle: "30+ FREE Banks of Images, Icons and Vectors For Visually Appealing Content - Poptin blog",
     currentDescription: "(No meta description is currently published.)",
-    suggestedTitle: "30+ Free Image, Icon & Vector Sites for Content | Poptin",
+    suggestedTitle: "30+ Free Image, Icon & Vector Sites for Content - Poptin blog",
     suggestedDescription: "Find more than 30 free sources for images, icons, and vectors to create polished blog posts, landing pages, emails, and social content."
   },
   "https://www.poptin.com/blog/what-is-a-pop-up-the-only-guide-you-need/": {
     currentTitle: "What Is a Pop Up? The Only Guide You Need - Poptin blog",
     currentDescription: "Are you confused about pop ups and unsure of how to use them to boost sales, increase signups or grow your business? Read this guide.",
-    suggestedTitle: "What Is a Pop-Up? Types, Examples & Best Practices | Poptin",
+    suggestedTitle: "What Is a Pop Up? Types, Examples & Best Practices - Poptin blog",
     suggestedDescription: "Learn what pop-ups are, explore common types and examples, and discover best practices for increasing signups, leads, and sales."
   },
   "https://www.poptin.com/blog/6-ways-increase-brand-recognition-business/": {
     currentTitle: "6 Ways To Increase Brand Recognition For Your Business - Poptin blog",
     currentDescription: "(No meta description is currently published.)",
-    suggestedTitle: "6 Ways to Increase Brand Recognition for Your Business | Poptin",
+    suggestedTitle: "6 Ways To Increase Brand Recognition For Your Business - Poptin blog",
     suggestedDescription: "Discover six practical ways to strengthen brand recognition, build customer trust, and make your business more memorable across channels."
   },
   "https://www.poptin.com/blog/is-chaty-pro-the-best-wordpress-chat-plugin-for-you-a-review/": {
     currentTitle: "Is Chaty Pro The Best WordPress Chat Plugin For You? (A Review) - Poptin blog",
     currentDescription: "Looking for a chat app that seamlessly integrates with your WordPress website? Check out this review of Chaty Pro for WordPress.",
-    suggestedTitle: "Chaty Pro Review: Is It the Best WordPress Chat Plugin? | Poptin",
+    suggestedTitle: "Chaty Pro Review: Is It the Best WordPress Chat Plugin? - Poptin blog",
     suggestedDescription: "Read our Chaty Pro review to compare its channels, WordPress features, setup experience, and use cases before choosing a chat plugin."
   },
   "https://www.poptin.com/academy/glossary/scroll-trigger/": {
     currentTitle: "What is Scroll Trigger | Scroll Trigger Definition - Poptin Academy",
     currentDescription: "(No meta description is currently published.)",
-    suggestedTitle: "What Is a Scroll Trigger? Definition & Examples | Poptin Academy",
+    suggestedTitle: "What is Scroll Trigger | Scroll Trigger Definition - Poptin Academy",
     suggestedDescription: "A scroll trigger launches a popup or action after a visitor reaches a defined page depth. Learn how it works and when marketers use it."
   },
   "https://www.poptin.com/academy/glossary/flash-sale/": {
     currentTitle: "What is Flash Sale | Flash Sale Definition - Poptin Academy",
     currentDescription: "A flash sale is a limited-time promotion offering discounts to drive urgency, and engage customers through email or popup campaigns.",
-    suggestedTitle: "What Is a Flash Sale? Definition & Examples | Poptin Academy",
+    suggestedTitle: "What is Flash Sale | Flash Sale Definition - Poptin Academy",
     suggestedDescription: "A flash sale is a short, limited-time promotion designed to create urgency and increase sales through email, popups, and other campaigns."
   }
 };
@@ -321,5 +321,6 @@ function renderRecommendationQueue() {
 }
 
 renderRecommendationQueue();
+
 
 
