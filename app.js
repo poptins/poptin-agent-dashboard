@@ -231,7 +231,7 @@ async function removeRecommendationPermanently(recommendationId) {
   const current = await currentResponse.json();
   const decoded = JSON.parse(decodeURIComponent(escape(atob(current.content.replace(/\\s/g, "")))));
   const ids = [...new Set([...(decoded.ids || []), recommendationId])];
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify({ids}, null, 2) + "\\n")));
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify({ids}, null, 2) + "\n")));
   const update = await fetch(api, {
     method: "PUT",
     headers: {...headers, "Content-Type":"application/json"},
