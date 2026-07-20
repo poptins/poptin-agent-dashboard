@@ -30,7 +30,8 @@ window.AGENT_DATA = {
           title: "Delivered weekly SEO brief",
           detail: "Audited current public pages and competitors, then prioritized technical, content, integration, and trust-signal improvements.",
           date: "2026-07-19T13:08:00+03:00",
-          assetStatus: "Internal brief — not published publicly"
+          url: "https://github.com/poptins/poptin-agents/issues/4",
+          assetLabel: "Open internal SEO brief"
         },
         {
           type: "past",
@@ -44,7 +45,9 @@ window.AGENT_DATA = {
           type: "scheduled",
           title: "Monthly SEO publishing plan",
           detail: "Create four new posts and refresh six eligible older posts while preserving their URLs.",
-          date: "2026-08-01T08:00:00+03:00"
+          date: "2026-08-01T08:00:00+03:00",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/seo-agent.yml",
+          assetLabel: "Open internal workflow"
         }
       ]
     },
@@ -73,7 +76,8 @@ window.AGENT_DATA = {
           title: "Delivered weekly social media pack",
           detail: "Produced a CRO-focused campaign pack with LinkedIn, X, Facebook, video, visual, alt-text, and editorial-review guidance.",
           date: "2026-07-19T13:08:00+03:00",
-          assetStatus: "Internal content pack — not published publicly"
+          url: "https://github.com/poptins/poptin-agents/issues/1",
+          assetLabel: "Open internal social pack"
         },
         {
           type: "past",
@@ -86,7 +90,9 @@ window.AGENT_DATA = {
           type: "scheduled",
           title: "Check SEO publishing handoff",
           detail: "Run at minute 17, share any newly published SEO article, and skip future or already shared posts.",
-          date: "2026-07-20T10:17:00+03:00"
+          date: "2026-07-20T10:17:00+03:00",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/social-agent.yml",
+          assetLabel: "Open internal workflow"
         }
       ]
     },
@@ -115,7 +121,9 @@ window.AGENT_DATA = {
           type: "scheduled",
           title: "Generate daily Academy guide draft",
           detail: "Create and validate one 1,000–1,500 word guide, then save it to WordPress as a draft for review.",
-          date: "2026-07-21T09:30:00+03:00"
+          date: "2026-07-21T09:30:00+03:00",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/academic-best-practices-agent.yml",
+          assetLabel: "Open internal workflow"
         }
       ]
     },
@@ -144,7 +152,9 @@ window.AGENT_DATA = {
           type: "scheduled",
           title: "Publish daily glossary term",
           detail: "Validate one unique 150–250 word definition and practical example, then publish it to the live Poptin glossary.",
-          date: "2026-07-21T09:15:00+03:00"
+          date: "2026-07-21T09:15:00+03:00",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/glossary-poptin-agent.yml",
+          assetLabel: "Open internal workflow"
         }
       ]
     }
