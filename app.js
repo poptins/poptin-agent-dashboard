@@ -182,7 +182,7 @@ function recommendationExecutionId(item) {
 async function getOptimizationGithubToken() {
   let token = sessionStorage.getItem("optimizationGithubToken");
   if (!token) {
-    token = window.prompt("Enter a fine-grained GitHub token with Actions: write access to poptins/poptin-agents. It is stored only for this browser session.");
+    token = window.prompt("Enter a fine-grained GitHub token for poptins/poptin-agents with Actions: write and Issues: read access. It is stored only for this browser session.");
     if (!token) throw new Error("Approval was not submitted because no GitHub token was provided.");
     token = token.trim();
     sessionStorage.setItem("optimizationGithubToken", token);
@@ -323,6 +323,76 @@ var exactOptimizationPatches = {
   }
 };
 
+
+function parseQuoraReviewIssue(issue) {
+  const sections = [];
+  const pattern = /## \d+\. ([^\n]+)\n\n\*\*Question:\*\* (https:\/\/www\.quora\.com\/[^\s]+)\n\n([\s\S]*?)(?=\n\n## \d+\.|\n\n---|$)/g;
+  for (const match of issue.body.matchAll(pattern)) {
+    sections.push({ id: `issue-${issue.number}-${sections.length + 1}`, question: match[1].trim(), url: match[2].trim(), answer: match[3].trim() });
+  }
+  return sections;
+}
+async function loadQuoraReviewQueue(grid, status) {
+  const token = await getOptimizationGithubToken();
+  const response = await fetch("https://api.github.com/repos/poptins/poptin-agents/issues?state=open&per_page=100", { headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"} });
+  if (!response.ok) {
+    if ([401, 403, 404].includes(response.status)) sessionStorage.removeItem("optimizationGithubToken");
+    throw new Error(`GitHub could not load the private Quora review queue (${response.status}). Ensure the token has Issues: read access.`);
+  }
+  const issues = (await response.json()).filter(issue => issue.title.startsWith("[Quora agent]")).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  if (!issues.length) throw new Error("No open Quora review issue was found.");
+  const issue = issues[0];
+  const answers = parseQuoraReviewIssue(issue);
+  if (!answers.length) throw new Error("The latest Quora review issue did not contain readable answers.");
+  grid.innerHTML = answers.map(item => `
+    <article class="recommendation-card quora-answer-card" data-answer-id="${escapeHtml(item.id)}">
+      <div class="recommendation-top"><span class="property-pill">Quora</span><span class="readiness ready">Ready for human review</span></div>
+      <h3>${escapeHtml(item.question)}</h3>
+      <a class="recommendation-url" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.url)} ↗</a>
+      <div class="answer-preview">${escapeHtml(item.answer).replace(/\\n\\n/g, "</p><p>").replace(/^/, "<p>").replace(/$/, "</p>")}</div>
+      <div class="recommendation-actions"><button class="approve-button quora-publish-button" type="button" data-publish-answer="${escapeHtml(item.id)}">Publish</button></div>
+      <p class="card-feedback" aria-live="polite">Publish copies the answer and opens the question for final review and submission.</p>
+    </article>
+  `).join("");
+  grid.querySelectorAll("[data-publish-answer]").forEach(button => button.addEventListener("click", async () => {
+    const item = answers.find(answer => answer.id === button.dataset.publishAnswer);
+    const feedback = button.closest(".quora-answer-card").querySelector(".card-feedback");
+    const quoraWindow = window.open(item.url, "_blank", "noopener,noreferrer");
+    button.disabled = true; button.textContent = "Copying…";
+    try {
+      await navigator.clipboard.writeText(item.answer);
+      button.textContent = "Opened in Quora";
+      feedback.textContent = quoraWindow ? "Answer copied. Paste it into Quora, review the final text, and submit." : "Answer copied. Your browser blocked the new tab; use the question link above.";
+      status.textContent = "Answer copied and ready for the account owner to publish.";
+    } catch (error) {
+      button.disabled = false; button.textContent = "Publish"; feedback.classList.add("error");
+      feedback.textContent = "Clipboard access was unavailable. Copy the answer from the preview and use the question link.";
+      status.textContent = "Clipboard access was unavailable.";
+    }
+  }));
+  status.innerHTML = `Loaded ${answers.length} answers from the latest private review issue. <a href="${escapeHtml(issue.html_url)}" target="_blank" rel="noopener">Open issue ↗</a>`;
+}
+function renderQuoraQueue(grid, status) {
+  grid.innerHTML = `
+    <article class="recommendation-card quora-load-card">
+      <div class="recommendation-top"><span class="property-pill">Private review queue</span><span class="readiness ready">GitHub authentication required</span></div>
+      <h3>Load approved Quora drafts</h3>
+      <p class="quora-load-copy">Draft answers stay in the private agent repository and are never embedded in this public dashboard.</p>
+      <div class="recommendation-actions"><button class="approve-button" id="loadQuoraQueue" type="button">Load review queue</button></div>
+      <p class="card-feedback" id="quoraLoadFeedback" aria-live="polite"></p>
+    </article>
+  `;
+  grid.querySelector("#loadQuoraQueue").addEventListener("click", async event => {
+    const button = event.currentTarget; const feedback = grid.querySelector("#quoraLoadFeedback");
+    button.disabled = true; button.textContent = "Loading…";
+    try { await loadQuoraReviewQueue(grid, status); }
+    catch (error) {
+      button.disabled = false; button.textContent = "Load review queue"; feedback.classList.add("error");
+      feedback.textContent = error.message; status.textContent = error.message;
+    }
+  });
+}
+
 function renderRecommendationQueue() {
   const grid = $("#recommendationGrid");
   const timeline = $("#activityTimeline");
@@ -330,9 +400,15 @@ function renderRecommendationQueue() {
   if (!grid || !timeline || !status) return;
 
   const isOptimization = selectedAgentId === "optimization" || activityAgentFilter === "optimization";
-  grid.hidden = !isOptimization;
-  status.hidden = !isOptimization;
-  timeline.hidden = isOptimization;
+  const isQuora = selectedAgentId === "quora" || activityAgentFilter === "quora";
+  const hasActionQueue = isOptimization || isQuora;
+  grid.hidden = !hasActionQueue;
+  status.hidden = !hasActionQueue;
+  timeline.hidden = hasActionQueue;
+  if (isQuora) {
+    renderQuoraQueue(grid, status);
+    return;
+  }
   if (!isOptimization) return;
 
   const agent = data.agents.find(item => item.id === "optimization");
@@ -435,6 +511,7 @@ function renderRecommendationQueue() {
 
 renderRecommendationQueue();
 loadPermanentDismissals();
+
 
 
 
