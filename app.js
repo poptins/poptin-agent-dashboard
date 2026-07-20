@@ -179,7 +179,7 @@ function recommendationExecutionId(item) {
   return `gsc-meta-${last.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
 }
 
-async function dispatchOptimization(recommendationId) {
+async function getOptimizationGithubToken() {
   let token = sessionStorage.getItem("optimizationGithubToken");
   if (!token) {
     token = window.prompt("Enter a fine-grained GitHub token with Actions: write access to poptins/poptin-agents. It is stored only for this browser session.");
@@ -187,6 +187,11 @@ async function dispatchOptimization(recommendationId) {
     token = token.trim();
     sessionStorage.setItem("optimizationGithubToken", token);
   }
+  return token;
+}
+
+async function dispatchOptimization(recommendationId) {
+  const token = await getOptimizationGithubToken();
   const response = await fetch("https://api.github.com/repos/poptins/poptin-agents/actions/workflows/optimization-agent.yml/dispatches", {
     method: "POST",
     headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"},
@@ -195,6 +200,38 @@ async function dispatchOptimization(recommendationId) {
   if (response.status === 204) return;
   if (response.status === 401 || response.status === 403) sessionStorage.removeItem("optimizationGithubToken");
   throw new Error(`GitHub rejected the approval (${response.status}). Check that the token has Actions: write permission.`);
+}
+
+var permanentlyRemovedRecommendations = new Set();
+
+async function loadPermanentDismissals() {
+  try {
+    const response = await fetch("dismissed-recommendations.json", {cache: "no-store"});
+    if (!response.ok) return;
+    const data = await response.json();
+    permanentlyRemovedRecommendations = new Set(data.ids || []);
+  } finally {
+    renderRecommendationQueue();
+  }
+}
+
+async function removeRecommendationPermanently(recommendationId) {
+  const token = await getOptimizationGithubToken();
+  const api = "https://api.github.com/repos/poptins/poptin-agent-dashboard/contents/dismissed-recommendations.json";
+  const headers = {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"};
+  const currentResponse = await fetch(`${api}?ref=main`, {headers});
+  if (!currentResponse.ok) throw new Error(`GitHub could not read the shared dismissal list (${currentResponse.status}).`);
+  const current = await currentResponse.json();
+  const decoded = JSON.parse(decodeURIComponent(escape(atob(current.content.replace(/\\s/g, "")))));
+  const ids = [...new Set([...(decoded.ids || []), recommendationId])];
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify({ids}, null, 2) + "\\n")));
+  const update = await fetch(api, {
+    method: "PUT",
+    headers: {...headers, "Content-Type":"application/json"},
+    body: JSON.stringify({message:`Dismiss optimization recommendation ${recommendationId}`,content,sha:current.sha,branch:"main"})
+  });
+  if (!update.ok) throw new Error(`GitHub could not save the permanent dismissal (${update.status}). Check Contents: write permission.`);
+  permanentlyRemovedRecommendations.add(recommendationId);
 }
 
 var exactOptimizationPatches = {
@@ -295,7 +332,7 @@ function renderRecommendationQueue() {
   const items = agent?.activities || [];
   const cancelled = new Set(JSON.parse(localStorage.getItem("cancelledOptimizationRecommendations") || "[]"));
   const removed = new Set(JSON.parse(localStorage.getItem("removedOptimizationRecommendations") || "[]"));
-  grid.innerHTML = items.filter(item => !removed.has(recommendationKey(item))).map(item => {
+  grid.innerHTML = items.filter(item => !removed.has(recommendationKey(item)) && !permanentlyRemovedRecommendations.has(recommendationExecutionId(item))).map(item => {
     const patch = exactOptimizationPatches[item.url] || {
       currentTitle: "Current value unavailable",
       suggestedTitle: item.title,
@@ -331,11 +368,23 @@ function renderRecommendationQueue() {
     `;
   }).join("");
 
-  grid.querySelectorAll(".remove-recommendation").forEach(button => button.addEventListener("click", () => {
-    removed.add(button.dataset.remove);
-    localStorage.setItem("removedOptimizationRecommendations", JSON.stringify([...removed]));
-    status.textContent = "Recommendation removed from this browser session.";
-    renderRecommendationQueue();
+  grid.querySelectorAll(".remove-recommendation").forEach(button => button.addEventListener("click", async () => {
+    const card = button.closest(".recommendation-card");
+    const executionId = card.dataset.executionId;
+    button.disabled = true;
+    status.textContent = "Removing recommendation for every browser…";
+    try {
+      await removeRecommendationPermanently(executionId);
+      removed.add(button.dataset.remove);
+      localStorage.setItem("removedOptimizationRecommendations", JSON.stringify([...removed]));
+      status.textContent = "Recommendation permanently removed.";
+      renderRecommendationQueue();
+    } catch (error) {
+      button.disabled = false;
+      status.textContent = error.message;
+      card.querySelector(".card-feedback").textContent = error.message;
+      card.querySelector(".card-feedback").classList.add("error");
+    }
   }));
 
   grid.querySelectorAll(".approve-button").forEach(button => button.addEventListener("click", async () => {
@@ -368,6 +417,7 @@ function renderRecommendationQueue() {
 }
 
 renderRecommendationQueue();
+loadPermanentDismissals();
 
 
 
