@@ -269,7 +269,8 @@ function renderRecommendationQueue() {
   const agent = data.agents.find(item => item.id === "optimization");
   const items = agent?.activities || [];
   const cancelled = new Set(JSON.parse(sessionStorage.getItem("cancelledOptimizationRecommendations") || "[]"));
-  grid.innerHTML = items.map(item => {
+  const removed = new Set(JSON.parse(sessionStorage.getItem("removedOptimizationRecommendations") || "[]"));
+  grid.innerHTML = items.filter(item => !removed.has(recommendationKey(item))).map(item => {
     const patch = exactOptimizationPatches[item.url] || {
       currentTitle: "Current value unavailable",
       suggestedTitle: item.title,
@@ -285,6 +286,7 @@ function renderRecommendationQueue() {
         <div class="recommendation-top">
           <span class="property-pill">${property}</span>
           <span class="readiness ${isCancelled || patch.investigation ? "blocked" : "ready"}">${isCancelled ? "Cancelled" : patch.investigation ? "Investigation required" : "Suggested text ready"}</span>
+          <button class="remove-recommendation" type="button" data-remove="${escapeHtml(key)}" aria-label="Remove ${escapeHtml(item.title)}">×</button>
         </div>
         <h3>${escapeHtml(item.title)}</h3>
         <a class="recommendation-url" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.url)} ↗</a>
@@ -302,6 +304,13 @@ function renderRecommendationQueue() {
       </article>
     `;
   }).join("");
+
+  grid.querySelectorAll(".remove-recommendation").forEach(button => button.addEventListener("click", () => {
+    removed.add(button.dataset.remove);
+    sessionStorage.setItem("removedOptimizationRecommendations", JSON.stringify([...removed]));
+    status.textContent = "Recommendation removed from this browser session.";
+    renderRecommendationQueue();
+  }));
 
   grid.querySelectorAll(".approve-button").forEach(button => button.addEventListener("click", () => {
     const card = button.closest(".recommendation-card");
@@ -321,6 +330,7 @@ function renderRecommendationQueue() {
 }
 
 renderRecommendationQueue();
+
 
 
 
