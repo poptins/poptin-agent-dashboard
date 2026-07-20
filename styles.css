@@ -180,3 +180,10 @@ body.dark { --bg: #121816; --surface: #19211e; --surface-2: #202a26; --ink: #edf
 
 .recommendation-grid[hidden], .approval-note[hidden], .timeline[hidden] { display: none !important; }
 
+
+.card-feedback { min-height: 20px; margin: 0; padding: 9px 11px; border-radius: 9px; color: var(--green-dark); background: var(--green-soft); font-size: 12px; line-height: 1.45; }
+.card-feedback:empty { display: none; }
+.card-feedback.error { color: var(--amber); background: var(--amber-soft); }
+.recommendation-card.cancelled { opacity: .72; border-style: dashed; }
+.recommendation-actions button:disabled { cursor: not-allowed; opacity: .55; }
+
