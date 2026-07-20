@@ -144,6 +144,7 @@ document.querySelectorAll(".filter").forEach(button => button.addEventListener("
 $("#activityAgentFilter").addEventListener("change", event => {
   activityAgentFilter = event.target.value;
   renderTimeline();
+  renderRecommendationQueue();
 });
 $("#themeToggle").addEventListener("click", () => {
   document.body.classList.toggle("dark");
@@ -311,15 +312,14 @@ function renderRecommendationQueue() {
   var timeline = $("#activityTimeline");
   var status = $("#approvalStatus");
   if (!grid || !timeline || !status) return;
-  var isOptimization = selectedAgentId === "optimization";
+  var isOptimization = selectedAgentId === "optimization" || activityAgentFilter === "optimization";
   grid.hidden = !isOptimization;
   status.hidden = !isOptimization;
   timeline.hidden = isOptimization;
   if (!isOptimization) return;
 
   var agent = data.agents.find(item => item.id === "optimization");
-  var cancelled = new Set(JSON.parse(sessionStorage.getItem("cancelledOptimizationRecommendations") || "[]"));
-  var items = (agent?.activities || []).filter(item => item.type === "past" && !cancelled.has(recommendationKey(item)));
+  var items = (agent?.activities || []).filter(item => item.type === "past");
   grid.innerHTML = items.map(item => {
     var patch = exactOptimizationPatches[item.url];
     var key = recommendationKey(item);
@@ -348,13 +348,12 @@ function renderRecommendationQueue() {
     status.textContent = "Suggested text is ready, but execution is waiting for the exact WordPress page/post ID and protected before-state. No live change was made.";
   }));
   grid.querySelectorAll("[data-cancel]").forEach(button => button.addEventListener("click", () => {
-    cancelled.add(button.dataset.cancel);
-    sessionStorage.setItem("cancelledOptimizationRecommendations", JSON.stringify([...cancelled]));
-    status.textContent = "Recommendation cancelled for this browser session.";
-    renderRecommendationQueue();
+    button.closest(".recommendation-card")?.classList.add("cancelled");
+    status.textContent = "Recommendation marked as cancelled. It remains visible for review.";
   }));
 }
 
 $("#agentList").addEventListener("click", () => setTimeout(renderRecommendationQueue, 0));
 renderRecommendationQueue();
+
 
