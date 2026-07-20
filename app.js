@@ -366,7 +366,7 @@ function renderRecommendationQueue() {
           <div><span>SUGGESTED META DESCRIPTION</span><p>${escapeHtml(patch.suggestedDescription)}</p></div>
         </div>
         <div class="recommendation-actions">
-          <button class="approve-button" type="button" ${isCancelled ? "disabled" : ""}>Approve</button>
+          <button class="approve-button" type="button" disabled>Approvals paused</button>
           <button class="cancel-button" type="button" ${isCancelled ? "disabled" : ""}>${isCancelled ? "Cancelled" : "Cancel"}</button>
         </div>
         <p class="card-feedback" aria-live="polite">${isCancelled ? "This recommendation is cancelled and will not be executed." : ""}</p>
@@ -422,6 +422,7 @@ function renderRecommendationQueue() {
 
 renderRecommendationQueue();
 loadPermanentDismissals();
+
 
 
 
