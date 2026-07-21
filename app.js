@@ -363,8 +363,9 @@ function applyQuoraPublishCooldown(grid, status) {
 }
 
 async function copyQuoraAnswer(answer) {
+  const clipboardText = String(answer).replace(/\r\n/g, "\n").replace(/\n[ \t]*\n+/g, "\n").trim();
   const textarea = document.createElement("textarea");
-  textarea.value = answer;
+  textarea.value = clipboardText;
   textarea.setAttribute("readonly", "");
   textarea.style.position = "fixed";
   textarea.style.left = "-9999px";
@@ -375,7 +376,7 @@ async function copyQuoraAnswer(answer) {
   textarea.remove();
   if (copied) return;
   if (!navigator.clipboard?.writeText) throw new Error("Clipboard access is unavailable");
-  await navigator.clipboard.writeText(answer);
+  await navigator.clipboard.writeText(clipboardText);
 }
 
 async function loadQuoraReviewQueue(grid, status) {
