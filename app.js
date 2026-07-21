@@ -326,7 +326,7 @@ var exactOptimizationPatches = {
 
 function parseQuoraReviewIssue(issue) {
   const sections = [];
-  const pattern = /## \d+\. ([^\n]+)\n\n\*\*Question:\*\* (https:\/\/www\.quora\.com\/[^\s]+)\n\n([\s\S]*?)(?=\n\n## \d+\.|\n\n---|$)/g;
+  const pattern = /## \d+\. ([^\n]+)\n\n\*\*Question:\*\* (https:\/\/www\.quora\.com\/[^\s]+)\n\n([\s\S]*?)(?=\n\n\*\*Reviewer checks\*\*|\n\n## \d+\.|\n\n---|$)/g;
   for (const match of issue.body.matchAll(pattern)) {
     sections.push({ id: `issue-${issue.number}-${sections.length + 1}`, question: match[1].trim(), url: match[2].trim(), answer: match[3].trim() });
   }
@@ -511,7 +511,6 @@ function renderRecommendationQueue() {
 
 renderRecommendationQueue();
 loadPermanentDismissals();
-
 
 
 
