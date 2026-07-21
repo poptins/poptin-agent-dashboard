@@ -167,7 +167,25 @@ function loadLatestData() {
   });
 }
 
+function synchronizeSeoDependentActivities() {
+  const seoAgent = data.agents.find(agent => agent.id === "seo");
+  const seoNext = seoAgent?.activities.find(activity =>
+    activity.type === "scheduled" && activity.title === "Next SEO cadence article window"
+  );
+  if (!seoNext) return;
+
+  data.agents.forEach(agent => {
+    agent.activities
+      .filter(activity => activity.dependsOn === "seo-next-article")
+      .forEach(activity => {
+        activity.date = seoNext.date;
+        activity.detail = `After the SEO Agent's article expected on ${dateFormat.format(new Date(seoNext.date))} is confirmed published, schedule channel-specific Buffer posts for LinkedIn, Facebook, and X.`;
+      });
+  });
+}
+
 function renderDashboard() {
+  synchronizeSeoDependentActivities();
   if (!data.agents.some(agent => agent.id === selectedAgentId)) {
     selectedAgentId = data.agents[0]?.id;
   }
