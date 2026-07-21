@@ -206,3 +206,18 @@ body.dark { --bg: #121816; --surface: #19211e; --surface-2: #202a26; --ink: #edf
 .quora-publish-button { min-width: 120px; }
 .quora-load-copy { margin: 0; color: var(--muted); line-height: 1.6; }
 
+
+
+/* On-demand optimization discovery */
+.opportunity-launcher { grid-column: 1 / -1; border-color: var(--green); }
+.opportunity-launcher > p, .opportunity-card > p { margin: 0; color: var(--muted); line-height: 1.6; }
+.opportunity-empty { grid-column: 1 / -1; }
+.opportunity-evidence { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0; }
+.opportunity-evidence div { padding: 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2); }
+.opportunity-evidence dt { color: var(--muted); font-size: 10px; font-weight: 700; text-transform: uppercase; }
+.opportunity-evidence dd { margin: 4px 0 0; font-family: Manrope, sans-serif; font-weight: 800; }
+.permission-result { display: grid; gap: 5px; padding: 12px; border-radius: 10px; font-size: 12px; line-height: 1.45; }
+.permission-result.allowed { color: var(--green-dark); background: var(--green-soft); }
+.permission-result.denied { color: var(--amber); background: var(--amber-soft); }
+.permission-result span { color: inherit; }
+@media (max-width: 600px) { .opportunity-evidence { grid-template-columns: 1fr; } }
