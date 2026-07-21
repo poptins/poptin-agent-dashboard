@@ -362,6 +362,24 @@ function applyQuoraPublishCooldown(grid, status) {
   if (quoraCooldownRemaining() > 0) quoraCooldownTimer = setInterval(update, 1000);
 }
 
+async function copyQuoraAnswer(answer) {
+  try {
+    await navigator.clipboard.writeText(answer);
+    return;
+  } catch (error) {
+    const textarea = document.createElement("textarea");
+    textarea.value = answer;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    const copied = document.execCommand("copy");
+    textarea.remove();
+    if (!copied) throw error;
+  }
+}
+
 async function loadQuoraReviewQueue(grid, status) {
   const token = await getOptimizationGithubToken();
   const response = await fetch("https://api.github.com/repos/poptins/poptin-agents/issues?state=open&per_page=100", { headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"} });
@@ -391,15 +409,20 @@ async function loadQuoraReviewQueue(grid, status) {
     }
     const item = answers.find(answer => answer.id === button.dataset.publishAnswer);
     const feedback = button.closest(".quora-answer-card").querySelector(".card-feedback");
-    const quoraWindow = window.open(item.url, "_blank", "noopener,noreferrer");
+    const quoraWindow = window.open("about:blank", "_blank");
     button.disabled = true; button.textContent = "Copying…";
     try {
-      await navigator.clipboard.writeText(item.answer);
+      await copyQuoraAnswer(item.answer);
+      if (quoraWindow) {
+        quoraWindow.opener = null;
+        quoraWindow.location.replace(item.url);
+      }
       button.textContent = "Opened in Quora";
       feedback.textContent = quoraWindow ? "Answer copied. Paste it into Quora, review the final text, and submit." : "Answer copied. Your browser blocked the new tab; use the question link above.";
       localStorage.setItem(QUORA_PUBLISH_COOLDOWN_KEY, String(Date.now() + QUORA_PUBLISH_COOLDOWN_MS));
       applyQuoraPublishCooldown(grid, status);
     } catch (error) {
+      if (quoraWindow) quoraWindow.close();
       button.disabled = false; button.textContent = "Copy & open Quora"; feedback.classList.add("error");
       feedback.textContent = "Clipboard access was unavailable. Copy the answer from the preview and use the question link.";
       status.textContent = "Clipboard access was unavailable.";
@@ -557,7 +580,4 @@ function renderRecommendationQueue() {
 
 renderRecommendationQueue();
 loadPermanentDismissals();
-
-
-
 
