@@ -8,6 +8,20 @@ const dateFormat = new Intl.DateTimeFormat("en-US", { month: "short", day: "nume
 const timeFormat = new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" });
 
 function activityDate(item) {
+  if (item.type === "scheduled" && item.schedule?.frequency === "weekly") {
+    const now = new Date();
+    const nextRun = new Date(Date.UTC(
+      now.getUTCFullYear(),
+      now.getUTCMonth(),
+      now.getUTCDate(),
+      item.schedule.hourUtc,
+      item.schedule.minuteUtc || 0
+    ));
+    const daysUntilRun = (item.schedule.weekdayUtc - nextRun.getUTCDay() + 7) % 7;
+    nextRun.setUTCDate(nextRun.getUTCDate() + daysUntilRun);
+    if (nextRun <= now) nextRun.setUTCDate(nextRun.getUTCDate() + 7);
+    return nextRun;
+  }
   if (item.type === "scheduled" && item.scheduleUtc) {
     const [hour, minute] = item.scheduleUtc.split(":").map(Number);
     const now = new Date();
