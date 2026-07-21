@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-07-20T14:30:00+03:00",
+  lastUpdated: "2026-07-21T09:30:00+03:00",
   agents: [
     {
       id: "seo",
@@ -12,9 +12,9 @@ window.AGENT_DATA = {
       status: "active",
       color: "#d9eee4",
       ink: "#18543d",
-      task: "Researches verified SEO opportunities and publishes 2,000–3,000 word SEO/AEO/GEO articles. It plans four new monthly posts, refreshes six eligible older posts, generates article images, applies editorial quality gates, publishes through WordPress, and hands newly published articles to the Social Media Agent.",
+      task: "Researches verified SEO opportunities and publishes 2,000-3,000 word SEO/AEO/GEO articles. It creates one new SEO article every 4-5 days, generates article images, applies editorial quality gates, publishes through WordPress, and hands newly published articles to the Social Media Agent. Older-post refreshes remain available through manual or legacy refresh flows.",
       owner: "Content & SEO",
-      cadence: "Monthly + on demand",
+      cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
         {
@@ -43,9 +43,9 @@ window.AGENT_DATA = {
         },
         {
           type: "scheduled",
-          title: "Monthly SEO publishing plan",
-          detail: "Create four new posts and refresh six eligible older posts while preserving their URLs.",
-          date: "2026-08-01T08:00:00+03:00",
+          title: "Next SEO cadence article window",
+          detail: "Daily workflow wakes at 08:00 IDT and creates one new SEO article only after the 4-day cadence is due. Seeded from the July 19 article, the next article-producing run is expected on the first daily wakeup after July 23 at 10:54 IDT.",
+          date: "2026-07-24T08:00:00+03:00",
           url: "https://github.com/poptins/poptin-agents/actions/workflows/seo-agent.yml",
           assetLabel: "Open internal workflow"
         }
