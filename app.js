@@ -7,6 +7,17 @@ const $ = (selector) => document.querySelector(selector);
 const dateFormat = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" });
 const timeFormat = new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" });
 
+function activityDate(item) {
+  if (item.type === "scheduled" && item.scheduleUtc) {
+    const [hour, minute] = item.scheduleUtc.split(":").map(Number);
+    const now = new Date();
+    const nextRun = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), hour, minute));
+    if (nextRun <= now) nextRun.setUTCDate(nextRun.getUTCDate() + 1);
+    return nextRun;
+  }
+  return new Date(item.date);
+}
+
 function allActivities() {
   return data.agents.flatMap(agent => agent.activities.map(activity => ({ ...activity, agent })));
 }
@@ -68,7 +79,7 @@ function renderAgentDetail() {
   const compact = (items, type) => items.length ? items.map(item => `
     <div class="compact-item ${type}">
       <strong>${item.title}</strong>
-      <span>${dateFormat.format(new Date(item.date))} · ${timeFormat.format(new Date(item.date))}</span>
+      <span>${dateFormat.format(activityDate(item))} · ${timeFormat.format(activityDate(item))}</span>
       ${renderAsset(item, true)}
     </div>
   `).join("") : `<span class="agent-role">Nothing here yet.</span>`;
@@ -93,7 +104,7 @@ function renderAgentDetail() {
     </div>
     <div class="detail-columns">
       <div><div class="mini-heading"><h3>Recent work</h3><span>${past.length} shown</span></div><div class="compact-list">${compact(past, "past")}</div></div>
-      <div><div class="mini-heading"><h3>Up next</h3><span>${scheduled.length} planned</span></div><div class="compact-list">${compact(scheduled, "scheduled")}</div></div>
+      <div><div class="mini-heading"><h3>Upcoming schedule</h3><span>${scheduled.length} planned</span></div><div class="compact-list">${compact(scheduled, "scheduled")}</div></div>
     </div>
   `;
 }
@@ -115,7 +126,7 @@ function renderTimeline() {
         <p>${item.agent.name} · ${item.detail}</p>
         ${renderAsset(item)}
       </div>
-      <div class="activity-date"><strong>${dateFormat.format(new Date(item.date))}</strong><span>${timeFormat.format(new Date(item.date))}</span></div>
+      <div class="activity-date"><strong>${dateFormat.format(activityDate(item))}</strong><span>${timeFormat.format(activityDate(item))}</span></div>
     </article>
   `).join("") : `<div class="empty-state">${emptyMessage}</div>`;
 }
