@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-07-21T09:30:00+03:00",
+  lastUpdated: "2026-07-21T11:30:00+03:00",
   agents: [
     {
       id: "seo",
@@ -105,9 +105,9 @@ window.AGENT_DATA = {
       status: "active",
       color: "#dceaf3",
       ink: "#245a7a",
-      task: "Creates original, source-grounded Academy guides about email marketing, popups, forms, segmentation, automation, and CRO. It reads only official Poptin sources, prevents duplicate topics, enforces structure and SEO quality, and creates WordPress drafts for review.",
+      task: "Publishes one original, source-grounded Academy best-practices guide each week about email marketing, popups, forms, segmentation, automation, or CRO. It reads only official Poptin sources, prevents duplicate topics, enforces structure and SEO quality, and publishes each guide under /academy/guides/.",
       owner: "Poptin Academy",
-      cadence: "Daily at 09:30 IDT",
+      cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
         {
@@ -120,9 +120,10 @@ window.AGENT_DATA = {
         },
         {
           type: "scheduled",
-          title: "Generate daily Academy guide draft",
-          detail: "Create and validate one 1,000–1,500 word guide, then save it to WordPress as a draft for review.",
-          date: "2026-07-21T09:30:00+03:00",
+          title: "Publish weekly Academy best-practices guide",
+          detail: "Create, validate, and publish one non-duplicate 1,000–1,500 word guide under /academy/guides/.",
+          date: "2026-07-26T09:00:00+03:00",
+          schedule: { frequency: "weekly", weekdayUtc: 0, hourUtc: 6, minuteUtc: 0 },
           url: "https://github.com/poptins/poptin-agents/actions/workflows/academic-best-practices-agent.yml",
           assetLabel: "Open internal workflow"
         }
