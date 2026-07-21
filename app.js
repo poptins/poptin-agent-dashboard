@@ -363,21 +363,19 @@ function applyQuoraPublishCooldown(grid, status) {
 }
 
 async function copyQuoraAnswer(answer) {
-  try {
-    await navigator.clipboard.writeText(answer);
-    return;
-  } catch (error) {
-    const textarea = document.createElement("textarea");
-    textarea.value = answer;
-    textarea.setAttribute("readonly", "");
-    textarea.style.position = "fixed";
-    textarea.style.opacity = "0";
-    document.body.appendChild(textarea);
-    textarea.select();
-    const copied = document.execCommand("copy");
-    textarea.remove();
-    if (!copied) throw error;
-  }
+  const textarea = document.createElement("textarea");
+  textarea.value = answer;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  const copied = document.execCommand("copy");
+  textarea.remove();
+  if (copied) return;
+  if (!navigator.clipboard?.writeText) throw new Error("Clipboard access is unavailable");
+  await navigator.clipboard.writeText(answer);
 }
 
 async function loadQuoraReviewQueue(grid, status) {
@@ -398,13 +396,50 @@ async function loadQuoraReviewQueue(grid, status) {
       <h3>${escapeHtml(item.question)}</h3>
       <a class="recommendation-url" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.url)} ↗</a>
       <div class="answer-preview">${escapeHtml(item.answer).replace(/\\n\\n/g, "</p><p>").replace(/^/, "<p>").replace(/$/, "</p>")}</div>
-      <div class="recommendation-actions"><button class="approve-button quora-publish-button" type="button" data-publish-answer="${escapeHtml(item.id)}">Copy &amp; open Quora</button></div>
-      <p class="card-feedback" aria-live="polite">Copies the answer and opens the question. Click Answer in Quora, then paste with Ctrl+V.</p>
+      <div class="recommendation-actions">
+        <button class="cancel-button quora-copy-button" type="button" data-copy-answer="${escapeHtml(item.id)}" aria-label="Copy answer">📋 Copy answer</button>
+        <button class="approve-button quora-publish-button" type="button" data-publish-answer="${escapeHtml(item.id)}">Open Quora question</button>
+      </div>
+      <p class="card-feedback" aria-live="polite">Copy the answer first, then open Quora, click Answer, and paste with Ctrl+V.</p>
     </article>
   `).join("");
+  grid.querySelectorAll("[data-copy-answer]").forEach(button => button.addEventListener("click", async () => {
+    const item = answers.find(answer => answer.id === button.dataset.copyAnswer);
+    const feedback = button.closest(".quora-answer-card").querySelector(".card-feedback");
+    button.disabled = true;
+    try {
+      await copyQuoraAnswer(item.answer);
+      button.textContent = "✓ Copied";
+      feedback.classList.remove("error");
+      feedback.textContent = "Answer copied to your clipboard. Open Quora, click Answer, and paste with Ctrl+V.";
+      setTimeout(() => { button.disabled = false; button.textContent = "📋 Copy answer"; }, 2000);
+    } catch (error) {
+      button.disabled = false;
+      button.textContent = "📋 Copy answer";
+      feedback.classList.add("error");
+      feedback.textContent = "Copy was blocked by the browser. Select the answer text above and copy it manually.";
+    }
+  }));
   grid.querySelectorAll("[data-publish-answer]").forEach(button => button.addEventListener("click", async () => {
     if (quoraCooldownRemaining() > 0) {
       applyQuoraPublishCooldown(grid, status);
+      return;
+    }
+    {
+      const itemToOpen = answers.find(answer => answer.id === button.dataset.publishAnswer);
+      const feedbackToUpdate = button.closest(".quora-answer-card").querySelector(".card-feedback");
+      const openedWindow = window.open(itemToOpen.url, "_blank", "noopener,noreferrer");
+      if (openedWindow) {
+        button.disabled = true;
+        button.textContent = "Opened in Quora";
+        feedbackToUpdate.classList.remove("error");
+        feedbackToUpdate.textContent = "Question opened. Click Answer in Quora, then paste the copied answer with Ctrl+V.";
+        localStorage.setItem(QUORA_PUBLISH_COOLDOWN_KEY, String(Date.now() + QUORA_PUBLISH_COOLDOWN_MS));
+        applyQuoraPublishCooldown(grid, status);
+      } else {
+        feedbackToUpdate.classList.add("error");
+        feedbackToUpdate.textContent = "Your browser blocked the new tab. Use the question link above.";
+      }
       return;
     }
     const item = answers.find(answer => answer.id === button.dataset.publishAnswer);
