@@ -414,11 +414,23 @@ async function loadQuoraReviewQueue(grid, status) {
     try {
       await copyQuoraAnswer(item.answer);
       if (quoraWindow) {
-        quoraWindow.opener = null;
-        quoraWindow.location.replace(item.url);
+        button.textContent = "Copied, opening...";
+        feedback.textContent = "Answer copied successfully. Opening the Quora question in 1 second.";
+        setTimeout(() => {
+          try {
+            quoraWindow.location.href = item.url;
+            button.textContent = "Opened in Quora";
+            feedback.textContent = "Answer copied. Click Answer in Quora, paste with Ctrl+V, review, and submit.";
+          } catch (error) {
+            quoraWindow.close();
+            button.textContent = "Copied";
+            feedback.textContent = "Answer copied, but the browser blocked navigation. Use the question link above.";
+          }
+        }, 1000);
+      } else {
+        button.textContent = "Copied";
+        feedback.textContent = "Answer copied, but the browser blocked the new tab. Use the question link above.";
       }
-      button.textContent = "Opened in Quora";
-      feedback.textContent = quoraWindow ? "Answer copied. Paste it into Quora, review the final text, and submit." : "Answer copied. Your browser blocked the new tab; use the question link above.";
       localStorage.setItem(QUORA_PUBLISH_COOLDOWN_KEY, String(Date.now() + QUORA_PUBLISH_COOLDOWN_MS));
       applyQuoraPublishCooldown(grid, status);
     } catch (error) {
@@ -580,4 +592,3 @@ function renderRecommendationQueue() {
 
 renderRecommendationQueue();
 loadPermanentDismissals();
-
