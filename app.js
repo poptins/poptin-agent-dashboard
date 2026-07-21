@@ -363,7 +363,7 @@ function applyQuoraPublishCooldown(grid, status) {
 }
 
 async function copyQuoraAnswer(answer) {
-  const clipboardText = String(answer).replace(/\r\n/g, "\n").replace(/\n[ \t]*\n+/g, "\n").trim();
+  const clipboardText = String(answer).replace(/\r\n/g, "\n").replace(/\n(?:[ \t]*\n)+/g, "\n\n").trim();
   const textarea = document.createElement("textarea");
   textarea.value = clipboardText;
   textarea.setAttribute("readonly", "");
