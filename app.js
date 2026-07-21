@@ -332,6 +332,36 @@ function parseQuoraReviewIssue(issue) {
   }
   return sections;
 }
+
+const QUORA_PUBLISH_COOLDOWN_MS = 4 * 60 * 1000;
+const QUORA_PUBLISH_COOLDOWN_KEY = "quoraPublishCooldownUntil";
+let quoraCooldownTimer;
+
+function quoraCooldownRemaining() {
+  return Math.max(0, Number(localStorage.getItem(QUORA_PUBLISH_COOLDOWN_KEY) || 0) - Date.now());
+}
+
+function applyQuoraPublishCooldown(grid, status) {
+  clearInterval(quoraCooldownTimer);
+  const update = () => {
+    const remaining = quoraCooldownRemaining();
+    const cooling = remaining > 0;
+    grid.querySelectorAll("[data-publish-answer]").forEach(button => {
+      if (button.textContent !== "Opened in Quora") button.disabled = cooling;
+    });
+    if (!cooling) {
+      clearInterval(quoraCooldownTimer);
+      localStorage.removeItem(QUORA_PUBLISH_COOLDOWN_KEY);
+      return;
+    }
+    const minutes = Math.floor(remaining / 60000);
+    const seconds = Math.ceil((remaining % 60000) / 1000).toString().padStart(2, "0");
+    status.textContent = `Next Quora answer available in ${minutes}:${seconds}.`;
+  };
+  update();
+  if (quoraCooldownRemaining() > 0) quoraCooldownTimer = setInterval(update, 1000);
+}
+
 async function loadQuoraReviewQueue(grid, status) {
   const token = await getOptimizationGithubToken();
   const response = await fetch("https://api.github.com/repos/poptins/poptin-agents/issues?state=open&per_page=100", { headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"} });
@@ -355,6 +385,10 @@ async function loadQuoraReviewQueue(grid, status) {
     </article>
   `).join("");
   grid.querySelectorAll("[data-publish-answer]").forEach(button => button.addEventListener("click", async () => {
+    if (quoraCooldownRemaining() > 0) {
+      applyQuoraPublishCooldown(grid, status);
+      return;
+    }
     const item = answers.find(answer => answer.id === button.dataset.publishAnswer);
     const feedback = button.closest(".quora-answer-card").querySelector(".card-feedback");
     const quoraWindow = window.open(item.url, "_blank", "noopener,noreferrer");
@@ -363,7 +397,8 @@ async function loadQuoraReviewQueue(grid, status) {
       await navigator.clipboard.writeText(item.answer);
       button.textContent = "Opened in Quora";
       feedback.textContent = quoraWindow ? "Answer copied. Paste it into Quora, review the final text, and submit." : "Answer copied. Your browser blocked the new tab; use the question link above.";
-      status.textContent = "Answer copied and ready for the account owner to publish.";
+      localStorage.setItem(QUORA_PUBLISH_COOLDOWN_KEY, String(Date.now() + QUORA_PUBLISH_COOLDOWN_MS));
+      applyQuoraPublishCooldown(grid, status);
     } catch (error) {
       button.disabled = false; button.textContent = "Publish"; feedback.classList.add("error");
       feedback.textContent = "Clipboard access was unavailable. Copy the answer from the preview and use the question link.";
@@ -371,6 +406,7 @@ async function loadQuoraReviewQueue(grid, status) {
     }
   }));
   status.innerHTML = `Loaded ${answers.length} answers from the latest private review issue. <a href="${escapeHtml(issue.html_url)}" target="_blank" rel="noopener">Open issue ↗</a>`;
+  applyQuoraPublishCooldown(grid, status);
 }
 function renderQuoraQueue(grid, status) {
   grid.innerHTML = `
@@ -511,9 +547,6 @@ function renderRecommendationQueue() {
 
 renderRecommendationQueue();
 loadPermanentDismissals();
-
-
-
 
 
 
