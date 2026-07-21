@@ -54,6 +54,7 @@ h3 { font-size: 18px; }
 .updated-card { min-width: 185px; border-left: 1px solid var(--line); padding-left: 24px; display: grid; gap: 5px; }
 .updated-card span { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
 .updated-card strong { font-family: Manrope, sans-serif; font-size: 15px; }
+.updated-card .snapshot-time { font-size: 10px; font-weight: 500; letter-spacing: 0; }
 .updated-card button { justify-self: start; border: 0; padding: 5px 0; background: none; color: var(--green); font-weight: 700; }
 
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }

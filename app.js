@@ -118,8 +118,10 @@ function renderTimeline() {
 }
 
 function setUpdatedTime() {
-  const date = new Date(data.lastUpdated);
-  $("#lastUpdated").textContent = `${dateFormat.format(date)}, ${timeFormat.format(date)}`;
+  const checkedAt = new Date();
+  const snapshotAt = new Date(data.lastUpdated);
+  $("#lastUpdated").textContent = `${dateFormat.format(checkedAt)}, ${timeFormat.format(checkedAt)}`;
+  $("#dataSnapshot").textContent = `Data snapshot: ${dateFormat.format(snapshotAt)}, ${timeFormat.format(snapshotAt)}`;
 }
 
 function renderActivityAgentFilter() {
