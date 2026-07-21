@@ -8,10 +8,13 @@ The public site includes a client-side password gate. This discourages casual ac
 
 All displayed agent content lives in `data.js`. The initial snapshot was derived from repository agent definitions, GitHub issues, persisted run state, and workflow cron schedules. Update this file from those sources, then commit and push; GitHub Pages will redeploy automatically.
 
-The Quora Agent loads its review queue from the private agent repository only after GitHub authentication. Its Publish action copies an answer and opens the matching Quora question for human review and submission. Drafts and account identity are not embedded in this public repository.\n\nEach activity has a `type` of either:
+The Quora Agent loads its review queue from the private agent repository only after GitHub authentication. Its Publish action copies an answer and opens the matching Quora question for human review and submission. Drafts and account identity are not embedded in this public repository.
+
+Each activity has a `type` of:
 
 - `past` for completed work
 - `scheduled` for upcoming work
+- `failed` for unsuccessful agent or workflow tasks
 
 Dates should use ISO 8601 format, including a time zone.
 

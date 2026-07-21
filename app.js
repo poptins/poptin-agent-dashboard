@@ -102,11 +102,14 @@ function renderTimeline() {
   const activities = allActivities()
     .filter(item => activityFilter === "all" || item.type === activityFilter)
     .filter(item => activityAgentFilter === "all" || item.agent.id === activityAgentFilter)
-    .sort((a, b) => activityFilter === "past" ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date));
+    .sort((a, b) => ["past", "failed"].includes(activityFilter) ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date));
+
+  const activityIcon = item => item.type === "past" ? "✓" : item.type === "failed" ? "!" : "→";
+  const emptyMessage = activityFilter === "failed" ? "No failed tasks recorded." : "No activity in this view.";
 
   $("#activityTimeline").innerHTML = activities.length ? activities.map(item => `
     <article class="activity-card">
-      <span class="timeline-icon ${item.type}">${item.type === "past" ? "✓" : "→"}</span>
+      <span class="timeline-icon ${item.type}">${activityIcon(item)}</span>
       <div>
         <h3>${item.title}</h3>
         <p>${item.agent.name} · ${item.detail}</p>
@@ -114,7 +117,7 @@ function renderTimeline() {
       </div>
       <div class="activity-date"><strong>${dateFormat.format(new Date(item.date))}</strong><span>${timeFormat.format(new Date(item.date))}</span></div>
     </article>
-  `).join("") : `<div class="empty-state">No activity in this view.</div>`;
+  `).join("") : `<div class="empty-state">${emptyMessage}</div>`;
 }
 
 function setUpdatedTime() {

@@ -115,11 +115,13 @@ h3 { font-size: 18px; }
 .filters { display: inline-flex; padding: 4px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
 .filter { border: 0; border-radius: 8px; color: var(--muted); background: transparent; padding: 8px 13px; font-size: 12px; font-weight: 700; }
 .filter.active { color: #fff; background: var(--green); }
+.filter[data-filter="failed"].active { background: #b33a3a; }
 .timeline { position: relative; display: grid; gap: 12px; }
 .timeline::before { content: ""; position: absolute; left: 25px; top: 28px; bottom: 28px; width: 1px; background: var(--line); }
 .activity-card { position: relative; display: grid; grid-template-columns: 50px 1fr auto; gap: 18px; align-items: center; padding: 18px 20px 18px 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 6px 22px rgba(26, 46, 38, .04); }
 .timeline-icon { z-index: 1; width: 32px; height: 32px; margin-left: 9px; display: grid; place-items: center; border-radius: 50%; background: var(--green-soft); color: var(--green); border: 4px solid var(--surface); font-size: 12px; font-weight: 800; }
 .timeline-icon.scheduled { background: var(--amber-soft); color: var(--amber); }
+.timeline-icon.failed { background: #f8e2e2; color: #b33a3a; }
 .activity-card h3 { font-size: 14px; margin-bottom: 4px; }
 .activity-card p { color: var(--muted); font-size: 12px; margin: 0; }
 .activity-date { text-align: right; }
