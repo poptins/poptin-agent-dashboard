@@ -221,3 +221,8 @@ body.dark { --bg: #121816; --surface: #19211e; --surface-2: #202a26; --ink: #edf
 .permission-result.denied { color: var(--amber); background: var(--amber-soft); }
 .permission-result span { color: inherit; }
 @media (max-width: 600px) { .opportunity-evidence { grid-template-columns: 1fr; } }
+
+.product-tabs { display:flex; gap:8px; padding:18px 0 0; }
+.product-tabs button { min-width:110px; padding:10px 18px; border:1px solid var(--line); border-radius:999px; color:var(--muted); background:var(--surface); font-weight:700; }
+.product-tabs button.active { color:#fff; border-color:var(--green); background:var(--green); }
+.product-action-link { display:inline-flex; align-items:center; min-height:38px; padding:0 15px; border-radius:9px; color:#fff; text-decoration:none; }
