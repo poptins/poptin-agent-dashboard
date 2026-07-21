@@ -1,4 +1,4 @@
-const data = window.AGENT_DATA;
+let data = window.AGENT_DATA;
 let selectedAgentId = data.agents[0]?.id;
 let activityFilter = "all";
 let activityAgentFilter = "all";
@@ -127,14 +127,61 @@ function renderActivityAgentFilter() {
     <option value="all">All agents</option>
     ${data.agents.map(agent => `<option value="${agent.id}">${agent.name}</option>`).join("")}
   `;
+  $("#activityAgentFilter").value = activityAgentFilter;
+}
+
+function loadLatestData() {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = `data.js?refresh=${Date.now()}`;
+    script.async = true;
+    script.onload = () => {
+      script.remove();
+      if (!window.AGENT_DATA?.agents) {
+        reject(new Error("The dashboard data is invalid."));
+        return;
+      }
+      resolve(window.AGENT_DATA);
+    };
+    script.onerror = () => {
+      script.remove();
+      reject(new Error("The latest dashboard data could not be loaded."));
+    };
+    document.head.appendChild(script);
+  });
+}
+
+function renderDashboard() {
+  if (!data.agents.some(agent => agent.id === selectedAgentId)) {
+    selectedAgentId = data.agents[0]?.id;
+  }
+  renderStats();
+  renderAgents($("#agentSearch").value);
+  renderAgentDetail();
+  renderActivityAgentFilter();
+  renderTimeline();
+  renderRecommendationQueue();
+  setUpdatedTime();
 }
 
 $("#agentSearch").addEventListener("input", event => renderAgents(event.target.value));
-$("#refreshButton").addEventListener("click", () => {
-  setUpdatedTime();
+$("#refreshButton").addEventListener("click", async () => {
   const button = $("#refreshButton");
-  button.textContent = "✓ Refreshed";
-  setTimeout(() => button.textContent = "↻ Refresh", 1200);
+  button.disabled = true;
+  button.textContent = "↻ Refreshing…";
+  try {
+    data = await loadLatestData();
+    renderDashboard();
+    button.textContent = "✓ Updated";
+  } catch (error) {
+    console.error(error);
+    button.textContent = "! Try again";
+  } finally {
+    setTimeout(() => {
+      button.disabled = false;
+      button.textContent = "↻ Refresh";
+    }, 1400);
+  }
 });
 document.querySelectorAll(".filter").forEach(button => button.addEventListener("click", () => {
   activityFilter = button.dataset.filter;
@@ -154,15 +201,6 @@ $("#logoutButton").addEventListener("click", () => {
   sessionStorage.removeItem("agentDashboardAccess");
   window.location.replace("index.html");
 });
-
-renderStats();
-renderAgents();
-renderAgentDetail();
-renderActivityAgentFilter();
-renderTimeline();
-setUpdatedTime();
-
-
 
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, character => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[character]));
@@ -628,3 +666,4 @@ function renderRecommendationQueue() {
 
 renderRecommendationQueue();
 loadPermanentDismissals();
+renderDashboard();
