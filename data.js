@@ -137,7 +137,7 @@ window.AGENT_DATA = {
       ink: "#5d4378",
       task: "Researches accurate terminology for CRO, popups, forms, analytics, consent, ecommerce, SaaS, and email marketing. It checks the full published glossary for duplicates, validates plain-English definitions and examples, flags sensitive terms, and publishes one approved-quality term to Poptin Academy each day.",
       owner: "Poptin Academy",
-      cadence: "Daily at 09:15 IDT",
+      cadence: "Daily at 06:15 UTC",
       priority: "Medium",
       activities: [
         {
@@ -153,6 +153,7 @@ window.AGENT_DATA = {
           title: "Publish daily glossary term",
           detail: "Validate one unique 150–250 word definition and practical example, then publish it to the live Poptin glossary.",
           date: "2026-07-21T09:15:00+03:00",
+          scheduleUtc: "06:15",
           url: "https://github.com/poptins/poptin-agents/actions/workflows/glossary-poptin-agent.yml",
           assetLabel: "Open internal workflow"
         }
