@@ -88,11 +88,12 @@ window.AGENT_DATA = {
         },
         {
           type: "scheduled",
-          title: "Check SEO publishing handoff",
-          detail: "Run at minute 17, share any newly published SEO article, and skip future or already shared posts.",
-          date: "2026-07-20T10:17:00+03:00",
-          url: "https://github.com/poptins/poptin-agents/actions/workflows/social-agent.yml",
-          assetLabel: "Open internal workflow"
+          dependsOn: "seo-next-article",
+          title: "Share the next published SEO article",
+          detail: "After the SEO Agent's next article is confirmed published, schedule channel-specific Buffer posts for LinkedIn, Facebook, and X.",
+          date: "2026-07-24T08:00:00+03:00",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/social-media-agent.yml",
+          assetLabel: "Open social workflow"
         }
       ]
     },
