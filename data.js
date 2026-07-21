@@ -290,6 +290,24 @@ window.AGENT_DATA = {
         "owner": "Community & Growth",
         "cadence": "Daily at 10:15 IDT",
         "priority": "Medium",
+        "pendingQuestions": [
+            {
+                "question": "Which are the best email marketing tools?",
+                "url": "https://www.quora.com/Which-are-the-best-email-marketing-tools-1"
+            },
+            {
+                "question": "How can I collect phone numbers with website popups?",
+                "url": "https://www.quora.com/How-can-I-collect-phone-numbers-with-website-popups"
+            },
+            {
+                "question": "Who usually manages conversion-rate and landing-page optimization in a company?",
+                "url": "https://www.quora.com/What-is-the-job-description-title-of-the-person-who-manages-the-Conversion-Rate-Optimization-Landing-Page-Optimization-process-outcome-in-companies"
+            },
+            {
+                "question": "How do I do email marketing?",
+                "url": "https://www.quora.com/How-do-I-do-email-marketing"
+            }
+        ],
         "activities": [
             {
                 "type": "past",
@@ -309,4 +327,3 @@ window.AGENT_DATA = {
     }
   ]
 };
-
