@@ -380,8 +380,8 @@ async function loadQuoraReviewQueue(grid, status) {
       <h3>${escapeHtml(item.question)}</h3>
       <a class="recommendation-url" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.url)} ↗</a>
       <div class="answer-preview">${escapeHtml(item.answer).replace(/\\n\\n/g, "</p><p>").replace(/^/, "<p>").replace(/$/, "</p>")}</div>
-      <div class="recommendation-actions"><button class="approve-button quora-publish-button" type="button" data-publish-answer="${escapeHtml(item.id)}">Publish</button></div>
-      <p class="card-feedback" aria-live="polite">Publish copies the answer and opens the question for final review and submission.</p>
+      <div class="recommendation-actions"><button class="approve-button quora-publish-button" type="button" data-publish-answer="${escapeHtml(item.id)}">Copy &amp; open Quora</button></div>
+      <p class="card-feedback" aria-live="polite">Copies the answer and opens the question. Click Answer in Quora, then paste with Ctrl+V.</p>
     </article>
   `).join("");
   grid.querySelectorAll("[data-publish-answer]").forEach(button => button.addEventListener("click", async () => {
@@ -400,7 +400,7 @@ async function loadQuoraReviewQueue(grid, status) {
       localStorage.setItem(QUORA_PUBLISH_COOLDOWN_KEY, String(Date.now() + QUORA_PUBLISH_COOLDOWN_MS));
       applyQuoraPublishCooldown(grid, status);
     } catch (error) {
-      button.disabled = false; button.textContent = "Publish"; feedback.classList.add("error");
+      button.disabled = false; button.textContent = "Copy & open Quora"; feedback.classList.add("error");
       feedback.textContent = "Clipboard access was unavailable. Copy the answer from the preview and use the question link.";
       status.textContent = "Clipboard access was unavailable.";
     }
@@ -409,11 +409,21 @@ async function loadQuoraReviewQueue(grid, status) {
   applyQuoraPublishCooldown(grid, status);
 }
 function renderQuoraQueue(grid, status) {
+  const agent = data.agents.find(item => item.id === "quora");
+  const pendingQuestions = agent?.pendingQuestions || [];
+  const questionCards = pendingQuestions.map((item, index) => `
+    <article class="recommendation-card quora-question-card">
+      <div class="recommendation-top"><span class="property-pill">Question ${index + 1}</span><span class="readiness ready">Answer pending review</span></div>
+      <h3>${escapeHtml(item.question)}</h3>
+      <a class="recommendation-url" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Open question ↗</a>
+    </article>
+  `).join("");
   grid.innerHTML = `
+    ${questionCards}
     <article class="recommendation-card quora-load-card">
       <div class="recommendation-top"><span class="property-pill">Private review queue</span><span class="readiness ready">GitHub authentication required</span></div>
       <h3>Load approved Quora drafts</h3>
-      <p class="quora-load-copy">Draft answers stay in the private agent repository and are never embedded in this public dashboard.</p>
+      <p class="quora-load-copy">The four questions are visible above. Draft answers stay private until you authenticate with GitHub.</p>
       <div class="recommendation-actions"><button class="approve-button" id="loadQuoraQueue" type="button">Load review queue</button></div>
       <p class="card-feedback" id="quoraLoadFeedback" aria-live="polite"></p>
     </article>
@@ -547,7 +557,6 @@ function renderRecommendationQueue() {
 
 renderRecommendationQueue();
 loadPermanentDismissals();
-
 
 
 
