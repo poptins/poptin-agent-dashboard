@@ -142,6 +142,96 @@
           ]
         }
       ]
+    }, 
+    prospero: {
+      source: "poptins/prospero-agents",
+      lastUpdated: "2026-07-22T12:00:00+03:00",
+      agents: [
+        {
+          id: "seo",
+          name: "SEO Agent",
+          role: "SEO/GEO/AEO research & publishing",
+          initials: "SE",
+          status: "active",
+          color: "#eee9ff",
+          ink: "#4f3ea8",
+          instructions: [
+            "Check the latest published Prospero article and publish only when the selected interval for the cycle is four or five days.",
+            "Choose a useful, non-duplicate topic about proposals, templates, e-signatures, client workflows, sales enablement, freelance business, or proposal analytics.",
+            "Write an original 2,000-3,000 word SEO, GEO, and AEO article grounded in trustworthy non-competitor sources.",
+            "Add an answer summary and four to six key takeaways above the first article paragraph.",
+            "Generate the SEO title, focus keyphrase, meta description, excerpt, and slug.",
+            "Choose one relevant existing WordPress category and attach three to six relevant tags, reusing existing tags whenever possible.",
+            "Add three to five verified Prospero internal links and at least two authoritative external citations.",
+            "Generate a full-bleed editorial-photo cover with a black lower-left title panel and large white text in the existing Prospero blog format.",
+            "Add two to three relevant Pexels images with accurate alt text and captions.",
+            "Add direct FAQ answers, validate article quality and duplicate risk, upload the media, and publish through authenticated WordPress."
+          ],
+          owner: "Prospero Content & SEO",
+          cadence: "Every 4-5 days + on demand",
+          priority: "High",
+          activities: [
+            {
+              type: "past",
+              title: "Created the Prospero SEO publishing system",
+              detail: "Added long-form SEO, GEO, and AEO publishing with top summaries, key takeaways, metadata, categories, tags, verified links, inline images, and the established Prospero cover format.",
+              date: "2026-07-22T11:30:00+03:00",
+              url: "https://github.com/poptins/prospero-agents/blob/main/agents/content_agent.py",
+              assetLabel: "Open SEO agent"
+            },
+            {
+              type: "scheduled",
+              title: "Check the next Prospero article window",
+              detail: "GitHub checks daily and publishes only when the latest Prospero article satisfies the current variable four- or five-day interval.",
+              date: "2026-07-23T08:00:00+03:00",
+              scheduleUtc: "05:00",
+              url: "https://github.com/poptins/prospero-agents/actions/workflows/seo-agent.yml",
+              assetLabel: "Open SEO workflow"
+            }
+          ]
+        },
+        {
+          id: "social",
+          name: "Social Media Agent",
+          role: "Buffer distribution with cover images",
+          initials: "SM",
+          status: "active",
+          color: "#e9f7f4",
+          ink: "#17645c",
+          instructions: [
+            "Monitor Prospero for the latest confirmed published article.",
+            "Require and validate the article's public featured cover image.",
+            "Create distinct, factual, platform-appropriate copy for LinkedIn, Facebook, and X.",
+            "Include the published article URL in every social post.",
+            "Locate the matching Buffer channel and respect paused queues.",
+            "Check scheduled and sent posts separately for every channel to prevent duplicate handoffs.",
+            "Attach the WordPress featured cover image and add each approved post to the corresponding Buffer queue.",
+            "Report every queued or skipped result in the GitHub Actions log."
+          ],
+          owner: "Prospero Social & Brand",
+          cadence: "Hourly at minute 17 + on demand",
+          priority: "High",
+          activities: [
+            {
+              type: "past",
+              title: "Created the Prospero social handoff",
+              detail: "Added distinct LinkedIn, Facebook, and X copy, featured-cover attachments, Buffer queue matching, paused-queue handling, and per-channel duplicate protection.",
+              date: "2026-07-22T11:35:00+03:00",
+              url: "https://github.com/poptins/prospero-agents/blob/main/social-agent/main.py",
+              assetLabel: "Open Social agent"
+            },
+            {
+              type: "scheduled",
+              title: "Check for a newly published Prospero article",
+              detail: "At minute 17 of every hour, inspect the latest Prospero article and hand it to Buffer only when it has not already been sent to each selected channel.",
+              date: "2026-07-22T13:17:00+03:00",
+              schedule: {frequency: "hourly", minuteUtc: 17},
+              url: "https://github.com/poptins/prospero-agents/actions/workflows/social-agent.yml",
+              assetLabel: "Open Social workflow"
+            }
+          ]
+        }
+      ]
     }
   };
   let activeProduct = sessionStorage.getItem("marketingBoardProduct") || "poptin";
@@ -158,7 +248,7 @@
       button.classList.toggle("active", selected);
       button.setAttribute("aria-selected", String(selected));
     });
-    const productName = productId === "poptin" ? "Poptin" : "Chatway";
+    const productName = {poptin: "Poptin", chatway: "Chatway", prospero: "Prospero"}[productId] || productId;
     document.querySelector(".hero-copy").innerHTML = `Live operations view for <strong>${productName}</strong> marketing agents.`;
     const footerSource = document.querySelector("footer span:last-child");
     if (footerSource) footerSource.textContent = `Activity snapshot sourced from ${data.source}`;
