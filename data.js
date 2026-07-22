@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-07-21T11:30:00+03:00",
+  lastUpdated: "2026-07-22T13:10:00+03:00",
   agents: [
     {
       id: "seo",
@@ -59,11 +59,19 @@ window.AGENT_DATA = {
       status: "active",
       color: "#f4e6cc",
       ink: "#764c12",
-      instructions: ["Monitor the SEO handoff every hour for newly published articles.","Accept only articles whose publication is confirmed and that have not already been shared.","Create distinct, channel-appropriate copy for LinkedIn, X, and Facebook.","Prepare review-ready short-form video and visual guidance in the weekly content pack.","Attach the correct article asset and schedule posts through the matching Buffer queues.","Use randomized publishing gaps and check scheduled and sent posts to prevent duplicates."],
+      instructions: ["Monitor the SEO handoff every hour for newly published articles.","Accept only articles whose publication is confirmed and that have not already been shared.","Create distinct, channel-appropriate copy for LinkedIn, X, and Facebook.","Prepare review-ready short-form video and visual guidance in the weekly content pack.","Attach the correct article asset and custom-schedule the first post about five minutes after handoff.","Use a separately randomized 5-10 minute gap before each remaining channel, and check scheduled and sent posts to prevent duplicates."],
       owner: "Social & Brand",
       cadence: "Hourly + weekly",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          title: "Updated Buffer handoff timing",
+          detail: "Changed social delivery to exact custom schedules: first post about five minutes after SEO handoff, with independent random 5-10 minute gaps between later channels.",
+          date: "2026-07-22T13:08:00+03:00",
+          url: "https://github.com/poptins/poptin-agents/blob/main/social-agent/scripts/share-new-blog-posts.ps1",
+          assetLabel: "Open social scheduling logic"
+        },
         {
           type: "past",
           title: "Shared welcome-email article on three channels",
@@ -110,6 +118,14 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          title: "Verified Academy publishing credentials",
+          detail: "Corrected the WordPress secret mapping and completed a successful Academy dry run without publishing a duplicate guide.",
+          date: "2026-07-22T12:50:00+03:00",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/academic-best-practices-agent.yml",
+          assetLabel: "Open Academy workflow"
+        },
         {
           type: "past",
           title: "Published preference-based welcome workflow guide",
@@ -175,6 +191,15 @@ window.AGENT_DATA = {
           "cadence": "Mondays at 08:30 IDT + on demand",
           "priority": "High",
           "activities": [
+                {
+                      "type": "scheduled",
+                      "title": "Run daily Poptin opportunity scan",
+                      "detail": "Refresh Search Console opportunities and exact title and meta-description suggestions every day at 04:30 UTC.",
+                      "date": "2026-07-23T07:30:00+03:00",
+                      "scheduleUtc": "04:30",
+                      "url": "https://github.com/poptins/poptin-agents/actions/workflows/search-console-audit.yml",
+                      "assetLabel": "Open Optimization workflow"
+                },
                 {
                       "type": "past",
                       "title": "Homepage",
@@ -312,6 +337,14 @@ window.AGENT_DATA = {
             }
         ],
         "activities": [
+            {
+                "type": "past",
+                "title": "Repaired and verified the Quora schedule",
+                "detail": "Fixed the corrupted dash-validation test and completed a successful verification run of the daily review workflow.",
+                "date": "2026-07-22T12:43:00+03:00",
+                "url": "https://github.com/poptins/poptin-agents/actions/workflows/quora-agent.yml",
+                "assetLabel": "Open Quora workflow"
+            },
             {
                 "type": "past",
                 "title": "Prepared first answer review batch",
