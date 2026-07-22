@@ -145,45 +145,6 @@
     }
   };
   let activeProduct = sessionStorage.getItem("marketingBoardProduct") || "poptin";
-  const renderPoptinQueue = renderRecommendationQueue;
-
-  function renderChatwayOptimizationQueue() {
-    const grid = $("#recommendationGrid");
-    const timeline = $("#activityTimeline");
-    const status = $("#approvalStatus");
-    grid.hidden = false;
-    status.hidden = false;
-    timeline.hidden = true;
-    grid.innerHTML = `
-      <article class="recommendation-card opportunity-launcher">
-        <div class="recommendation-top"><span class="property-pill">Chatway</span><span class="readiness ready">Access verified</span></div>
-        <h3>Find Chatway opportunities</h3>
-        <p>Run the on-demand GitHub workflow to return the first 10 Search Console findings and verify edit access for every matching Chatway page.</p>
-        <div class="recommendation-actions">
-          <a class="approve-button product-action-link" href="https://github.com/poptins/chatway-agents/actions/workflows/optimization-agent.yml" target="_blank" rel="noopener">Open Find opportunities ↗</a>
-        </div>
-      </article>`;
-    status.textContent = "Search Console access and WordPress edit verification are working. Optimization remains on demand and read-only during discovery.";
-  }
-
-  renderRecommendationQueue = function () {
-    if (activeProduct === "chatway") {
-      const isOptimization = selectedAgentId === "optimization" || activityAgentFilter === "optimization";
-      const grid = $("#recommendationGrid");
-      const timeline = $("#activityTimeline");
-      const status = $("#approvalStatus");
-      if (isOptimization) {
-        renderChatwayOptimizationQueue();
-      } else {
-        grid.hidden = true;
-        status.hidden = true;
-        timeline.hidden = false;
-      }
-      return;
-    }
-    renderPoptinQueue();
-  };
-
   function selectProduct(productId) {
     activeProduct = productId;
     sessionStorage.setItem("marketingBoardProduct", productId);
