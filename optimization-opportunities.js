@@ -11,6 +11,13 @@
   });
   const delay = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
 
+  function setDiscoveryStatus(message, isHtml = false) {
+    const status = $("#approvalStatus");
+    const inline = $("#opportunityInlineStatus");
+    if (status) isHtml ? status.innerHTML = message : status.textContent = message;
+    if (inline) isHtml ? inline.innerHTML = message : inline.textContent = message;
+  }
+
   function optimizationConfig() {
     const isChatway = data.source === "poptins/chatway-agents";
     return isChatway ? {
@@ -54,8 +61,10 @@
         new Date(candidate.created_at).getTime() >= startedAt - 15000
       );
       if (run) {
-        const status = $("#approvalStatus");
-        status.innerHTML = `Finding ${config.product} opportunities on GitHub: ${escapeHtml(run.status)}. <a href="${escapeHtml(run.html_url)}" target="_blank" rel="noopener">Open run ↗</a>`;
+        setDiscoveryStatus(
+          `Finding ${config.product} opportunities on GitHub: ${escapeHtml(run.status)}. <a href="${escapeHtml(run.html_url)}" target="_blank" rel="noopener">Open run ↗</a>`,
+          true
+        );
         if (run.status === "completed") {
           if (run.conclusion !== "success") throw new Error(`The opportunity workflow finished with status: ${run.conclusion}.`);
           return run;
@@ -70,14 +79,21 @@
     if (discoveryInProgress) return;
     const config = optimizationConfig();
     const token = await getOptimizationGithubToken();
+    const access = await fetch(`https://api.github.com/repos/${config.repository}`, {
+      headers: githubHeaders(token),
+      cache: "no-store"
+    });
+    if (!access.ok) {
+      if ([401, 403, 404].includes(access.status)) sessionStorage.removeItem("optimizationGithubToken");
+      throw new Error(`This token cannot access ${config.repository} (${access.status}). Update the fine-grained token to include this repository, then click Find opportunities again.`);
+    }
     discoveryInProgress = true;
     discoveryProduct = config.product;
     discoveredOpportunities = [];
     renderOptimizationDiscovery();
-    const status = $("#approvalStatus");
     const startedAt = Date.now();
     try {
-      status.textContent = `Starting the on-demand ${config.product} opportunity scan…`;
+      setDiscoveryStatus(`Starting the on-demand ${config.product} opportunity scan…`);
       const response = await fetch(
         `https://api.github.com/repos/${config.repository}/actions/workflows/${config.workflow}/dispatches`,
         {
@@ -92,7 +108,7 @@
       }
       await waitForDiscoveryRun(token, config, startedAt);
       discoveredOpportunities = await loadOpportunityFeed(token, config);
-      status.textContent = `Found and ranked ${discoveredOpportunities.length} ${config.product} opportunities. Permission checks are shown on each card.`;
+      setDiscoveryStatus(`Found and ranked ${discoveredOpportunities.length} ${config.product} opportunities. Permission checks are shown on each card.`);
     } finally {
       discoveryInProgress = false;
       renderOptimizationDiscovery();
@@ -184,8 +200,9 @@
             ${discoveryInProgress ? "Finding opportunities…" : "Find opportunities"}
           </button>
         </div>
+        <p class="card-feedback" id="opportunityInlineStatus" aria-live="polite">${discoveryInProgress ? "The GitHub workflow is starting. This page will update automatically." : "Click the button to run the scan inside this dashboard; no new page will open."}</p>
       </article>
-      ${cards || '<div class="empty-state opportunity-empty">Click “Find opportunities” to run a fresh GitHub scan.</div>'}
+      ${cards || '<div class="empty-state opportunity-empty">No results loaded yet.</div>'}
     `;
 
     const button = $("#findOpportunitiesButton");
@@ -193,7 +210,7 @@
       findOpportunities().catch(error => {
         discoveryInProgress = false;
         renderOptimizationDiscovery();
-        $("#approvalStatus").textContent = error.message;
+        setDiscoveryStatus(error.message);
       });
     });
   }
