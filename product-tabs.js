@@ -4,7 +4,7 @@
     poptin: poptinData,
     chatway: {
       source: "poptins/chatway-agents",
-      lastUpdated: "2026-07-22T08:20:00+03:00",
+      lastUpdated: "2026-07-22T13:10:00+03:00",
       agents: [
         {
           id: "seo",
@@ -54,7 +54,7 @@
           status: "active",
           color: "#f4e6cc",
           ink: "#764c12",
-          instructions: ["Monitor Chatway for the latest confirmed published article.","Reject articles that have already been handed off or shared.","Create distinct platform-appropriate copy for LinkedIn, Facebook, and X.","Use only verified Chatway product claims and article facts.","Attach the published article's featured cover image.","Check scheduled and sent Buffer posts separately for every channel.","Send each approved post to the matching Buffer queue without creating duplicates."],
+          instructions: ["Monitor Chatway for the latest confirmed published article.","Reject articles that have already been handed off or shared.","Create distinct platform-appropriate copy for LinkedIn, Facebook, and X.","Use only verified Chatway product claims and article facts.","Attach the published article's featured cover image.","Check scheduled and sent Buffer posts separately for every channel.","Schedule the first approved post about five minutes after handoff, then use a separate random 5-10 minute gap before each remaining channel."],
           owner: "Chatway Social & Brand",
           cadence: "Hourly at minute 17 + on demand",
           priority: "High",
@@ -126,11 +126,28 @@
           status: "active",
           color: "#dff0ee",
           ink: "#17645c",
-          instructions: ["Run only after a user requests Find opportunities.","Read the last 28 days of Chatway Search Console page and query performance.","Select and rank the first 10 high-impression, low-CTR pages in useful ranking positions.","Read each page's current SEO title, meta description, language, and leading search queries.","Generate an exact locale-aware suggested SEO title and meta description without unsupported claims.","Identify the correct blog, glossary, or page WordPress REST endpoint.","Verify authenticated WordPress edit permission for every result.","Show current-versus-suggested metadata, evidence, and permission status in the dashboard.","Never write to WordPress during discovery."],
+          instructions: ["Run every day and whenever a user requests Find opportunities.","Read the last 28 days of Chatway Search Console page and query performance.","Select and rank the first 10 high-impression, low-CTR pages in useful ranking positions.","Read each page's current SEO title, meta description, language, and leading search queries.","Generate an exact locale-aware suggested SEO title and meta description without unsupported claims.","Identify the correct blog, glossary, or page WordPress REST endpoint.","Verify authenticated WordPress edit permission for every result.","Show current-versus-suggested metadata, evidence, and permission status in the dashboard.","Never write to WordPress during discovery."],
           owner: "Chatway Growth & SEO",
-          cadence: "On demand",
+          cadence: "Daily at 07:45 IDT + on demand",
           priority: "High",
           activities: [
+            {
+              type: "scheduled",
+              title: "Run daily Chatway opportunity scan",
+              detail: "Refresh Search Console opportunities and exact title and meta-description suggestions every day at 04:45 UTC.",
+              date: "2026-07-23T07:45:00+03:00",
+              scheduleUtc: "04:45",
+              url: "https://github.com/poptins/chatway-agents/actions/workflows/optimization-agent.yml",
+              assetLabel: "Open Optimization workflow"
+            },
+            {
+              type: "past",
+              title: "Verified scheduled Chatway opportunity scan",
+              detail: "Enabled the daily schedule and completed a successful production verification run.",
+              date: "2026-07-22T12:45:00+03:00",
+              url: "https://github.com/poptins/chatway-agents/actions/workflows/optimization-agent.yml",
+              assetLabel: "Open successful scan"
+            },
             {
               type: "past",
               title: "Verified first 10 Search Console opportunities",
@@ -145,7 +162,7 @@
     }, 
     prospero: {
       source: "poptins/prospero-agents",
-      lastUpdated: "2026-07-22T12:00:00+03:00",
+      lastUpdated: "2026-07-22T13:10:00+03:00",
       agents: [
         {
           id: "seo",
@@ -171,6 +188,14 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+            {
+              type: "past",
+              title: "Published and repaired the first Prospero SEO article",
+              detail: "Published the proposal-template workflow article, corrected the cover, distributed all three inline images through the article, and normalized the summary and takeaway typography.",
+              date: "2026-07-22T12:33:00+03:00",
+              url: "https://goprospero.com/blog/how-to-build-a-proposal-template-client-workflow/",
+              assetLabel: "View published article"
+            },
             {
               type: "past",
               title: "Created the Prospero SEO publishing system",
@@ -205,13 +230,21 @@
             "Include the published article URL in every social post.",
             "Locate the matching Buffer channel and respect paused queues.",
             "Check scheduled and sent posts separately for every channel to prevent duplicate handoffs.",
-            "Attach the WordPress featured cover image and add each approved post to the corresponding Buffer queue.",
+            "Attach the WordPress featured cover image and custom-schedule the first post about five minutes after handoff, with independently randomized 5-10 minute gaps between later channels.",
             "Report every queued or skipped result in the GitHub Actions log."
           ],
           owner: "Prospero Social & Brand",
           cadence: "Hourly at minute 17 + on demand",
           priority: "High",
           activities: [
+            {
+              type: "past",
+              title: "Regrouped Prospero Buffer posts",
+              detail: "Replaced channel queue slots with exact custom schedules and verified the current LinkedIn, X, and Facebook posts were grouped together. Future gaps are independently randomized between 5 and 10 minutes.",
+              date: "2026-07-22T13:02:00+03:00",
+              url: "https://github.com/poptins/prospero-agents/actions/runs/29910326035",
+              assetLabel: "Open successful Buffer repair"
+            },
             {
               type: "past",
               title: "Created the Prospero social handoff",
