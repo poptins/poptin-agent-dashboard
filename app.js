@@ -200,7 +200,7 @@ function synchronizeSeoDependentActivities() {
       .filter(activity => activity.dependsOn === "seo-next-article")
       .forEach(activity => {
         activity.date = seoNext.date;
-        activity.detail = `After the SEO Agent's article expected on ${dateFormat.format(new Date(seoNext.date))} is confirmed published, schedule channel-specific Buffer posts for LinkedIn, Facebook, and X.`;
+        activity.detail = `After the SEO Agent's article expected on ${dateFormat.format(new Date(seoNext.date))} is confirmed published, custom-schedule LinkedIn, Facebook, and X posts, beginning about five minutes after handoff with independent random 5-10 minute gaps.`;
       });
   });
 }
