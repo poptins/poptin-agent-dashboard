@@ -114,9 +114,9 @@ function renderAgentDetail() {
       <span class="status-pill"><span class="status-dot ${agent.status}"></span>${agent.status === "active" ? "Active now" : "Standing by"}</span>
     </div>
     <div class="task-block">
-      <p class="eyebrow">TASK DESCRIPTION</p>
-      <h3>What ${agent.name} is responsible for</h3>
-      <p>${agent.task}</p>
+      <p class="eyebrow">INSTRUCTIONS FOLLOWED</p>
+      <h3>What ${agent.name} does each time it runs</h3>
+      <ol class="agent-instructions">${(agent.instructions || [agent.task]).filter(Boolean).map(instruction => `<li>${escapeHtml(instruction)}</li>`).join("")}</ol>
     </div>
     <div class="task-meta">
       <div class="meta-box"><span>OWNER</span><strong>${agent.owner}</strong></div>
