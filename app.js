@@ -275,7 +275,7 @@ function recommendationExecutionId(item) {
 async function getOptimizationGithubToken() {
   let token = sessionStorage.getItem("optimizationGithubToken");
   if (!token) {
-    token = window.prompt("Enter a fine-grained GitHub token for poptins/poptin-agents with Actions: write and Issues: read access. It is stored only for this browser session.");
+    token = window.prompt("Enter a fine-grained GitHub token for the Poptin and Chatway agent repositories with Actions: write, Contents: read, and Issues: read access. It is stored only for this browser session.");
     if (!token) throw new Error("Approval was not submitted because no GitHub token was provided.");
     token = token.trim();
     sessionStorage.setItem("optimizationGithubToken", token);
