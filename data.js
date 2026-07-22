@@ -44,7 +44,7 @@ window.AGENT_DATA = {
         {
           type: "scheduled",
           title: "Next SEO cadence article window",
-          detail: "Daily workflow wakes at 08:00 IDT and creates one new SEO article only after the 4-day cadence is due. Seeded from the July 19 article, the next article-producing run is expected on the first daily wakeup after July 23 at 10:54 IDT.",
+          detail: "Daily workflow wakes at 08:00 IDT and creates one new SEO article only after the current stored 4- or 5-day interval is due.",
           date: "2026-07-24T08:00:00+03:00",
           url: "https://github.com/poptins/poptin-agents/actions/workflows/seo-agent.yml",
           assetLabel: "Open internal workflow"
