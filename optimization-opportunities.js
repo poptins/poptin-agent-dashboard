@@ -129,6 +129,8 @@
         title: label,
         source: item.page,
         summary: item.suggestion || "Review search intent and the current snippet before proposing an exact change.",
+        current: item.current || null,
+        patch: item.patch || null,
         reason: permission.reason || "Permission result unavailable.",
         evidence: item.evidence || {},
         permission: {
@@ -154,6 +156,18 @@
     ).join("")}</dl>`;
   }
 
+  function seoPatchMarkup(item) {
+    if (!item.current || !item.patch) return "";
+    return `
+      <div class="change-preview">
+        <div><span>CURRENT SEO TITLE</span><p>${escapeHtml(item.current.seo_title || "Not set")}</p></div>
+        <div><span>SUGGESTED SEO TITLE</span><p>${escapeHtml(item.patch.seo_title || "Not generated")}</p></div>
+        <div><span>CURRENT META DESCRIPTION</span><p>${escapeHtml(item.current.meta_description || "Not set")}</p></div>
+        <div><span>SUGGESTED META DESCRIPTION</span><p>${escapeHtml(item.patch.meta_description || "Not generated")}</p></div>
+      </div>
+    `;
+  }
+
   function renderOptimizationDiscovery() {
     const grid = $("#recommendationGrid");
     const timeline = $("#activityTimeline");
@@ -177,6 +191,7 @@
           <h3>${escapeHtml(item.title)}</h3>
           <a class="recommendation-url" href="${escapeHtml(item.source)}" target="_blank" rel="noopener">${escapeHtml(item.source)} ↗</a>
           <p>${escapeHtml(item.summary)}</p>
+          ${seoPatchMarkup(item)}
           ${evidenceMarkup(item)}
           <div class="permission-result ${permission.can_edit ? "allowed" : "denied"}">
             <strong>${permission.can_edit ? "✓ Permission to edit verified" : "! Permission to edit not verified"}</strong>
