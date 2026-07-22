@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-07-22T13:10:00+03:00",
+  lastUpdated: "2026-07-22T13:25:00+03:00",
   agents: [
     {
       id: "seo",
@@ -360,6 +360,48 @@ window.AGENT_DATA = {
                 "assetStatus": "Runs in the private agent repository"
             }
         ]
+    }    ,
+    {
+      "id": "alternatives",
+      "name": "Alternatives Agent",
+      "role": "Competitor research & comparison publishing",
+      "initials": "AL",
+      "status": "active",
+      "color": "#ffe8dc",
+      "ink": "#8a4325",
+      "instructions": [
+        "Run once in the first half and once in the second half of every month.",
+        "Check the live Poptin blog and the persisted competitor history before selecting a product that has not already been covered.",
+        "Research current features, pricing, target audience, integrations, privacy, security, and compliance from primary sources.",
+        "Check G2, Capterra, and Trustpilot, reporting only accessible verified ratings, counts, and paraphrased review themes.",
+        "Write a respectful 2,500-3,500 word comparison with a detailed table, transparent tradeoffs, direct citations, summary, key takeaways, and FAQs.",
+        "Favor Poptin in the conclusion through explicit evidence-backed value, usability, conversion, and audience-fit criteria without disparaging competitors.",
+        "Create an original Poptin-style cover and licensed generic inline imagery; use only newly captured, source-captioned public-page screenshots when editorially necessary.",
+        "Apply WordPress metadata, category, tags, quality, duplicate, image, and factual checks before publishing.",
+        "Hand every published alternatives article to the Social Media Agent."
+      ],
+      "owner": "Poptin Content & SEO",
+      "cadence": "Twice monthly, on the 5th and 20th at 08:30 IDT + on demand",
+      "priority": "High",
+      "activities": [
+        {
+          "type": "past",
+          "title": "Created and validated the Alternatives Agent",
+          "detail": "Added competitor-history protection, primary and marketplace research requirements, deep comparison tables, original covers, WordPress publishing, and social handoff.",
+          "date": "2026-07-22T13:25:00+03:00",
+          "url": "https://github.com/poptins/poptin-agents/actions/workflows/alternatives-agent.yml",
+          "assetLabel": "Open Alternatives workflow"
+        },
+        {
+          "type": "scheduled",
+          "title": "Publish the next unused competitor alternative",
+          "detail": "On August 5, select an uncovered competitor, verify current evidence, and publish one complete comparison article after all quality checks pass.",
+          "date": "2026-08-05T08:30:00+03:00",
+          "url": "https://github.com/poptins/poptin-agents/actions/workflows/alternatives-agent.yml",
+          "assetLabel": "Open scheduled workflow"
+        }
+      ]
     }
+
   ]
 };
