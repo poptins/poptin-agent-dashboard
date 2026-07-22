@@ -12,7 +12,7 @@ window.AGENT_DATA = {
       status: "active",
       color: "#d9eee4",
       ink: "#18543d",
-      instructions: ["Research verified SEO opportunities using trustworthy evidence and current search intent.","Create one original 2,000-3,000 word SEO, AEO, and GEO article when the 4-day publishing cadence is due.","Generate a branded cover image and relevant in-article visuals.","Apply editorial, factual, structural, linking, and metadata quality checks before publishing.","Publish approved articles through WordPress.","Hand every newly published article to the Social Media Agent.","Refresh older posts only through an explicit manual or legacy refresh workflow."],
+      instructions: ["Research verified SEO opportunities using trustworthy evidence and current search intent.","Create one original 2,000-3,000 word SEO, AEO, and GEO article when the current 4- or 5-day publishing interval is due.","Generate a branded cover image and relevant in-article visuals.","Apply editorial, factual, structural, linking, and metadata quality checks before publishing.","Publish approved articles through WordPress.","Hand every newly published article to the Social Media Agent.","Refresh older posts only through an explicit manual or legacy refresh workflow."],
       owner: "Content & SEO",
       cadence: "Every 4-5 days + on demand",
       priority: "High",
