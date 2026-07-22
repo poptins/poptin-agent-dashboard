@@ -14,9 +14,9 @@
           status: "active",
           color: "#d9eee4",
           ink: "#18543d",
-          instructions: ["Research a useful Chatway topic with clear SEO, GEO, and AEO potential.","Write an original 2,000-3,000 word article grounded in trustworthy non-competitor sources.","Add the approved Chatway summary and key-takeaways box.","Select the most relevant existing category and build contextual internal links.","Place relevant Pexels images between the paragraphs they support.","Generate a branded Chatway-format cover image.","Validate factual accuracy, structure, metadata, links, images, and duplicate risk before publishing.","Publish the approved article through WordPress when the 4-day cadence is due."],
+          instructions: ["Research a useful Chatway topic with clear SEO, GEO, and AEO potential.","Write an original 2,000-3,000 word article grounded in trustworthy non-competitor sources.","Add the approved Chatway summary and key-takeaways box.","Select the most relevant existing category and build contextual internal links.","Place relevant Pexels images between the paragraphs they support.","Generate a branded Chatway-format cover image.","Validate factual accuracy, structure, metadata, links, images, and duplicate risk before publishing.","Publish the approved article through WordPress when the current 4- or 5-day cadence is due."],
           owner: "Chatway Content & SEO",
-          cadence: "Every 4 days + on demand",
+          cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
             {
