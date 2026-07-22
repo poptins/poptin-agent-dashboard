@@ -8,6 +8,13 @@ const dateFormat = new Intl.DateTimeFormat("en-US", { month: "short", day: "nume
 const timeFormat = new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" });
 
 function activityDate(item) {
+  if (item.type === "scheduled" && item.schedule?.frequency === "hourly") {
+    const now = new Date();
+    const nextRun = new Date(now);
+    nextRun.setUTCMinutes(item.schedule.minuteUtc || 0, 0, 0);
+    if (nextRun <= now) nextRun.setUTCHours(nextRun.getUTCHours() + 1);
+    return nextRun;
+  }
   if (item.type === "scheduled" && item.schedule?.frequency === "weekly") {
     const now = new Date();
     const nextRun = new Date(Date.UTC(
