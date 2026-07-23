@@ -379,7 +379,7 @@ window.AGENT_DATA = {
           title: "Refresh the next eligible old Poptin article",
           detail: "On the next selected monthly slot, update one old article while preserving its exact slug and URL.",
           date: "2026-07-28T09:20:00+03:00",
-          scheduleUtc: "06:20 on days 3, 8, 13, 18, 23, and 28",
+          schedule: {frequency: "monthly-days", days: [3, 8, 13, 18, 23, 28], hourUtc: 6, minuteUtc: 20},
           url: "https://github.com/poptins/poptin-agents/actions/workflows/update-blog-agent.yml",
           assetLabel: "Open Update Blog workflow"
         }
