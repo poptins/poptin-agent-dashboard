@@ -8,6 +8,19 @@ const dateFormat = new Intl.DateTimeFormat("en-US", { month: "short", day: "nume
 const timeFormat = new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" });
 
 function activityDate(item) {
+  if (item.type === "scheduled" && item.schedule?.frequency === "monthly-days") {
+    const now = new Date();
+    const days = [...(item.schedule.days || [])].sort((a, b) => a - b);
+    for (let monthOffset = 0; monthOffset <= 1; monthOffset += 1) {
+      const year = now.getUTCFullYear();
+      const month = now.getUTCMonth() + monthOffset;
+      for (const day of days) {
+        const candidate = new Date(Date.UTC(year, month, day, item.schedule.hourUtc || 0, item.schedule.minuteUtc || 0));
+        if (candidate > now) return candidate;
+      }
+    }
+    return new Date(item.date);
+  }
   if (item.type === "scheduled" && item.schedule?.frequency === "hourly") {
     const now = new Date();
     const nextRun = new Date(now);
@@ -177,6 +190,16 @@ function loadLatestData() {
       if (!window.AGENT_DATA?.agents) {
         reject(new Error("The dashboard data is invalid."));
         return;
+      }
+      const productId = sessionStorage.getItem("marketingBoardProduct") || "poptin";
+      if (window.PRODUCT_AGENT_DATA) {
+        window.PRODUCT_AGENT_DATA.poptin = window.AGENT_DATA;
+        const selectedProductData = window.PRODUCT_AGENT_DATA[productId];
+        if (selectedProductData?.agents) {
+          window.AGENT_DATA = selectedProductData;
+          resolve(selectedProductData);
+          return;
+        }
       }
       resolve(window.AGENT_DATA);
     };
