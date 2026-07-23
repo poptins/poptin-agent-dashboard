@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-07-22T13:25:00+03:00",
+  lastUpdated: "2026-07-23T12:00:00+03:00",
   agents: [
     {
       id: "seo",
@@ -361,6 +361,30 @@ window.AGENT_DATA = {
             }
         ]
     }    ,
+    {
+      id: "update-blog",
+      name: "Update Blog Agent",
+      role: "Old article refresh & optimization",
+      initials: "UP",
+      status: "active",
+      color: "#e7ecff",
+      ink: "#384c96",
+      instructions: ["Run independently from the SEO Agent on six spaced candidate days each month.","Select a deterministic monthly target of four to six old published articles and update no more than one article per run.","Prioritize eligible articles older than one year that are stale, outdated, thin, or tied to an old year.","Preserve the existing WordPress post ID, slug, URL, category, tags, and featured image.","Rewrite and improve outdated text, factual accuracy, SEO, AEO, GEO, headings, clarity, examples, grammar, and internal linking.","Add the approved Summary and four to six Key takeaways when needed.","Remove editorial notes and keep table and summary typography consistent with the site.","Change the publication date to the actual refresh date and verify the slug again after WordPress saves the update."],
+      owner: "Poptin Content & SEO",
+      cadence: "4-6 articles monthly on spaced days",
+      priority: "High",
+      activities: [
+        {
+          type: "scheduled",
+          title: "Refresh the next eligible old Poptin article",
+          detail: "On the next selected monthly slot, update one old article while preserving its exact slug and URL.",
+          date: "2026-07-28T09:20:00+03:00",
+          scheduleUtc: "06:20 on days 3, 8, 13, 18, 23, and 28",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/update-blog-agent.yml",
+          assetLabel: "Open Update Blog workflow"
+        }
+      ]
+    },
     {
       "id": "alternatives",
       "name": "Alternatives Agent",
