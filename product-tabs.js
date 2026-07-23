@@ -176,7 +176,7 @@
             title: "Refresh the next eligible old Chatway article",
             detail: "Update one old article on the next selected monthly slot while preserving its exact URL.",
             date: "2026-07-28T09:40:00+03:00",
-            scheduleUtc: "06:40 on days 3, 8, 13, 18, 23, and 28",
+            schedule: {frequency: "monthly-days", days: [3, 8, 13, 18, 23, 28], hourUtc: 6, minuteUtc: 40},
             url: "https://github.com/poptins/chatway-agents/actions/workflows/update-blog-agent.yml",
             assetLabel: "Open Update Blog workflow"
           }]
@@ -255,7 +255,7 @@
             title: "Refresh the next eligible old Prospero article",
             detail: "Update one old article on the next selected monthly slot while preserving its exact URL.",
             date: "2026-07-28T10:00:00+03:00",
-            scheduleUtc: "07:00 on days 3, 8, 13, 18, 23, and 28",
+            schedule: {frequency: "monthly-days", days: [3, 8, 13, 18, 23, 28], hourUtc: 7, minuteUtc: 0},
             url: "https://github.com/poptins/prospero-agents/actions/workflows/update-blog-agent.yml",
             assetLabel: "Open Update Blog workflow"
           }]
@@ -312,6 +312,7 @@
       ]
     }
   };
+  window.PRODUCT_AGENT_DATA = productData;
   let activeProduct = sessionStorage.getItem("marketingBoardProduct") || "poptin";
   function selectProduct(productId) {
     activeProduct = productId;
