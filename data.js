@@ -225,6 +225,24 @@ window.AGENT_DATA = {
       activities: [
         {
           type: "past",
+          title: "Published Email Cadence",
+          detail: "The daily glossary workflow published Email Cadence successfully after GitHub started the scheduled run later than its nominal cron time.",
+          date: "2026-07-23T11:44:19+03:00",
+          url: "https://www.poptin.com/academy/glossary/email-cadence/",
+          assetLabel: "View glossary term",
+          githubRunId: 29992074282
+        },
+        {
+          type: "failed",
+          title: "Daily Poptin glossary publication failed",
+          detail: "The scheduled glossary workflow did not complete successfully. A later run restored successful daily publishing.",
+          date: "2026-07-20T12:33:18+03:00",
+          url: "https://github.com/poptins/poptin-agents/actions/runs/29731883077",
+          assetLabel: "Open failed workflow run",
+          githubRunId: 29731883077
+        },
+        {
+          type: "past",
           title: "Published Progressive Profiling glossary term",
           detail: "Published a plain-English definition and practical explanation of progressive profiling in the Poptin glossary.",
           date: "2026-07-19T09:12:04+03:00",
@@ -402,6 +420,15 @@ window.AGENT_DATA = {
             }
         ],
         "activities": [
+        {
+          type: "failed",
+          title: "Scheduled Quora review task failed",
+          detail: "The scheduled review-queue workflow failed its validation step and was subsequently repaired and verified.",
+          date: "2026-07-22T12:38:07+03:00",
+          url: "https://github.com/poptins/poptin-agents/actions/runs/29908747255",
+          assetLabel: "Open failed workflow run",
+          githubRunId: 29908747255
+        },
             {
                 "type": "past",
                 "title": "Repaired and verified the Quora schedule",
