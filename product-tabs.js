@@ -4,7 +4,7 @@
     poptin: poptinData,
     chatway: {
       source: "poptins/chatway-agents",
-      lastUpdated: "2026-07-22T13:10:00+03:00",
+      lastUpdated: "2026-07-23T12:00:00+03:00",
       agents: [
         {
           id: "seo",
@@ -158,11 +158,34 @@
             }
           ]
         }
+      ,
+        {
+          id: "update-blog",
+          name: "Update Blog Agent",
+          role: "Old article refresh & optimization",
+          initials: "UP",
+          status: "active",
+          color: "#e7ecff",
+          ink: "#384c96",
+          instructions: ["Run independently from the SEO Agent on six spaced candidate days each month.","Choose a deterministic target of four to six old articles per month and update at most one per run.","Select a published article older than one year that has not already been refreshed that month.","Preserve its post ID, slug, URL, existing category, tags, and featured image.","Rewrite outdated content and improve accuracy, SEO, answer-first structure, headings, examples, spelling, grammar, and internal links.","Add a site-matched Summary and four to six Key takeaways without duplicating existing blocks.","Never add editorial image suggestions, placeholders, or production notes.","Set the publication date to the refresh date and verify the saved slug and URL are unchanged."],
+          owner: "Chatway Content & SEO",
+          cadence: "4-6 articles monthly on spaced days",
+          priority: "High",
+          activities: [{
+            type: "scheduled",
+            title: "Refresh the next eligible old Chatway article",
+            detail: "Update one old article on the next selected monthly slot while preserving its exact URL.",
+            date: "2026-07-28T09:40:00+03:00",
+            scheduleUtc: "06:40 on days 3, 8, 13, 18, 23, and 28",
+            url: "https://github.com/poptins/chatway-agents/actions/workflows/update-blog-agent.yml",
+            assetLabel: "Open Update Blog workflow"
+          }]
+        },
       ]
     }, 
     prospero: {
       source: "poptins/prospero-agents",
-      lastUpdated: "2026-07-22T13:10:00+03:00",
+      lastUpdated: "2026-07-23T12:00:00+03:00",
       agents: [
         {
           id: "seo",
@@ -214,6 +237,28 @@
               assetLabel: "Open SEO workflow"
             }
           ]
+        },
+        {
+          id: "update-blog",
+          name: "Update Blog Agent",
+          role: "Old article refresh & optimization",
+          initials: "UP",
+          status: "active",
+          color: "#e7ecff",
+          ink: "#384c96",
+          instructions: ["Run independently from the SEO Agent on six spaced candidate days each month.","Choose a deterministic target of four to six old articles per month and update at most one per run.","Select a published article older than one year that has not already been refreshed that month.","Preserve its post ID, slug, URL, existing category, tags, and featured image.","Rewrite outdated content and improve accuracy, SEO, answer-first structure, headings, proposal examples, spelling, grammar, and internal links.","Add the Prospero Summary and four to six Key takeaways using inherited site typography.","Never add editorial image suggestions, placeholders, or production notes.","Set the publication date to the refresh date and verify the saved slug and URL are unchanged."],
+          owner: "Prospero Content & SEO",
+          cadence: "4-6 articles monthly on spaced days",
+          priority: "High",
+          activities: [{
+            type: "scheduled",
+            title: "Refresh the next eligible old Prospero article",
+            detail: "Update one old article on the next selected monthly slot while preserving its exact URL.",
+            date: "2026-07-28T10:00:00+03:00",
+            scheduleUtc: "07:00 on days 3, 8, 13, 18, 23, and 28",
+            url: "https://github.com/poptins/prospero-agents/actions/workflows/update-blog-agent.yml",
+            assetLabel: "Open Update Blog workflow"
+          }]
         },
         {
           id: "social",
