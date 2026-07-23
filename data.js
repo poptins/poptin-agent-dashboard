@@ -115,9 +115,8 @@ window.AGENT_DATA = {
           "assetLabel": "Open scheduled workflow"
         }
       ]
-    }
-
-  {
+    },
+    {
       id: "social",
       name: "Social Media Agent",
       role: "Social strategy & distribution",
