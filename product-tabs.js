@@ -68,7 +68,29 @@
             assetLabel: "Open Update Blog workflow"
           }]
         },
-      {
+              {
+          id: "alternatives",
+          name: "Alternatives Agent",
+          role: "Competitor research & comparison publishing",
+          initials: "AL",
+          status: "active",
+          color: "#ffe8dc",
+          ink: "#8a4325",
+          instructions: ["Run once in the first half and once in the second half of each month.","Check the complete live Chatway blog and persisted history before selecting a competitor that has not already been covered.","Research current official features, pricing, audience, integrations, privacy, security, and compliance for both products.","Verify GDPR and any public ISO, SOC 2, CCPA, HIPAA, PCI, DPA, hosting, or security claims, clearly noting anything that cannot be confirmed.","Check G2, Capterra, and Trustpilot and report only accessible ratings, counts, and paraphrased review themes.","Write a respectful 2,200-3,500 word comparison with a detailed table, citations, summary, key takeaways, and FAQs.","Explain tradeoffs without hostile language and favor Chatway in the conclusion using transparent evidence-based criteria.","Choose the most relevant existing WordPress category and attach 3-6 relevant tags.","Create an original cover in the established Chatway format and place licensed Pexels images between relevant sections.","Prevent duplicate competitors, copied content, copied vendor images, editorial notes, and production placeholders before publishing."],
+          owner: "Chatway Content & SEO",
+          cadence: "Twice monthly, on the 5th and 20th at 10:20 IDT + on demand",
+          priority: "High",
+          activities: [{
+            type: "scheduled",
+            title: "Publish the next unused Chatway competitor alternative",
+            detail: "Select an uncovered competitor, verify current primary and marketplace evidence, and publish one complete comparison after all quality checks pass.",
+            date: "2026-08-05T10:20:00+03:00",
+            schedule: {frequency: "monthly-days", days: [5, 20], hourUtc: 7, minuteUtc: 20},
+            url: "https://github.com/poptins/chatway-agents/actions/workflows/alternatives-agent.yml",
+            assetLabel: "Open Alternatives workflow"
+          }]
+        },
+{
           id: "social",
           name: "Social Media Agent",
           role: "Buffer distribution with cover images",
@@ -260,7 +282,29 @@
             assetLabel: "Open Update Blog workflow"
           }]
         },
-        {
+                {
+          id: "alternatives",
+          name: "Alternatives Agent",
+          role: "Competitor research & comparison publishing",
+          initials: "AL",
+          status: "active",
+          color: "#eee2ff",
+          ink: "#5a3d91",
+          instructions: ["Run once in the first half and once in the second half of each month.","Check the complete live Prospero blog and persisted history before selecting a competitor that has not already been covered.","Research current official features, pricing, audience, integrations, privacy, security, and compliance for both products.","Verify GDPR and any public ISO, SOC 2, CCPA, HIPAA, PCI, DPA, hosting, or security claims, clearly noting anything that cannot be confirmed.","Check G2, Capterra, and Trustpilot and report only accessible ratings, counts, and paraphrased review themes.","Write a respectful 2,200-3,500 word comparison with a detailed table, citations, summary, key takeaways, and FAQs.","Explain tradeoffs without hostile language and favor Prospero in the conclusion using transparent evidence-based criteria.","Choose the most relevant existing WordPress category and attach 3-6 relevant tags.","Create an original cover in the established Prospero format and place licensed Pexels images between relevant sections.","Prevent duplicate competitors, copied content, copied vendor images, editorial notes, and production placeholders before publishing."],
+          owner: "Prospero Content & SEO",
+          cadence: "Twice monthly, on the 5th and 20th at 10:40 IDT + on demand",
+          priority: "High",
+          activities: [{
+            type: "scheduled",
+            title: "Publish the next unused Prospero competitor alternative",
+            detail: "Select an uncovered competitor, verify current primary and marketplace evidence, and publish one complete comparison after all quality checks pass.",
+            date: "2026-08-05T10:40:00+03:00",
+            schedule: {frequency: "monthly-days", days: [5, 20], hourUtc: 7, minuteUtc: 40},
+            url: "https://github.com/poptins/prospero-agents/actions/workflows/alternatives-agent.yml",
+            assetLabel: "Open Alternatives workflow"
+          }]
+        },
+{
           id: "social",
           name: "Social Media Agent",
           role: "Buffer distribution with cover images",
