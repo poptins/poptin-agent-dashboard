@@ -143,6 +143,24 @@
           cadence: "Daily at 06:15 UTC + on demand",
           priority: "Medium",
           activities: [
+        {
+          type: "past",
+          title: "Published Conversation Deflection",
+          detail: "The daily Chatway glossary workflow published Conversation Deflection successfully after GitHub started the scheduled run later than its nominal cron time.",
+          date: "2026-07-23T11:45:29+03:00",
+          url: "https://chatway.app/glossary/conversation-deflection",
+          assetLabel: "View glossary term",
+          githubRunId: 29992159822
+        },
+        {
+          type: "failed",
+          title: "Chatway glossary publication failed",
+          detail: "The first production glossary run failed before publishing. Later daily runs succeeded after the credentials and request handling were corrected.",
+          date: "2026-07-22T11:45:30+03:00",
+          url: "https://github.com/poptins/chatway-agents/actions/runs/29905237486",
+          assetLabel: "Open failed workflow run",
+          githubRunId: 29905237486
+        },
             {
               type: "past",
               title: "Published and verified first glossary entry",
@@ -175,6 +193,15 @@
           cadence: "Daily at 07:45 IDT + on demand",
           priority: "High",
           activities: [
+        {
+          type: "failed",
+          title: "Chatway opportunity scan failed",
+          detail: "A metadata opportunity scan did not complete successfully; a later production verification run succeeded.",
+          date: "2026-07-22T11:59:50+03:00",
+          url: "https://github.com/poptins/chatway-agents/actions/runs/29895370917",
+          assetLabel: "Open failed workflow run",
+          githubRunId: 29895370917
+        },
             {
               type: "scheduled",
               title: "Run daily Chatway opportunity scan",
@@ -233,6 +260,15 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "failed",
+          title: "Prospero SEO publication attempt failed",
+          detail: "An on-demand Prospero SEO attempt failed during initial setup. Later publication and repair runs completed successfully.",
+          date: "2026-07-22T15:04:26+03:00",
+          url: "https://github.com/poptins/prospero-agents/actions/runs/29906503594",
+          assetLabel: "Open failed workflow run",
+          githubRunId: 29906503594
+        },
             {
               type: "past",
               title: "Published and repaired the first Prospero SEO article",
@@ -326,6 +362,15 @@
           cadence: "Hourly at minute 17 + on demand",
           priority: "High",
           activities: [
+        {
+          type: "failed",
+          title: "Prospero social handoff failed",
+          detail: "An hourly social handoff did not complete successfully. Buffer regrouping and later verification restored the workflow.",
+          date: "2026-07-22T18:03:46+03:00",
+          url: "https://github.com/poptins/prospero-agents/actions/runs/29918110289",
+          assetLabel: "Open failed workflow run",
+          githubRunId: 29918110289
+        },
             {
               type: "past",
               title: "Regrouped Prospero Buffer posts",
