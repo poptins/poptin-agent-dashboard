@@ -147,7 +147,7 @@ function renderTimeline() {
   const activities = allActivities()
     .filter(item => activityFilter === "all" || item.type === activityFilter)
     .filter(item => activityAgentFilter === "all" || item.agent.id === activityAgentFilter)
-    .sort((a, b) => ["past", "failed"].includes(activityFilter) ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date));
+    .sort((a, b) => activityFilter === "scheduled" ? activityDate(a) - activityDate(b) : activityDate(b) - activityDate(a));
 
   const activityIcon = item => item.type === "past" ? "✓" : item.type === "failed" ? "!" : "→";
   const emptyMessage = activityFilter === "failed" ? "No failed tasks recorded." : "No activity in this view.";
@@ -211,15 +211,15 @@ function loadLatestData() {
   });
 }
 
-async function mergeRecentGithubFailures() {
+async function mergeRecentGithubActivity() {
   const token = sessionStorage.getItem("optimizationGithubToken");
   if (!token || !data?.source) return { loaded: false, reason: "no-token" };
-  const response = await fetch(`https://api.github.com/repos/${data.source}/actions/runs?status=failure&per_page=50`, {
+  const response = await fetch(`https://api.github.com/repos/${data.source}/actions/runs?per_page=50`, {
     headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"}
   });
   if (!response.ok) {
     if ([401, 403, 404].includes(response.status)) sessionStorage.removeItem("optimizationGithubToken");
-    throw new Error(`GitHub could not load recent failed tasks (${response.status}).`);
+    throw new Error(`GitHub could not load recent agent activity (${response.status}).`);
   }
   const cutoff = Date.now() - 14 * 24 * 60 * 60 * 1000;
   const runs = (await response.json()).workflow_runs || [];
@@ -241,18 +241,23 @@ async function mergeRecentGithubFailures() {
   };
   let added = 0;
   runs
+    .filter(run => ["success", "failure"].includes(run.conclusion))
     .filter(run => new Date(run.created_at).getTime() >= cutoff && !seen.has(run.id))
-    .slice(0, 20)
+    .slice(0, 30)
+    .reverse()
     .forEach(run => {
       const agent = agentForRun(run);
       if (!agent) return;
-      agent.activities.push({
-        type: "failed",
-        title: `Failed: ${run.name || run.display_title || "GitHub Actions task"}`,
-        detail: `${run.display_title || run.name || "Workflow run"} did not complete successfully. Open GitHub for the failed step and logs.`,
+      const failed = run.conclusion === "failure";
+      agent.activities.unshift({
+        type: failed ? "failed" : "past",
+        title: `${failed ? "Failed" : "Completed"}: ${run.name || run.display_title || "GitHub Actions task"}`,
+        detail: failed
+          ? `${run.display_title || run.name || "Workflow run"} did not complete successfully. Open GitHub for the failed step and logs.`
+          : `${run.display_title || run.name || "Workflow run"} completed successfully.`,
         date: run.created_at,
         url: run.html_url,
-        assetLabel: "Open failed workflow run",
+        assetLabel: failed ? "Open failed workflow run" : "Open successful workflow run",
         githubRunId: run.id
       });
       seen.add(run.id);
@@ -299,9 +304,9 @@ $("#refreshButton").addEventListener("click", async () => {
   button.textContent = "↻ Refreshing…";
   try {
     data = await loadLatestData();
-    const failureSync = await mergeRecentGithubFailures();
+    const activitySync = await mergeRecentGithubActivity();
     renderDashboard();
-    button.textContent = failureSync.loaded ? `✓ Updated${failureSync.added ? ` + ${failureSync.added} failures` : ""}` : "✓ Updated";
+    button.textContent = activitySync.loaded ? `✓ Updated${activitySync.added ? ` + ${activitySync.added} activities` : ""}` : "✓ Updated";
   } catch (error) {
     console.error(error);
     button.textContent = "! Try again";
