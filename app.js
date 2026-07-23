@@ -211,6 +211,56 @@ function loadLatestData() {
   });
 }
 
+async function mergeRecentGithubFailures() {
+  const token = sessionStorage.getItem("optimizationGithubToken");
+  if (!token || !data?.source) return { loaded: false, reason: "no-token" };
+  const response = await fetch(`https://api.github.com/repos/${data.source}/actions/runs?status=failure&per_page=50`, {
+    headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"}
+  });
+  if (!response.ok) {
+    if ([401, 403, 404].includes(response.status)) sessionStorage.removeItem("optimizationGithubToken");
+    throw new Error(`GitHub could not load recent failed tasks (${response.status}).`);
+  }
+  const cutoff = Date.now() - 14 * 24 * 60 * 60 * 1000;
+  const runs = (await response.json()).workflow_runs || [];
+  const seen = new Set(allActivities().map(item => item.githubRunId).filter(Boolean));
+  const agentForRun = run => {
+    const name = `${run.name || ""} ${run.display_title || ""}`.toLowerCase();
+    const mappings = [
+      ["update-blog", ["update blog", "old article"]],
+      ["alternatives", ["alternative", "competitor"]],
+      ["glossary", ["glossary"]],
+      ["optimization", ["optimization", "search console", "opportunity"]],
+      ["social", ["social", "buffer"]],
+      ["academy", ["academy", "academic"]],
+      ["quora", ["quora"]],
+      ["seo", ["seo", "blog publishing"]]
+    ];
+    const match = mappings.find(([, terms]) => terms.some(term => name.includes(term)));
+    return match ? data.agents.find(agent => agent.id === match[0]) : null;
+  };
+  let added = 0;
+  runs
+    .filter(run => new Date(run.created_at).getTime() >= cutoff && !seen.has(run.id))
+    .slice(0, 20)
+    .forEach(run => {
+      const agent = agentForRun(run);
+      if (!agent) return;
+      agent.activities.push({
+        type: "failed",
+        title: `Failed: ${run.name || run.display_title || "GitHub Actions task"}`,
+        detail: `${run.display_title || run.name || "Workflow run"} did not complete successfully. Open GitHub for the failed step and logs.`,
+        date: run.created_at,
+        url: run.html_url,
+        assetLabel: "Open failed workflow run",
+        githubRunId: run.id
+      });
+      seen.add(run.id);
+      added += 1;
+    });
+  return { loaded: true, added };
+}
+
 function synchronizeSeoDependentActivities() {
   const seoAgent = data.agents.find(agent => agent.id === "seo");
   const seoNext = seoAgent?.activities.find(activity =>
@@ -249,8 +299,9 @@ $("#refreshButton").addEventListener("click", async () => {
   button.textContent = "↻ Refreshing…";
   try {
     data = await loadLatestData();
+    const failureSync = await mergeRecentGithubFailures();
     renderDashboard();
-    button.textContent = "✓ Updated";
+    button.textContent = failureSync.loaded ? `✓ Updated${failureSync.added ? ` + ${failureSync.added} failures` : ""}` : "✓ Updated";
   } catch (error) {
     console.error(error);
     button.textContent = "! Try again";
