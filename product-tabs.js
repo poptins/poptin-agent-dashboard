@@ -47,6 +47,28 @@
           ]
         },
         {
+          id: "update-blog",
+          name: "Update Blog Agent",
+          role: "Old article refresh & optimization",
+          initials: "UP",
+          status: "active",
+          color: "#e7ecff",
+          ink: "#384c96",
+          instructions: ["Run independently from the SEO Agent on six spaced candidate days each month.","Choose a deterministic target of four to six old articles per month and update at most one per run.","Select a published article older than one year that has not already been refreshed that month.","Preserve its post ID, slug, URL, existing category, tags, and featured image.","Rewrite outdated content and improve accuracy, SEO, answer-first structure, headings, examples, spelling, grammar, and internal links.","Add a site-matched Summary and four to six Key takeaways without duplicating existing blocks.","Never add editorial image suggestions, placeholders, or production notes.","Set the publication date to the refresh date and verify the saved slug and URL are unchanged."],
+          owner: "Chatway Content & SEO",
+          cadence: "4-6 articles monthly on spaced days",
+          priority: "High",
+          activities: [{
+            type: "scheduled",
+            title: "Refresh the next eligible old Chatway article",
+            detail: "Update one old article on the next selected monthly slot while preserving its exact URL.",
+            date: "2026-07-28T09:40:00+03:00",
+            schedule: {frequency: "monthly-days", days: [3, 8, 13, 18, 23, 28], hourUtc: 6, minuteUtc: 40},
+            url: "https://github.com/poptins/chatway-agents/actions/workflows/update-blog-agent.yml",
+            assetLabel: "Open Update Blog workflow"
+          }]
+        },
+      {
           id: "social",
           name: "Social Media Agent",
           role: "Buffer distribution with cover images",
@@ -159,29 +181,7 @@
           ]
         }
       ,
-        {
-          id: "update-blog",
-          name: "Update Blog Agent",
-          role: "Old article refresh & optimization",
-          initials: "UP",
-          status: "active",
-          color: "#e7ecff",
-          ink: "#384c96",
-          instructions: ["Run independently from the SEO Agent on six spaced candidate days each month.","Choose a deterministic target of four to six old articles per month and update at most one per run.","Select a published article older than one year that has not already been refreshed that month.","Preserve its post ID, slug, URL, existing category, tags, and featured image.","Rewrite outdated content and improve accuracy, SEO, answer-first structure, headings, examples, spelling, grammar, and internal links.","Add a site-matched Summary and four to six Key takeaways without duplicating existing blocks.","Never add editorial image suggestions, placeholders, or production notes.","Set the publication date to the refresh date and verify the saved slug and URL are unchanged."],
-          owner: "Chatway Content & SEO",
-          cadence: "4-6 articles monthly on spaced days",
-          priority: "High",
-          activities: [{
-            type: "scheduled",
-            title: "Refresh the next eligible old Chatway article",
-            detail: "Update one old article on the next selected monthly slot while preserving its exact URL.",
-            date: "2026-07-28T09:40:00+03:00",
-            schedule: {frequency: "monthly-days", days: [3, 8, 13, 18, 23, 28], hourUtc: 6, minuteUtc: 40},
-            url: "https://github.com/poptins/chatway-agents/actions/workflows/update-blog-agent.yml",
-            assetLabel: "Open Update Blog workflow"
-          }]
-        },
-      ]
+        ]
     }, 
     prospero: {
       source: "poptins/prospero-agents",
