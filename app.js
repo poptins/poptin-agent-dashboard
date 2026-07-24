@@ -56,10 +56,19 @@ function allActivities() {
   return data.agents.flatMap(agent => agent.activities.map(activity => ({ ...activity, agent })));
 }
 
+function isFutureScheduled(item, now = Date.now()) {
+  return item.type === "scheduled" && activityDate(item).getTime() > now;
+}
+
+function visibleActivities() {
+  const now = Date.now();
+  return allActivities().filter(item => item.type !== "scheduled" || isFutureScheduled(item, now));
+}
+
 function renderStats() {
-  const activities = allActivities();
+  const activities = visibleActivities();
   const completed = activities.filter(item => item.type === "past").length;
-  const scheduled = activities.filter(item => item.type === "scheduled").length;
+  const scheduled = activities.filter(item => isFutureScheduled(item)).length;
   const active = data.agents.filter(agent => agent.status === "active").length;
   const stats = [
     ["Total agents", data.agents.length, `${active} active`],
@@ -109,7 +118,8 @@ function renderAgentDetail() {
   const agent = data.agents.find(item => item.id === selectedAgentId) || data.agents[0];
   if (!agent) return;
   const past = agent.activities.filter(item => item.type === "past").slice(0, 2);
-  const scheduled = agent.activities.filter(item => item.type === "scheduled").slice(0, 2);
+  const now = Date.now();
+  const scheduled = agent.activities.filter(item => isFutureScheduled(item, now)).slice(0, 2);
   const compact = (items, type) => items.length ? items.map(item => `
     <div class="compact-item ${type}">
       <strong>${item.title}</strong>
@@ -144,7 +154,7 @@ function renderAgentDetail() {
 }
 
 function renderTimeline() {
-  const activities = allActivities()
+  const activities = visibleActivities()
     .filter(item => activityFilter === "all" || item.type === activityFilter)
     .filter(item => activityAgentFilter === "all" || item.agent.id === activityAgentFilter)
     .sort((a, b) => activityFilter === "scheduled" ? activityDate(a) - activityDate(b) : activityDate(b) - activityDate(a));
