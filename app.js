@@ -112,8 +112,16 @@ function renderAgents(query = "") {
   document.querySelectorAll("[data-agent-id]").forEach(button => {
     button.addEventListener("click", () => {
       selectedAgentId = button.dataset.agentId;
+      const activeProductId = document.querySelector("[data-product].active")?.dataset.product;
+      if (activeProductId) {
+        activityProductFilter = activeProductId;
+        $("#activityProductFilter").value = activeProductId;
+      }
+      activityAgentFilter = selectedAgentId;
       renderAgents($("#agentSearch").value);
       renderAgentDetail();
+      renderActivityAgentFilter();
+      renderTimeline();
       renderRecommendationQueue();
     });
   });
