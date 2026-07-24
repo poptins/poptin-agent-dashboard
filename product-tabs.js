@@ -421,7 +421,21 @@
     "quora",
     "chatway-glossary"
   ];
+  const agentStyles = {
+    seo: {color: "#d9eee4", ink: "#18543d"},
+    "update-blog": {color: "#e7ecff", ink: "#384c96"},
+    alternatives: {color: "#ffe8dc", ink: "#8a4325"},
+    social: {color: "#f4e6cc", ink: "#764c12"},
+    academy: {color: "#dceaf3", ink: "#245a7a"},
+    glossary: {color: "#e9e2f2", ink: "#5d4378"},
+    optimization: {color: "#dff0ee", ink: "#17645c"},
+    quora: {color: "#f3e2dc", ink: "#7a3d2a"},
+    "chatway-glossary": {color: "#dcecff", ink: "#265a91"}
+  };
   Object.values(productData).forEach(product => {
+    product.agents.forEach(agent => {
+      if (agentStyles[agent.id]) Object.assign(agent, agentStyles[agent.id]);
+    });
     product.agents.sort((a, b) => {
       const aIndex = agentOrder.indexOf(a.id);
       const bIndex = agentOrder.indexOf(b.id);
