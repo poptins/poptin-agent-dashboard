@@ -1,7 +1,3 @@
-Exit code: 0
-Wall time: 0.9 seconds
-Total output lines: 819
-Output:
 let data = window.AGENT_DATA;
 let selectedAgentId = data.agents[0]?.id;
 let activityFilter = "all";
