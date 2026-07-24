@@ -1,3 +1,6 @@
+Exit code: 0
+Wall time: 0.9 seconds
+Output:
 (() => {
   const poptinData = window.AGENT_DATA;
   const productData = {
@@ -106,7 +109,7 @@
             {
               type: "past",
               title: "Scheduled response-time guide on three channels",
-              detail: "Handed the article and its cover image to Chatway’s LinkedIn, Facebook, and X Buffer channels.",
+              detail: "Handed the article and its cover image to Chatwayג€™s LinkedIn, Facebook, and X Buffer channels.",
               date: "2026-07-21T21:38:00+03:00",
               url: "https://github.com/poptins/chatway-agents/issues/20",
               assetLabel: "Open cover verification"
@@ -411,6 +414,8 @@
     selectedAgentId = data.agents[0]?.id;
     activityFilter = "all";
     activityAgentFilter = "all";
+    const activityProductFilter = document.querySelector("#activityProductFilter");
+    if (activityProductFilter) activityProductFilter.value = productId;
     document.querySelectorAll("[data-product]").forEach(button => {
       const selected = button.dataset.product === productId;
       button.classList.toggle("active", selected);
@@ -422,9 +427,11 @@
     if (footerSource) footerSource.textContent = `Activity snapshot sourced from ${data.source}`;
     renderDashboard();
   }
+  window.selectMarketingProduct = selectProduct;
 
   document.querySelectorAll("[data-product]").forEach(button => {
     button.addEventListener("click", () => selectProduct(button.dataset.product));
   });
   selectProduct(activeProduct in productData ? activeProduct : "poptin");
 })();
+
