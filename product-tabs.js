@@ -409,7 +409,6 @@
     data = productData[productId];
     window.AGENT_DATA = data;
     selectedAgentId = data.agents[0]?.id;
-    activityFilter = "all";
     activityAgentFilter = "all";
     const activityProductFilter = document.querySelector("#activityProductFilter");
     if (activityProductFilter) activityProductFilter.value = productId;
@@ -426,4 +425,8 @@
   }
   window.selectMarketingProduct = selectProduct;
 
-  document.querySelectorAll("[
+  document.querySelectorAll("[data-product]").forEach(button => {
+    button.addEventListener("click", () => selectProduct(button.dataset.product));
+  });
+  selectProduct(activeProduct in productData ? activeProduct : "poptin");
+})();
