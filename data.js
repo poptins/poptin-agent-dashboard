@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-07-23T12:00:00+03:00",
+  lastUpdated: "2026-07-24T10:28:20+03:00",
   agents: [
     {
       id: "seo",
@@ -224,6 +224,14 @@ window.AGENT_DATA = {
       cadence: "Daily at 06:15 UTC",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          title: "Published Value Proposition",
+          detail: "Published a validated plain-English definition of value proposition with practical marketing context in the Poptin Academy glossary.",
+          date: "2026-07-24T10:28:20+03:00",
+          url: "https://www.poptin.com/academy/glossary/value-proposition/",
+          assetLabel: "View glossary term"
+        },
         {
           type: "past",
           title: "Published Email Cadence",
