@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260724-activity-right1">
 </head>
 <body>
   <div class="page-shell">
@@ -59,33 +59,33 @@
           <div class="agent-list" id="agentList"></div>
         </aside>
         <section class="panel detail-panel" id="agentDetail" aria-live="polite"></section>
-      </section>
 
-      <section class="activity-section">
-        <div class="section-heading">
-          <div><p class="eyebrow">ACTIVITY</p><h2>Everything in motion</h2></div>
-          <div class="activity-controls">
-            <label class="agent-filter-label" for="activityProductFilter">
-              <span>Product</span>
-              <select id="activityProductFilter" aria-label="Filter activity by product">
-                <option value="all">All products</option>
-                <option value="poptin">Poptin</option>
-                <option value="chatway">Chatway</option>
-                <option value="prospero">Prospero</option>
-              </select>
-            </label>
-            <label class="agent-filter-label" for="activityAgentFilter"><span>Agent</span><select id="activityAgentFilter" aria-label="Filter activity by agent"></select></label>
-            <div class="filters" role="group" aria-label="Filter activities by status">
-              <button class="filter active" data-filter="all" type="button">All</button>
-              <button class="filter" data-filter="past" type="button">Completed</button>
-              <button class="filter" data-filter="scheduled" type="button">Scheduled</button>
-              <button class="filter" data-filter="failed" type="button">Failed</button>
+        <section class="activity-section">
+          <div class="section-heading">
+            <div><p class="eyebrow">ACTIVITY</p><h2>Everything in motion</h2></div>
+            <div class="activity-controls">
+              <label class="agent-filter-label" for="activityProductFilter">
+                <span>Product</span>
+                <select id="activityProductFilter" aria-label="Filter activity by product">
+                  <option value="all">All products</option>
+                  <option value="poptin">Poptin</option>
+                  <option value="chatway">Chatway</option>
+                  <option value="prospero">Prospero</option>
+                </select>
+              </label>
+              <label class="agent-filter-label" for="activityAgentFilter"><span>Agent</span><select id="activityAgentFilter" aria-label="Filter activity by agent"></select></label>
+              <div class="filters" role="group" aria-label="Filter activities by status">
+                <button class="filter active" data-filter="all" type="button">All</button>
+                <button class="filter" data-filter="past" type="button">Completed</button>
+                <button class="filter" data-filter="scheduled" type="button">Scheduled</button>
+                <button class="filter" data-filter="failed" type="button">Failed</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="timeline" id="activityTimeline"></div>
-        <div class="recommendation-grid" id="recommendationGrid" hidden></div>
-        <p class="approval-note" id="approvalStatus" role="status" hidden></p>
+          <div class="timeline" id="activityTimeline"></div>
+          <div class="recommendation-grid" id="recommendationGrid" hidden></div>
+          <p class="approval-note" id="approvalStatus" role="status" hidden></p>
+        </section>
       </section>
     </main>
 
