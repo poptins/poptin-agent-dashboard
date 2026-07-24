@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-07-24T10:28:20+03:00",
+  lastUpdated: "2026-07-24T10:31:36+03:00",
   agents: [
     {
       id: "seo",
@@ -224,6 +224,14 @@ window.AGENT_DATA = {
       cadence: "Daily at 06:15 UTC",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          title: "Published Form Friction",
+          detail: "Published a validated explanation of form friction, how unnecessary effort affects form completion, and a practical optimization example.",
+          date: "2026-07-24T10:31:36+03:00",
+          url: "https://www.poptin.com/academy/glossary/form-friction/",
+          assetLabel: "View glossary term"
+        },
         {
           type: "past",
           title: "Published Value Proposition",
