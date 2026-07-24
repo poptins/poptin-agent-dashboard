@@ -87,7 +87,7 @@ function avatarStyle(agent) {
 
 function renderAsset(item, compact = false) {
   if (item.url) {
-    return `<a class="asset-link ${compact ? "compact-asset" : ""}" href="${item.url}" target="_blank" rel="noopener">${item.assetLabel || "View published asset"} ג†—</a>`;
+    return `<a class="asset-link ${compact ? "compact-asset" : ""}" href="${item.url}" target="_blank" rel="noopener">${item.assetLabel || "View published asset"} ↗</a>`;
   }
   return item.assetStatus ? `<span class="asset-note">${item.assetStatus}</span>` : "";
 }
@@ -123,7 +123,7 @@ function renderAgentDetail() {
   const compact = (items, type) => items.length ? items.map(item => `
     <div class="compact-item ${type}">
       <strong>${item.title}</strong>
-      <span>${dateFormat.format(activityDate(item))} ֲ· ${timeFormat.format(activityDate(item))}</span>
+      <span>${dateFormat.format(activityDate(item))} · ${timeFormat.format(activityDate(item))}</span>
       ${renderAsset(item, true)}
     </div>
   `).join("") : `<span class="agent-role">Nothing here yet.</span>`;
@@ -159,7 +159,7 @@ function renderTimeline() {
     .filter(item => activityAgentFilter === "all" || item.agent.id === activityAgentFilter)
     .sort((a, b) => activityFilter === "scheduled" ? activityDate(a) - activityDate(b) : activityDate(b) - activityDate(a));
 
-  const activityIcon = item => item.type === "past" ? "ג“" : item.type === "failed" ? "!" : "ג†’";
+  const activityIcon = item => item.type === "past" ? "✓" : item.type === "failed" ? "!" : "→";
   const emptyMessage = activityFilter === "failed" ? "No failed tasks recorded." : "No activity in this view.";
 
   $("#activityTimeline").innerHTML = activities.length ? activities.map(item => `
@@ -167,7 +167,7 @@ function renderTimeline() {
       <span class="timeline-icon ${item.type}">${activityIcon(item)}</span>
       <div>
         <h3>${item.title}</h3>
-        <p>${item.agent.name} ֲ· ${item.detail}</p>
+        <p>${item.agent.name} · ${item.detail}</p>
         ${renderAsset(item)}
       </div>
       <div class="activity-date"><strong>${dateFormat.format(activityDate(item))}</strong><span>${timeFormat.format(activityDate(item))}</span></div>
@@ -311,19 +311,19 @@ $("#agentSearch").addEventListener("input", event => renderAgents(event.target.v
 $("#refreshButton").addEventListener("click", async () => {
   const button = $("#refreshButton");
   button.disabled = true;
-  button.textContent = "ג†» Refreshingג€¦";
+  button.textContent = "↻ Refreshing…";
   try {
     data = await loadLatestData();
     const activitySync = await mergeRecentGithubActivity();
     renderDashboard();
-    button.textContent = activitySync.loaded ? `ג“ Updated${activitySync.added ? ` + ${activitySync.added} activities` : ""}` : "ג“ Updated";
+    button.textContent = activitySync.loaded ? `✓ Updated${activitySync.added ? ` + ${activitySync.added} activities` : ""}` : "✓ Updated";
   } catch (error) {
     console.error(error);
     button.textContent = "! Try again";
   } finally {
     setTimeout(() => {
       button.disabled = false;
-      button.textContent = "ג†» Refresh";
+      button.textContent = "↻ Refresh";
     }, 1400);
   }
 });
@@ -344,7 +344,7 @@ $("#activityProductFilter").addEventListener("change", event => {
 });
 $("#themeToggle").addEventListener("click", () => {
   document.body.classList.toggle("dark");
-  $("#themeToggle").textContent = document.body.classList.contains("dark") ? "ג˜€" : "ג˜¾";
+  $("#themeToggle").textContent = document.body.classList.contains("dark") ? "☀" : "☾";
 });
 $("#logoutButton").addEventListener("click", () => {
   sessionStorage.removeItem("agentDashboardAccess");
@@ -433,7 +433,44 @@ var exactOptimizationPatches = {
     currentTitle: "Email Marketing Automation & Newsletters | Exit intent Popups - Poptin",
     currentDescription: "Create email campaigns, email automations, popups & forms in minutes. Grow audience, capture leads, and drive sales. Start for free - no credit card required.",
     suggestedTitle: "Email Marketing Automation & Exit Intent Popups - Poptin",
-    suggestedDescription: "Create email campaigns, automatio…753 tokens truncated…d generation, ecommerce, and conversion optimization from the Poptin team."
+    suggestedDescription: "Create email campaigns, automations, popups, and forms that capture leads and drive sales. Start free with Poptin—no credit card required."
+  },
+  "https://www.poptin.com/pricing/": {
+    currentTitle: "Pricing - Poptin",
+    currentDescription: "Explore affordable pricing plans for popups, forms, email campaigns, and email marketing automation. Choose the plan that fits your business.",
+    suggestedTitle: "Email Marketing, Popups & Forms Pricing - Poptin",
+    suggestedDescription: "Compare Poptin plans for email marketing, automation, popups, and forms. Choose the right features and limits for your business."
+  },
+  "https://www.poptin.com/about-us/": {
+    currentTitle: "About Us - Poptin",
+    currentDescription: "(No meta description is currently published.)",
+    suggestedTitle: "About Us - Poptin",
+    suggestedDescription: "Meet the team behind Poptin and learn how our email marketing, popup, and form tools help businesses capture leads and grow."
+  },
+  "https://careers.poptin.com/": {
+    currentTitle: "Careers at Poptin, Prospero, Premio & Chatway - Job Openings",
+    currentDescription: "(No meta description is currently published.)",
+    suggestedTitle: "(No replacement proposed yet.)",
+    suggestedDescription: "Investigate query mix, rankings, seasonality, and recent site changes before approving any text change.",
+    investigation: true
+  },
+  "https://www.poptin.com/blog/9-ultimate-sales-funnel-examples-that-convert/": {
+    currentTitle: "9 Ultimate Sales Funnel Examples That Convert Like Crazy - Poptin blog",
+    currentDescription: "Learn from these effective sales funnel examples by big brands that help track the buyer’s journey to better target them and convert them into sales faster.",
+    suggestedTitle: "9 Sales Funnel Examples That Convert (With Tips) - Poptin blog",
+    suggestedDescription: "Explore nine proven sales funnel examples from leading brands and learn practical ways to improve targeting, conversions, and the buyer journey."
+  },
+  "https://www.poptin.com/blog/types-of-email-marketing/": {
+    currentTitle: "Types of Email Marketing: A Complete Guide for Successful Campaigns - Poptin blog",
+    currentDescription: "Discover the different types of email marketing and learn how to strategically use each one. Boost engagement and conversions with transactional, promotional, and informational emails, plus more!",
+    suggestedTitle: "Types of Email Marketing: 10 Campaigns to Use - Poptin blog",
+    suggestedDescription: "Learn the main types of email marketing campaigns, when to use each one, and how transactional, promotional, and educational emails drive results."
+  },
+  "https://www.poptin.com/blog/": {
+    currentTitle: "Poptin blog - Pop Ups, Email Marketing, CRO & Digital Marketing Tips",
+    currentDescription: "Pop Ups, Email Marketing, CRO & Digital Marketing Tips",
+    suggestedTitle: "Poptin blog - Pop Ups, Email Marketing, CRO & Digital Marketing Tips",
+    suggestedDescription: "Practical guides for email marketing, popups, lead generation, ecommerce, and conversion optimization from the Poptin team."
   },
   "https://www.poptin.com/blog/30-free-banks-images-icons-vectors-visually-appealing-content/": {
     currentTitle: "30+ FREE Banks of Images, Icons and Vectors For Visually Appealing Content - Poptin blog",
@@ -545,10 +582,10 @@ async function loadQuoraReviewQueue(grid, status) {
     <article class="recommendation-card quora-answer-card" data-answer-id="${escapeHtml(item.id)}">
       <div class="recommendation-top"><span class="property-pill">Quora</span><span class="readiness ready">Ready for human review</span></div>
       <h3>${escapeHtml(item.question)}</h3>
-      <a class="recommendation-url" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.url)} ג†—</a>
+      <a class="recommendation-url" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.url)} ↗</a>
       <div class="answer-preview">${escapeHtml(item.answer).replace(/\\n\\n/g, "</p><p>").replace(/^/, "<p>").replace(/$/, "</p>")}</div>
       <div class="recommendation-actions">
-        <button class="cancel-button quora-copy-button" type="button" data-copy-answer="${escapeHtml(item.id)}" aria-label="Copy answer">נ“‹ Copy answer</button>
+        <button class="cancel-button quora-copy-button" type="button" data-copy-answer="${escapeHtml(item.id)}" aria-label="Copy answer">📋 Copy answer</button>
         <button class="approve-button quora-publish-button" type="button" data-publish-answer="${escapeHtml(item.id)}">Open Quora question</button>
       </div>
       <p class="card-feedback" aria-live="polite">Copy the answer first, then open Quora, click Answer, and paste with Ctrl+V.</p>
@@ -560,13 +597,13 @@ async function loadQuoraReviewQueue(grid, status) {
     button.disabled = true;
     try {
       await copyQuoraAnswer(item.answer);
-      button.textContent = "ג“ Copied";
+      button.textContent = "✓ Copied";
       feedback.classList.remove("error");
       feedback.textContent = "Answer copied to your clipboard. Open Quora, click Answer, and paste with Ctrl+V.";
-      setTimeout(() => { button.disabled = false; button.textContent = "נ“‹ Copy answer"; }, 2000);
+      setTimeout(() => { button.disabled = false; button.textContent = "📋 Copy answer"; }, 2000);
     } catch (error) {
       button.disabled = false;
-      button.textContent = "נ“‹ Copy answer";
+      button.textContent = "📋 Copy answer";
       feedback.classList.add("error");
       feedback.textContent = "Copy was blocked by the browser. Select the answer text above and copy it manually.";
     }
@@ -596,7 +633,7 @@ async function loadQuoraReviewQueue(grid, status) {
     const item = answers.find(answer => answer.id === button.dataset.publishAnswer);
     const feedback = button.closest(".quora-answer-card").querySelector(".card-feedback");
     const quoraWindow = window.open("about:blank", "_blank");
-    button.disabled = true; button.textContent = "Copyingג€¦";
+    button.disabled = true; button.textContent = "Copying…";
     try {
       await copyQuoraAnswer(item.answer);
       if (quoraWindow) {
@@ -626,7 +663,7 @@ async function loadQuoraReviewQueue(grid, status) {
       status.textContent = "Clipboard access was unavailable.";
     }
   }));
-  status.innerHTML = `Loaded ${answers.length} answers from the latest private review issue. <a href="${escapeHtml(issue.html_url)}" target="_blank" rel="noopener">Open issue ג†—</a>`;
+  status.innerHTML = `Loaded ${answers.length} answers from the latest private review issue. <a href="${escapeHtml(issue.html_url)}" target="_blank" rel="noopener">Open issue ↗</a>`;
   applyQuoraPublishCooldown(grid, status);
 }
 function renderQuoraQueue(grid, status) {
@@ -636,7 +673,7 @@ function renderQuoraQueue(grid, status) {
     <article class="recommendation-card quora-question-card">
       <div class="recommendation-top"><span class="property-pill">Question ${index + 1}</span><span class="readiness ready">Answer pending review</span></div>
       <h3>${escapeHtml(item.question)}</h3>
-      <a class="recommendation-url" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Open question ג†—</a>
+      <a class="recommendation-url" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Open question ↗</a>
     </article>
   `).join("");
   grid.innerHTML = `
@@ -651,7 +688,7 @@ function renderQuoraQueue(grid, status) {
   `;
   grid.querySelector("#loadQuoraQueue").addEventListener("click", async event => {
     const button = event.currentTarget; const feedback = grid.querySelector("#quoraLoadFeedback");
-    button.disabled = true; button.textContent = "Loadingג€¦";
+    button.disabled = true; button.textContent = "Loading…";
     try { await loadQuoraReviewQueue(grid, status); }
     catch (error) {
       button.disabled = false; button.textContent = "Load review queue"; feedback.classList.add("error");
@@ -698,10 +735,10 @@ function renderRecommendationQueue() {
         <div class="recommendation-top">
           <span class="property-pill">${property}</span>
           <span class="readiness ${isCancelled || patch.investigation ? "blocked" : "ready"}">${isCancelled ? "Cancelled" : patch.investigation ? "Investigation required" : "Suggested text ready"}</span>
-          <button class="remove-recommendation" type="button" data-remove="${escapeHtml(key)}" aria-label="Remove ${escapeHtml(item.title)}">ֳ—</button>
+          <button class="remove-recommendation" type="button" data-remove="${escapeHtml(key)}" aria-label="Remove ${escapeHtml(item.title)}">×</button>
         </div>
         <h3>${escapeHtml(item.title)}</h3>
-        <a class="recommendation-url" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.url)} ג†—</a>
+        <a class="recommendation-url" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.url)} ↗</a>
         <div class="change-preview">
           <div><span>CURRENT SEO TITLE</span><p>${escapeHtml(patch.currentTitle)}</p></div>
           <div><span>SUGGESTED SEO TITLE</span><p>${escapeHtml(patch.suggestedTitle)}</p></div>
@@ -721,7 +758,7 @@ function renderRecommendationQueue() {
     const card = button.closest(".recommendation-card");
     const executionId = card.dataset.executionId;
     button.disabled = true;
-    status.textContent = "Removing recommendation for every browserג€¦";
+    status.textContent = "Removing recommendation for every browser…";
     try {
       await removeRecommendationPermanently(executionId);
       status.textContent = "Recommendation permanently removed.";
@@ -738,13 +775,13 @@ function renderRecommendationQueue() {
     const card = button.closest(".recommendation-card");
     const feedback = card.querySelector(".card-feedback");
     button.disabled = true;
-    button.textContent = "Submittingג€¦";
+    button.textContent = "Submitting…";
     feedback.classList.remove("error");
-    feedback.textContent = "Submitting approval to the credentialed Optimization workflowג€¦";
+    feedback.textContent = "Submitting approval to the credentialed Optimization workflow…";
     try {
       await dispatchOptimization(card.dataset.executionId, "approve");
       button.textContent = "Approved";
-      feedback.innerHTML = 'Approval submitted. The workflow will use authenticated WordPress API reads, verify the protected before-state, and apply only the displayed metadata. <a href="https://github.com/poptins/poptin-agents/actions/workflows/optimization-agent.yml" target="_blank" rel="noopener">Follow the workflow run ג†—</a>';
+      feedback.innerHTML = 'Approval submitted. The workflow will use authenticated WordPress API reads, verify the protected before-state, and apply only the displayed metadata. <a href="https://github.com/poptins/poptin-agents/actions/workflows/optimization-agent.yml" target="_blank" rel="noopener">Follow the workflow run ↗</a>';
       status.textContent = "Approval submitted successfully.";
     } catch (error) {
       button.disabled = false;
@@ -758,7 +795,7 @@ function renderRecommendationQueue() {
     const card = button.closest(".recommendation-card");
     const feedback = card.querySelector(".card-feedback");
     button.disabled = true;
-    button.textContent = "Cancellingג€¦";
+    button.textContent = "Cancelling…";
     feedback.classList.remove("error");
     try {
       await dispatchOptimization(card.dataset.executionId, "cancel");
@@ -769,14 +806,4 @@ function renderRecommendationQueue() {
     } catch (error) {
       button.disabled = false;
       button.textContent = "Cancel";
-      feedback.classList.add("error");
-      feedback.textContent = error.message;
-      status.textContent = error.message;
-    }
-  }));
-}
-
-renderRecommendationQueue();
-loadPermanentDismissals();
-renderDashboard();
-
+      feedback.classList.a
