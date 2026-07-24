@@ -401,6 +401,22 @@
       ]
     }
   };
+  const productNames = {poptin: "Poptin", chatway: "Chatway", prospero: "Prospero"};
+  productData.all = {
+    source: "all product repositories",
+    lastUpdated: Object.values(productData)
+      .map(product => product.lastUpdated)
+      .filter(Boolean)
+      .sort()
+      .at(-1),
+    agents: Object.entries(productData).flatMap(([productId, product]) =>
+      product.agents.map(agent => ({
+        ...agent,
+        id: `${productId}-${agent.id}`,
+        name: `${agent.name} · ${productNames[productId]}`
+      }))
+    )
+  };
   window.PRODUCT_AGENT_DATA = productData;
   let activeProduct = sessionStorage.getItem("marketingBoardProduct") || "poptin";
   function selectProduct(productId) {
@@ -417,7 +433,7 @@
       button.classList.toggle("active", selected);
       button.setAttribute("aria-selected", String(selected));
     });
-    const productName = {poptin: "Poptin", chatway: "Chatway", prospero: "Prospero"}[productId] || productId;
+    const productName = productId === "all" ? "all products" : productNames[productId] || productId;
     document.querySelector(".hero-copy").innerHTML = `Live operations view for <strong>${productName}</strong> marketing agents.`;
     const footerSource = document.querySelector("footer span:last-child");
     if (footerSource) footerSource.textContent = `Activity snapshot sourced from ${data.source}`;
