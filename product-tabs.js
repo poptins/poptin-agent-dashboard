@@ -106,7 +106,7 @@
             {
               type: "past",
               title: "Scheduled response-time guide on three channels",
-              detail: "Handed the article and its cover image to Chatwayג€™s LinkedIn, Facebook, and X Buffer channels.",
+              detail: "Handed the article and its cover image to Chatway’s LinkedIn, Facebook, and X Buffer channels.",
               date: "2026-07-21T21:38:00+03:00",
               url: "https://github.com/poptins/chatway-agents/issues/20",
               assetLabel: "Open cover verification"
@@ -426,9 +426,4 @@
   }
   window.selectMarketingProduct = selectProduct;
 
-  document.querySelectorAll("[data-product]").forEach(button => {
-    button.addEventListener("click", () => selectProduct(button.dataset.product));
-  });
-  selectProduct(activeProduct in productData ? activeProduct : "poptin");
-})();
-
+  document.querySelectorAll("[
