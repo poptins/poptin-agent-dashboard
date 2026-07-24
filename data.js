@@ -454,5 +454,37 @@ window.AGENT_DATA = {
             }
         ]
     }    ,
+    {
+      id: "chatway-glossary",
+      name: "Chatway Glossary Agent",
+      role: "Live-chat glossary publisher",
+      initials: "CG",
+      status: "active",
+      color: "#dcecff",
+      ink: "#265a91",
+      instructions: ["Check the complete Chatway glossary before selecting a term.","Reject duplicate or unsupported live-chat and customer-support terminology.","Write a practical definition with operational context, a real-life use case, and concise FAQs.","Publish one validated glossary term to the live Chatway glossary."],
+      owner: "Chatway Content",
+      cadence: "Daily at 06:15 UTC",
+      priority: "Medium",
+      activities: [
+        {
+          type: "past",
+          title: "Published Customer Effort Score (CES)",
+          detail: "Published a practical definition of Customer Effort Score with operational context, a real-life use case, and FAQs in the Chatway glossary.",
+          date: "2026-07-24T07:11:30+00:00",
+          url: "https://chatway.app/glossary/customer-effort-score-ces",
+          assetLabel: "View glossary term"
+        },
+        {
+          type: "scheduled",
+          title: "Publish daily Chatway glossary term",
+          detail: "Validate one unique live-chat or customer-support term and publish it to the live Chatway glossary.",
+          date: "2026-07-25T06:15:00+00:00",
+          scheduleUtc: "06:15",
+          url: "https://github.com/poptins/chatway-agents/actions/workflows/glossary-agent.yml",
+          assetLabel: "Open Chatway workflow"
+        }
+      ]
+    }
     ]
 };
