@@ -145,6 +145,14 @@
           activities: [
         {
           type: "past",
+          title: "Published Customer Effort Score (CES)",
+          detail: "Published a practical definition of Customer Effort Score with operational context, a real-life use case, and FAQs in the Chatway glossary.",
+          date: "2026-07-24T07:11:30+00:00",
+          url: "https://chatway.app/glossary/customer-effort-score-ces",
+          assetLabel: "View glossary term"
+        },
+        {
+          type: "past",
           title: "Published Conversation Deflection",
           detail: "The daily Chatway glossary workflow published Conversation Deflection successfully after GitHub started the scheduled run later than its nominal cron time.",
           date: "2026-07-23T11:45:29+03:00",
