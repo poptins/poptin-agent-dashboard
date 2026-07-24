@@ -1,3 +1,6 @@
+Exit code: 0
+Wall time: 1 seconds
+Output:
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,7 +24,7 @@
       </a>
       <div class="topbar-actions">
         <span class="sync-status"><span class="pulse"></span> All systems operational</span>
-        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle dark mode">ג˜¾</button>
         <button class="logout-button" id="logoutButton" type="button">Log out</button>
       </div>
     </header>
@@ -37,13 +40,13 @@
         <div>
           <p class="eyebrow">WORKSPACE OVERVIEW</p>
           <h1>Your team, at a glance.</h1>
-          <p class="hero-copy">Live operations view for each product’s GitHub-hosted marketing agents.</p>
+          <p class="hero-copy">Live operations view for each productג€™s GitHub-hosted marketing agents.</p>
         </div>
         <div class="updated-card">
           <span>LAST CHECKED</span>
-          <strong id="lastUpdated">—</strong>
-          <span class="snapshot-time" id="dataSnapshot">Data snapshot: —</span>
-          <button id="refreshButton" type="button">↻ Refresh</button>
+          <strong id="lastUpdated">ג€”</strong>
+          <span class="snapshot-time" id="dataSnapshot">Data snapshot: ג€”</span>
+          <button id="refreshButton" type="button">ג†» Refresh</button>
         </div>
       </section>
 
@@ -55,7 +58,7 @@
             <div><p class="eyebrow">TEAM</p><h2>Agents</h2></div>
             <span class="count-badge" id="agentCount">0</span>
           </div>
-          <label class="search-box"><span aria-hidden="true">⌕</span><input id="agentSearch" type="search" placeholder="Search agents" autocomplete="off"></label>
+          <label class="search-box"><span aria-hidden="true">ג•</span><input id="agentSearch" type="search" placeholder="Search agents" autocomplete="off"></label>
           <div class="agent-list" id="agentList"></div>
         </aside>
         <section class="panel detail-panel" id="agentDetail" aria-live="polite"></section>
@@ -65,6 +68,14 @@
         <div class="section-heading">
           <div><p class="eyebrow">ACTIVITY</p><h2>Everything in motion</h2></div>
           <div class="activity-controls">
+            <label class="agent-filter-label" for="activityProductFilter">
+              <span>Product</span>
+              <select id="activityProductFilter" aria-label="Filter activity by product">
+                <option value="poptin">Poptin</option>
+                <option value="chatway">Chatway</option>
+                <option value="prospero">Prospero</option>
+              </select>
+            </label>
             <label class="agent-filter-label" for="activityAgentFilter"><span>Agent</span><select id="activityAgentFilter" aria-label="Filter activity by agent"></select></label>
             <div class="filters" role="group" aria-label="Filter activities by status">
               <button class="filter active" data-filter="all" type="button">All</button>
@@ -83,8 +94,9 @@
     <footer><span>Agent Operations</span><span>Activity snapshot sourced from GitHub</span></footer>
   </div>
   <script src="data.js?v=20260722-alternatives1"></script>
-  <script src="app.js?v=20260722-schedule1"></script>
+  <script src="app.js?v=20260724-product-filter1"></script>
   <script src="optimization-opportunities.js?v=20260722-products3"></script>
-  <script src="product-tabs.js?v=20260722-schedule1"></script>
+  <script src="product-tabs.js?v=20260724-product-filter1"></script>
 </body>
 </html>
+
