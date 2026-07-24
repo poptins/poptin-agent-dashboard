@@ -413,6 +413,8 @@
       product.agents.map(agent => ({
         ...agent,
         id: `${productId}-${agent.id}`,
+        activityGroupId: agent.id,
+        productId,
         name: `${agent.name} · ${productNames[productId]}`
       }))
     )
