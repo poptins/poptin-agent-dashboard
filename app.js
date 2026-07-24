@@ -306,13 +306,14 @@ function synchronizeSeoDependentActivities() {
     activity.type === "scheduled" && activity.title === "Next SEO cadence article window"
   );
   if (!seoNext) return;
+  const seoNextDate = activityDate(seoNext);
 
   data.agents.forEach(agent => {
     agent.activities
       .filter(activity => activity.dependsOn === "seo-next-article")
       .forEach(activity => {
-        activity.date = seoNext.date;
-        activity.detail = `After the SEO Agent's article expected on ${dateFormat.format(new Date(seoNext.date))} is confirmed published, custom-schedule LinkedIn, Facebook, and X posts, beginning about five minutes after handoff with independent random 5-10 minute gaps.`;
+        activity.date = seoNextDate.toISOString();
+        activity.detail = `After the SEO Agent's article expected on ${dateFormat.format(seoNextDate)} is confirmed published, custom-schedule LinkedIn, Facebook, and X posts, beginning about five minutes after handoff with independent random 5–10 minute gaps.`;
       });
   });
 }
