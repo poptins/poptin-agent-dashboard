@@ -2,6 +2,7 @@ let data = window.AGENT_DATA;
 let selectedAgentId = data.agents[0]?.id;
 let activityFilter = "all";
 let activityAgentFilter = "all";
+let activityProductFilter = "poptin";
 
 const $ = (selector) => document.querySelector(selector);
 const dateFormat = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" });
@@ -52,17 +53,21 @@ function activityDate(item) {
   return new Date(item.date);
 }
 
-function allActivities() {
-  return data.agents.flatMap(agent => agent.activities.map(activity => ({ ...activity, agent })));
+function allActivities(sourceData = data) {
+  return sourceData.agents.flatMap(agent => agent.activities.map(activity => ({ ...activity, agent })));
 }
 
 function isFutureScheduled(item, now = Date.now()) {
   return item.type === "scheduled" && activityDate(item).getTime() > now;
 }
 
-function visibleActivities() {
+function visibleActivities(sourceData = data) {
   const now = Date.now();
-  return allActivities().filter(item => item.type !== "scheduled" || isFutureScheduled(item, now));
+  return allActivities(sourceData).filter(item => item.type !== "scheduled" || isFutureScheduled(item, now));
+}
+
+function activityData() {
+  return window.PRODUCT_AGENT_DATA?.[activityProductFilter] || data;
 }
 
 function renderStats() {
@@ -154,7 +159,7 @@ function renderAgentDetail() {
 }
 
 function renderTimeline() {
-  const activities = visibleActivities()
+  const activities = visibleActivities(activityData())
     .filter(item => activityFilter === "all" || item.type === activityFilter)
     .filter(item => activityAgentFilter === "all" || item.agent.id === activityAgentFilter)
     .sort((a, b) => activityFilter === "scheduled" ? activityDate(a) - activityDate(b) : activityDate(b) - activityDate(a));
@@ -183,9 +188,10 @@ function setUpdatedTime() {
 }
 
 function renderActivityAgentFilter() {
+  const agents = activityData().agents;
   $("#activityAgentFilter").innerHTML = `
     <option value="all">All agents</option>
-    ${data.agents.map(agent => `<option value="${agent.id}">${agent.name}</option>`).join("")}
+    ${agents.map(agent => `<option value="${agent.id}">${agent.name}</option>`).join("")}
   `;
   $("#activityAgentFilter").value = activityAgentFilter;
 }
@@ -338,9 +344,10 @@ $("#activityAgentFilter").addEventListener("change", event => {
   renderRecommendationQueue();
 });
 $("#activityProductFilter").addEventListener("change", event => {
-  if (typeof window.selectMarketingProduct === "function") {
-    window.selectMarketingProduct(event.target.value);
-  }
+  activityProductFilter = event.target.value;
+  activityAgentFilter = "all";
+  renderActivityAgentFilter();
+  renderTimeline();
 });
 $("#themeToggle").addEventListener("click", () => {
   document.body.classList.toggle("dark");
