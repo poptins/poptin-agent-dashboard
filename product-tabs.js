@@ -402,6 +402,25 @@
     }
   };
   const productNames = {poptin: "Poptin", chatway: "Chatway", prospero: "Prospero"};
+  const agentOrder = [
+    "seo",
+    "update-blog",
+    "alternatives",
+    "social",
+    "academy",
+    "glossary",
+    "optimization",
+    "quora",
+    "chatway-glossary"
+  ];
+  Object.values(productData).forEach(product => {
+    product.agents.sort((a, b) => {
+      const aIndex = agentOrder.indexOf(a.id);
+      const bIndex = agentOrder.indexOf(b.id);
+      return (aIndex === -1 ? agentOrder.length : aIndex) -
+        (bIndex === -1 ? agentOrder.length : bIndex);
+    });
+  });
   productData.all = {
     source: "all product repositories",
     lastUpdated: Object.values(productData)
