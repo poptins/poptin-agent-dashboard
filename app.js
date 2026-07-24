@@ -161,7 +161,11 @@ function renderAgentDetail() {
 function renderTimeline() {
   const activities = visibleActivities(activityData())
     .filter(item => activityFilter === "all" || item.type === activityFilter)
-    .filter(item => activityAgentFilter === "all" || item.agent.id === activityAgentFilter)
+    .filter(item =>
+      activityAgentFilter === "all" ||
+      item.agent.id === activityAgentFilter ||
+      item.agent.activityGroupId === activityAgentFilter
+    )
     .sort((a, b) => activityFilter === "scheduled" ? activityDate(a) - activityDate(b) : activityDate(b) - activityDate(a));
 
   const activityIcon = item => item.type === "past" ? "✓" : item.type === "failed" ? "!" : "→";
@@ -189,9 +193,15 @@ function setUpdatedTime() {
 
 function renderActivityAgentFilter() {
   const agents = activityData().agents;
+  const agentOptions = activityProductFilter === "all"
+    ? [...new Map(agents.map(agent => [
+        agent.activityGroupId,
+        {id: agent.activityGroupId, name: agent.name.split(" · ")[0]}
+      ])).values()]
+    : agents;
   $("#activityAgentFilter").innerHTML = `
     <option value="all">All agents</option>
-    ${agents.map(agent => `<option value="${agent.id}">${agent.name}</option>`).join("")}
+    ${agentOptions.map(agent => `<option value="${agent.id}">${agent.name}</option>`).join("")}
   `;
   $("#activityAgentFilter").value = activityAgentFilter;
 }
