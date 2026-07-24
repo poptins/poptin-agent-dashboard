@@ -806,4 +806,13 @@ function renderRecommendationQueue() {
     } catch (error) {
       button.disabled = false;
       button.textContent = "Cancel";
-      feedback.classList.a
+      feedback.classList.add("error");
+      feedback.textContent = error.message;
+      status.textContent = error.message;
+    }
+  }));
+}
+
+renderRecommendationQueue();
+loadPermanentDismissals();
+renderDashboard();
