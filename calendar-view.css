@@ -17,8 +17,9 @@
 .calendar-month-controls { display: flex; align-items: center; gap: 10px; }
 .calendar-month-controls strong { min-width: 190px; text-align: center; font-family: Manrope, sans-serif; font-size: 18px; }
 .calendar-nav { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: var(--surface-2); font-size: 20px; }
-.calendar-product-filter { display: grid; gap: 5px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .08em; }
-.calendar-product-filter select { min-width: 180px; height: 40px; padding: 0 34px 0 12px; border: 1px solid var(--line); border-radius: 11px; color: var(--ink); background: var(--surface); font-weight: 700; }
+.calendar-filters { display: flex; align-items: end; gap: 12px; }
+.calendar-product-filter, .calendar-agent-filter { display: grid; gap: 5px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .08em; }
+.calendar-product-filter select, .calendar-agent-filter select { min-width: 180px; height: 40px; padding: 0 34px 0 12px; border: 1px solid var(--line); border-radius: 11px; color: var(--ink); background: var(--surface); font-weight: 700; }
 .calendar-weekdays, .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
 .calendar-weekdays { border: 1px solid var(--line); border-bottom: 0; border-radius: 14px 14px 0 0; overflow: hidden; }
 .calendar-weekdays span { padding: 10px; color: var(--muted); background: var(--surface-2); font-size: 11px; font-weight: 800; text-align: center; }
@@ -44,7 +45,9 @@
   .hero-actions { width: 100%; justify-content: space-between; }
   .calendar-shell { padding: 20px; }
   .calendar-toolbar { align-items: stretch; flex-direction: column; }
-  .calendar-product-filter select { width: 100%; }
+  .calendar-filters { align-items: stretch; }
+  .calendar-product-filter, .calendar-agent-filter { flex: 1; }
+  .calendar-product-filter select, .calendar-agent-filter select { width: 100%; }
   .calendar-weekdays, .calendar-grid { min-width: 820px; }
   .calendar-scroll { overflow-x: auto; }
 }
@@ -53,4 +56,5 @@
   .calendar-view-button { align-self: start; }
   .hero-actions .updated-card { margin-top: 0; }
   .calendar-header { align-items: start; flex-direction: column; gap: 12px; }
+  .calendar-filters { flex-direction: column; }
 }
