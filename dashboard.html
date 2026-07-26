@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260724-activity-right1">
-  <link rel="stylesheet" href="calendar-view.css?v=20260726-failed1">
+  <link rel="stylesheet" href="calendar-view.css?v=20260726-agent-filter1">
 </head>
 <body>
   <div class="page-shell">
@@ -105,7 +105,10 @@
               <strong id="calendarMonthLabel"></strong>
               <button class="calendar-nav" id="calendarNextMonth" type="button" aria-label="Next month">›</button>
             </div>
-            <label class="calendar-product-filter" for="calendarProductFilter"><span>PRODUCT</span><select id="calendarProductFilter"><option value="all">All products</option><option value="poptin">Poptin</option><option value="chatway">Chatway</option><option value="prospero">Prospero</option></select></label>
+            <div class="calendar-filters">
+              <label class="calendar-product-filter" for="calendarProductFilter"><span>PRODUCT</span><select id="calendarProductFilter"><option value="all">All products</option><option value="poptin">Poptin</option><option value="chatway">Chatway</option><option value="prospero">Prospero</option></select></label>
+              <label class="calendar-agent-filter" for="calendarAgentFilter"><span>AGENT</span><select id="calendarAgentFilter" aria-label="Filter calendar by agent"><option value="all">All agents</option></select></label>
+            </div>
           </div>
           <div class="calendar-scroll">
             <div class="calendar-weekdays" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
@@ -124,6 +127,6 @@
   <script src="product-tabs.js?v=20260724-avatar-colors1"></script>
   <script src="preserve-agent-on-product-switch.js?v=20260726-agent-type1"></script>
   <script src="glossary-activity-links.js?v=20260726-calendar-sync1"></script>
-  <script src="calendar-view.js?v=20260726-calendar-sync1"></script>
+  <script src="calendar-view.js?v=20260726-agent-filter1"></script>
 </body>
 </html>
