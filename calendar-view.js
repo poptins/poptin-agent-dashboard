@@ -196,6 +196,9 @@
     renderCalendar();
     saveDashboardState();
   });
+  document.addEventListener("marketingActivityUpdated", () => {
+    if (calendarOpen) renderCalendar();
+  });
   document.querySelector("#calendarPreviousMonth").addEventListener("click", () => {
     visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() - 1, 1);
     renderCalendar();
