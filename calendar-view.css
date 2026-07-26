@@ -1,0 +1,48 @@
+.hero-actions { display: flex; align-items: center; gap: 22px; }
+.calendar-view-button { min-height: 44px; padding: 0 18px; border: 1px solid var(--green); border-radius: 12px; color: #fff; background: var(--green); font-weight: 800; box-shadow: 0 8px 20px rgba(30,107,79,.16); }
+.calendar-view-button:hover { background: var(--green-dark); }
+.calendar-view-button:focus-visible, .calendar-close:focus-visible, .calendar-nav:focus-visible { outline: 3px solid rgba(30,107,79,.25); outline-offset: 2px; }
+
+.calendar-dialog { width: min(1180px, calc(100% - 32px)); max-height: calc(100vh - 36px); padding: 0; border: 0; border-radius: 22px; color: var(--ink); background: var(--surface); box-shadow: 0 28px 90px rgba(17,35,28,.25); }
+.calendar-dialog::backdrop { background: rgba(18,31,26,.62); backdrop-filter: blur(5px); }
+.calendar-shell { padding: 28px; }
+.calendar-header { display: flex; align-items: start; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
+.calendar-header p { margin: 7px 0 0; color: var(--muted); }
+.calendar-close { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); background: var(--surface-2); font-size: 24px; line-height: 1; }
+.calendar-toolbar { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 18px; }
+.calendar-month-controls { display: flex; align-items: center; gap: 10px; }
+.calendar-month-controls strong { min-width: 190px; text-align: center; font-family: Manrope, sans-serif; font-size: 18px; }
+.calendar-nav { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: var(--surface-2); font-size: 20px; }
+.calendar-product-filter { display: grid; gap: 5px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .08em; }
+.calendar-product-filter select { min-width: 180px; height: 40px; padding: 0 34px 0 12px; border: 1px solid var(--line); border-radius: 11px; color: var(--ink); background: var(--surface); font-weight: 700; }
+.calendar-weekdays, .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.calendar-weekdays { border: 1px solid var(--line); border-bottom: 0; border-radius: 14px 14px 0 0; overflow: hidden; }
+.calendar-weekdays span { padding: 10px; color: var(--muted); background: var(--surface-2); font-size: 11px; font-weight: 800; text-align: center; }
+.calendar-grid { border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.calendar-day { min-height: 130px; padding: 9px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+.calendar-day.muted { background: var(--surface-2); opacity: .55; }
+.calendar-day-number { display: block; margin-bottom: 7px; color: var(--muted); font-size: 11px; font-weight: 800; }
+.calendar-day.today .calendar-day-number { width: 25px; height: 25px; display: grid; place-items: center; margin-top: -3px; border-radius: 50%; color: #fff; background: var(--green); }
+.calendar-outcomes { display: grid; gap: 6px; }
+.calendar-outcome { display: block; padding: 7px 8px; border-left: 3px solid var(--green); border-radius: 7px; color: var(--ink); background: var(--green-soft); text-decoration: none; font-size: 10px; line-height: 1.35; }
+.calendar-outcome:hover { text-decoration: underline; text-underline-offset: 2px; }
+.calendar-outcome[data-product="chatway"] { border-color: #346a8c; background: var(--blue-soft); }
+.calendar-outcome[data-product="prospero"] { border-color: #7455af; background: #eee9ff; }
+.calendar-product { display: block; margin-bottom: 2px; color: var(--muted); font-size: 8px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.calendar-empty { grid-column: 1 / -1; padding: 28px; color: var(--muted); text-align: center; }
+
+@media (max-width: 850px) {
+  .hero-actions { width: 100%; justify-content: space-between; }
+  .calendar-shell { padding: 20px; }
+  .calendar-toolbar { align-items: stretch; flex-direction: column; }
+  .calendar-product-filter select { width: 100%; }
+  .calendar-dialog { overflow: auto; }
+  .calendar-weekdays, .calendar-grid { min-width: 820px; }
+  .calendar-scroll { overflow-x: auto; }
+}
+@media (max-width: 600px) {
+  .hero-actions { align-items: stretch; flex-direction: column; gap: 14px; margin-top: 28px; }
+  .calendar-view-button { align-self: start; }
+  .hero-actions .updated-card { margin-top: 0; }
+  .calendar-header { gap: 12px; }
+}
