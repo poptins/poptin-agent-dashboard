@@ -76,13 +76,13 @@ function renderStats() {
   const scheduled = activities.filter(item => isFutureScheduled(item)).length;
   const active = data.agents.filter(agent => agent.status === "active").length;
   const stats = [
-    ["Total agents", data.agents.length, `${active} active`],
+    ["Total agents", data.agents.length, ""],
     ["Completed tasks", completed, "Recorded"],
     ["Scheduled", scheduled, "Upcoming"],
     ["Coverage", `${Math.round((active / data.agents.length) * 100)}%`, "Online"]
   ];
   $("#statsGrid").innerHTML = stats.map(([label, value, note]) => `
-    <article class="stat-card"><span>${label}</span><strong>${value}</strong><small>${note}</small></article>
+    <article class="stat-card"><span>${label}</span><strong>${value}</strong>${note ? `<small>${note}</small>` : ""}</article>
   `).join("");
 }
 
