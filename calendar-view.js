@@ -66,7 +66,8 @@
     return `
       <${tag} class="calendar-outcome ${scheduled ? "scheduled" : "published"}" data-product="${escapeHtml(item.productId)}"${linkAttributes}>
         <span class="calendar-product">${scheduled ? "◷ Scheduled" : "✓ Published"} · ${escapeHtml(productNames[item.productId] || item.productId)}</span>
-        ${escapeHtml(cleanTitle)}
+        <span class="calendar-task-title">${escapeHtml(cleanTitle)}</span>
+        <span class="calendar-agent">Agent: ${escapeHtml(item.agentName || "Unassigned")}</span>
       </${tag}>
     `;
   }
