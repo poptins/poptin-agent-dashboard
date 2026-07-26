@@ -73,6 +73,7 @@
       .filter(result => result.status === "rejected")
       .forEach(result => console.warn("Glossary activity feed unavailable:", result.reason));
     if (added && typeof renderDashboard === "function") renderDashboard();
+    if (added) document.dispatchEvent(new CustomEvent("marketingActivityUpdated", {detail: {added}}));
   }
 
   loadGlossaryActivityLinks();
