@@ -1,11 +1,12 @@
 (() => {
-  const dialog = document.querySelector("#calendarDialog");
-  const openButton = document.querySelector("#calendarViewButton");
-  const closeButton = document.querySelector("#calendarCloseButton");
+  const calendarView = document.querySelector("#calendarView");
+  const operationsView = document.querySelector("#operationsView");
+  const toggleButton = document.querySelector("#calendarViewButton");
   const productFilter = document.querySelector("#calendarProductFilter");
   const monthLabel = document.querySelector("#calendarMonthLabel");
   const calendarGrid = document.querySelector("#calendarGrid");
   let visibleMonth = new Date();
+  let calendarOpen = false;
   visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), 1);
 
   const productNames = {poptin: "Poptin", chatway: "Chatway", prospero: "Prospero"};
@@ -27,14 +28,25 @@
       signal.includes("view published article");
   }
 
-  function publishedOutcomes() {
+  function calendarItems() {
     const products = window.PRODUCT_AGENT_DATA || {};
+    const now = new Date();
+    const scheduleLimit = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
     return Object.entries(products)
       .filter(([productId]) => productId !== "all")
       .flatMap(([productId, product]) => (product.agents || []).flatMap(agent =>
-        (agent.activities || [])
-          .filter(isPublicPublishedOutcome)
-          .map(activity => ({...activity, productId, agentName: agent.name}))
+        (agent.activities || []).flatMap(activity => {
+          if (isPublicPublishedOutcome(activity)) {
+            return [{...activity, productId, agentName: agent.name, calendarType: "published", calendarDate: new Date(activity.date)}];
+          }
+          if (activity.type === "scheduled") {
+            const nextDate = activityDate(activity);
+            if (nextDate > now && nextDate <= scheduleLimit) {
+              return [{...activity, productId, agentName: agent.name, calendarType: "scheduled", calendarDate: nextDate}];
+            }
+          }
+          return [];
+        })
       ));
   }
 
@@ -44,6 +56,21 @@
       left.getDate() === right.getDate();
   }
 
+  function renderItem(item) {
+    const scheduled = item.calendarType === "scheduled";
+    const tag = item.url ? "a" : "div";
+    const linkAttributes = item.url
+      ? ` href="${escapeHtml(item.url)}" target="_blank" rel="noopener"`
+      : "";
+    const cleanTitle = String(item.title || "").replace(/^Published\s+/i, "");
+    return `
+      <${tag} class="calendar-outcome ${scheduled ? "scheduled" : "published"}" data-product="${escapeHtml(item.productId)}"${linkAttributes}>
+        <span class="calendar-product">${scheduled ? "◷ Scheduled" : "✓ Published"} · ${escapeHtml(productNames[item.productId] || item.productId)}</span>
+        ${escapeHtml(cleanTitle)}
+      </${tag}>
+    `;
+  }
+
   function renderCalendar() {
     const selectedProduct = productFilter.value;
     const year = visibleMonth.getFullYear();
@@ -51,7 +78,7 @@
     const firstDay = new Date(year, month, 1);
     const gridStart = new Date(year, month, 1 - firstDay.getDay());
     const today = new Date();
-    const outcomes = publishedOutcomes().filter(item =>
+    const items = calendarItems().filter(item =>
       selectedProduct === "all" || item.productId === selectedProduct
     );
 
@@ -63,33 +90,27 @@
     for (let offset = 0; offset < 42; offset += 1) {
       const day = new Date(gridStart);
       day.setDate(gridStart.getDate() + offset);
-      const dayOutcomes = outcomes
-        .filter(item => sameCalendarDay(new Date(item.date), day))
-        .sort((left, right) => new Date(left.date) - new Date(right.date));
+      const dayItems = items
+        .filter(item => sameCalendarDay(item.calendarDate, day))
+        .sort((left, right) => left.calendarDate - right.calendarDate);
       cells.push(`
         <div class="calendar-day ${day.getMonth() !== month ? "muted" : ""} ${sameCalendarDay(day, today) ? "today" : ""}">
           <span class="calendar-day-number">${day.getDate()}</span>
-          <div class="calendar-outcomes">
-            ${dayOutcomes.map(item => `
-              <a class="calendar-outcome" data-product="${escapeHtml(item.productId)}" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">
-                <span class="calendar-product">${escapeHtml(productNames[item.productId] || item.productId)}</span>
-                ${escapeHtml(item.title.replace(/^Published\s+/i, ""))}
-              </a>
-            `).join("")}
-          </div>
+          <div class="calendar-outcomes">${dayItems.map(renderItem).join("")}</div>
         </div>
       `);
     }
     calendarGrid.innerHTML = cells.join("");
   }
 
-  openButton.addEventListener("click", () => {
-    renderCalendar();
-    dialog.showModal();
-  });
-  closeButton.addEventListener("click", () => dialog.close());
-  dialog.addEventListener("click", event => {
-    if (event.target === dialog) dialog.close();
+  toggleButton.addEventListener("click", () => {
+    calendarOpen = !calendarOpen;
+    calendarView.hidden = !calendarOpen;
+    operationsView.hidden = calendarOpen;
+    toggleButton.classList.toggle("active", calendarOpen);
+    toggleButton.setAttribute("aria-pressed", String(calendarOpen));
+    toggleButton.textContent = calendarOpen ? "← Operations view" : "▦ Calendar view";
+    if (calendarOpen) renderCalendar();
   });
   productFilter.addEventListener("change", renderCalendar);
   document.querySelector("#calendarPreviousMonth").addEventListener("click", () => {
