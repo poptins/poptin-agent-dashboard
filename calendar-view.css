@@ -27,15 +27,15 @@
 .calendar-day-number { display: block; margin-bottom: 7px; color: var(--muted); font-size: 11px; font-weight: 800; }
 .calendar-day.today .calendar-day-number { width: 25px; height: 25px; display: grid; place-items: center; margin-top: -3px; border-radius: 50%; color: #fff; background: var(--green); }
 .calendar-outcomes { display: grid; gap: 6px; }
-.calendar-outcome { display: block; padding: 7px 8px; border-left: 3px solid var(--green); border-radius: 7px; color: var(--ink); background: var(--green-soft); text-decoration: none; font-size: 10px; line-height: 1.35; }
+.calendar-outcome { display: block; padding: 7px 8px; border-left: 3px solid var(--green); border-radius: 7px; color: var(--ink); background: var(--green-soft); text-decoration: none; font-size: 14px; line-height: 1.35; }
 .calendar-outcome[href]:hover { text-decoration: underline; text-underline-offset: 2px; }
 .calendar-outcome.scheduled { border-left-color: var(--amber); background: var(--amber-soft); }
 .calendar-outcome.published[data-product="chatway"] { border-color: #346a8c; background: var(--blue-soft); }
 .calendar-outcome.published[data-product="prospero"] { border-color: #7455af; background: #eee9ff; }
-.calendar-product { display: block; margin-bottom: 2px; color: var(--muted); font-size: 8px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.calendar-product { display: block; margin-bottom: 2px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
 .calendar-outcome.scheduled .calendar-product { color: var(--amber); }
 .calendar-task-title { display: block; }
-.calendar-agent { display: block; margin-top: 4px; color: var(--muted); font-size: 9px; font-weight: 700; }
+.calendar-agent { display: block; margin-top: 4px; color: var(--muted); font-size: 11px; font-weight: 700; }
 
 @media (max-width: 850px) {
   .hero-actions { width: 100%; justify-content: space-between; }
