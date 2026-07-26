@@ -5,6 +5,7 @@
   const productFilter = document.querySelector("#calendarProductFilter");
   const monthLabel = document.querySelector("#calendarMonthLabel");
   const calendarGrid = document.querySelector("#calendarGrid");
+  const stateKey = "marketingDashboardStateV1";
   let visibleMonth = new Date();
   let calendarOpen = false;
   visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), 1);
@@ -104,22 +105,116 @@
     calendarGrid.innerHTML = cells.join("");
   }
 
-  toggleButton.addEventListener("click", () => {
-    calendarOpen = !calendarOpen;
+  function setCalendarOpen(open) {
+    calendarOpen = Boolean(open);
     calendarView.hidden = !calendarOpen;
     operationsView.hidden = calendarOpen;
     toggleButton.classList.toggle("active", calendarOpen);
     toggleButton.setAttribute("aria-pressed", String(calendarOpen));
     toggleButton.textContent = calendarOpen ? "← Operations view" : "▦ Calendar view";
     if (calendarOpen) renderCalendar();
+  }
+
+  function dashboardState() {
+    return {
+      product: document.querySelector(".product-tabs [data-product].active")?.dataset.product || "poptin",
+      agent: selectedAgentId,
+      view: calendarOpen ? "calendar" : "operations",
+      activityFilter,
+      activityProductFilter,
+      activityAgentFilter,
+      agentSearch: document.querySelector("#agentSearch")?.value || "",
+      calendarProduct: productFilter.value,
+      calendarMonth: `${visibleMonth.getFullYear()}-${String(visibleMonth.getMonth() + 1).padStart(2, "0")}`
+    };
+  }
+
+  function saveDashboardState() {
+    try {
+      localStorage.setItem(stateKey, JSON.stringify(dashboardState()));
+    } catch (error) {
+      console.warn("Dashboard state could not be saved.", error);
+    }
+  }
+
+  function restoreDashboardState() {
+    let saved;
+    try {
+      saved = JSON.parse(localStorage.getItem(stateKey) || "null");
+    } catch (error) {
+      localStorage.removeItem(stateKey);
+      return;
+    }
+    if (!saved) return;
+
+    if (saved.product && window.PRODUCT_AGENT_DATA?.[saved.product]) {
+      window.selectMarketingProduct(saved.product);
+    }
+
+    if (saved.agent && data?.agents?.some(agent => agent.id === saved.agent)) {
+      selectedAgentId = saved.agent;
+    }
+    if (["all", "past", "scheduled", "failed"].includes(saved.activityFilter)) {
+      activityFilter = saved.activityFilter;
+    }
+    if (saved.activityProductFilter && window.PRODUCT_AGENT_DATA?.[saved.activityProductFilter]) {
+      activityProductFilter = saved.activityProductFilter;
+    }
+    activityAgentFilter = saved.activityAgentFilter || "all";
+
+    const search = document.querySelector("#agentSearch");
+    if (search) search.value = saved.agentSearch || "";
+    const activityProduct = document.querySelector("#activityProductFilter");
+    if (activityProduct) activityProduct.value = activityProductFilter;
+
+    renderDashboard();
+    document.querySelectorAll(".filter").forEach(button =>
+      button.classList.toggle("active", button.dataset.filter === activityFilter)
+    );
+
+    if (saved.calendarProduct && [...productFilter.options].some(option => option.value === saved.calendarProduct)) {
+      productFilter.value = saved.calendarProduct;
+    }
+    if (/^\d{4}-\d{2}$/.test(saved.calendarMonth || "")) {
+      const [year, month] = saved.calendarMonth.split("-").map(Number);
+      visibleMonth = new Date(year, month - 1, 1);
+    }
+    setCalendarOpen(saved.view === "calendar");
+  }
+
+  toggleButton.addEventListener("click", () => {
+    setCalendarOpen(!calendarOpen);
+    saveDashboardState();
   });
-  productFilter.addEventListener("change", renderCalendar);
+  productFilter.addEventListener("change", () => {
+    renderCalendar();
+    saveDashboardState();
+  });
   document.querySelector("#calendarPreviousMonth").addEventListener("click", () => {
     visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() - 1, 1);
     renderCalendar();
+    saveDashboardState();
   });
   document.querySelector("#calendarNextMonth").addEventListener("click", () => {
     visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + 1, 1);
     renderCalendar();
+    saveDashboardState();
   });
+
+  document.addEventListener("click", event => {
+    if (event.target.closest?.("[data-product], [data-agent-id], .filter")) {
+      setTimeout(saveDashboardState, 0);
+    }
+  });
+  document.addEventListener("change", event => {
+    if (event.target.matches?.("#activityProductFilter, #activityAgentFilter")) {
+      setTimeout(saveDashboardState, 0);
+    }
+  });
+  document.querySelector("#agentSearch")?.addEventListener("input", () => {
+    setTimeout(saveDashboardState, 0);
+  });
+  window.addEventListener("beforeunload", saveDashboardState);
+
+  restoreDashboardState();
 })();
