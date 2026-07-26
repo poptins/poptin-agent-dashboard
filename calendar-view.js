@@ -3,6 +3,7 @@
   const operationsView = document.querySelector("#operationsView");
   const toggleButton = document.querySelector("#calendarViewButton");
   const productFilter = document.querySelector("#calendarProductFilter");
+  const agentFilter = document.querySelector("#calendarAgentFilter");
   const monthLabel = document.querySelector("#calendarMonthLabel");
   const calendarGrid = document.querySelector("#calendarGrid");
   const stateKey = "marketingDashboardStateV1";
@@ -38,15 +39,15 @@
       .flatMap(([productId, product]) => (product.agents || []).flatMap(agent =>
         (agent.activities || []).flatMap(activity => {
           if (activity.type === "failed") {
-            return [{...activity, productId, agentName: agent.name, calendarType: "failed", calendarDate: new Date(activity.date)}];
+            return [{...activity, productId, agentName: agent.name, agentId: agent.activityGroupId || agent.id, calendarType: "failed", calendarDate: new Date(activity.date)}];
           }
           if (isPublicPublishedOutcome(activity)) {
-            return [{...activity, productId, agentName: agent.name, calendarType: "published", calendarDate: new Date(activity.date)}];
+            return [{...activity, productId, agentName: agent.name, agentId: agent.activityGroupId || agent.id, calendarType: "published", calendarDate: new Date(activity.date)}];
           }
           if (activity.type === "scheduled") {
             const nextDate = activityDate(activity);
             if (nextDate > now && nextDate <= scheduleLimit) {
-              return [{...activity, productId, agentName: agent.name, calendarType: "scheduled", calendarDate: nextDate}];
+              return [{...activity, productId, agentName: agent.name, agentId: agent.activityGroupId || agent.id, calendarType: "scheduled", calendarDate: nextDate}];
             }
           }
           return [];
@@ -79,15 +80,35 @@
     `;
   }
 
+  function populateCalendarAgentFilter(preferredValue = agentFilter.value || "all") {
+    const products = window.PRODUCT_AGENT_DATA || {};
+    const agents = productFilter.value === "all"
+      ? Object.entries(products)
+          .filter(([productId]) => productId !== "all")
+          .flatMap(([, product]) => product.agents || [])
+      : products[productFilter.value]?.agents || [];
+    const uniqueAgents = [...new Map(agents.map(agent => [
+      agent.activityGroupId || agent.id,
+      {id: agent.activityGroupId || agent.id, name: agent.name.split(" · ")[0]}
+    ])).values()];
+    agentFilter.innerHTML = `
+      <option value="all">All agents</option>
+      ${uniqueAgents.map(agent => `<option value="${escapeHtml(agent.id)}">${escapeHtml(agent.name)}</option>`).join("")}
+    `;
+    agentFilter.value = uniqueAgents.some(agent => agent.id === preferredValue) ? preferredValue : "all";
+  }
+
   function renderCalendar() {
     const selectedProduct = productFilter.value;
+    const selectedAgent = agentFilter.value;
     const year = visibleMonth.getFullYear();
     const month = visibleMonth.getMonth();
     const firstDay = new Date(year, month, 1);
     const gridStart = new Date(year, month, 1 - firstDay.getDay());
     const today = new Date();
     const items = calendarItems().filter(item =>
-      selectedProduct === "all" || item.productId === selectedProduct
+      (selectedProduct === "all" || item.productId === selectedProduct) &&
+      (selectedAgent === "all" || item.agentId === selectedAgent)
     );
 
     monthLabel.textContent = new Intl.DateTimeFormat("en-US", {
@@ -131,6 +152,7 @@
       activityAgentFilter,
       agentSearch: document.querySelector("#agentSearch")?.value || "",
       calendarProduct: productFilter.value,
+      calendarAgent: agentFilter.value,
       calendarMonth: `${visibleMonth.getFullYear()}-${String(visibleMonth.getMonth() + 1).padStart(2, "0")}`
     };
   }
@@ -181,6 +203,7 @@
     if (saved.calendarProduct && [...productFilter.options].some(option => option.value === saved.calendarProduct)) {
       productFilter.value = saved.calendarProduct;
     }
+    populateCalendarAgentFilter(saved.calendarAgent || "all");
     if (/^\d{4}-\d{2}$/.test(saved.calendarMonth || "")) {
       const [year, month] = saved.calendarMonth.split("-").map(Number);
       visibleMonth = new Date(year, month - 1, 1);
@@ -193,6 +216,11 @@
     saveDashboardState();
   });
   productFilter.addEventListener("change", () => {
+    populateCalendarAgentFilter("all");
+    renderCalendar();
+    saveDashboardState();
+  });
+  agentFilter.addEventListener("change", () => {
     renderCalendar();
     saveDashboardState();
   });
@@ -225,5 +253,6 @@
   });
   window.addEventListener("beforeunload", saveDashboardState);
 
+  populateCalendarAgentFilter();
   restoreDashboardState();
 })();
