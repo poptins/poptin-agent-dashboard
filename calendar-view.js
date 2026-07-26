@@ -66,6 +66,7 @@
     const failed = item.calendarType === "failed";
     const itemClass = failed ? "failed" : scheduled ? "scheduled" : "published";
     const itemLabel = failed ? "! Failed" : scheduled ? "◷ Scheduled" : "✓ Published";
+    const taskTime = new Intl.DateTimeFormat("en-US", {hour: "numeric", minute: "2-digit"}).format(item.calendarDate);
     const tag = item.url ? "a" : "div";
     const linkAttributes = item.url
       ? ` href="${escapeHtml(item.url)}" target="_blank" rel="noopener"`
@@ -73,7 +74,7 @@
     const cleanTitle = String(item.title || "").replace(/^Published\s+/i, "");
     return `
       <${tag} class="calendar-outcome ${itemClass}" data-product="${escapeHtml(item.productId)}"${linkAttributes}>
-        <span class="calendar-product">${itemLabel} · ${escapeHtml(productNames[item.productId] || item.productId)}</span>
+        <span class="calendar-product">${itemLabel} · ${escapeHtml(productNames[item.productId] || item.productId)} · ${escapeHtml(taskTime)}</span>
         <span class="calendar-task-title">${escapeHtml(cleanTitle)}</span>
         <span class="calendar-agent">Agent: ${escapeHtml(item.agentName || "Unassigned")}</span>
       </${tag}>
