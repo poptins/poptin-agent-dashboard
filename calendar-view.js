@@ -37,6 +37,9 @@
       .filter(([productId]) => productId !== "all")
       .flatMap(([productId, product]) => (product.agents || []).flatMap(agent =>
         (agent.activities || []).flatMap(activity => {
+          if (activity.type === "failed") {
+            return [{...activity, productId, agentName: agent.name, calendarType: "failed", calendarDate: new Date(activity.date)}];
+          }
           if (isPublicPublishedOutcome(activity)) {
             return [{...activity, productId, agentName: agent.name, calendarType: "published", calendarDate: new Date(activity.date)}];
           }
@@ -59,14 +62,17 @@
 
   function renderItem(item) {
     const scheduled = item.calendarType === "scheduled";
+    const failed = item.calendarType === "failed";
+    const itemClass = failed ? "failed" : scheduled ? "scheduled" : "published";
+    const itemLabel = failed ? "! Failed" : scheduled ? "◷ Scheduled" : "✓ Published";
     const tag = item.url ? "a" : "div";
     const linkAttributes = item.url
       ? ` href="${escapeHtml(item.url)}" target="_blank" rel="noopener"`
       : "";
     const cleanTitle = String(item.title || "").replace(/^Published\s+/i, "");
     return `
-      <${tag} class="calendar-outcome ${scheduled ? "scheduled" : "published"}" data-product="${escapeHtml(item.productId)}"${linkAttributes}>
-        <span class="calendar-product">${scheduled ? "◷ Scheduled" : "✓ Published"} · ${escapeHtml(productNames[item.productId] || item.productId)}</span>
+      <${tag} class="calendar-outcome ${itemClass}" data-product="${escapeHtml(item.productId)}"${linkAttributes}>
+        <span class="calendar-product">${itemLabel} · ${escapeHtml(productNames[item.productId] || item.productId)}</span>
         <span class="calendar-task-title">${escapeHtml(cleanTitle)}</span>
         <span class="calendar-agent">Agent: ${escapeHtml(item.agentName || "Unassigned")}</span>
       </${tag}>
