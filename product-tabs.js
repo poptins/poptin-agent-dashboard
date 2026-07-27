@@ -242,12 +242,12 @@
     }, 
     premio: {
       source: "poptins/premio-agents",
-      lastUpdated: "2026-07-27T12:00:00+03:00",
+      lastUpdated: "2026-07-27T15:00:00+03:00",
       agents: [
         {
           id: "seo", name: "SEO Agent", role: "SEO/GEO/AEO research & publishing", initials: "SE", status: "active",
           owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
-          instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
+          instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
           activities: [{type:"past",title:"Published live chat software guide",detail:"Published the first Search Console-informed Premio SEO article and completed the post-publish rendered-link audit.",date:"2026-07-27T10:47:54+03:00",url:"https://premio.io/blog/live-chat-software-for-wordpress/",assetLabel:"View published article"},{type:"past",title:"Connected Premio Search Console",detail:"SEO topic selection now uses Premio page and query impressions, CTR, position, and content-gap evidence from sc-domain:premio.io.",date:"2026-07-27T12:30:00+03:00",url:"https://github.com/poptins/premio-agents/blob/main/agents.py",assetLabel:"Open Search Console integration"},{type:"scheduled",title:"Check the next Premio SEO article window",detail:"Use Search Console demand evidence, then publish a validated article when the 4-5 day cadence is due.",date:"2026-07-28T08:00:00+03:00",scheduleUtc:"05:00",url:"https://github.com/poptins/premio-agents/actions/workflows/seo-agent.yml",assetLabel:"Open SEO workflow"}]
         },
         {
