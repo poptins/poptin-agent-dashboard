@@ -240,30 +240,6 @@
       ,
         ]
     }, 
-    premio: {
-      source: "poptins/premio-agents",
-      lastUpdated: "2026-07-27T15:00:00+03:00",
-      agents: [
-        {
-          id: "seo", name: "SEO Agent", role: "SEO/GEO/AEO research & publishing", initials: "SE", status: "active",
-          owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
-          instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
-          activities: [{type:"past",title:"Published live chat software guide",detail:"Published the first Search Console-informed Premio SEO article and completed the post-publish rendered-link audit.",date:"2026-07-27T10:47:54+03:00",url:"https://premio.io/blog/live-chat-software-for-wordpress/",assetLabel:"View published article"},{type:"past",title:"Connected Premio Search Console",detail:"SEO topic selection now uses Premio page and query impressions, CTR, position, and content-gap evidence from sc-domain:premio.io.",date:"2026-07-27T12:30:00+03:00",url:"https://github.com/poptins/premio-agents/blob/main/agents.py",assetLabel:"Open Search Console integration"},{type:"scheduled",title:"Check the next Premio SEO article window",detail:"Use Search Console demand evidence, then publish a validated article when the 4-5 day cadence is due.",date:"2026-07-28T08:00:00+03:00",scheduleUtc:"05:00",url:"https://github.com/poptins/premio-agents/actions/workflows/seo-agent.yml",assetLabel:"Open SEO workflow"}]
-        },
-        {
-          id: "update-blog", name: "Update Blog Agent", role: "Old article refresh & optimization", initials: "UP", status: "active",
-          owner: "Premio Content & SEO", cadence: "4-6 articles monthly on spaced days", priority: "High",
-          instructions: ["Use Premio Search Console evidence to prioritize an eligible article older than one year with meaningful impressions, weak CTR, or under-served queries.","Preserve the post ID, slug, URL, categories, tags, and featured image.","Improve accuracy, SEO, AEO, GEO, headings, examples, grammar, and internal links.","Use descriptive HTML links and run the full rendered-link audit.","Never send a slug in the update payload and verify the saved URL after publishing."],
-          activities: [{type:"past",title:"Enabled Search Console refresh prioritization",detail:"The Update Blog Agent now ranks eligible old articles using impressions, CTR, ranking position, and query evidence before selecting one to refresh.",date:"2026-07-27T12:30:00+03:00",url:"https://github.com/poptins/premio-agents/blob/main/agents.py",assetLabel:"Open Search Console integration"},{type:"scheduled",title:"Refresh the next eligible Premio article",detail:"Update one old article while preserving its exact slug and URL.",date:"2026-07-28T10:20:00+03:00",schedule:{frequency:"monthly-days",days:[3,8,13,18,23,28],hourUtc:7,minuteUtc:20},url:"https://github.com/poptins/premio-agents/actions/workflows/update-blog-agent.yml",assetLabel:"Open Update Blog workflow"}]
-        },
-        {
-          id: "social", name: "Social Media Agent", role: "Buffer distribution", initials: "SM", status: "active",
-          owner: "Premio Social & Brand", cadence: "Hourly at minute 17 + on demand", priority: "High",
-          instructions: ["Monitor the latest confirmed published Premio article.","Create distinct and factual LinkedIn, Facebook, and X copy.","Include the article URL and use only verified Premio product claims.","Match the configured Premio Buffer channels and respect paused queues.","Check scheduled and sent posts per channel to prevent duplicate handoffs."],
-          activities: [{type:"scheduled",title:"Check for a newly published Premio article",detail:"Hand the latest article to Buffer only when it has not already been queued or sent.",date:"2026-07-27T13:17:00+03:00",schedule:{frequency:"hourly",minuteUtc:17},url:"https://github.com/poptins/premio-agents/actions/workflows/social-media-agent.yml",assetLabel:"Open Social workflow"}]
-        }
-      ]
-    },
     prospero: {
       source: "poptins/prospero-agents",
       lastUpdated: "2026-07-23T12:00:00+03:00",
@@ -431,9 +407,33 @@
           ]
         }
       ]
+    },
+    premio: {
+      source: "poptins/premio-agents",
+      lastUpdated: "2026-07-27T15:00:00+03:00",
+      agents: [
+        {
+          id: "seo", name: "SEO Agent", role: "SEO/GEO/AEO research & publishing", initials: "SE", status: "active",
+          owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
+          instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
+          activities: [{type:"past",title:"Published live chat software guide",detail:"Published the first Search Console-informed Premio SEO article and completed the post-publish rendered-link audit.",date:"2026-07-27T10:47:54+03:00",url:"https://premio.io/blog/live-chat-software-for-wordpress/",assetLabel:"View published article"},{type:"past",title:"Connected Premio Search Console",detail:"SEO topic selection now uses Premio page and query impressions, CTR, position, and content-gap evidence from sc-domain:premio.io.",date:"2026-07-27T12:30:00+03:00",url:"https://github.com/poptins/premio-agents/blob/main/agents.py",assetLabel:"Open Search Console integration"},{type:"scheduled",title:"Check the next Premio SEO article window",detail:"Use Search Console demand evidence, then publish a validated article when the 4-5 day cadence is due.",date:"2026-07-28T08:00:00+03:00",scheduleUtc:"05:00",url:"https://github.com/poptins/premio-agents/actions/workflows/seo-agent.yml",assetLabel:"Open SEO workflow"}]
+        },
+        {
+          id: "update-blog", name: "Update Blog Agent", role: "Old article refresh & optimization", initials: "UP", status: "active",
+          owner: "Premio Content & SEO", cadence: "4-6 articles monthly on spaced days", priority: "High",
+          instructions: ["Use Premio Search Console evidence to prioritize an eligible article older than one year with meaningful impressions, weak CTR, or under-served queries.","Preserve the post ID, slug, URL, categories, tags, and featured image.","Improve accuracy, SEO, AEO, GEO, headings, examples, grammar, and internal links.","Use descriptive HTML links and run the full rendered-link audit.","Never send a slug in the update payload and verify the saved URL after publishing."],
+          activities: [{type:"past",title:"Enabled Search Console refresh prioritization",detail:"The Update Blog Agent now ranks eligible old articles using impressions, CTR, ranking position, and query evidence before selecting one to refresh.",date:"2026-07-27T12:30:00+03:00",url:"https://github.com/poptins/premio-agents/blob/main/agents.py",assetLabel:"Open Search Console integration"},{type:"scheduled",title:"Refresh the next eligible Premio article",detail:"Update one old article while preserving its exact slug and URL.",date:"2026-07-28T10:20:00+03:00",schedule:{frequency:"monthly-days",days:[3,8,13,18,23,28],hourUtc:7,minuteUtc:20},url:"https://github.com/poptins/premio-agents/actions/workflows/update-blog-agent.yml",assetLabel:"Open Update Blog workflow"}]
+        },
+        {
+          id: "social", name: "Social Media Agent", role: "Buffer distribution", initials: "SM", status: "active",
+          owner: "Premio Social & Brand", cadence: "Hourly at minute 17 + on demand", priority: "High",
+          instructions: ["Monitor the latest confirmed published Premio article.","Create distinct and factual LinkedIn, Facebook, and X copy.","Include the article URL and use only verified Premio product claims.","Match the configured Premio Buffer channels and respect paused queues.","Check scheduled and sent posts per channel to prevent duplicate handoffs."],
+          activities: [{type:"scheduled",title:"Check for a newly published Premio article",detail:"Hand the latest article to Buffer only when it has not already been queued or sent.",date:"2026-07-27T13:17:00+03:00",schedule:{frequency:"hourly",minuteUtc:17},url:"https://github.com/poptins/premio-agents/actions/workflows/social-media-agent.yml",assetLabel:"Open Social workflow"}]
+        }
+      ]
     }
   };
-  const productNames = {poptin: "Poptin", chatway: "Chatway", premio: "Premio", prospero: "Prospero"};
+  const productNames = {poptin: "Poptin", chatway: "Chatway", prospero: "Prospero", premio: "Premio"};
   const agentOrder = [
     "seo",
     "update-blog",
