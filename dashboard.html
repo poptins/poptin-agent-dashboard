@@ -94,17 +94,28 @@
         </section>
       </div>
 
-      <section class="calendar-view" id="calendarView" hidden aria-live="polite">
-        <div class="calendar-view-heading">
-          <div><p class="eyebrow">SCHEDULE</p><h2>Calendar view</h2></div>
-          <div class="calendar-controls">
-            <button class="calendar-nav-button" id="calendarPreviousMonth" type="button" aria-label="Previous month">←</button>
-            <button class="calendar-today-button" id="calendarTodayButton" type="button">Today</button>
-            <button class="calendar-nav-button" id="calendarNextMonth" type="button" aria-label="Next month">→</button>
+      <section class="calendar-view" id="calendarView" hidden aria-labelledby="calendarTitle">
+        <div class="calendar-shell">
+          <header class="calendar-header">
+            <div><p class="eyebrow">PUBLISHED, SCHEDULED &amp; FAILED</p><h2 id="calendarTitle">Marketing calendar</h2><p>Published outcomes, failed tasks, and scheduled work for the next 30 days.</p></div>
+            <div class="calendar-legend" aria-label="Calendar key"><span class="published-key">✓ Published</span><span class="scheduled-key">◷ Scheduled</span><span class="failed-key">! Failed</span></div>
+          </header>
+          <div class="calendar-toolbar">
+            <div class="calendar-month-controls">
+              <button class="calendar-nav" id="calendarPreviousMonth" type="button" aria-label="Previous month">‹</button>
+              <strong id="calendarMonthLabel"></strong>
+              <button class="calendar-nav" id="calendarNextMonth" type="button" aria-label="Next month">›</button>
+            </div>
+            <div class="calendar-filters">
+              <label class="calendar-product-filter" for="calendarProductFilter"><span>PRODUCT</span><select id="calendarProductFilter"><option value="all">All products</option><option value="poptin">Poptin</option><option value="chatway">Chatway</option><option value="prospero">Prospero</option><option value="premio">Premio</option></select></label>
+              <label class="calendar-agent-filter" for="calendarAgentFilter"><span>AGENT</span><select id="calendarAgentFilter" aria-label="Filter calendar by agent"><option value="all">All agents</option></select></label>
+            </div>
+          </div>
+          <div class="calendar-scroll">
+            <div class="calendar-weekdays" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+            <div class="calendar-grid" id="calendarGrid"></div>
           </div>
         </div>
-        <div class="calendar-month-label" id="calendarMonthLabel"></div>
-        <div class="calendar-grid" id="calendarGrid"></div>
       </section>
     </main>
 
@@ -116,7 +127,7 @@
   <script src="app.js"></script>
   <script src="product-tabs.js"></script>
   <script src="preserve-agent-on-product-switch.js"></script>
-  <script src="calendar-view.js"></script>
+  <script src="calendar-view.js?v=20260727-premio-calendar-fix1"></script>
   <script src="glossary-activity-links.js"></script>
   <script src="optimization-opportunities.js"></script>
 </body>
