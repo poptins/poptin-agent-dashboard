@@ -11,7 +11,7 @@
   let calendarOpen = false;
   visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), 1);
 
-  const productNames = {poptin: "Poptin", chatway: "Chatway", prospero: "Prospero"};
+  const productNames = {poptin: "Poptin", chatway: "Chatway", prospero: "Prospero", premio: "Premio"};
 
   function escapeHtml(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => ({
