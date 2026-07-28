@@ -47,10 +47,24 @@ function activityDate(item) {
     const [hour, minute] = item.scheduleUtc.split(":").map(Number);
     const now = new Date();
     const nextRun = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), hour, minute));
-    if (nextRun <= now) nextRun.setUTCDate(nextRun.getUTCDate() + 1);
+    // Keep today's occurrence visible after its nominal time. GitHub scheduled
+    // workflows can be dispatched hours late, so rolling immediately to tomorrow
+    // hides work that is still expected today.
     return nextRun;
   }
   return new Date(item.date);
+}
+
+function sameLocalDay(left, right) {
+  return left.getFullYear() === right.getFullYear() &&
+    left.getMonth() === right.getMonth() &&
+    left.getDate() === right.getDate();
+}
+
+function isDelayedScheduled(item, now = Date.now()) {
+  if (item.type !== "scheduled") return false;
+  const scheduledAt = activityDate(item);
+  return scheduledAt.getTime() <= now && sameLocalDay(scheduledAt, new Date(now));
 }
 
 function allActivities(sourceData = data) {
@@ -58,7 +72,8 @@ function allActivities(sourceData = data) {
 }
 
 function isFutureScheduled(item, now = Date.now()) {
-  return item.type === "scheduled" && activityDate(item).getTime() > now;
+  return item.type === "scheduled" &&
+    (activityDate(item).getTime() > now || isDelayedScheduled(item, now));
 }
 
 function visibleActivities(sourceData = data) {
@@ -136,7 +151,7 @@ function renderAgentDetail() {
   const compact = (items, type) => items.length ? items.map(item => `
     <div class="compact-item ${type}">
       <strong>${item.title}</strong>
-      <span>${dateFormat.format(activityDate(item))} · ${timeFormat.format(activityDate(item))}</span>
+      <span>${isDelayedScheduled(item) ? "Delayed · " : ""}${dateFormat.format(activityDate(item))} · ${timeFormat.format(activityDate(item))}</span>
       ${renderAsset(item, true)}
     </div>
   `).join("") : `<span class="agent-role">Nothing here yet.</span>`;
