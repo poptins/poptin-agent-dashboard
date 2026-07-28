@@ -414,9 +414,9 @@ window.AGENT_DATA = {
         "status": "active",
         "color": "#f3e2dc",
         "ink": "#7a3d2a",
-        instructions: ["Find three to four relevant Quora questions about email marketing, website popups, and conversion optimization.","Exclude repeated questions and topics already handled by the agent.","Write original, useful, non-promotional answers in one consistent practical voice.","Check every draft for factual accuracy, relevance, clarity, and unsupported claims.","Store drafts only in the private GitHub review queue.","Keep final Quora submission human-controlled; never publish answers automatically."],
+        instructions: ["Run only when manually requested from the dashboard.","Find three to four relevant Quora questions about email marketing, website popups, and conversion optimization.","Exclude repeated questions and topics already handled by the agent.","Write original, useful, non-promotional answers in one consistent practical voice.","Check every draft for factual accuracy, relevance, clarity, and unsupported claims.","Store drafts only in the private GitHub review queue.","Keep final Quora submission human-controlled; never publish answers automatically."],
         "owner": "Community & Growth",
-        "cadence": "Daily at 10:15 IDT",
+        "cadence": "On demand",
         "priority": "Medium",
         "pendingQuestions": [
             {
@@ -460,13 +460,6 @@ window.AGENT_DATA = {
                 "detail": "Created three original, non-promotional answers and stored them in the private review queue.",
                 "date": "2026-07-20T14:08:51+03:00",
                 "assetStatus": "Available after GitHub authentication"
-            },
-            {
-                "type": "scheduled",
-                "title": "Prepare daily Quora answer batch",
-                "detail": "Find three to four relevant questions, prevent repeats, validate answer quality, and create a private review queue.",
-                "date": "2026-07-21T10:15:00+03:00",
-                "assetStatus": "Runs in the private agent repository"
             }
         ]
     }
