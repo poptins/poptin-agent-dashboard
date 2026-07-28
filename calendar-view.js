@@ -46,8 +46,9 @@
           }
           if (activity.type === "scheduled") {
             const nextDate = activityDate(activity);
-            if (nextDate > now && nextDate <= scheduleLimit) {
-              return [{...activity, productId, agentName: agent.name, agentId: agent.activityGroupId || agent.id, calendarType: "scheduled", calendarDate: nextDate}];
+            const delayed = isDelayedScheduled(activity, now.getTime());
+            if ((nextDate > now || delayed) && nextDate <= scheduleLimit) {
+              return [{...activity, productId, agentName: agent.name, agentId: agent.activityGroupId || agent.id, calendarType: delayed ? "delayed" : "scheduled", calendarDate: nextDate}];
             }
           }
           return [];
@@ -63,9 +64,10 @@
 
   function renderItem(item) {
     const scheduled = item.calendarType === "scheduled";
+    const delayed = item.calendarType === "delayed";
     const failed = item.calendarType === "failed";
-    const itemClass = failed ? "failed" : scheduled ? "scheduled" : "published";
-    const itemLabel = failed ? "! Failed" : scheduled ? "◷ Scheduled" : "✓ Published";
+    const itemClass = failed ? "failed" : delayed ? "delayed" : scheduled ? "scheduled" : "published";
+    const itemLabel = failed ? "! Failed" : delayed ? "◷ Delayed" : scheduled ? "◷ Scheduled" : "✓ Published";
     const taskTime = new Intl.DateTimeFormat("en-US", {hour: "numeric", minute: "2-digit"}).format(item.calendarDate);
     const tag = item.url ? "a" : "div";
     const linkAttributes = item.url
