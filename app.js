@@ -942,3 +942,9 @@ function renderRecommendationQueue() {
 renderRecommendationQueue();
 loadPermanentDismissals();
 renderDashboard();
+
+if (sessionStorage.getItem("optimizationGithubToken")) {
+  mergeRecentGithubActivity()
+    .then(() => renderDashboard())
+    .catch(error => console.warn("Live workflow reconciliation unavailable:", error));
+}
