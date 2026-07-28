@@ -73,11 +73,12 @@
   function renderItem(item) {
     const scheduled = item.calendarType === "scheduled";
     const delayed = item.calendarType === "delayed";
+    const awaiting = item.calendarType === "awaiting";
     const queued = item.calendarType === "queued";
     const running = item.calendarType === "running";
     const failed = item.calendarType === "failed";
-    const itemClass = failed ? "failed" : running ? "running" : queued ? "queued" : delayed ? "delayed" : scheduled ? "scheduled" : "published";
-    const itemLabel = failed ? "! Failed" : running ? "● Running" : queued ? "◌ Queued" : delayed ? "◷ Delayed" : scheduled ? "◷ Scheduled" : "✓ Published";
+    const itemClass = failed ? "failed" : running ? "running" : queued ? "queued" : awaiting ? "awaiting" : delayed ? "delayed" : scheduled ? "scheduled" : "published";
+    const itemLabel = failed ? "! Failed" : running ? "● Running" : queued ? "◌ Queued" : awaiting ? "◌ Awaiting status" : delayed ? "◷ Delayed" : scheduled ? "◷ Scheduled" : "✓ Published";
     const taskTime = new Intl.DateTimeFormat("en-US", {hour: "numeric", minute: "2-digit"}).format(item.calendarDate);
     const tag = item.url ? "a" : "div";
     const linkAttributes = item.url
