@@ -121,6 +121,9 @@ function scheduledActivityState(item, agent = item.agent, now = Date.now()) {
     if (publishedToday) return {status: "scheduled", date: nextOccurrenceDate(item, scheduledAt)};
   }
 
+  if (!Array.isArray(window.GITHUB_WORKFLOW_RUNS_BY_SOURCE?.[source]) && agent?.id !== "glossary") {
+    return {status: "awaiting", date: scheduledAt};
+  }
   return {status: "delayed", date: scheduledAt};
 }
 
@@ -143,7 +146,7 @@ function allActivities(sourceData = data) {
 function isFutureScheduled(item, now = Date.now(), agent = item.agent) {
   if (item.type !== "scheduled") return false;
   return scheduledActivityState(item, agent, now).date.getTime() >= now ||
-    ["delayed", "queued", "running", "failed"].includes(scheduledActivityState(item, agent, now).status);
+    ["delayed", "awaiting", "queued", "running", "failed"].includes(scheduledActivityState(item, agent, now).status);
 }
 
 function visibleActivities(sourceData = data) {
@@ -222,7 +225,7 @@ function renderAgentDetail() {
     const state = item.type === "scheduled"
       ? scheduledActivityState(item, {...agent, source: data.source}, now)
       : {status: type, date: activityDate(item)};
-    const statusLabel = {delayed: "Delayed", queued: "Queued", running: "Running", failed: "Failed"}[state.status];
+    const statusLabel = {delayed: "Delayed", awaiting: "Awaiting status", queued: "Queued", running: "Running", failed: "Failed"}[state.status];
     return `
     <div class="compact-item ${type} ${escapeHtml(state.status)}">
       <strong>${item.title}</strong>
