@@ -61,19 +61,89 @@ function sameLocalDay(left, right) {
     left.getDate() === right.getDate();
 }
 
-function isDelayedScheduled(item, now = Date.now()) {
-  if (item.type !== "scheduled") return false;
+function workflowFileForActivity(item) {
+  const match = String(item.url || "").match(/\/actions\/workflows\/([^/?#]+)/i);
+  return match ? decodeURIComponent(match[1]).toLowerCase() : "";
+}
+
+function nextOccurrenceDate(item, scheduledAt) {
+  const next = new Date(scheduledAt);
+  if (item.schedule?.frequency === "weekly") next.setUTCDate(next.getUTCDate() + 7);
+  else if (item.schedule?.frequency === "hourly") next.setUTCHours(next.getUTCHours() + 1);
+  else next.setUTCDate(next.getUTCDate() + 1);
+  return next;
+}
+
+function scheduledActivityState(item, agent = item.agent, now = Date.now()) {
   const scheduledAt = activityDate(item);
-  return scheduledAt.getTime() <= now && sameLocalDay(scheduledAt, new Date(now));
+  if (item.type !== "scheduled" || scheduledAt.getTime() > now) {
+    return {status: "scheduled", date: scheduledAt};
+  }
+
+  const source = agent?.source || item.source || data?.source;
+  const workflowFile = workflowFileForActivity(item);
+  const runs = window.GITHUB_WORKFLOW_RUNS_BY_SOURCE?.[source] || [];
+  const occurrenceEnd = nextOccurrenceDate(item, scheduledAt).getTime();
+  const matchingRun = runs
+    .filter(run => {
+      const runTime = new Date(run.created_at || run.run_started_at || 0).getTime();
+      const runPath = String(run.path || "").toLowerCase();
+      return workflowFile && runPath.includes(workflowFile) &&
+        runTime >= scheduledAt.getTime() - 30 * 60 * 1000 &&
+        runTime < occurrenceEnd;
+    })
+    .sort((left, right) => new Date(right.created_at) - new Date(left.created_at))[0];
+
+  if (matchingRun) {
+    if (matchingRun.status === "queued" || matchingRun.status === "waiting" || matchingRun.status === "pending") {
+      return {status: "queued", date: scheduledAt, run: matchingRun};
+    }
+    if (matchingRun.status === "in_progress" || matchingRun.status === "requested") {
+      return {status: "running", date: scheduledAt, run: matchingRun};
+    }
+    if (matchingRun.status === "completed" && matchingRun.conclusion === "success") {
+      return {status: "scheduled", date: nextOccurrenceDate(item, scheduledAt), completedRun: matchingRun};
+    }
+    if (matchingRun.status === "completed") {
+      return {status: "failed", date: scheduledAt, run: matchingRun};
+    }
+  }
+
+  // Glossary publications are also reconciled from the live WordPress feeds,
+  // which work even when the viewer has not supplied a GitHub token.
+  if (agent?.id === "glossary") {
+    const publishedToday = (agent.activities || []).some(activity => {
+      if (activity === item || activity.type !== "past" || !/view glossary term/i.test(activity.assetLabel || "")) return false;
+      const publishedAt = new Date(activity.date);
+      return sameLocalDay(publishedAt, scheduledAt) &&
+        publishedAt.getTime() >= scheduledAt.getTime() - 30 * 60 * 1000;
+    });
+    if (publishedToday) return {status: "scheduled", date: nextOccurrenceDate(item, scheduledAt)};
+  }
+
+  return {status: "delayed", date: scheduledAt};
+}
+
+function isDelayedScheduled(item, now = Date.now(), agent = item.agent) {
+  return item.type === "scheduled" && scheduledActivityState(item, agent, now).status === "delayed";
+}
+
+function activityDisplayDate(item, agent = item.agent, now = Date.now()) {
+  return item.type === "scheduled" ? scheduledActivityState(item, agent, now).date : activityDate(item);
 }
 
 function allActivities(sourceData = data) {
-  return sourceData.agents.flatMap(agent => agent.activities.map(activity => ({ ...activity, agent })));
+  return sourceData.agents.flatMap(agent => agent.activities.map(activity => ({
+    ...activity,
+    agent: {...agent, source: sourceData.source},
+    source: sourceData.source
+  })));
 }
 
-function isFutureScheduled(item, now = Date.now()) {
-  return item.type === "scheduled" &&
-    (activityDate(item).getTime() > now || isDelayedScheduled(item, now));
+function isFutureScheduled(item, now = Date.now(), agent = item.agent) {
+  if (item.type !== "scheduled") return false;
+  return scheduledActivityState(item, agent, now).date.getTime() >= now ||
+    ["delayed", "queued", "running", "failed"].includes(scheduledActivityState(item, agent, now).status);
 }
 
 function visibleActivities(sourceData = data) {
@@ -147,14 +217,20 @@ function renderAgentDetail() {
   if (!agent) return;
   const past = agent.activities.filter(item => item.type === "past").slice(0, 2);
   const now = Date.now();
-  const scheduled = agent.activities.filter(item => isFutureScheduled(item, now)).slice(0, 2);
-  const compact = (items, type) => items.length ? items.map(item => `
-    <div class="compact-item ${type}">
+  const scheduled = agent.activities.filter(item => isFutureScheduled(item, now, {...agent, source: data.source})).slice(0, 2);
+  const compact = (items, type) => items.length ? items.map(item => {
+    const state = item.type === "scheduled"
+      ? scheduledActivityState(item, {...agent, source: data.source}, now)
+      : {status: type, date: activityDate(item)};
+    const statusLabel = {delayed: "Delayed", queued: "Queued", running: "Running", failed: "Failed"}[state.status];
+    return `
+    <div class="compact-item ${type} ${escapeHtml(state.status)}">
       <strong>${item.title}</strong>
-      <span>${isDelayedScheduled(item) ? "Delayed · " : ""}${dateFormat.format(activityDate(item))} · ${timeFormat.format(activityDate(item))}</span>
+      <span>${statusLabel ? `${statusLabel} · ` : ""}${dateFormat.format(state.date)} · ${timeFormat.format(state.date)}</span>
       ${renderAsset(item, true)}
     </div>
-  `).join("") : `<span class="agent-role">Nothing here yet.</span>`;
+  `;
+  }).join("") : `<span class="agent-role">Nothing here yet.</span>`;
 
   $("#agentDetail").innerHTML = `
     <div class="detail-top">
@@ -189,7 +265,7 @@ function renderTimeline() {
       item.agent.id === activityAgentFilter ||
       item.agent.activityGroupId === activityAgentFilter
     )
-    .sort((a, b) => activityFilter === "scheduled" ? activityDate(a) - activityDate(b) : activityDate(b) - activityDate(a));
+    .sort((a, b) => activityFilter === "scheduled" ? activityDisplayDate(a) - activityDisplayDate(b) : activityDisplayDate(b) - activityDisplayDate(a));
 
   const activityIcon = item => item.type === "past" ? "✓" : item.type === "failed" ? "!" : "→";
   const emptyMessage = activityFilter === "failed" ? "No failed tasks recorded." : "No activity in this view.";
@@ -202,7 +278,7 @@ function renderTimeline() {
         <p>${item.agent.name} · ${item.detail}</p>
         ${renderAsset(item)}
       </div>
-      <div class="activity-date"><strong>${dateFormat.format(activityDate(item))}</strong><span>${timeFormat.format(activityDate(item))}</span></div>
+      <div class="activity-date"><strong>${dateFormat.format(activityDisplayDate(item))}</strong><span>${timeFormat.format(activityDisplayDate(item))}</span></div>
     </article>
   `).join("") : `<div class="empty-state">${emptyMessage}</div>`;
 }
@@ -263,15 +339,23 @@ function loadLatestData() {
 async function mergeRecentGithubActivity() {
   const token = sessionStorage.getItem("optimizationGithubToken");
   if (!token || !data?.source) return { loaded: false, reason: "no-token" };
-  const response = await fetch(`https://api.github.com/repos/${data.source}/actions/runs?per_page=50`, {
-    headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"}
-  });
-  if (!response.ok) {
-    if ([401, 403, 404].includes(response.status)) sessionStorage.removeItem("optimizationGithubToken");
-    throw new Error(`GitHub could not load recent agent activity (${response.status}).`);
-  }
+  const sources = [...new Set(
+    Object.values(window.PRODUCT_AGENT_DATA || {})
+      .map(product => product?.source)
+      .filter(Boolean)
+  )];
+  const headers = {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"};
+  const runGroups = await Promise.all(sources.map(async source => {
+    const response = await fetch(`https://api.github.com/repos/${source}/actions/runs?per_page=100`, {headers});
+    if (!response.ok) {
+      if ([401, 403, 404].includes(response.status)) sessionStorage.removeItem("optimizationGithubToken");
+      throw new Error(`GitHub could not load recent agent activity for ${source} (${response.status}).`);
+    }
+    return [source, (await response.json()).workflow_runs || []];
+  }));
+  window.GITHUB_WORKFLOW_RUNS_BY_SOURCE = Object.fromEntries(runGroups);
   const cutoff = Date.now() - 14 * 24 * 60 * 60 * 1000;
-  const runs = (await response.json()).workflow_runs || [];
+  const runs = window.GITHUB_WORKFLOW_RUNS_BY_SOURCE[data.source] || [];
   const seen = new Set(allActivities().map(item => item.githubRunId).filter(Boolean));
   const agentForRun = run => {
     const name = `${run.name || ""} ${run.display_title || ""}`.toLowerCase();
@@ -312,6 +396,7 @@ async function mergeRecentGithubActivity() {
       seen.add(run.id);
       added += 1;
     });
+  document.dispatchEvent(new CustomEvent("marketingActivityUpdated", {detail: {added, reconciled: true}}));
   return { loaded: true, added };
 }
 
