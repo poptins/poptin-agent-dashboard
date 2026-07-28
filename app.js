@@ -525,6 +525,18 @@ async function dispatchOptimization(recommendationId, decision = "approve") {
   throw new Error(`GitHub rejected the approval (${response.status}). The saved token was cleared; verify poptin-agents is selected and Actions is set to Read and write.`);
 }
 
+async function dispatchQuoraSearch() {
+  const token = await getOptimizationGithubToken();
+  const response = await fetch("https://api.github.com/repos/poptins/poptin-agents/actions/workflows/quora-agent.yml/dispatches", {
+    method: "POST",
+    headers: {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28","Content-Type":"application/json"},
+    body: JSON.stringify({ref:"main"})
+  });
+  if (response.status === 204) return;
+  if ([401, 403, 404].includes(response.status)) sessionStorage.removeItem("optimizationGithubToken");
+  throw new Error(`GitHub could not start the Quora search (${response.status}). Verify that the token can access poptin-agents and has Actions: write permission.`);
+}
+
 var permanentlyRemovedRecommendations = new Set();
 
 async function loadPermanentDismissals() {
@@ -806,6 +818,13 @@ function renderQuoraQueue(grid, status) {
     </article>
   `).join("");
   grid.innerHTML = `
+    <article class="recommendation-card quora-search-card">
+      <div class="recommendation-top"><span class="property-pill">On demand</span><span class="readiness ready">Manual trigger</span></div>
+      <h3>Find new relevant Quora questions</h3>
+      <p class="quora-load-copy">Search for three to four new, non-duplicate questions and prepare private draft answers for human review.</p>
+      <div class="recommendation-actions"><button class="approve-button" id="runQuoraSearch" type="button">Find new questions</button></div>
+      <p class="card-feedback" id="quoraSearchFeedback" aria-live="polite"></p>
+    </article>
     ${questionCards}
     <article class="recommendation-card quora-load-card">
       <div class="recommendation-top"><span class="property-pill">Private review queue</span><span class="readiness ready">GitHub authentication required</span></div>
@@ -815,6 +834,26 @@ function renderQuoraQueue(grid, status) {
       <p class="card-feedback" id="quoraLoadFeedback" aria-live="polite"></p>
     </article>
   `;
+  grid.querySelector("#runQuoraSearch").addEventListener("click", async event => {
+    const button = event.currentTarget;
+    const feedback = grid.querySelector("#quoraSearchFeedback");
+    button.disabled = true;
+    button.textContent = "Starting…";
+    feedback.classList.remove("error");
+    feedback.textContent = "";
+    try {
+      await dispatchQuoraSearch();
+      button.textContent = "Search started";
+      feedback.innerHTML = 'The search is running. When it finishes, click “Load review queue” to see the new questions and answers. <a href="https://github.com/poptins/poptin-agents/actions/workflows/quora-agent.yml" target="_blank" rel="noopener">Open workflow ↗</a>';
+      status.textContent = "Quora search started on demand.";
+    } catch (error) {
+      button.disabled = false;
+      button.textContent = "Find new questions";
+      feedback.classList.add("error");
+      feedback.textContent = error.message;
+      status.textContent = error.message;
+    }
+  });
   grid.querySelector("#loadQuoraQueue").addEventListener("click", async event => {
     const button = event.currentTarget; const feedback = grid.querySelector("#quoraLoadFeedback");
     button.disabled = true; button.textContent = "Loading…";
