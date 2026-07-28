@@ -45,10 +45,18 @@
             return [{...activity, productId, agentName: agent.name, agentId: agent.activityGroupId || agent.id, calendarType: "published", calendarDate: new Date(activity.date)}];
           }
           if (activity.type === "scheduled") {
-            const nextDate = activityDate(activity);
-            const delayed = isDelayedScheduled(activity, now.getTime());
-            if ((nextDate > now || delayed) && nextDate <= scheduleLimit) {
-              return [{...activity, productId, agentName: agent.name, agentId: agent.activityGroupId || agent.id, calendarType: delayed ? "delayed" : "scheduled", calendarDate: nextDate}];
+            const state = scheduledActivityState(activity, {...agent, source: product.source}, now.getTime());
+            const nextDate = state.date;
+            if (nextDate <= scheduleLimit) {
+              return [{
+                ...activity,
+                productId,
+                agentName: agent.name,
+                agentId: agent.activityGroupId || agent.id,
+                calendarType: state.status,
+                calendarDate: nextDate,
+                url: state.run?.html_url || activity.url
+              }];
             }
           }
           return [];
@@ -65,9 +73,11 @@
   function renderItem(item) {
     const scheduled = item.calendarType === "scheduled";
     const delayed = item.calendarType === "delayed";
+    const queued = item.calendarType === "queued";
+    const running = item.calendarType === "running";
     const failed = item.calendarType === "failed";
-    const itemClass = failed ? "failed" : delayed ? "delayed" : scheduled ? "scheduled" : "published";
-    const itemLabel = failed ? "! Failed" : delayed ? "◷ Delayed" : scheduled ? "◷ Scheduled" : "✓ Published";
+    const itemClass = failed ? "failed" : running ? "running" : queued ? "queued" : delayed ? "delayed" : scheduled ? "scheduled" : "published";
+    const itemLabel = failed ? "! Failed" : running ? "● Running" : queued ? "◌ Queued" : delayed ? "◷ Delayed" : scheduled ? "◷ Scheduled" : "✓ Published";
     const taskTime = new Intl.DateTimeFormat("en-US", {hour: "numeric", minute: "2-digit"}).format(item.calendarDate);
     const tag = item.url ? "a" : "div";
     const linkAttributes = item.url
