@@ -33,6 +33,7 @@
 .calendar-outcome[href]:hover { text-decoration: underline; text-underline-offset: 2px; }
 .calendar-outcome.scheduled { border-left-color: var(--amber); background: var(--amber-soft); }
 .calendar-outcome.delayed { border-left-color: #d97706; background: #fff3d6; }
+.calendar-outcome.awaiting { border-left-color: #64748b; background: #f4f6f8; }
 .calendar-outcome.queued { border-left-color: #64748b; background: #eef2f7; }
 .calendar-outcome.running { border-left-color: #2563eb; background: #e8f0ff; }
 .calendar-outcome.failed { border-left-color: #c0392b; color: #8f241b; background: #fde8e6; }
@@ -41,6 +42,7 @@
 .calendar-product { display: block; margin-bottom: 2px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
 .calendar-outcome.scheduled .calendar-product { color: var(--amber); }
 .calendar-outcome.delayed .calendar-product, .calendar-outcome.delayed .calendar-agent { color: #b45309; }
+.calendar-outcome.awaiting .calendar-product, .calendar-outcome.awaiting .calendar-agent { color: #64748b; }
 .calendar-outcome.queued .calendar-product, .calendar-outcome.queued .calendar-agent { color: #475569; }
 .calendar-outcome.running .calendar-product, .calendar-outcome.running .calendar-agent { color: #1d4ed8; }
 .calendar-outcome.failed .calendar-product, .calendar-outcome.failed .calendar-agent { color: #c0392b; }
