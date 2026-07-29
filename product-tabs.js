@@ -196,9 +196,9 @@
           status: "active",
           color: "#dff0ee",
           ink: "#17645c",
-          instructions: ["Run every day and whenever a user requests Find opportunities.","Read the last 28 days of Chatway Search Console page and query performance.","Select and rank the first 10 high-impression, low-CTR pages in useful ranking positions.","Read each page's current SEO title, meta description, language, and leading search queries.","Generate an exact locale-aware suggested SEO title and meta description without unsupported claims.","Identify the correct blog, glossary, or page WordPress REST endpoint.","Verify authenticated WordPress edit permission for every result.","Show current-versus-suggested metadata, evidence, and permission status in the dashboard.","Never write to WordPress during discovery."],
+          instructions: ["Run only when manually requested from the dashboard.","Read the last 28 days of Chatway Search Console page and query performance.","Select and rank the first 10 high-impression, low-CTR pages in useful ranking positions.","Read each page's current SEO title, meta description, language, and leading search queries.","Generate an exact locale-aware suggested SEO title and meta description without unsupported claims.","Identify the correct blog, glossary, or page WordPress REST endpoint.","Verify authenticated WordPress edit permission for every result.","Show current-versus-suggested metadata, evidence, and permission status in the dashboard.","Never write to WordPress during discovery."],
           owner: "Chatway Growth & SEO",
-          cadence: "Daily at 07:45 IDT + on demand",
+          cadence: "On demand",
           priority: "High",
           activities: [
         {
@@ -210,15 +210,6 @@
           assetLabel: "Open failed workflow run",
           githubRunId: 29895370917
         },
-            {
-              type: "scheduled",
-              title: "Run daily Chatway opportunity scan",
-              detail: "Refresh Search Console opportunities and exact title and meta-description suggestions every day at 04:45 UTC.",
-              date: "2026-07-23T07:45:00+03:00",
-              scheduleUtc: "04:45",
-              url: "https://github.com/poptins/chatway-agents/actions/workflows/optimization-agent.yml",
-              assetLabel: "Open Optimization workflow"
-            },
             {
               type: "past",
               title: "Verified scheduled Chatway opportunity scan",
