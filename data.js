@@ -286,20 +286,11 @@ window.AGENT_DATA = {
           "status": "active",
           "color": "#dff0ee",
           "ink": "#17645c",
-          instructions: ["Analyze English-language Search Console performance across poptin.com, the Blog, and Academy.","Rank high-impression, low-CTR pages and material organic declines using verified evidence.","Resolve the current SEO title, meta description, WordPress resource, and authenticated edit access.","Prepare exact current-versus-suggested metadata changes for actionable opportunities.","Display the evidence, recommendation, and permission result in the dashboard.","Never write to WordPress unless that exact change is individually approved.","Revalidate the protected before-state immediately before executing an approved change."],
+          instructions: ["Run only when manually requested from the dashboard.","Analyze English-language Search Console performance across poptin.com, the Blog, and Academy.","Rank high-impression, low-CTR pages and material organic declines using verified evidence.","Resolve the current SEO title, meta description, WordPress resource, and authenticated edit access.","Prepare exact current-versus-suggested metadata changes for actionable opportunities.","Display the evidence, recommendation, and permission result in the dashboard.","Never write to WordPress unless that exact change is individually approved.","Revalidate the protected before-state immediately before executing an approved change."],
           "owner": "Growth & SEO",
-          "cadence": "Mondays at 08:30 IDT + on demand",
+          "cadence": "On demand",
           "priority": "High",
           "activities": [
-                {
-                      "type": "scheduled",
-                      "title": "Run daily Poptin opportunity scan",
-                      "detail": "Refresh Search Console opportunities and exact title and meta-description suggestions every day at 04:30 UTC.",
-                      "date": "2026-07-23T07:30:00+03:00",
-                      "scheduleUtc": "04:30",
-                      "url": "https://github.com/poptins/poptin-agents/actions/workflows/search-console-audit.yml",
-                      "assetLabel": "Open Optimization workflow"
-                },
                 {
                       "type": "past",
                       "title": "Homepage",
