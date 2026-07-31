@@ -11,7 +11,7 @@ const SOURCES = [
   },
   {
     name: "Chatway",
-    endpoint: "https://chatway.app/wp-json/wp/v2/posts",
+    endpoint: "https://chatway.app/wp-json/wp/v2/post",
     linkPrefix: "https://chatway.app/blog/",
     assetLabel: "View Chatway blog post"
   }
