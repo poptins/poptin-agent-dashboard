@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-07-24T10:31:36+03:00",
+  lastUpdated: "2026-07-31T07:59:12+03:00",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,22 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          title: "Published Chatway support-productivity article",
+          detail: "Published “Live Chat Customer Support Productivity: How to Help More Customers Without Sacrificing Quality” on the Chatway blog.",
+          date: "2026-07-30T10:27:55+03:00",
+          url: "https://chatway.app/blog/live-chat-customer-support-productivity",
+          assetLabel: "View Chatway blog post"
+        },
+        {
+          type: "past",
+          title: "Published mobile popup best-practices article",
+          detail: "Published “Mobile Popup Best Practices for 2026: How to Capture Leads Without Hurting UX, SEO, or Conversions” and made it available to the social handoff.",
+          date: "2026-07-30T09:00:00+03:00",
+          url: "https://www.poptin.com/blog/mobile-popup-best-practices/",
+          assetLabel: "View blog post"
+        },
         {
           type: "past",
           title: "Published welcome-email sequence article",
