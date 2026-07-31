@@ -64,7 +64,8 @@ async function fetchPublishedPosts(source) {
         const shape = payload && typeof payload === "object"
           ? `object keys: ${Object.keys(payload).slice(0, 10).join(", ") || "(none)"}`
           : typeof payload;
-        throw new Error(`WordPress returned an unsupported response shape (${shape})`);
+        const message = typeof payload?.message === "string" ? `: ${payload.message.slice(0, 240)}` : "";
+        throw new Error(`WordPress returned an unsupported response shape (${shape})${message}`);
       }
       return posts;
     } catch (error) {
