@@ -82,12 +82,15 @@ function formatActivity(post, source) {
   const lines = [
     "        {",
     '          type: "past",',
+    '          status: "Published",',
+    '          taskType: "publication",',
     `          title: ${JSON.stringify(`Published ${source.name} article`)},`,
     `          detail: ${JSON.stringify(`Published “${title}” on the ${source.name} blog.`)},`,
     `          date: ${JSON.stringify(publishedAt)},`,
     `          url: ${JSON.stringify(post.link)},`,
     `          assetLabel: ${JSON.stringify(source.assetLabel)},`,
     `          wordpressPostId: ${JSON.stringify(post.id)},`,
+    `          publicationTaskId: ${JSON.stringify(`${source.name.toLowerCase()}-wordpress-${post.id}`)},`,
     `          publicationSource: ${JSON.stringify(source.name.toLowerCase())}`,
     "        },"
   ];
