@@ -50,8 +50,22 @@ async function fetchPublishedPosts(source) {
         signal: AbortSignal.timeout(45000)
       });
       if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-      const posts = await response.json();
-      if (!Array.isArray(posts)) throw new Error("WordPress returned a non-array response");
+      const payload = await response.json();
+      const posts = Array.isArray(payload)
+        ? payload
+        : Array.isArray(payload?.posts)
+          ? payload.posts
+          : Array.isArray(payload?.data)
+            ? payload.data
+            : Array.isArray(payload?.items)
+              ? payload.items
+              : null;
+      if (!posts) {
+        const shape = payload && typeof payload === "object"
+          ? `object keys: ${Object.keys(payload).slice(0, 10).join(", ") || "(none)"}`
+          : typeof payload;
+        throw new Error(`WordPress returned an unsupported response shape (${shape})`);
+      }
       return posts;
     } catch (error) {
       lastError = error;
