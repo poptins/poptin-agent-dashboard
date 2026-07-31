@@ -277,7 +277,10 @@ function renderTimeline() {
     <article class="activity-card">
       <span class="timeline-icon ${item.type}">${activityIcon(item)}</span>
       <div>
-        <h3>${item.title}</h3>
+        <div class="activity-heading">
+          <h3>${item.title}</h3>
+          ${item.status ? `<span class="property-pill">${escapeHtml(item.status)}</span>` : ""}
+        </div>
         <p>${item.agent.name} · ${item.detail}</p>
         ${renderAsset(item)}
       </div>
