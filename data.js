@@ -19,6 +19,8 @@ window.AGENT_DATA = {
       activities: [
         {
           type: "past",
+          status: "Published",
+          taskType: "publication",
           title: "Published Chatway support-productivity article",
           detail: "Published “Live Chat Customer Support Productivity: How to Help More Customers Without Sacrificing Quality” on the Chatway blog.",
           date: "2026-07-30T10:27:55+03:00",
@@ -27,6 +29,8 @@ window.AGENT_DATA = {
         },
         {
           type: "past",
+          status: "Published",
+          taskType: "publication",
           title: "Published mobile popup best-practices article",
           detail: "Published “Mobile Popup Best Practices for 2026: How to Capture Leads Without Hurting UX, SEO, or Conversions” and made it available to the social handoff.",
           date: "2026-07-30T09:00:00+03:00",
