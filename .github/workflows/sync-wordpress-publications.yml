@@ -1,0 +1,88 @@
+name: Sync published WordPress posts
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/sync-wordpress-posts.mjs"
+      - ".github/workflows/sync-wordpress-publications.yml"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.changes.outputs.changed }}
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Read published posts from WordPress
+        run: node scripts/sync-wordpress-posts.mjs
+
+      - name: Detect dashboard changes
+        id: changes
+        shell: bash
+        run: |
+          if git diff --quiet -- data.js; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit synchronized publication data
+        id: commit
+        shell: bash
+        run: |
+          if [ "${{ steps.changes.outputs.changed }}" = "true" ]; then
+            git config user.name "poptin-dashboard[bot]"
+            git config user.email "poptin-dashboard[bot]@users.noreply.github.com"
+            git add data.js
+            git commit -m "Sync published WordPress posts"
+            git pull --rebase origin main
+            git push origin HEAD:main
+            echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          else
+            echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    needs: sync
+    if: needs.sync.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.sync.outputs.commit_sha }}
+
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy synchronized dashboard to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
