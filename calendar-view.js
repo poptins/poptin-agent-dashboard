@@ -20,14 +20,20 @@
   }
 
   function isPublicPublishedOutcome(activity) {
-    if (activity.type !== "past" || !/^https?:\/\//i.test(activity.url || "")) return false;
-    if (/github\.com/i.test(activity.url)) return false;
+    if (activity.type !== "past") return false;
     const signal = `${activity.title || ""} ${activity.assetLabel || ""}`.toLowerCase();
-    return signal.includes("published") ||
+    const publicationSignal =
+      activity.status === "Published" ||
+      activity.taskType === "publication" ||
+      activity.taskType === "social-publication" ||
+      signal.includes("published") ||
+      signal.startsWith("shared ") ||
       signal.includes("view blog post") ||
       signal.includes("view academy guide") ||
       signal.includes("view glossary term") ||
       signal.includes("view published article");
+    if (!publicationSignal) return false;
+    return !/github\.com/i.test(activity.url || "");
   }
 
   function calendarItems() {
