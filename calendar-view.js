@@ -40,7 +40,7 @@
     const products = window.PRODUCT_AGENT_DATA || {};
     const now = new Date();
     const scheduleLimit = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
-    return Object.entries(products)
+    const items = Object.entries(products)
       .filter(([productId]) => productId !== "all")
       .flatMap(([productId, product]) => (product.agents || []).flatMap(agent =>
         (agent.activities || []).flatMap(activity => {
@@ -68,6 +68,16 @@
           return [];
         })
       ));
+
+    return items.filter(item => {
+      if (!["scheduled", "delayed", "awaiting"].includes(item.calendarType)) return true;
+      return !items.some(published =>
+        published.calendarType === "published" &&
+        published.productId === item.productId &&
+        published.agentId === item.agentId &&
+        sameCalendarDay(published.calendarDate, item.calendarDate)
+      );
+    });
   }
 
   function sameCalendarDay(left, right) {
