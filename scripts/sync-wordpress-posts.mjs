@@ -7,13 +7,25 @@ const SOURCES = [
     name: "Poptin",
     endpoint: "https://www.poptin.com/blog/wp-json/wp/v2/posts",
     linkPrefix: "https://www.poptin.com/blog/",
-    assetLabel: "View Poptin blog post"
+    assetLabel: "View Poptin blog post",
+    agentId: "seo",
+    kind: "article"
+  },
+  {
+    name: "Poptin Academy",
+    endpoint: "https://www.poptin.com/wp-json/wp/v2/popt_guide",
+    linkPrefix: "https://www.poptin.com/academy/guides/",
+    assetLabel: "View Academy guide",
+    agentId: "academy",
+    kind: "guide"
   },
   {
     name: "Chatway",
     endpoint: "https://chatway.app/wp-json/wp/v2/post",
     linkPrefix: "https://chatway.app/blog/",
-    assetLabel: "View Chatway blog post"
+    assetLabel: "View Chatway blog post",
+    agentId: "seo",
+    kind: "article"
   }
 ];
 
@@ -84,8 +96,8 @@ function formatActivity(post, source) {
     '          type: "past",',
     '          status: "Published",',
     '          taskType: "publication",',
-    `          title: ${JSON.stringify(`Published ${source.name} article`)},`,
-    `          detail: ${JSON.stringify(`Published “${title}” on the ${source.name} blog.`)},`,
+    `          title: ${JSON.stringify(`Published ${source.name} ${source.kind}`)},`,
+    `          detail: ${JSON.stringify(`Published “${title}” as a ${source.name} ${source.kind}.`)},`,
     `          date: ${JSON.stringify(publishedAt)},`,
     `          url: ${JSON.stringify(post.link)},`,
     `          assetLabel: ${JSON.stringify(source.assetLabel)},`,
@@ -132,19 +144,66 @@ if (successfulSources === 0) {
   throw new Error("All WordPress publication sources were unavailable");
 }
 
-if (additions.length === 0) {
-  console.log("Dashboard is already synchronized; no new published posts found.");
-  process.exit(0);
+let socialPosts = [];
+if (process.env.GITHUB_EVENT_PATH) {
+  try {
+    const event = JSON.parse(await readFile(process.env.GITHUB_EVENT_PATH, "utf8"));
+    socialPosts = Array.isArray(event?.client_payload?.socialPosts) ? event.client_payload.socialPosts : [];
+  } catch (error) {
+    console.error(`::warning title=Social payload unavailable::${error.message}`);
+  }
+}
+
+const existingSocialIds = new Set(
+  [...data.matchAll(/socialTaskId:\s*["']([^"']+)["']/g)].map(match => match[1])
+);
+const socialAdditions = socialPosts.filter(item => {
+  const id = String(item?.id || `${item?.url || ""}|${item?.sharedAt || ""}`);
+  if (!item?.title || !item?.sharedAt || existingSocialIds.has(id)) return false;
+  item.id = id;
+  existingSocialIds.add(id);
+  return true;
+});
+
+function insertActivities(agentId, blocks) {
+  if (!blocks.length) return;
+  const agentPattern = new RegExp(`(?:\\bid\\b|["']id["'])\\s*:\\s*["']${agentId}["']`);
+  const agentIndex = data.search(agentPattern);
+  if (agentIndex < 0) throw new Error(`${agentId} agent was not found in data.js`);
+  const activitiesMatch = /\bactivities\s*:\s*\[/.exec(data.slice(agentIndex));
+  if (!activitiesMatch) throw new Error(`${agentId} activity list was not found in data.js`);
+  const insertAt = agentIndex + activitiesMatch.index + activitiesMatch[0].length;
+  data = `${data.slice(0, insertAt)}\n${blocks.join("\n")}${data.slice(insertAt)}`;
 }
 
 additions.sort((left, right) => right.publishedAt - left.publishedAt);
-const seoIndex = data.search(/(?:\bid\b|["']id["'])\s*:\s*["']seo["']/);
-if (seoIndex < 0) throw new Error("SEO agent was not found in data.js");
-const activitiesMatch = /\bactivities\s*:\s*\[/.exec(data.slice(seoIndex));
-if (!activitiesMatch) throw new Error("SEO activity list was not found in data.js");
-const insertAt = seoIndex + activitiesMatch.index + activitiesMatch[0].length;
-const blocks = additions.map(({ post, source }) => formatActivity(post, source)).join("\n");
-data = `${data.slice(0, insertAt)}\n${blocks}${data.slice(insertAt)}`;
+for (const agentId of new Set(additions.map(item => item.source.agentId))) {
+  insertActivities(
+    agentId,
+    additions
+      .filter(item => item.source.agentId === agentId)
+      .map(({ post, source }) => formatActivity(post, source))
+  );
+}
+
+insertActivities("social", socialAdditions.map(item => [
+  "        {",
+  '          type: "past",',
+  '          status: "Published",',
+  '          taskType: "social-publication",',
+  `          title: ${JSON.stringify(`Shared ${item.title} on social media`)},`,
+  `          detail: ${JSON.stringify(`Scheduled verified posts through Buffer for ${(item.channels || []).map(channel => channel.name || channel).join(", ") || "the configured social channels"}.`)},`,
+  `          date: ${JSON.stringify(item.sharedAt)},`,
+  `          url: ${JSON.stringify(item.url || "")},`,
+  '          assetLabel: "View shared article",',
+  `          socialTaskId: ${JSON.stringify(item.id)}`,
+  "        },"
+].join("\n")));
+
+if (additions.length === 0 && socialAdditions.length === 0) {
+  console.log("Dashboard is already synchronized; no new publications found.");
+  process.exit(0);
+}
 
 data = data.replace(
   /lastUpdated:\s*["'][^"']+["']/,
@@ -152,5 +211,5 @@ data = data.replace(
 );
 
 await writeFile(DATA_PATH, data, "utf8");
-console.log(`Added ${additions.length} newly published WordPress post(s) to the dashboard.`);
+console.log(`Added ${additions.length} WordPress publication(s) and ${socialAdditions.length} social publication(s) to the dashboard.`);
 for (const { post, source } of additions) console.log(`- ${source.name}: ${post.link}`);
