@@ -236,6 +236,8 @@
     if (openingCalendar) {
       const now = new Date();
       visibleMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+      productFilter.value = "all";
+      populateCalendarAgentFilter("all");
     }
     setCalendarOpen(openingCalendar);
     saveDashboardState();
