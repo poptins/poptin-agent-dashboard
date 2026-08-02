@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-07-31T07:59:12+03:00",
+  lastUpdated: "2026-08-02T12:40:00+03:00",
   agents: [
     {
       id: "seo",
@@ -152,6 +152,36 @@ window.AGENT_DATA = {
       activities: [
         {
           type: "past",
+          status: "Published",
+          taskType: "social-publication",
+          title: "Shared mobile popup best-practices article on three channels",
+          detail: "Scheduled verified LinkedIn, Facebook, and X posts through Buffer for the published mobile popup best-practices article.",
+          date: "2026-07-31T03:16:03+03:00",
+          url: "https://www.poptin.com/blog/mobile-popup-best-practices/",
+          assetLabel: "View shared article"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "social-publication",
+          title: "Shared progressive-profiling article on three channels",
+          detail: "Scheduled verified LinkedIn, Facebook, and X posts through Buffer for the published progressive-profiling article.",
+          date: "2026-07-26T03:14:45+03:00",
+          url: "https://www.poptin.com/blog/progressive-profiling-popups/",
+          assetLabel: "View shared article"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "social-publication",
+          title: "Shared Adoric alternative article on three channels",
+          detail: "Scheduled verified LinkedIn, Facebook, and X posts through Buffer for the published Adoric alternative article.",
+          date: "2026-07-22T14:31:21+03:00",
+          url: "https://www.poptin.com/blog/adoric-alternative/",
+          assetLabel: "View shared article"
+        },
+        {
+          type: "past",
           title: "Updated Buffer handoff timing",
           detail: "Changed social delivery to exact custom schedules: first post about five minutes after SEO handoff, with independent random 5-10 minute gaps between later channels.",
           date: "2026-07-22T13:08:00+03:00",
@@ -204,6 +234,16 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published email preference system guide",
+          detail: "Published the Academy guide about reducing unsubscribes with a subscriber-controlled email preference system.",
+          date: "2026-08-02T09:00:00+03:00",
+          url: "https://www.poptin.com/academy/guides/reduce-unsubscribes-by-building-an-email-preference-system-that-subscribers-can-trust/",
+          assetLabel: "View Academy guide"
+        },
         {
           type: "past",
           title: "Verified Academy publishing credentials",
