@@ -4,7 +4,7 @@
     poptin: poptinData,
     chatway: {
       source: "poptins/chatway-agents",
-      lastUpdated: "2026-07-23T12:00:00+03:00",
+      lastUpdated: "2026-08-02T11:37:35+03:00",
       agents: [
         {
           id: "seo",
@@ -143,6 +143,17 @@
           cadence: "Daily at 06:15 UTC + on demand",
           priority: "Medium",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Conversation Triage",
+          detail: "The daily Chatway glossary workflow published and verified Conversation Triage successfully.",
+          date: "2026-08-02T08:37:35Z",
+          url: "https://chatway.app/glossary/conversation-triage",
+          assetLabel: "View glossary term",
+          githubRunId: 30740129547
+        },
         {
           type: "past",
           title: "Published Customer Effort Score (CES)",
