@@ -141,7 +141,7 @@ for (const source of SOURCES) {
 }
 
 if (successfulSources === 0) {
-  throw new Error("All WordPress publication sources were unavailable");
+  console.error("::warning title=WordPress sync deferred::All WordPress sources were temporarily unavailable; event payloads and the next scheduled run will reconcile the calendar.");
 }
 
 let socialPosts = [];
