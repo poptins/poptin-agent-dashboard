@@ -32,7 +32,7 @@
 .calendar-outcome { display: block; padding: 7px 8px; border-left: 3px solid var(--green); border-radius: 7px; color: var(--ink); background: var(--green-soft); text-decoration: none; font-size: 14px; line-height: 1.35; }
 .calendar-outcome.published { border-left-color: #16835f; color: #0f5138; background: #d8f3e7; box-shadow: inset 0 0 0 1px rgba(22, 131, 95, .12); }
 .calendar-outcome.published .calendar-product, .calendar-outcome.published .calendar-agent { color: #16835f; }
-.calendar-outcome.published .calendar-task-title { color: #0b422e; font-weight: 700; }
+.calendar-outcome.published .calendar-task-title { color: #0b422e; }
 .calendar-outcome[href]:hover { text-decoration: underline; text-underline-offset: 2px; }
 .calendar-outcome.scheduled { border-left-color: var(--amber); background: var(--amber-soft); }
 .calendar-outcome.delayed { border-left-color: #d97706; background: #fff3d6; }
