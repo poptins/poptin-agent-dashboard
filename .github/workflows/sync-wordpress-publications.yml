@@ -4,7 +4,7 @@ on:
   # Publishing workflows dispatch this event immediately after WordPress confirms
   # status=publish. The daily run is only a recovery net for missed events.
   repository_dispatch:
-    types: [wordpress_post_published]
+    types: [wordpress_post_published, social_posts_shared]
   schedule:
     - cron: "17 3 * * *"
   workflow_dispatch:
