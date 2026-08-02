@@ -226,7 +226,12 @@
   }
 
   toggleButton.addEventListener("click", () => {
-    setCalendarOpen(!calendarOpen);
+    const openingCalendar = !calendarOpen;
+    if (openingCalendar) {
+      const now = new Date();
+      visibleMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    }
+    setCalendarOpen(openingCalendar);
     saveDashboardState();
   });
   productFilter.addEventListener("change", () => {
