@@ -155,6 +155,7 @@ window.AGENT_DATA = {
           status: "Published",
           taskType: "social-publication",
           title: "Shared mobile popup best-practices article on three channels",
+          socialTaskId: "wp:17569",
           detail: "Scheduled verified LinkedIn, Facebook, and X posts through Buffer for the published mobile popup best-practices article.",
           date: "2026-07-31T03:16:03+03:00",
           url: "https://www.poptin.com/blog/mobile-popup-best-practices/",
@@ -165,6 +166,7 @@ window.AGENT_DATA = {
           status: "Published",
           taskType: "social-publication",
           title: "Shared progressive-profiling article on three channels",
+          socialTaskId: "wp:17563",
           detail: "Scheduled verified LinkedIn, Facebook, and X posts through Buffer for the published progressive-profiling article.",
           date: "2026-07-26T03:14:45+03:00",
           url: "https://www.poptin.com/blog/progressive-profiling-popups/",
@@ -175,6 +177,7 @@ window.AGENT_DATA = {
           status: "Published",
           taskType: "social-publication",
           title: "Shared Adoric alternative article on three channels",
+          socialTaskId: "wp:17546",
           detail: "Scheduled verified LinkedIn, Facebook, and X posts through Buffer for the published Adoric alternative article.",
           date: "2026-07-22T14:31:21+03:00",
           url: "https://www.poptin.com/blog/adoric-alternative/",
@@ -191,6 +194,7 @@ window.AGENT_DATA = {
         {
           type: "past",
           title: "Shared welcome-email article on three channels",
+          socialTaskId: "wp:17534",
           detail: "Scheduled distinct LinkedIn, Facebook, and X posts through Buffer. The final public post URLs were not saved by the automation.",
           date: "2026-07-19T13:57:34+03:00",
           assetStatus: "Published social URLs not recorded"
@@ -206,6 +210,7 @@ window.AGENT_DATA = {
         {
           type: "past",
           title: "Shared holiday campaign article",
+          socialTaskId: "wp:17522",
           detail: "Scheduled channel-specific posts to LinkedIn, Facebook, and X through Buffer. The final public post URLs were not saved by the automation.",
           date: "2026-07-18T18:27:18+03:00",
           assetStatus: "Published social URLs not recorded"
