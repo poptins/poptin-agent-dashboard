@@ -242,6 +242,53 @@
       ,
         ]
     }, 
+    chaty: {
+      source: null,
+      lastUpdated: "2026-08-04T10:05:00+03:00",
+      agents: [
+        {
+          id: "seo",
+          name: "SEO Agent",
+          role: "SEO/GEO/AEO research and blog publishing",
+          initials: "SE",
+          status: "standby",
+          color: "#fff1d8",
+          ink: "#7a4b00",
+          instructions: [
+            "Research useful, non-duplicate Chaty topics with clear SEO, GEO, and AEO potential.",
+            "Write accurate long-form articles for chaty.app using trustworthy non-competitor sources.",
+            "Use Chaty-specific product claims, positioning, internal links, categories, tags, metadata, and visual standards.",
+            "Validate factual accuracy, duplicate risk, links, images, structure, and WordPress rendering before publishing.",
+            "Publish only after the Chaty repository, WordPress credentials, cadence, and quality rules are configured."
+          ],
+          owner: "Chaty Content & SEO",
+          cadence: "Setup required",
+          priority: "High",
+          activities: []
+        },
+        {
+          id: "update-blog",
+          name: "Update Blog Agent",
+          role: "Old article refresh and optimization",
+          initials: "UP",
+          status: "standby",
+          color: "#e7ecff",
+          ink: "#384c96",
+          instructions: [
+            "Select an eligible old Chaty article that has not already been refreshed in the current cycle.",
+            "Preserve its post ID, slug, URL, category, tags, and featured image.",
+            "Refresh outdated information and improve SEO, answer-first structure, headings, grammar, and internal links.",
+            "Follow Chaty's existing article design and formatting without adding editorial notes or placeholders.",
+            "Validate the complete rendered article and all links before and after publishing.",
+            "Run only after the Chaty repository, WordPress credentials, cadence, and update-history state are configured."
+          ],
+          owner: "Chaty Content & SEO",
+          cadence: "Setup required",
+          priority: "High",
+          activities: []
+        }
+      ]
+    },
     prospero: {
       source: "poptins/prospero-agents",
       lastUpdated: "2026-08-03T14:19:16+03:00",
