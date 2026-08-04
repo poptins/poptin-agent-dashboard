@@ -344,12 +344,9 @@ function loadLatestData() {
 
 async function mergeRecentGithubActivity() {
   const token = sessionStorage.getItem("optimizationGithubToken");
-  if (!token || !data?.source) return { loaded: false, reason: "no-token" };
-  const sources = [...new Set(
-    Object.values(window.PRODUCT_AGENT_DATA || {})
-      .map(product => product?.source)
-      .filter(Boolean)
-  )];
+  if (!token) return { loaded: false, reason: "no-token" };
+  const products = Object.values(window.PRODUCT_AGENT_DATA || {}).filter(product => product?.source);
+  const sources = [...new Set(products.map(product => product.source))];
   const headers = {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"};
   const runGroups = await Promise.all(sources.map(async source => {
     const response = await fetch(`https://api.github.com/repos/${source}/actions/runs?per_page=100`, {headers});
@@ -361,47 +358,54 @@ async function mergeRecentGithubActivity() {
   }));
   window.GITHUB_WORKFLOW_RUNS_BY_SOURCE = Object.fromEntries(runGroups);
   const cutoff = Date.now() - 14 * 24 * 60 * 60 * 1000;
-  const runs = window.GITHUB_WORKFLOW_RUNS_BY_SOURCE[data.source] || [];
-  const seen = new Set(allActivities().map(item => item.githubRunId).filter(Boolean));
-  const agentForRun = run => {
-    const name = `${run.name || ""} ${run.display_title || ""}`.toLowerCase();
-    const mappings = [
-      ["update-blog", ["update blog", "old article"]],
-      ["alternatives", ["alternative", "competitor"]],
-      ["glossary", ["glossary"]],
-      ["optimization", ["optimization", "search console", "opportunity"]],
-      ["social", ["social", "buffer"]],
-      ["academy", ["academy", "academic"]],
-      ["quora", ["quora"]],
-      ["seo", ["seo", "blog publishing"]]
-    ];
-    const match = mappings.find(([, terms]) => terms.some(term => name.includes(term)));
-    return match ? data.agents.find(agent => agent.id === match[0]) : null;
-  };
+  const mappings = [
+    ["update-blog", ["update blog", "old article"]],
+    ["alternatives", ["alternative", "competitor"]],
+    ["glossary", ["glossary"]],
+    ["optimization", ["optimization", "search console", "opportunity"]],
+    ["social", ["social", "buffer"]],
+    ["academy", ["academy", "academic"]],
+    ["quora", ["quora"]],
+    ["seo", ["seo", "blog publishing"]]
+  ];
   let added = 0;
-  runs
-    .filter(run => ["success", "failure"].includes(run.conclusion))
-    .filter(run => new Date(run.created_at).getTime() >= cutoff && !seen.has(run.id))
-    .slice(0, 30)
-    .reverse()
-    .forEach(run => {
-      const agent = agentForRun(run);
-      if (!agent) return;
-      const failed = run.conclusion === "failure";
-      agent.activities.unshift({
-        type: failed ? "failed" : "past",
-        title: `${failed ? "Failed" : "Completed"}: ${run.name || run.display_title || "GitHub Actions task"}`,
-        detail: failed
-          ? `${run.display_title || run.name || "Workflow run"} did not complete successfully. Open GitHub for the failed step and logs.`
-          : `${run.display_title || run.name || "Workflow run"} completed successfully.`,
-        date: run.created_at,
-        url: run.html_url,
-        assetLabel: failed ? "Open failed workflow run" : "Open successful workflow run",
-        githubRunId: run.id
+
+  products.forEach(product => {
+    const runs = window.GITHUB_WORKFLOW_RUNS_BY_SOURCE[product.source] || [];
+    const seen = new Set(allActivities(product).map(item => item.githubRunId).filter(Boolean));
+    const agentForRun = run => {
+      const name = `${run.name || ""} ${run.display_title || ""}`.toLowerCase();
+      const match = mappings.find(([, terms]) => terms.some(term => name.includes(term)));
+      return match ? product.agents.find(agent => agent.id === match[0]) : null;
+    };
+
+    runs
+      .filter(run => ["success", "failure"].includes(run.conclusion))
+      .filter(run => new Date(run.created_at).getTime() >= cutoff && !seen.has(run.id))
+      .slice(0, 30)
+      .reverse()
+      .forEach(run => {
+        const agent = agentForRun(run);
+        if (!agent) return;
+        const failed = run.conclusion === "failure";
+        agent.activities.unshift({
+          type: failed ? "failed" : "past",
+          status: failed ? "Failed" : "Completed",
+          taskType: agent.id === "update-blog" ? "article-update" : "workflow-run",
+          title: `${failed ? "Failed" : "Completed"}: ${run.name || run.display_title || "GitHub Actions task"}`,
+          detail: failed
+            ? `${run.display_title || run.name || "Workflow run"} did not complete successfully. Open GitHub for the failed step and logs.`
+            : `${run.display_title || run.name || "Workflow run"} completed successfully.`,
+          date: run.created_at,
+          url: run.html_url,
+          assetLabel: failed ? "Open failed workflow run" : "Open successful workflow run",
+          githubRunId: run.id
+        });
+        seen.add(run.id);
+        added += 1;
       });
-      seen.add(run.id);
-      added += 1;
-    });
+  });
+
   document.dispatchEvent(new CustomEvent("marketingActivityUpdated", {detail: {added, reconciled: true}}));
   return { loaded: true, added };
 }
