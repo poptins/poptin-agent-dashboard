@@ -37,6 +37,7 @@
       signal.includes("view published article") ||
       signal.includes("view updated article");
     if (!publicationSignal) return false;
+    if (activity.taskType === "article-update") return true;
     return !/github\.com/i.test(activity.url || "");
   }
 
