@@ -264,7 +264,19 @@
           owner: "Chaty Content & SEO",
           cadence: "Every 4-5 days + on demand",
           priority: "High",
-          activities: [{
+          activities: [
+            {
+              type: "past",
+              status: "Published",
+              taskType: "article-publication",
+              title: "Published Click-to-Chat: Turn Website Visitors Into Leads",
+              detail: "Published the first Chaty SEO article with the Website category, five relevant tags, a branded cover, three inline images, verified links, Summary, key takeaways, and FAQs.",
+              date: "2026-08-04T11:49:07+03:00",
+              url: "https://chaty.app/blog/click-to-chat-website-engagement-qualified-leads/",
+              assetLabel: "View published article",
+              githubRunId: 30893443540
+            },
+            {
             type: "scheduled",
             title: "Publish the next Chaty SEO article",
             detail: "Create and publish the next original Chaty SEO article after all content, link, image, and rendering checks pass.",
