@@ -244,7 +244,7 @@
     }, 
     prospero: {
       source: "poptins/prospero-agents",
-      lastUpdated: "2026-08-03T16:58:00+03:00",
+      lastUpdated: "2026-08-03T14:19:16+03:00",
       agents: [
         {
           id: "seo",
@@ -325,7 +325,7 @@
               taskType: "article-update",
               title: "Updated Looking to Hire Sales Reps? Here Are 12 Questions You Should Ask",
               detail: "The Prospero Update Blog Agent refreshed the existing article, preserved its original slug and URL, and passed the post-publish rendered-link audit.",
-              date: "2026-08-03T16:58:00+03:00",
+              date: "2026-08-03T14:19:16+03:00",
               url: "https://goprospero.com/blog/looking-to-hire-sales-reps-here-are-12-questions-you-should-ask/",
               assetLabel: "View updated article",
               githubRunId: 30805816065
