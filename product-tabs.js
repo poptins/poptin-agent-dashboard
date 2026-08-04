@@ -243,7 +243,7 @@
         ]
     }, 
     chaty: {
-      source: null,
+      source: "poptins/chaty-agents",
       lastUpdated: "2026-08-04T10:05:00+03:00",
       agents: [
         {
