@@ -26,12 +26,16 @@
       activity.status === "Published" ||
       activity.taskType === "publication" ||
       activity.taskType === "social-publication" ||
+      activity.status === "Updated" ||
+      activity.taskType === "article-update" ||
       signal.includes("published") ||
+      signal.includes("updated") ||
       signal.startsWith("shared ") ||
       signal.includes("view blog post") ||
       signal.includes("view academy guide") ||
       signal.includes("view glossary term") ||
-      signal.includes("view published article");
+      signal.includes("view published article") ||
+      signal.includes("view updated article");
     if (!publicationSignal) return false;
     return !/github\.com/i.test(activity.url || "");
   }
@@ -94,13 +98,14 @@
     const running = item.calendarType === "running";
     const failed = item.calendarType === "failed";
     const itemClass = failed ? "failed" : running ? "running" : queued ? "queued" : awaiting ? "awaiting" : delayed ? "delayed" : scheduled ? "scheduled" : "published";
-    const itemLabel = failed ? "! Failed" : running ? "● Running" : queued ? "◌ Queued" : awaiting ? "◌ Awaiting status" : delayed ? "◷ Delayed" : scheduled ? "◷ Scheduled" : "✓ Published";
+    const completedLabel = item.taskType === "article-update" || item.status === "Updated" ? "✓ Updated" : "✓ Published";
+    const itemLabel = failed ? "! Failed" : running ? "● Running" : queued ? "◌ Queued" : awaiting ? "◌ Awaiting status" : delayed ? "◷ Delayed" : scheduled ? "◷ Scheduled" : completedLabel;
     const taskTime = new Intl.DateTimeFormat("en-US", {hour: "numeric", minute: "2-digit"}).format(item.calendarDate);
     const tag = item.url ? "a" : "div";
     const linkAttributes = item.url
       ? ` href="${escapeHtml(item.url)}" target="_blank" rel="noopener"`
       : "";
-    const cleanTitle = String(item.title || "").replace(/^Published\s+/i, "");
+    const cleanTitle = String(item.title || "").replace(/^(?:Published|Updated)\s+/i, "");
     return `
       <${tag} class="calendar-outcome ${itemClass}" data-product="${escapeHtml(item.productId)}"${linkAttributes}>
         <span class="calendar-product">${itemLabel} · ${escapeHtml(productNames[item.productId] || item.productId)} · ${escapeHtml(taskTime)}</span>
