@@ -264,7 +264,15 @@
           owner: "Chaty Content & SEO",
           cadence: "Every 4-5 days + on demand",
           priority: "High",
-          activities: []
+          activities: [{
+            type: "scheduled",
+            title: "Publish the next Chaty SEO article",
+            detail: "Create and publish the next original Chaty SEO article after all content, link, image, and rendering checks pass.",
+            date: "2026-08-07T09:15:00+03:00",
+            schedule: {frequency: "monthly-days", days: [2, 7, 12, 17, 22, 27], hourUtc: 6, minuteUtc: 15},
+            url: "https://github.com/poptins/chaty-agents/actions/workflows/seo-agent.yml",
+            assetLabel: "Open SEO workflow"
+          }]
         },
         {
           id: "update-blog",
@@ -285,7 +293,15 @@
           owner: "Chaty Content & SEO",
           cadence: "4-6 articles monthly on spaced days",
           priority: "High",
-          activities: []
+          activities: [{
+            type: "scheduled",
+            title: "Refresh the next eligible old Chaty article",
+            detail: "Update one old Chaty article on the next selected monthly slot while preserving its exact URL and featured image.",
+            date: "2026-08-08T09:40:00+03:00",
+            schedule: {frequency: "monthly-days", days: [3, 8, 13, 18, 23, 28], hourUtc: 6, minuteUtc: 40},
+            url: "https://github.com/poptins/chaty-agents/actions/workflows/update-blog-agent.yml",
+            assetLabel: "Open Update Blog workflow"
+          }]
         }
       ]
     },
