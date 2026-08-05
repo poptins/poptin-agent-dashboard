@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-02T12:40:00+03:00",
+  lastUpdated: "2026-08-05T06:02:21.181Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,58 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Browse Abandonment Popups and Emails: How to Recover Shoppers Before They Add to Cart” as a Poptin article.",
+          date: "2026-08-04T06:00:00Z",
+          url: "https://www.poptin.com/blog/browse-abandonment-popups-and-emails/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17585,
+          publicationTaskId: "poptin-wordpress-17585",
+          publicationSource: "poptin"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “How to Understand Customer Behavior: 8 Practical Strategies” as a Chatway article.",
+          date: "2026-08-03T10:26:42Z",
+          url: "https://chatway.app/blog/top-strategies-for-learning-about-your-customers-behaviour",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 167,
+          publicationTaskId: "chatway-wordpress-167",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “Live Chat Customer Support Productivity: A Practical System for Faster, Better Conversations” as a Chatway article.",
+          date: "2026-08-03T08:20:10Z",
+          url: "https://chatway.app/blog/live-chat-customer-support-productivity-system",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 5748,
+          publicationTaskId: "chatway-wordpress-5748",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Top 3 CS-Cart Popup Apps to Grow Leads and Sales [Free Options]” as a Poptin article.",
+          date: "2026-08-03T07:10:01Z",
+          url: "https://www.poptin.com/blog/cs-cart-popup-apps-free/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 3988,
+          publicationTaskId: "poptin-wordpress-3988",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
