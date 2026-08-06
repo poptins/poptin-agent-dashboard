@@ -131,8 +131,12 @@ h3 { font-size: 18px; }
 .timeline-icon { z-index: 1; width: 32px; height: 32px; margin-left: 9px; display: grid; place-items: center; border-radius: 50%; background: var(--green-soft); color: var(--green); border: 4px solid var(--surface); font-size: 12px; font-weight: 800; }
 .timeline-icon.scheduled { background: var(--amber-soft); color: var(--amber); }
 .timeline-icon.failed { background: #f8e2e2; color: #b33a3a; }
-.activity-card h3 { font-size: 14px; margin-bottom: 4px; }
-.activity-card p { color: var(--muted); font-size: 12px; margin: 0; }
+.activity-card > div:nth-child(2) { min-width: 0; }
+.activity-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 10px; margin-bottom: 8px; }
+.activity-heading h3 { flex: 0 1 auto; margin: 0; font-size: 14px; line-height: 1.35; }
+.activity-heading .property-pill { flex: 0 0 auto; }
+.activity-card p { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 0; overflow-wrap: anywhere; }
+.activity-card .asset-link { margin-top: 12px; }
 .activity-date { text-align: right; }
 .activity-date strong, .activity-date span { display: block; }
 .activity-date strong { font-size: 12px; }
