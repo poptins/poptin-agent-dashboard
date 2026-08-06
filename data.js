@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-05T06:02:21.181Z",
+  lastUpdated: "2026-08-06T06:05:52.474Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Poper Alternative: Poptin vs Poper for Popups, Forms, and Lead Capture” as a Poptin article.",
+          date: "2026-08-05T08:01:25Z",
+          url: "https://www.poptin.com/blog/poper-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17623,
+          publicationTaskId: "poptin-wordpress-17623",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
