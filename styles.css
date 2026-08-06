@@ -132,9 +132,9 @@ h3 { font-size: 18px; }
 .timeline-icon.scheduled { background: var(--amber-soft); color: var(--amber); }
 .timeline-icon.failed { background: #f8e2e2; color: #b33a3a; }
 .activity-card > div:nth-child(2) { min-width: 0; }
-.activity-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 10px; margin-bottom: 8px; }
-.activity-heading h3 { flex: 0 1 auto; margin: 0; font-size: 14px; line-height: 1.35; }
-.activity-heading .property-pill { flex: 0 0 auto; }
+.activity-heading { display: grid; justify-items: start; gap: 8px; margin-bottom: 12px; }
+.activity-heading h3 { margin: 0; font-size: 14px; line-height: 1.35; }
+.activity-heading .property-pill { margin: 0; }
 .activity-card p { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 0; overflow-wrap: anywhere; }
 .activity-card .asset-link { margin-top: 12px; }
 .activity-date { text-align: right; }
