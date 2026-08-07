@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-06T06:05:52.474Z",
+  lastUpdated: "2026-08-07T05:03:54.507Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “5 Checkout Conversion Leaks (and How to Fix Cart Abandonment with Smart On-Site Tools)” as a Poptin article.",
+          date: "2026-08-06T10:46:30Z",
+          url: "https://www.poptin.com/blog/5-checkout-conversion-leaks-and-how-to-fix-cart-abandonment-with-smart-on-site-tools/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17591,
+          publicationTaskId: "poptin-wordpress-17591",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
