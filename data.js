@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-07T05:03:54.507Z",
+  lastUpdated: "2026-08-08T04:29:38.579Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “14 Best Email Marketing Software to Consider in 2026” as a Poptin article.",
+          date: "2026-08-07T10:54:05Z",
+          url: "https://www.poptin.com/blog/best-email-marketing-software/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 14851,
+          publicationTaskId: "poptin-wordpress-14851",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
