@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-08T04:29:38.579Z",
+  lastUpdated: "2026-08-09T04:38:08.850Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,32 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “Live Chat for Small Businesses: Should You Outsource or Hire In-House?” as a Chatway article.",
+          date: "2026-08-08T07:34:22Z",
+          url: "https://chatway.app/blog/live-chat-for-small-businesses-outsource-or-hire-in-house",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 341,
+          publicationTaskId: "chatway-wordpress-341",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “How to Build Your Email List with Mailvio Popups” as a Poptin article.",
+          date: "2026-08-08T04:25:13Z",
+          url: "https://www.poptin.com/blog/build-email-list-mailvio-popups/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 7179,
+          publicationTaskId: "poptin-wordpress-7179",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
