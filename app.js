@@ -378,9 +378,20 @@ async function mergeRecentGithubActivity() {
       const match = mappings.find(([, terms]) => terms.some(term => name.includes(term)));
       return match ? product.agents.find(agent => agent.id === match[0]) : null;
     };
+    const workflowKey = run => String(run.workflow_id || run.path || run.name || "").toLowerCase();
+    const latestSuccessByWorkflow = new Map();
+    runs
+      .filter(run => run.conclusion === "success")
+      .forEach(run => {
+        const key = workflowKey(run);
+        const completedAt = new Date(run.updated_at || run.created_at).getTime();
+        latestSuccessByWorkflow.set(key, Math.max(latestSuccessByWorkflow.get(key) || 0, completedAt));
+      });
 
     runs
       .filter(run => ["success", "failure"].includes(run.conclusion))
+      .filter(run => run.conclusion !== "failure" ||
+        (latestSuccessByWorkflow.get(workflowKey(run)) || 0) <= new Date(run.updated_at || run.created_at).getTime())
       .filter(run => new Date(run.created_at).getTime() >= cutoff && !seen.has(run.id))
       .slice(0, 30)
       .reverse()
