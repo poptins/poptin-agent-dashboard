@@ -194,8 +194,9 @@ insertActivities("social", socialAdditions.map(item => [
   `          title: ${JSON.stringify(`Shared ${item.title} on social media`)},`,
   `          detail: ${JSON.stringify(`Scheduled verified posts through Buffer for ${(item.channels || []).map(channel => channel.name || channel).join(", ") || "the configured social channels"}.`)},`,
   `          date: ${JSON.stringify(item.sharedAt)},`,
-  `          url: ${JSON.stringify(item.url || "")},`,
-  '          assetLabel: "View shared article",',
+  `          url: ${JSON.stringify(item.socialPostsUrl || item.url || "")},`,
+  `          articleUrl: ${JSON.stringify(item.url || "")},`,
+  '          assetLabel: "View social posts in Buffer",',
   `          socialTaskId: ${JSON.stringify(item.id)}`,
   "        },"
 ].join("\n")));
