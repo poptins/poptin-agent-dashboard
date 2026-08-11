@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-09T04:38:08.850Z",
+  lastUpdated: "2026-08-11T04:41:24.764Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,32 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “5 Constant Contact Alternatives: Updated 2026” as a Poptin article.",
+          date: "2026-08-10T15:23:05Z",
+          url: "https://www.poptin.com/blog/4-constant-contact-alternatives-lowest-rates/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 2570,
+          publicationTaskId: "poptin-wordpress-2570",
+          publicationSource: "poptin"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Coupon Popup Strategy for Ecommerce: Grow Your Email List Without Discounting Away Your Margins” as a Poptin article.",
+          date: "2026-08-10T06:00:00Z",
+          url: "https://www.poptin.com/blog/coupon-popup-strategy-ecommerce/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17692,
+          publicationTaskId: "poptin-wordpress-17692",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
@@ -380,6 +406,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Capture More Qualified Leads With a Content-Gated Email Funnel” as a Poptin Academy guide.",
+          date: "2026-08-09T06:39:30Z",
+          url: "https://www.poptin.com/academy/guides/capture-more-qualified-leads-with-a-content-gated-email-funnel/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461338,
+          publicationTaskId: "poptin academy-wordpress-461338",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
