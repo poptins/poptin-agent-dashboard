@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-11T04:41:24.764Z",
+  lastUpdated: "2026-08-14T05:04:24.851Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,32 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “6 Live Chat Statistics and Trends Businesses Should Know in 2026” as a Chatway article.",
+          date: "2026-08-13T08:03:50Z",
+          url: "https://chatway.app/blog/6-statistics-trends-about-live-chat-you-should-know",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 348,
+          publicationTaskId: "chatway-wordpress-348",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Create Engaging Cafe24 Popups for Your Online Store” as a Poptin article.",
+          date: "2026-08-13T04:57:58Z",
+          url: "https://www.poptin.com/blog/create-engaging-pop-ups-for-cafe24-store/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 8062,
+          publicationTaskId: "poptin-wordpress-8062",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
