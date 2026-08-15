@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-14T05:04:24.851Z",
+  lastUpdated: "2026-08-15T03:55:22.861Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Back-in-Stock Popups and Emails: How to Turn Sold-Out Products Into Waitlists, Revenue, and Better Segments” as a Poptin article.",
+          date: "2026-08-14T06:00:00Z",
+          url: "https://www.poptin.com/blog/back-in-stock-email-popups-waitlists/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17744,
+          publicationTaskId: "poptin-wordpress-17744",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
