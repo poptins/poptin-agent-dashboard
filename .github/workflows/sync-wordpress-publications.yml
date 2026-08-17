@@ -2,11 +2,11 @@ name: Sync published WordPress posts
 
 on:
   # Publishing workflows dispatch this event immediately after WordPress confirms
-  # status=publish. The daily run is only a recovery net for missed events.
+  # status=publish. The hourly run is the recovery net for missed events.
   repository_dispatch:
     types: [wordpress_post_published, social_posts_shared]
   schedule:
-    - cron: "17 3 * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
