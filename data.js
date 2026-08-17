@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-15T03:55:22.861Z",
+  lastUpdated: "2026-08-17T04:04:11.455Z",
   agents: [
     {
       id: "seo",
@@ -445,6 +445,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Increase Lead Quality Without Sacrificing Signups: A Progressive Data-Capture Workflow” as a Poptin Academy guide.",
+          date: "2026-08-16T06:23:58Z",
+          url: "https://www.poptin.com/academy/guides/increase-lead-quality-without-sacrificing-signups-a-progressive-data-capture-workflow/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461347,
+          publicationTaskId: "poptin academy-wordpress-461347",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
