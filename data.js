@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-17T07:19:47.827Z",
+  lastUpdated: "2026-08-18T07:54:13.050Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “LiveAgent vs LiveChat: Features, Pricing, and Which Help Desk Is Best?” as a Chatway article.",
+          date: "2026-08-18T07:23:30Z",
+          url: "https://chatway.app/blog/liveagent-vs-livechat-comparison-features-functionality-pricing",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 359,
+          publicationTaskId: "chatway-wordpress-359",
+          publicationSource: "chatway"
+        },
         {
           type: "past",
           status: "Published",
