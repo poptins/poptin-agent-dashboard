@@ -460,6 +460,18 @@
           priority: "High",
           activities: [
         {
+          type: "past",
+          status: "Published",
+          taskType: "social-publication",
+          title: "Shared Reply.io vs SalesHandy vs Mailshake: Which Outreach Tool Is Best in 2026? on social media",
+          socialTaskId: "prospero:reply-io-vs-saleshandy-vs-mailshake",
+          detail: "Verified the Prospero article handoff across LinkedIn, Facebook, and X Buffer channels.",
+          date: "2026-07-22T12:39:00+03:00",
+          url: "https://publish.buffer.com/calendar/week",
+          articleUrl: "https://goprospero.com/blog/reply-io-vs-saleshandy-vs-mailshake/",
+          assetLabel: "View social posts in Buffer"
+        },
+        {
           type: "failed",
           title: "Prospero social handoff failed",
           detail: "An hourly social handoff did not complete successfully. Buffer regrouping and later verification restored the workflow.",
@@ -517,7 +529,18 @@
           id: "social", name: "Social Media Agent", role: "Buffer distribution", initials: "SM", status: "active",
           owner: "Premio Social & Brand", cadence: "Hourly at minute 17 + on demand", priority: "High",
           instructions: ["Monitor the latest confirmed published Premio article.","Create distinct and factual LinkedIn, Facebook, and X copy.","Include the article URL and use only verified Premio product claims.","Match the configured Premio Buffer channels and respect paused queues.","Check scheduled and sent posts per channel to prevent duplicate handoffs."],
-          activities: [{type:"scheduled",title:"Check for a newly published Premio article",detail:"Hand the latest article to Buffer only when it has not already been queued or sent.",date:"2026-07-27T13:17:00+03:00",schedule:{frequency:"hourly",minuteUtc:17},url:"https://github.com/poptins/premio-agents/actions/workflows/social-media-agent.yml",assetLabel:"Open Social workflow"}]
+          activities: [{
+            type: "past",
+            status: "Published",
+            taskType: "social-publication",
+            title: "Shared Live Chat Software for WordPress: How to Choose and Set It Up on social media",
+            socialTaskId: "premio:live-chat-software-for-wordpress",
+            detail: "Scheduled verified Premio posts through Buffer for LinkedIn, Facebook, and X.",
+            date: "2026-07-27T12:06:09+03:00",
+            url: "https://publish.buffer.com/calendar/week",
+            articleUrl: "https://premio.io/blog/live-chat-software-for-wordpress/",
+            assetLabel: "View social posts in Buffer"
+          },{type:"scheduled",title:"Check for a newly published Premio article",detail:"Hand the latest article to Buffer only when it has not already been queued or sent.",date:"2026-07-27T13:17:00+03:00",schedule:{frequency:"hourly",minuteUtc:17},url:"https://github.com/poptins/premio-agents/actions/workflows/social-media-agent.yml",assetLabel:"Open Social workflow"}]
         }
       ]
     }
