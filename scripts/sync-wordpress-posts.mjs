@@ -1,6 +1,8 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 const DATA_PATH = "data.js";
+const PRODUCT_DATA_PATH = "product-tabs.js";
+const SOCIAL_PRODUCTS = new Set(["poptin", "chatway", "prospero", "premio"]);
 const SYNC_START = new Date("2026-07-30T00:00:00Z");
 const SOURCES = [
   {
@@ -110,6 +112,7 @@ function formatActivity(post, source) {
 }
 
 let data = await readFile(DATA_PATH, "utf8");
+let productData = await readFile(PRODUCT_DATA_PATH, "utf8");
 const existingUrls = new Set(
   [...data.matchAll(/\burl:\s*["']([^"']+)["']/g)].map(match => normalizeUrl(match[1]))
 );
@@ -145,22 +148,26 @@ if (successfulSources === 0) {
 }
 
 let socialPosts = [];
+let eventProductId = "poptin";
 if (process.env.GITHUB_EVENT_PATH) {
   try {
     const event = JSON.parse(await readFile(process.env.GITHUB_EVENT_PATH, "utf8"));
     socialPosts = Array.isArray(event?.client_payload?.socialPosts) ? event.client_payload.socialPosts : [];
+    eventProductId = String(event?.client_payload?.productId || "poptin").toLowerCase();
   } catch (error) {
     console.error(`::warning title=Social payload unavailable::${error.message}`);
   }
 }
 
 const existingSocialIds = new Set(
-  [...data.matchAll(/socialTaskId:\s*["']([^"']+)["']/g)].map(match => match[1])
+  [...(`${data}\n${productData}`).matchAll(/socialTaskId:\s*["']([^"']+)["']/g)].map(match => match[1])
 );
 const socialAdditions = socialPosts.filter(item => {
   const id = String(item?.id || `${item?.url || ""}|${item?.sharedAt || ""}`);
-  if (!item?.title || !item?.sharedAt || existingSocialIds.has(id)) return false;
+  const productId = String(item?.productId || eventProductId).toLowerCase();
+  if (!SOCIAL_PRODUCTS.has(productId) || !item?.title || !item?.sharedAt || existingSocialIds.has(id)) return false;
   item.id = id;
+  item.productId = productId;
   existingSocialIds.add(id);
   return true;
 });
@@ -186,20 +193,44 @@ for (const agentId of new Set(additions.map(item => item.source.agentId))) {
   );
 }
 
-insertActivities("social", socialAdditions.map(item => [
-  "        {",
-  '          type: "past",',
-  '          status: "Published",',
-  '          taskType: "social-publication",',
-  `          title: ${JSON.stringify(`Shared ${item.title} on social media`)},`,
-  `          detail: ${JSON.stringify(`Scheduled verified posts through Buffer for ${(item.channels || []).map(channel => channel.name || channel).join(", ") || "the configured social channels"}.`)},`,
-  `          date: ${JSON.stringify(item.sharedAt)},`,
-  `          url: ${JSON.stringify(item.socialPostsUrl || item.url || "")},`,
-  `          articleUrl: ${JSON.stringify(item.url || "")},`,
-  '          assetLabel: "View social posts in Buffer",',
-  `          socialTaskId: ${JSON.stringify(item.id)}`,
-  "        },"
-].join("\n")));
+function formatSocialActivity(item) {
+  return [
+    "        {",
+    '          type: "past",',
+    '          status: "Published",',
+    '          taskType: "social-publication",',
+    `          title: ${JSON.stringify(`Shared ${item.title} on social media`)},`,
+    `          detail: ${JSON.stringify(`Scheduled verified posts through Buffer for ${(item.channels || []).map(channel => channel.name || channel).join(", ") || "the configured social channels"}.`)},`,
+    `          date: ${JSON.stringify(item.sharedAt)},`,
+    `          url: ${JSON.stringify(item.socialPostsUrl || item.url || "")},`,
+    `          articleUrl: ${JSON.stringify(item.url || "")},`,
+    '          assetLabel: "View social posts in Buffer",',
+    `          socialTaskId: ${JSON.stringify(item.id)}`,
+    "        },"
+  ].join("\n");
+}
+
+insertActivities("social", socialAdditions.filter(item => item.productId === "poptin").map(formatSocialActivity));
+
+function insertProductSocialActivities(productId, items) {
+  if (!items.length) return;
+  const productStart = productData.indexOf(`    ${productId}: {`);
+  if (productStart < 0) throw new Error(`${productId} product was not found in product-tabs.js`);
+  const nextProduct = productData.indexOf("\n    ", productStart + 5);
+  const productEnd = nextProduct < 0 ? productData.length : nextProduct;
+  const productBlock = productData.slice(productStart, productEnd);
+  const socialMatch = /\bid\s*:\s*["']social["']/.exec(productBlock);
+  if (!socialMatch) throw new Error(`${productId} social agent was not found in product-tabs.js`);
+  const socialStart = productStart + socialMatch.index;
+  const activitiesMatch = /\bactivities\s*:\s*\[/.exec(productData.slice(socialStart, productEnd));
+  if (!activitiesMatch) throw new Error(`${productId} social activities were not found in product-tabs.js`);
+  const insertAt = socialStart + activitiesMatch.index + activitiesMatch[0].length;
+  productData = `${productData.slice(0, insertAt)}\n${items.map(formatSocialActivity).join("\n")}${productData.slice(insertAt)}`;
+}
+
+for (const productId of ["chatway", "prospero", "premio"]) {
+  insertProductSocialActivities(productId, socialAdditions.filter(item => item.productId === productId));
+}
 
 if (additions.length === 0 && socialAdditions.length === 0) {
   console.log("Dashboard is already synchronized; no new publications found.");
@@ -212,5 +243,8 @@ data = data.replace(
 );
 
 await writeFile(DATA_PATH, data, "utf8");
+if (socialAdditions.some(item => item.productId !== "poptin")) {
+  await writeFile(PRODUCT_DATA_PATH, productData, "utf8");
+}
 console.log(`Added ${additions.length} WordPress publication(s) and ${socialAdditions.length} social publication(s) to the dashboard.`);
 for (const { post, source } of additions) console.log(`- ${source.name}: ${post.link}`);
