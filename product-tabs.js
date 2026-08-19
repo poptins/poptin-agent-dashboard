@@ -105,11 +105,15 @@
           activities: [
             {
               type: "past",
-              title: "Scheduled response-time guide on three channels",
+              status: "Published",
+              taskType: "social-publication",
+              title: "Shared Live Chat Response Time Guide on social media",
               detail: "Handed the article and its cover image to Chatway’s LinkedIn, Facebook, and X Buffer channels.",
               date: "2026-07-21T21:38:00+03:00",
-              url: "https://github.com/poptins/chatway-agents/issues/20",
-              assetLabel: "Open cover verification"
+              socialTaskId: "chatway:live-chat-response-time-guide",
+              url: "https://publish.buffer.com/calendar/week",
+              articleUrl: "https://chatway.app/blog/live-chat-response-time-guide",
+              assetLabel: "View social posts in Buffer"
             },
             {
               type: "past",
