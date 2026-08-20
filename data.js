@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-20T07:06:06.996Z",
+  lastUpdated: "2026-08-20T08:56:50.756Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “Chatway vs Re:amaze: Which Customer Support Platform Is Better for Ecommerce Teams?” as a Chatway article.",
+          date: "2026-08-20T08:23:06Z",
+          url: "https://chatway.app/blog/chatway-vs-reamaze-which-customer-support-platform-is-better",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 5849,
+          publicationTaskId: "chatway-wordpress-5849",
+          publicationSource: "chatway"
+        },
         {
           type: "past",
           status: "Published",
