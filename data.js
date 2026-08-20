@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-18T08:53:52.884Z",
+  lastUpdated: "2026-08-20T01:51:38.166Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Quiz Popups for Ecommerce: How to Grow Your Email List With Product Recommendations and Zero-Party Data” as a Poptin article.",
+          date: "2026-08-19T06:00:00Z",
+          url: "https://www.poptin.com/blog/quiz-popups-for-ecommerce/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17759,
+          publicationTaskId: "poptin-wordpress-17759",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
