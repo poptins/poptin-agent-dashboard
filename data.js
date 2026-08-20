@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-20T01:51:38.166Z",
+  lastUpdated: "2026-08-20T07:06:06.996Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Qualzz Alternative: Poptin vs Qualzz for Popups, Forms, and Lead Capture” as a Poptin article.",
+          date: "2026-08-20T06:33:25Z",
+          url: "https://www.poptin.com/blog/qualzz-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17770,
+          publicationTaskId: "poptin-wordpress-17770",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
