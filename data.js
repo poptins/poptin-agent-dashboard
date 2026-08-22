@@ -737,30 +737,6 @@ window.AGENT_DATA = {
       ]
     },
     {
-      id: "social-intent",
-      name: "Social Recommendation Intent Agent",
-      role: "Public social buying-intent discovery",
-      initials: "SI",
-      status: "testing",
-      color: "#e6edf8",
-      ink: "#31577f",
-      instructions: ["Find public X, LinkedIn, and Facebook posts where business users explicitly ask for email-marketing, popup, lead-capture, form, or combined-tool recommendations.","Use only directly linkable public posts; exclude private posts, closed groups, reposts, affiliate promotion, vendor self-promotion, and generic discussions.","Use the exact post date, reject signals older than 30 days, and prioritize the last 72 hours and 7 days.","Verify the author’s real business and use only an email publicly displayed on its official website.","Reject anonymous accounts, unverifiable businesses, contact forms without a visible email, guessed addresses, and third-party email databases.","Use at least two social platforms in a completed three-lead run and accept no more than two leads from one platform.","Deduplicate the email, business domain, and source URL against every outreach agent.","Create up to three personalized Gmail drafts using Ben’s official signature and no em dash; never send the initial outreach automatically."],
-      owner: "Partnerships & Growth",
-      cadence: "Manual validation only",
-      priority: "High",
-      activities: [
-        {
-          type: "past",
-          title: "Validate public social recommendation questions",
-          detail: "Strict dry run found no candidates that simultaneously passed the 30-day, buying-intent, business-identity, official-email, and deduplication gates. The agent remains manual-only.",
-          date: "2026-08-22T19:18:25Z",
-          url: "https://github.com/poptins/poptin-agents/actions/workflows/social-intent-agent.yml",
-          assetLabel: "Open social intent workflow"
-        }
-      ]
-    }
-  ,
-    {
           "id": "optimization",
           "name": "Optimization Agent",
           "role": "Search Console & approved site optimization",
