@@ -564,6 +564,7 @@
     "listicle-outreach",
     "listicle-followup",
     "affiliate-outreach",
+    "affiliate-followup",
     "chatway-glossary"
   ];
   const agentStyles = {
@@ -580,6 +581,7 @@
     "listicle-outreach": {color: "#efe7f7", ink: "#674181"},
     "listicle-followup": {color: "#f3e8fa", ink: "#6d3c86"},
     "affiliate-outreach": {color: "#f6ead7", ink: "#76501e"},
+    "affiliate-followup": {color: "#f2dfc2", ink: "#704615"},
     "chatway-glossary": {color: "#dcecff", ink: "#265a91"}
   };
   Object.values(productData).forEach(product => {
@@ -640,4 +642,3 @@
   });
   selectProduct(activeProduct in productData && activeProduct !== "all" ? activeProduct : "poptin");
 })();
-
