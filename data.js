@@ -984,7 +984,30 @@ window.AGENT_DATA = {
           assetLabel: "Open affiliate outreach workflow"
         }
       ]
+    },
+    {
+      id: "affiliate-followup",
+      name: "Affiliate Follow-up Agent",
+      role: "Affiliate partnership follow-ups",
+      initials: "SF",
+      status: "active",
+      color: "#f2dfc2",
+      ink: "#704615",
+      instructions: ["Check sent affiliate partnership emails once per day.","Send a detailed first follow-up after at least 72 hours.","If there is still no reply, send one shorter final follow-up after another 72 hours.","Stop the sequence after any affiliate reply or manual outbound message.","Keep both messages in the original Gmail thread and greet the contact by first name.","Use Ben's official Gmail signature and never use an em dash."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 08:05 UTC",
+      priority: "High",
+      activities: [
+        {
+          type: "scheduled",
+          title: "Check eligible affiliate partnership follow-ups",
+          detail: "Run the two-step affiliate sequence at 72-hour intervals, stopping after any affiliate reply or manual outreach.",
+          date: "2026-08-23T08:05:00Z",
+          scheduleUtc: "08:05",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/affiliate-followup-agent.yml",
+          assetLabel: "Open affiliate follow-up workflow"
+        }
+      ]
     }
     ]
 };
-
