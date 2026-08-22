@@ -960,6 +960,30 @@ window.AGENT_DATA = {
           assetLabel: "Open listicle follow-up workflow"
         }
       ]
+    },
+    {
+      id: "affiliate-outreach",
+      name: "Software Affiliate Agent",
+      role: "Software and marketing affiliate recruitment",
+      initials: "SA",
+      status: "active",
+      color: "#f6ead7",
+      ink: "#76501e",
+      instructions: ["Find active software or marketing affiliate creators with established blogs, newsletters, video, podcast, or social channels.","Require direct evidence that they already share third-party SaaS affiliate links.","Exclude agencies, editorial listicle publishers, directories, inactive channels, and Poptin competitors.","Use only a public contact email displayed on the creator's official site or channel.","Check both email and domain across all agency, listicle, and affiliate Gmail drafts and sent mail to prevent duplicate outreach.","Create five personalized Gmail drafts per day offering Poptin's official 25% lifetime monthly commission and 90-day cookie; never send automatically."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 07:40 UTC",
+      priority: "High",
+      activities: [
+        {
+          type: "scheduled",
+          title: "Prepare daily affiliate recruitment outreach",
+          detail: "Find five evidenced software or marketing affiliates who have not appeared in any other outreach list and create Gmail drafts for review.",
+          date: "2026-08-23T07:40:00Z",
+          scheduleUtc: "07:40",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/affiliate-outreach-agent.yml",
+          assetLabel: "Open affiliate outreach workflow"
+        }
+      ]
     }
     ]
 };
