@@ -1008,6 +1008,54 @@ window.AGENT_DATA = {
           assetLabel: "Open affiliate follow-up workflow"
         }
       ]
+    },
+    {
+      id: "ecommerce-cro",
+      name: "Ecommerce CRO Agent",
+      role: "Store-specific conversion reviews",
+      initials: "CR",
+      status: "active",
+      color: "#dfeeea",
+      ink: "#245d54",
+      instructions: ["Find five active independent ecommerce stores with a public business email.","Review each homepage and one live product page.","Write exactly three specific CRO recommendations based only on visible page evidence.","Capture the homepage and product page and embed both screenshots inline in the Gmail draft.","Check email and domain across all outreach drafts and sent mail to prevent duplicates.","Use Ben's official Gmail signature, never use an em dash, and create drafts only."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 08:25 UTC",
+      priority: "High",
+      activities: [
+        {
+          type: "scheduled",
+          title: "Prepare five ecommerce CRO reviews",
+          detail: "Review five stores and create personalized Gmail drafts with three recommendations and two inline screenshots.",
+          date: "2026-08-23T08:25:00Z",
+          scheduleUtc: "08:25",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/ecommerce-cro-agent.yml",
+          assetLabel: "Open ecommerce CRO workflow"
+        }
+      ]
+    },
+    {
+      id: "ecommerce-cro-followup",
+      name: "Ecommerce CRO Follow-up Agent",
+      role: "CRO review follow-ups",
+      initials: "CF",
+      status: "active",
+      color: "#d9e8e4",
+      ink: "#1f554c",
+      instructions: ["Check sent ecommerce CRO review emails once per day.","Send the first follow-up after at least 72 hours.","Send one shorter final follow-up after another 72 hours if there is still no reply.","Stop after any store reply or manual outbound message.","Keep both messages in the original Gmail thread.","Use Ben's official Gmail signature and never use an em dash."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 08:40 UTC",
+      priority: "High",
+      activities: [
+        {
+          type: "scheduled",
+          title: "Check eligible ecommerce CRO follow-ups",
+          detail: "Run the two-step threaded follow-up sequence at 72-hour intervals and stop after any reply or manual outreach.",
+          date: "2026-08-23T08:40:00Z",
+          scheduleUtc: "08:40",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/ecommerce-cro-followup-agent.yml",
+          assetLabel: "Open ecommerce CRO follow-up workflow"
+        }
+      ]
     }
     ]
 };

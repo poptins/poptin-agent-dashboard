@@ -565,6 +565,8 @@
     "listicle-followup",
     "affiliate-outreach",
     "affiliate-followup",
+    "ecommerce-cro",
+    "ecommerce-cro-followup",
     "chatway-glossary"
   ];
   const agentStyles = {
@@ -582,6 +584,8 @@
     "listicle-followup": {color: "#f3e8fa", ink: "#6d3c86"},
     "affiliate-outreach": {color: "#f6ead7", ink: "#76501e"},
     "affiliate-followup": {color: "#f2dfc2", ink: "#704615"},
+    "ecommerce-cro": {color: "#dfeeea", ink: "#245d54"},
+    "ecommerce-cro-followup": {color: "#d9e8e4", ink: "#1f554c"},
     "chatway-glossary": {color: "#dcecff", ink: "#265a91"}
   };
   Object.values(productData).forEach(product => {
