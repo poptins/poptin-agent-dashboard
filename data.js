@@ -914,6 +914,30 @@ window.AGENT_DATA = {
       ]
     },
     {
+      id: "agency-followup",
+      name: "Agency Follow-up Agent",
+      role: "Written interview follow-ups",
+      initials: "AF",
+      status: "active",
+      color: "#dcefe5",
+      ink: "#285f46",
+      instructions: ["Check sent agency interview invitations once per day.","Send a detailed first follow-up after at least 72 hours.","If there is still no reply, send one shorter final follow-up after another 72 hours.","Stop the sequence after any agency reply or manual outbound message.","Keep both messages in the original Gmail thread.","Mention the free written interview and Poptin social sharing, use Ben's official Gmail signature, and never use an em dash."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 07:05 UTC",
+      priority: "High",
+      activities: [
+        {
+          type: "scheduled",
+          title: "Check eligible agency interview follow-ups",
+          detail: "Run the two-step agency follow-up sequence at 72-hour intervals, stopping after any agency reply or manual outreach.",
+          date: "2026-08-23T07:05:00Z",
+          scheduleUtc: "07:05",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/agency-followup-agent.yml",
+          assetLabel: "Open agency follow-up workflow"
+        }
+      ]
+    },
+    {
       id: "listicle-followup",
       name: "Listicle Follow-up Agent",
       role: "Three-day placement follow-ups",
