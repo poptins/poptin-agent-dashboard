@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-22T13:35:00Z",
+  lastUpdated: "2026-08-22T19:00:00Z",
   agents: [
     {
       id: "seo",
@@ -685,6 +685,30 @@ window.AGENT_DATA = {
           scheduleUtc: "06:15",
           url: "https://github.com/poptins/poptin-agents/actions/workflows/glossary-poptin-agent.yml",
           assetLabel: "Open internal workflow"
+        }
+      ]
+    },
+    {
+      id: "buying-intent",
+      name: "Poptin Buying Intent Agent",
+      role: "Competitor-switching and active-buyer outreach",
+      initials: "BI",
+      status: "active",
+      color: "#e4e8f7",
+      ink: "#344d8a",
+      instructions: ["Monitor recent Wix App Market, Shopify App Store, and WordPress competitor reviews for popup and email-marketing switching intent.","Monitor public Reddit, Quora, LinkedIn, Indie Hackers, X, YouTube, forum, and community discussions for people actively seeking a replacement or relevant solution.","Accept only signals from the last 30 days with an intent score of at least 75 out of 100.","Connect every signal to a verified business and use only an email address publicly displayed on its official domain.","Reject anonymous users, unverifiable businesses, contact forms without a visible email, guessed addresses, and third-party email databases.","Deduplicate the email, business domain, and source URL against all Gmail drafts and sent mail across every outreach agent.","Create five personalized Gmail drafts using the specific pain point, Ben's official signature, and no em dash; never send automatically."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 09:00 UTC",
+      priority: "High",
+      activities: [
+        {
+          type: "scheduled",
+          title: "Find five high-intent Poptin prospects",
+          detail: "Score recent competitor-switching signals, verify each business and published email, and create five personalized Gmail drafts for review.",
+          date: "2026-08-23T09:00:00Z",
+          scheduleUtc: "09:00",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/buying-intent-agent.yml",
+          assetLabel: "Open buying intent workflow"
         }
       ]
     }
