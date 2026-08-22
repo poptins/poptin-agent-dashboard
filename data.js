@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-20T13:10:57.095Z",
+  lastUpdated: "2026-08-22T13:35:00Z",
   agents: [
     {
       id: "seo",
@@ -864,6 +864,55 @@ window.AGENT_DATA = {
                 "assetStatus": "Available after GitHub authentication"
             }
         ]
+    },
+    {
+      id: "partners-agencies",
+      name: "Partners & Agencies Agent",
+      role: "Agency partnerships & interview outreach",
+      initials: "PA",
+      status: "active",
+      color: "#e2f1e8",
+      ink: "#236044",
+      instructions: ["Research legitimate digital-marketing and ecommerce agencies.","Inspect each official website and verify the agency's current specialty.","Use only a contact email explicitly published on an official website page.","Personalize a free Poptin blog interview invitation using verified evidence.","Deduplicate agencies against existing Gmail drafts and sent mail.","Create five to ten Gmail drafts per day; never send email automatically."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 06:20 UTC",
+      priority: "High",
+      activities: [
+        {
+          type: "scheduled",
+          title: "Prepare daily agency interview outreach",
+          detail: "Research verified digital and ecommerce agencies and create seven personalized Gmail drafts for human review.",
+          date: "2026-08-22T06:20:00Z",
+          scheduleUtc: "06:20",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/partners-agencies-agent.yml",
+          assetLabel: "Open agency outreach workflow"
+        }
+      ]
+    },
+    {
+      id: "listicle-outreach",
+      name: "Listicle Outreach Agent",
+      role: "Email software editorial outreach",
+      initials: "LO",
+      status: "active",
+      color: "#efe7f7",
+      ink: "#674181",
+      instructions: ["Find live editorial listicles recommending email marketing software.","Verify that each article does not already include Poptin.","Use only a contact email explicitly published on the publisher's official site.","Include the exact listicle link and Poptin link in the approved outreach format.","Deduplicate by canonical article URL against Gmail.","Create four to five Gmail drafts per day; never send email automatically."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 06:50 UTC",
+      priority: "High",
+      activities: [
+        {
+          type: "scheduled",
+          title: "Prepare daily listicle outreach",
+          detail: "Find verified email-marketing software guides that omit Poptin and create five Gmail drafts for human review.",
+          date: "2026-08-22T06:50:00Z",
+          scheduleUtc: "06:50",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/listicle-outreach-agent.yml",
+          assetLabel: "Open listicle outreach workflow"
+        }
+      ]
     }
     ]
 };
+

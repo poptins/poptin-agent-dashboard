@@ -559,6 +559,8 @@
     "glossary",
     "optimization",
     "quora",
+    "partners-agencies",
+    "listicle-outreach",
     "chatway-glossary"
   ];
   const agentStyles = {
@@ -570,6 +572,8 @@
     glossary: {color: "#e9e2f2", ink: "#5d4378"},
     optimization: {color: "#dff0ee", ink: "#17645c"},
     quora: {color: "#f3e2dc", ink: "#7a3d2a"},
+    "partners-agencies": {color: "#e2f1e8", ink: "#236044"},
+    "listicle-outreach": {color: "#efe7f7", ink: "#674181"},
     "chatway-glossary": {color: "#dcecff", ink: "#265a91"}
   };
   Object.values(productData).forEach(product => {
@@ -630,3 +634,4 @@
   });
   selectProduct(activeProduct in productData && activeProduct !== "all" ? activeProduct : "poptin");
 })();
+
