@@ -560,6 +560,7 @@
     "optimization",
     "quora",
     "partners-agencies",
+    "agency-followup",
     "listicle-outreach",
     "listicle-followup",
     "chatway-glossary"
@@ -574,6 +575,7 @@
     optimization: {color: "#dff0ee", ink: "#17645c"},
     quora: {color: "#f3e2dc", ink: "#7a3d2a"},
     "partners-agencies": {color: "#e2f1e8", ink: "#236044"},
+    "agency-followup": {color: "#dcefe5", ink: "#285f46"},
     "listicle-outreach": {color: "#efe7f7", ink: "#674181"},
     "listicle-followup": {color: "#f3e8fa", ink: "#6d3c86"},
     "chatway-glossary": {color: "#dcecff", ink: "#265a91"}
