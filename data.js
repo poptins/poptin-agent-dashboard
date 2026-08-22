@@ -696,7 +696,7 @@ window.AGENT_DATA = {
       status: "active",
       color: "#e4e8f7",
       ink: "#344d8a",
-      instructions: ["Monitor recent Wix App Market, Shopify App Store, and WordPress competitor reviews for popup and email-marketing switching intent.","Monitor public Reddit, Quora, LinkedIn, Indie Hackers, X, YouTube, forum, and community discussions for people actively seeking a replacement or relevant solution.","Accept only signals from the last 30 days with an intent score of at least 75 out of 100.","Connect every signal to a verified business and use only an email address publicly displayed on its official domain.","Reject anonymous users, unverifiable businesses, contact forms without a visible email, guessed addresses, and third-party email databases.","Deduplicate the email, business domain, and source URL against all Gmail drafts and sent mail across every outreach agent.","Create five personalized Gmail drafts using the specific pain point, Ben's official signature, and no em dash; never send automatically."],
+      instructions: ["Monitor recent Wix App Market, Shopify App Store, and WordPress competitor reviews for popup and email-marketing switching intent.","Monitor public Reddit, Quora, LinkedIn, Indie Hackers, X, YouTube, forum, and community discussions for people actively seeking a replacement or relevant solution.","Use at least two source families in every completed multi-lead run and accept no more than two daily leads from any one family, so Shopify cannot dominate.","Accept only signals from the last 30 days with an intent score of at least 75 out of 100.","Connect every signal to a verified business and use only an email address publicly displayed on its official domain.","Reject anonymous users, unverifiable businesses, contact forms without a visible email, guessed addresses, and third-party email databases.","Deduplicate the email, business domain, and source URL against all Gmail drafts and sent mail across every outreach agent.","Create five personalized Gmail drafts using the specific pain point, Ben's official signature, and no em dash; never send automatically."],
       owner: "Partnerships & Growth",
       cadence: "Daily at 09:00 UTC",
       priority: "High",
@@ -709,6 +709,30 @@ window.AGENT_DATA = {
           scheduleUtc: "09:00",
           url: "https://github.com/poptins/poptin-agents/actions/workflows/buying-intent-agent.yml",
           assetLabel: "Open buying intent workflow"
+        }
+      ]
+    },
+    {
+      id: "buying-intent-followup",
+      name: "Buying Intent Follow-up Agent",
+      role: "High-intent prospect follow-ups",
+      initials: "BF",
+      status: "active",
+      color: "#dce2f5",
+      ink: "#30477f",
+      instructions: ["Check only sent emails created by the Buying Intent Agent.","Send the first follow-up after at least 72 hours without a reply or manual outbound message.","Send one shorter final follow-up after another 72 hours if there is still no response.","Stop immediately after any external reply, manual outbound message, or completed two-step sequence.","Keep both messages in the original Gmail thread.","Offer an extended Poptin trial, use Ben's official Gmail signature, and never use an em dash."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 09:20 UTC",
+      priority: "High",
+      activities: [
+        {
+          type: "scheduled",
+          title: "Check eligible Buying Intent follow-ups",
+          detail: "Run the two-step sequence at 72-hour intervals and stop after any prospect reply or manual outreach.",
+          date: "2026-08-23T09:20:00Z",
+          scheduleUtc: "09:20",
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/buying-intent-followup-agent.yml",
+          assetLabel: "Open Buying Intent follow-up workflow"
         }
       ]
     }
