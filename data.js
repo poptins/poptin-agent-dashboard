@@ -921,7 +921,7 @@ window.AGENT_DATA = {
       status: "active",
       color: "#f3e8fa",
       ink: "#6d3c86",
-      instructions: ["Check sent listicle placement emails once per day.","Wait at least 72 hours after the initial email was sent.","Skip any thread with an external reply or a later outbound message.","Send no more than one threaded follow-up per placement request.","Mention Poptin's 3,000+ independent-platform reviews and link the approved LinkedIn review summary.","Use Ben's official Gmail signature and never use an em dash."],
+      instructions: ["Check sent listicle placement emails once per day.","Send the detailed first follow-up after at least 72 hours.","If there is still no reply, send one shorter final follow-up after another 72 hours.","Stop the sequence after any external reply or manual outbound message.","Mention Poptin's 3,000+ independent-platform reviews and link the approved LinkedIn review summary in the first follow-up.","Use Ben's official Gmail signature and never use an em dash."],
       owner: "Partnerships & Growth",
       cadence: "Daily at 07:20 UTC",
       priority: "High",
@@ -929,7 +929,7 @@ window.AGENT_DATA = {
         {
           type: "scheduled",
           title: "Check eligible listicle follow-ups",
-          detail: "Send one threaded follow-up after 72 hours only when the publisher has not replied and no follow-up has already been sent.",
+          detail: "Run the two-step threaded sequence at 72-hour intervals, stopping after any publisher reply or manual outreach.",
           date: "2026-08-23T07:20:00Z",
           scheduleUtc: "07:20",
           url: "https://github.com/poptins/poptin-agents/actions/workflows/listicle-followup-agent.yml",
