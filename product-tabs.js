@@ -561,6 +561,7 @@
     "quora",
     "partners-agencies",
     "listicle-outreach",
+    "listicle-followup",
     "chatway-glossary"
   ];
   const agentStyles = {
@@ -574,6 +575,7 @@
     quora: {color: "#f3e2dc", ink: "#7a3d2a"},
     "partners-agencies": {color: "#e2f1e8", ink: "#236044"},
     "listicle-outreach": {color: "#efe7f7", ink: "#674181"},
+    "listicle-followup": {color: "#f3e8fa", ink: "#6d3c86"},
     "chatway-glossary": {color: "#dcecff", ink: "#265a91"}
   };
   Object.values(productData).forEach(product => {
