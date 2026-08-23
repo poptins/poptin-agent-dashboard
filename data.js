@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-23T07:01:23.722Z",
+  lastUpdated: "2026-08-23T07:47:11.175Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “10 Ways Live Chat Can Boost Your Online Sales” as a Chatway article.",
+          date: "2026-08-23T07:19:28Z",
+          url: "https://chatway.app/blog/10-ways-live-chat-can-boost-your-online-sales",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 368,
+          publicationTaskId: "chatway-wordpress-368",
+          publicationSource: "chatway"
+        },
         {
           type: "past",
           status: "Published",
