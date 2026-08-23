@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-22T19:00:00Z",
+  lastUpdated: "2026-08-23T07:01:23.722Z",
   agents: [
     {
       id: "seo",
@@ -559,6 +559,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Build a Healthier Email List With a Consent-to-Inbox Workflow” as a Poptin Academy guide.",
+          date: "2026-08-23T06:25:10Z",
+          url: "https://www.poptin.com/academy/guides/build-a-healthier-email-list-with-a-consent-to-inbox-workflow/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461360,
+          publicationTaskId: "poptin academy-wordpress-461360",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
