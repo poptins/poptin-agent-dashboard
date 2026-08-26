@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-26T07:08:53.557Z",
+  lastUpdated: "2026-08-26T07:59:25.945Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “Make Shopping Support Easier with Chatway’s New WooCommerce Order, Cart & AI Features” as a Chatway article.",
+          date: "2026-08-26T07:52:56Z",
+          url: "https://chatway.app/blog/make-shopping-support-easier-with-chatways-new-woocommerce-order-cart-ai-features",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 5833,
+          publicationTaskId: "chatway-wordpress-5833",
+          publicationSource: "chatway"
+        },
         {
           type: "past",
           status: "Published",
