@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-23T07:47:11.175Z",
+  lastUpdated: "2026-08-26T07:08:53.557Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “The Future of Ecommerce Growth: Ben Zettler on AI Discovery, Retention & Conversion” as a Poptin article.",
+          date: "2026-08-26T06:17:08Z",
+          url: "https://www.poptin.com/blog/the-future-of-ecommerce-growth-ben-zettler-on-ai-discovery-retention-conversion/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17785,
+          publicationTaskId: "poptin-wordpress-17785",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
