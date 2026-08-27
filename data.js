@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-26T07:59:25.945Z",
+  lastUpdated: "2026-08-27T09:48:16.531Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,32 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “From Leads to Loyal Customers: Lauren Moreno on Smarter Ecommerce Marketing” as a Poptin article.",
+          date: "2026-08-27T05:55:20Z",
+          url: "https://www.poptin.com/blog/from-leads-to-loyal-customers-lauren-moreno-on-smarter-ecommerce-marketing/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17795,
+          publicationTaskId: "poptin-wordpress-17795",
+          publicationSource: "poptin"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Pre-BFCM Email Preference Center Strategy: How to Segment Holiday Shoppers Before the Inbox Gets Crowded” as a Poptin article.",
+          date: "2026-08-26T06:00:00Z",
+          url: "https://www.poptin.com/blog/pre-bfcm-email-preference-center-strategy/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17783,
+          publicationTaskId: "poptin-wordpress-17783",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
