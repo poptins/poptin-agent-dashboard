@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-27T09:48:16.531Z",
+  lastUpdated: "2026-08-28T18:42:04.714Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Turning Traffic Into Revenue: Nick Gramatikov on CRO, Ecommerce & AI Discovery” as a Poptin article.",
+          date: "2026-08-28T07:41:52Z",
+          url: "https://www.poptin.com/blog/turning-traffic-into-revenue-nick-gramatikov-on-cro-ecommerce-ai-discovery/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17801,
+          publicationTaskId: "poptin-wordpress-17801",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
