@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-28T18:42:04.714Z",
+  lastUpdated: "2026-08-29T02:11:33.588Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “Chaty Pro for WordPress: Features, Pricing, and Is It Right for Your Site?” as a Chatway article.",
+          date: "2026-08-28T19:00:10Z",
+          url: "https://chatway.app/blog/chaty-pro-plan-for-wordpress",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 769,
+          publicationTaskId: "chatway-wordpress-769",
+          publicationSource: "chatway"
+        },
         {
           type: "past",
           status: "Published",
