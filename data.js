@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-29T02:11:33.588Z",
+  lastUpdated: "2026-08-30T12:53:25.745Z",
   agents: [
     {
       id: "seo",
@@ -650,6 +650,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Turn Website Intent Into Timely Emails With an Engagement-Based Nurture Workflow” as a Poptin Academy guide.",
+          date: "2026-08-30T10:55:47Z",
+          url: "https://www.poptin.com/academy/guides/turn-website-intent-into-timely-emails-with-an-engagement-based-nurture-workflow/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461382,
+          publicationTaskId: "poptin academy-wordpress-461382",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
