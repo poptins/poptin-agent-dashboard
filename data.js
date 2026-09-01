@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-08-30T12:53:25.745Z",
+  lastUpdated: "2026-09-01T05:08:05.672Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “SaaS Lead Capture Popups: 12 High-Converting Examples for Trials, Demos, and Email Signups” as a Poptin article.",
+          date: "2026-08-31T06:00:00Z",
+          url: "https://www.poptin.com/blog/saas-lead-capture-popups/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17811,
+          publicationTaskId: "poptin-wordpress-17811",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
