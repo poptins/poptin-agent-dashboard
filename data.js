@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-01T05:08:05.672Z",
+  lastUpdated: "2026-09-01T10:06:08.282Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,45 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “Live Chat Customer Support Workflow: A Practical Guide for Faster, Safer Service” as a Chatway article.",
+          date: "2026-09-01T09:39:56Z",
+          url: "https://chatway.app/blog/live-chat-customer-support-workflow",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 5956,
+          publicationTaskId: "chatway-wordpress-5956",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “What’s New in Poptin: Shopify Coupons, Smarter Automation Templates, and Faster Domain Setup” as a Poptin article.",
+          date: "2026-09-01T07:20:57Z",
+          url: "https://www.poptin.com/blog/poptin-product-updates-august-2026/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17820,
+          publicationTaskId: "poptin-wordpress-17820",
+          publicationSource: "poptin"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “Join the Chatway Affiliate Program & Earn 20% Recurring Revenue” as a Chatway article.",
+          date: "2026-09-01T06:18:08Z",
+          url: "https://chatway.app/blog/chatway-affiliate-program",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 5871,
+          publicationTaskId: "chatway-wordpress-5871",
+          publicationSource: "chatway"
+        },
         {
           type: "past",
           status: "Published",
