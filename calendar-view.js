@@ -12,6 +12,13 @@
   visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), 1);
 
   const productNames = {poptin: "Poptin", chatway: "Chatway", chaty: "Chaty", prospero: "Prospero", premio: "Premio"};
+  const productFavicons = {
+    poptin: "https://www.poptin.com/favicon.ico",
+    chatway: "https://chatway.app/favicon.ico",
+    chaty: "https://chaty.app/favicon.ico",
+    prospero: "https://goprospero.com/favicon.ico",
+    premio: "https://premio.io/favicon.ico"
+  };
 
   function escapeHtml(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => ({
@@ -107,9 +114,13 @@
       ? ` href="${escapeHtml(item.url)}" target="_blank" rel="noopener"`
       : "";
     const cleanTitle = String(item.title || "").replace(/^(?:Published|Updated)\s+/i, "");
+    const faviconUrl = productFavicons[item.productId];
+    const favicon = faviconUrl
+      ? `<img class="calendar-product-favicon" src="${escapeHtml(faviconUrl)}" alt="" width="16" height="16" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true">`
+      : "";
     return `
       <${tag} class="calendar-outcome ${itemClass}" data-product="${escapeHtml(item.productId)}"${linkAttributes}>
-        <span class="calendar-product">${itemLabel} · ${escapeHtml(productNames[item.productId] || item.productId)} · ${escapeHtml(taskTime)}</span>
+        <span class="calendar-product">${favicon}<span>${itemLabel} · ${escapeHtml(productNames[item.productId] || item.productId)} · ${escapeHtml(taskTime)}</span></span>
         <span class="calendar-task-title">${escapeHtml(cleanTitle)}</span>
         <span class="calendar-agent">Agent: ${escapeHtml(item.agentName || "Unassigned")}</span>
       </${tag}>

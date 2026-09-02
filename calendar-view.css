@@ -40,7 +40,8 @@
 .calendar-outcome.queued { border-left-color: #64748b; background: #eef2f7; }
 .calendar-outcome.running { border-left-color: #2563eb; background: #e8f0ff; }
 .calendar-outcome.failed { border-left-color: #c0392b; color: #8f241b; background: #fde8e6; }
-.calendar-product { display: block; margin-bottom: 2px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.calendar-product { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.calendar-product-favicon { width: 16px; height: 16px; flex: 0 0 16px; border-radius: 4px; object-fit: contain; background: rgba(255,255,255,.72); }
 .calendar-outcome.scheduled .calendar-product { color: var(--amber); }
 .calendar-outcome.delayed .calendar-product, .calendar-outcome.delayed .calendar-agent { color: #b45309; }
 .calendar-outcome.awaiting .calendar-product, .calendar-outcome.awaiting .calendar-agent { color: #64748b; }
