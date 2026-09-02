@@ -28,6 +28,24 @@ const SOURCES = [
     assetLabel: "View Chatway blog post",
     agentId: "seo",
     kind: "article"
+  },
+  {
+    name: "Chaty",
+    endpoint: "https://chaty.app/wp-json/wp/v2/post",
+    linkPrefix: "https://chaty.app/blog/",
+    assetLabel: "View Chaty blog post",
+    agentId: "seo",
+    productId: "chaty",
+    kind: "article"
+  },
+  {
+    name: "Premio",
+    endpoint: "https://premio.io/wp-json/wp/v2/posts",
+    linkPrefix: "https://premio.io/blog/",
+    assetLabel: "View Premio blog post",
+    agentId: "seo",
+    productId: "premio",
+    kind: "article"
   }
 ];
 
@@ -114,7 +132,7 @@ function formatActivity(post, source) {
 let data = await readFile(DATA_PATH, "utf8");
 let productData = await readFile(PRODUCT_DATA_PATH, "utf8");
 const existingUrls = new Set(
-  [...data.matchAll(/\burl:\s*["']([^"']+)["']/g)].map(match => normalizeUrl(match[1]))
+  [...(`${data}\n${productData}`).matchAll(/\burl:\s*["']([^"']+)["']/g)].map(match => normalizeUrl(match[1]))
 );
 const additions = [];
 let successfulSources = 0;
@@ -184,13 +202,44 @@ function insertActivities(agentId, blocks) {
 }
 
 additions.sort((left, right) => right.publishedAt - left.publishedAt);
-for (const agentId of new Set(additions.map(item => item.source.agentId))) {
+const primaryAdditions = additions.filter(item => !item.source.productId);
+for (const agentId of new Set(primaryAdditions.map(item => item.source.agentId))) {
   insertActivities(
     agentId,
-    additions
+    primaryAdditions
       .filter(item => item.source.agentId === agentId)
       .map(({ post, source }) => formatActivity(post, source))
   );
+}
+
+function insertProductActivities(productId, agentId, blocks) {
+  if (!blocks.length) return;
+  const productStart = productData.indexOf(`    ${productId}: {`);
+  if (productStart < 0) throw new Error(`${productId} product was not found in product-tabs.js`);
+  const nextProduct = productData.indexOf("\n    ", productStart + 5);
+  const productEnd = nextProduct < 0 ? productData.length : nextProduct;
+  const productBlock = productData.slice(productStart, productEnd);
+  const agentPattern = new RegExp(`\\bid\\s*:\\s*["']${agentId}["']`);
+  const agentMatch = agentPattern.exec(productBlock);
+  if (!agentMatch) throw new Error(`${productId} ${agentId} agent was not found in product-tabs.js`);
+  const agentStart = productStart + agentMatch.index;
+  const activitiesMatch = /\bactivities\s*:\s*\[/.exec(productData.slice(agentStart, productEnd));
+  if (!activitiesMatch) throw new Error(`${productId} ${agentId} activities were not found in product-tabs.js`);
+  const insertAt = agentStart + activitiesMatch.index + activitiesMatch[0].length;
+  productData = `${productData.slice(0, insertAt)}\n${blocks.join("\n")}${productData.slice(insertAt)}`;
+}
+
+for (const productId of new Set(additions.map(item => item.source.productId).filter(Boolean))) {
+  const productAdditions = additions.filter(item => item.source.productId === productId);
+  for (const agentId of new Set(productAdditions.map(item => item.source.agentId))) {
+    insertProductActivities(
+      productId,
+      agentId,
+      productAdditions
+        .filter(item => item.source.agentId === agentId)
+        .map(({ post, source }) => formatActivity(post, source))
+    );
+  }
 }
 
 function formatSocialActivity(item) {
@@ -243,7 +292,7 @@ data = data.replace(
 );
 
 await writeFile(DATA_PATH, data, "utf8");
-if (socialAdditions.some(item => item.productId !== "poptin")) {
+if (additions.some(item => item.source.productId) || socialAdditions.some(item => item.productId !== "poptin")) {
   await writeFile(PRODUCT_DATA_PATH, productData, "utf8");
 }
 console.log(`Added ${additions.length} WordPress publication(s) and ${socialAdditions.length} social publication(s) to the dashboard.`);
