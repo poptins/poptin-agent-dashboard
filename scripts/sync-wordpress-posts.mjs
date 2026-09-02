@@ -36,6 +36,7 @@ const SOURCES = [
     assetLabel: "View Chaty blog post",
     agentId: "seo",
     productId: "chaty",
+    includePrevious: true,
     kind: "article"
   },
   {
@@ -45,6 +46,7 @@ const SOURCES = [
     assetLabel: "View Premio blog post",
     agentId: "seo",
     productId: "premio",
+    includePrevious: true,
     kind: "article"
   }
 ];
@@ -147,7 +149,7 @@ for (const source of SOURCES) {
       if (
         post.status !== "publish" ||
         Number.isNaN(publishedAt.getTime()) ||
-        publishedAt < SYNC_START ||
+        (!source.includePrevious && publishedAt < SYNC_START) ||
         !String(post.link || "").startsWith(source.linkPrefix) ||
         existingUrls.has(normalizedLink)
       ) {
