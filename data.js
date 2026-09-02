@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-02T19:52:19.904Z",
+  lastUpdated: "2026-09-02T19:59:05.835Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “The Foundations of Ecommerce Growth: Ram Singh on Catalog Management, SEO & AI” as a Poptin article.",
+          date: "2026-09-02T19:52:48Z",
+          url: "https://www.poptin.com/blog/the-foundations-of-ecommerce-growth-ram-singh-on-catalog-management-seo-ai/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17826,
+          publicationTaskId: "poptin-wordpress-17826",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
