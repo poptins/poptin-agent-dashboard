@@ -48,6 +48,16 @@ const SOURCES = [
     productId: "premio",
     includePrevious: true,
     kind: "article"
+  },
+  {
+    name: "Prospero",
+    endpoint: "https://goprospero.com/blog/wp-json/wp/v2/posts",
+    linkPrefix: "https://goprospero.com/blog/",
+    assetLabel: "View Prospero blog post",
+    agentId: "seo",
+    productId: "prospero",
+    includePrevious: true,
+    kind: "article"
   }
 ];
 
