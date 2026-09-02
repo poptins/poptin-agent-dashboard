@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-02T19:59:05.835Z",
+  lastUpdated: "2026-09-02T20:05:02.860Z",
   agents: [
     {
       id: "seo",
@@ -34,19 +34,6 @@ window.AGENT_DATA = {
           type: "past",
           status: "Published",
           taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “Live Chat Customer Support Workflow: A Practical Guide for Faster, Safer Service” as a Chatway article.",
-          date: "2026-09-01T09:39:56Z",
-          url: "https://chatway.app/blog/live-chat-customer-support-workflow",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 5956,
-          publicationTaskId: "chatway-wordpress-5956",
-          publicationSource: "chatway"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
           title: "Published Poptin article",
           detail: "Published “What’s New in Poptin: Shopify Coupons, Smarter Automation Templates, and Faster Domain Setup” as a Poptin article.",
           date: "2026-09-01T07:20:57Z",
@@ -60,19 +47,6 @@ window.AGENT_DATA = {
           type: "past",
           status: "Published",
           taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “Join the Chatway Affiliate Program & Earn 20% Recurring Revenue” as a Chatway article.",
-          date: "2026-09-01T06:18:08Z",
-          url: "https://chatway.app/blog/chatway-affiliate-program",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 5871,
-          publicationTaskId: "chatway-wordpress-5871",
-          publicationSource: "chatway"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
           title: "Published Poptin article",
           detail: "Published “SaaS Lead Capture Popups: 12 High-Converting Examples for Trials, Demos, and Email Signups” as a Poptin article.",
           date: "2026-08-31T06:00:00Z",
@@ -81,19 +55,6 @@ window.AGENT_DATA = {
           wordpressPostId: 17811,
           publicationTaskId: "poptin-wordpress-17811",
           publicationSource: "poptin"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “Chaty Pro for WordPress: Features, Pricing, and Is It Right for Your Site?” as a Chatway article.",
-          date: "2026-08-28T19:00:10Z",
-          url: "https://chatway.app/blog/chaty-pro-plan-for-wordpress",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 769,
-          publicationTaskId: "chatway-wordpress-769",
-          publicationSource: "chatway"
         },
         {
           type: "past",
@@ -138,19 +99,6 @@ window.AGENT_DATA = {
           type: "past",
           status: "Published",
           taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “Make Shopping Support Easier with Chatway’s New WooCommerce Order, Cart & AI Features” as a Chatway article.",
-          date: "2026-08-26T07:52:56Z",
-          url: "https://chatway.app/blog/make-shopping-support-easier-with-chatways-new-woocommerce-order-cart-ai-features",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 5833,
-          publicationTaskId: "chatway-wordpress-5833",
-          publicationSource: "chatway"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
           title: "Published Poptin article",
           detail: "Published “The Future of Ecommerce Growth: Ben Zettler on AI Discovery, Retention & Conversion” as a Poptin article.",
           date: "2026-08-26T06:17:08Z",
@@ -159,45 +107,6 @@ window.AGENT_DATA = {
           wordpressPostId: 17785,
           publicationTaskId: "poptin-wordpress-17785",
           publicationSource: "poptin"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “10 Ways Live Chat Can Boost Your Online Sales” as a Chatway article.",
-          date: "2026-08-23T07:19:28Z",
-          url: "https://chatway.app/blog/10-ways-live-chat-can-boost-your-online-sales",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 368,
-          publicationTaskId: "chatway-wordpress-368",
-          publicationSource: "chatway"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “Meet Chatway’s New Help Center System” as a Chatway article.",
-          date: "2026-08-20T13:04:33Z",
-          url: "https://chatway.app/blog/meet-chatways-new-help-center-system",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 5812,
-          publicationTaskId: "chatway-wordpress-5812",
-          publicationSource: "chatway"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “Chatway vs Re:amaze: Which Customer Support Platform Is Better for Ecommerce Teams?” as a Chatway article.",
-          date: "2026-08-20T08:23:06Z",
-          url: "https://chatway.app/blog/chatway-vs-reamaze-which-customer-support-platform-is-better",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 5849,
-          publicationTaskId: "chatway-wordpress-5849",
-          publicationSource: "chatway"
         },
         {
           type: "past",
@@ -242,32 +151,6 @@ window.AGENT_DATA = {
           type: "past",
           status: "Published",
           taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “LiveAgent vs LiveChat: Features, Pricing, and Which Help Desk Is Best?” as a Chatway article.",
-          date: "2026-08-18T07:23:30Z",
-          url: "https://chatway.app/blog/liveagent-vs-livechat-comparison-features-functionality-pricing",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 359,
-          publicationTaskId: "chatway-wordpress-359",
-          publicationSource: "chatway"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “Live Chat Customer Support Productivity: A Practical System for Faster, Better Conversations” as a Chatway article.",
-          date: "2026-08-17T06:42:13Z",
-          url: "https://chatway.app/blog/live-chat-customer-support-productivity-system-2",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 5809,
-          publicationTaskId: "chatway-wordpress-5809",
-          publicationSource: "chatway"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
           title: "Published Poptin article",
           detail: "Published “Back-in-Stock Popups and Emails: How to Turn Sold-Out Products Into Waitlists, Revenue, and Better Segments” as a Poptin article.",
           date: "2026-08-14T06:00:00Z",
@@ -276,19 +159,6 @@ window.AGENT_DATA = {
           wordpressPostId: 17744,
           publicationTaskId: "poptin-wordpress-17744",
           publicationSource: "poptin"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “6 Live Chat Statistics and Trends Businesses Should Know in 2026” as a Chatway article.",
-          date: "2026-08-13T08:03:50Z",
-          url: "https://chatway.app/blog/6-statistics-trends-about-live-chat-you-should-know",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 348,
-          publicationTaskId: "chatway-wordpress-348",
-          publicationSource: "chatway"
         },
         {
           type: "past",
@@ -328,19 +198,6 @@ window.AGENT_DATA = {
           wordpressPostId: 17692,
           publicationTaskId: "poptin-wordpress-17692",
           publicationSource: "poptin"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “Live Chat for Small Businesses: Should You Outsource or Hire In-House?” as a Chatway article.",
-          date: "2026-08-08T07:34:22Z",
-          url: "https://chatway.app/blog/live-chat-for-small-businesses-outsource-or-hire-in-house",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 341,
-          publicationTaskId: "chatway-wordpress-341",
-          publicationSource: "chatway"
         },
         {
           type: "past",
@@ -406,32 +263,6 @@ window.AGENT_DATA = {
           wordpressPostId: 17585,
           publicationTaskId: "poptin-wordpress-17585",
           publicationSource: "poptin"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “How to Understand Customer Behavior: 8 Practical Strategies” as a Chatway article.",
-          date: "2026-08-03T10:26:42Z",
-          url: "https://chatway.app/blog/top-strategies-for-learning-about-your-customers-behaviour",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 167,
-          publicationTaskId: "chatway-wordpress-167",
-          publicationSource: "chatway"
-        },
-        {
-          type: "past",
-          status: "Published",
-          taskType: "publication",
-          title: "Published Chatway article",
-          detail: "Published “Live Chat Customer Support Productivity: A Practical System for Faster, Better Conversations” as a Chatway article.",
-          date: "2026-08-03T08:20:10Z",
-          url: "https://chatway.app/blog/live-chat-customer-support-productivity-system",
-          assetLabel: "View Chatway blog post",
-          wordpressPostId: 5748,
-          publicationTaskId: "chatway-wordpress-5748",
-          publicationSource: "chatway"
         },
         {
           type: "past",
