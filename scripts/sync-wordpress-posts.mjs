@@ -144,31 +144,40 @@ function formatActivity(post, source) {
 
 let data = await readFile(DATA_PATH, "utf8");
 let productData = await readFile(PRODUCT_DATA_PATH, "utf8");
-const existingUrls = new Set(
-  [...(`${data}\n${productData}`).matchAll(/\burl:\s*["']([^"']+)["']/g)].map(match => normalizeUrl(match[1]))
-);
-const additions = [];
-let successfulSources = 0;
+const migratedProductPublications = [];
 
-function migrateMisroutedProductPublications(source) {
+function extractMisroutedProductPublications(source) {
   if (!source.productId) return;
   const publicationSource = source.name.toLowerCase();
   const blockPattern = new RegExp(
-    `\\n        \\{\\n(?:(?!\\n        \\},)[\\s\\S])*?          publicationSource: ["']${publicationSource}["']\\n        \\},`,
+    `(?:^|\\r?\\n)        \\{\\r?\\n(?:(?!\\r?\\n        \\},)[\\s\\S])*?          publicationSource: ["']${publicationSource}["']\\r?\\n        \\},`,
     "g"
   );
   data = data.replace(blockPattern, block => {
-    const url = /\\burl:\\s*["']([^"']+)["']/.exec(block)?.[1];
-    if (url) existingUrls.delete(normalizeUrl(url));
+    migratedProductPublications.push({
+      source,
+      block: block.replace(/^(?:\\r?\\n)/, "")
+    });
     return "";
   });
 }
+
+for (const source of SOURCES) extractMisroutedProductPublications(source);
+
+const existingUrls = new Set(
+  [...(`${data}\n${productData}`).matchAll(/\burl:\s*["']([^"']+)["']/g)].map(match => normalizeUrl(match[1]))
+);
+for (const item of migratedProductPublications) {
+  const url = /\burl:\s*["']([^"']+)["']/.exec(item.block)?.[1];
+  if (url) existingUrls.add(normalizeUrl(url));
+}
+const additions = [];
+let successfulSources = 0;
 
 for (const source of SOURCES) {
   try {
     const posts = await fetchPublishedPosts(source);
     successfulSources += 1;
-    migrateMisroutedProductPublications(source);
     for (const post of posts) {
       const publishedAt = new Date(post.date_gmt ? `${post.date_gmt}Z` : post.date);
       const normalizedLink = normalizeUrl(post.link);
@@ -254,6 +263,14 @@ function insertProductActivities(productId, agentId, blocks) {
   productData = `${productData.slice(0, insertAt)}\n${blocks.join("\n")}${productData.slice(insertAt)}`;
 }
 
+for (const source of new Set(migratedProductPublications.map(item => item.source))) {
+  insertProductActivities(
+    source.productId,
+    source.agentId,
+    migratedProductPublications.filter(item => item.source === source).map(item => item.block)
+  );
+}
+
 for (const productId of new Set(additions.map(item => item.source.productId).filter(Boolean))) {
   const productAdditions = additions.filter(item => item.source.productId === productId);
   for (const agentId of new Set(productAdditions.map(item => item.source.agentId))) {
@@ -306,7 +323,7 @@ for (const productId of ["chatway", "prospero", "premio"]) {
   insertProductSocialActivities(productId, socialAdditions.filter(item => item.productId === productId));
 }
 
-if (additions.length === 0 && socialAdditions.length === 0) {
+if (additions.length === 0 && socialAdditions.length === 0 && migratedProductPublications.length === 0) {
   console.log("Dashboard is already synchronized; no new publications found.");
   process.exit(0);
 }
@@ -317,7 +334,7 @@ data = data.replace(
 );
 
 await writeFile(DATA_PATH, data, "utf8");
-if (additions.some(item => item.source.productId) || socialAdditions.some(item => item.productId !== "poptin")) {
+if (migratedProductPublications.length || additions.some(item => item.source.productId) || socialAdditions.some(item => item.productId !== "poptin")) {
   await writeFile(PRODUCT_DATA_PATH, productData, "utf8");
 }
 console.log(`Added ${additions.length} WordPress publication(s) and ${socialAdditions.length} social publication(s) to the dashboard.`);
