@@ -27,6 +27,7 @@ const SOURCES = [
     linkPrefix: "https://chatway.app/blog/",
     assetLabel: "View Chatway blog post",
     agentId: "seo",
+    productId: "chatway",
     kind: "article"
   },
   {
@@ -149,10 +150,25 @@ const existingUrls = new Set(
 const additions = [];
 let successfulSources = 0;
 
+function migrateMisroutedProductPublications(source) {
+  if (!source.productId) return;
+  const publicationSource = source.name.toLowerCase();
+  const blockPattern = new RegExp(
+    `\\n        \\{\\n(?:(?!\\n        \\},)[\\s\\S])*?          publicationSource: ["']${publicationSource}["']\\n        \\},`,
+    "g"
+  );
+  data = data.replace(blockPattern, block => {
+    const url = /\\burl:\\s*["']([^"']+)["']/.exec(block)?.[1];
+    if (url) existingUrls.delete(normalizeUrl(url));
+    return "";
+  });
+}
+
 for (const source of SOURCES) {
   try {
     const posts = await fetchPublishedPosts(source);
     successfulSources += 1;
+    migrateMisroutedProductPublications(source);
     for (const post of posts) {
       const publishedAt = new Date(post.date_gmt ? `${post.date_gmt}Z` : post.date);
       const normalizedLink = normalizeUrl(post.link);
