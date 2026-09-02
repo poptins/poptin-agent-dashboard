@@ -216,14 +216,11 @@ function insertProductActivities(productId, agentId, blocks) {
   if (!blocks.length) return;
   const productStart = productData.indexOf(`    ${productId}: {`);
   if (productStart < 0) throw new Error(`${productId} product was not found in product-tabs.js`);
-  const nextProduct = productData.indexOf("\n    ", productStart + 5);
-  const productEnd = nextProduct < 0 ? productData.length : nextProduct;
-  const productBlock = productData.slice(productStart, productEnd);
   const agentPattern = new RegExp(`\\bid\\s*:\\s*["']${agentId}["']`);
-  const agentMatch = agentPattern.exec(productBlock);
+  const agentMatch = agentPattern.exec(productData.slice(productStart));
   if (!agentMatch) throw new Error(`${productId} ${agentId} agent was not found in product-tabs.js`);
   const agentStart = productStart + agentMatch.index;
-  const activitiesMatch = /\bactivities\s*:\s*\[/.exec(productData.slice(agentStart, productEnd));
+  const activitiesMatch = /\bactivities\s*:\s*\[/.exec(productData.slice(agentStart));
   if (!activitiesMatch) throw new Error(`${productId} ${agentId} activities were not found in product-tabs.js`);
   const insertAt = agentStart + activitiesMatch.index + activitiesMatch[0].length;
   productData = `${productData.slice(0, insertAt)}\n${blocks.join("\n")}${productData.slice(insertAt)}`;
