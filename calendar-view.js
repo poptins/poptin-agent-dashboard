@@ -17,7 +17,7 @@
     chatway: "https://chatway.app/favicon.ico",
     chaty: "https://chaty.app/favicon.ico",
     prospero: "https://goprospero.com/favicon.ico",
-    premio: "https://premio.io/favicon.ico"
+    premio: "https://premio.io/wp-content/themes/premio-website/assets/img/premio-favicon.png"
   };
 
   function escapeHtml(value) {
