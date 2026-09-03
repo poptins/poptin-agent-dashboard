@@ -19,6 +19,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “Why Your Website Needs a Live Chat Widget” as a Chatway article.",
+          date: "2026-09-03T11:42:50Z",
+          url: "https://chatway.app/blog/benefits-of-a-live-chat-widget",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 1037,
+          publicationTaskId: "chatway-wordpress-1037",
+          publicationSource: "chatway"
+        },
 
         {
           type: "past",
@@ -451,6 +464,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
+          detail: "Published “Live Chat 101: How to Become a Live Chat Expert” as a Chaty article.",
+          date: "2026-09-03T11:39:40Z",
+          url: "https://chaty.app/blog/guide-to-becoming-a-live-chat-expert/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 1481,
+          publicationTaskId: "chaty-wordpress-1481",
+          publicationSource: "chaty"
+        },
         {
           type: "past",
           status: "Published",
@@ -1168,6 +1194,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Prospero article",
+          detail: "Published “Why Online Proposal Software Is Better Than Sending PDFs” as a Prospero article.",
+          date: "2026-09-03T11:45:55Z",
+          url: "https://goprospero.com/blog/why-online-proposal-software-is-better-than-sending-pdfs/",
+          assetLabel: "View Prospero blog post",
+          wordpressPostId: 222,
+          publicationTaskId: "prospero-wordpress-222",
+          publicationSource: "prospero"
+        },
         {
           type: "past",
           status: "Published",

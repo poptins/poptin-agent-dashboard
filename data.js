@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-02T20:05:02.860Z",
+  lastUpdated: "2026-09-03T14:34:30.111Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,32 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “From Local Visibility to Real Growth: Cody Benson on SEO, Operations & Better Data” as a Poptin article.",
+          date: "2026-09-03T10:08:13Z",
+          url: "https://www.poptin.com/blog/from-local-visibility-to-real-growth-cody-benson-on-seo-operations-better-data/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17832,
+          publicationTaskId: "poptin-wordpress-17832",
+          publicationSource: "poptin"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “3 Best Thrive Leads Alternatives to Grow Your Email List in 2026” as a Poptin article.",
+          date: "2026-09-03T08:25:55Z",
+          url: "https://www.poptin.com/blog/3-best-thrive-leads-alternatives/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 3016,
+          publicationTaskId: "poptin-wordpress-3016",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
