@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-03T14:34:30.111Z",
+  lastUpdated: "2026-09-04T09:39:19.980Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Keep It Simple, Build Trust: Justin Clarke on SEO, CRO & AI Video” as a Poptin article.",
+          date: "2026-09-04T06:44:02Z",
+          url: "https://www.poptin.com/blog/keep-it-simple-build-trust-justin-clarke-on-seo-cro-ai-video/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17843,
+          publicationTaskId: "poptin-wordpress-17843",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
