@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-04T09:39:19.980Z",
+  lastUpdated: "2026-09-05T12:42:48.688Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Convertful Alternative: Poptin vs Convertful for Popups, Forms, and Lead Capture” as a Poptin article.",
+          date: "2026-09-05T09:12:55Z",
+          url: "https://www.poptin.com/blog/convertful-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17856,
+          publicationTaskId: "poptin-wordpress-17856",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",

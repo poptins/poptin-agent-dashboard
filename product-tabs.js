@@ -24,6 +24,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “Chatway vs Kustomer: Which Customer Support Platform Is Better for Ecommerce Teams?” as a Chatway article.",
+          date: "2026-09-05T11:18:19Z",
+          url: "https://chatway.app/blog/chatway-vs-kustomer-which-customer-support-platform-is-better",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 5973,
+          publicationTaskId: "chatway-wordpress-5973",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “Why Your Website Needs a Live Chat Widget” as a Chatway article.",
           date: "2026-09-03T11:42:50Z",
           url: "https://chatway.app/blog/benefits-of-a-live-chat-widget",
@@ -1194,6 +1207,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Prospero article",
+          detail: "Published “Prospero vs DocuSign: Which Proposal and E-Signature Software Is Better in 2026?” as a Prospero article.",
+          date: "2026-09-05T11:38:27Z",
+          url: "https://goprospero.com/blog/prospero-vs-docusign/",
+          assetLabel: "View Prospero blog post",
+          wordpressPostId: 6269,
+          publicationTaskId: "prospero-wordpress-6269",
+          publicationSource: "prospero"
+        },
         {
           type: "past",
           status: "Published",
