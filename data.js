@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-05T12:42:48.688Z",
+  lastUpdated: "2026-09-06T10:56:31.102Z",
   agents: [
     {
       id: "seo",
@@ -598,6 +598,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Win Back Inactive Subscribers With a Measured Re-Engagement Workflow” as a Poptin Academy guide.",
+          date: "2026-09-06T09:55:52Z",
+          url: "https://www.poptin.com/academy/guides/win-back-inactive-subscribers-with-a-measured-re-engagement-workflow/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461394,
+          publicationTaskId: "poptin academy-wordpress-461394",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
