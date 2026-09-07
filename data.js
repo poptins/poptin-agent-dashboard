@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-06T10:56:31.102Z",
+  lastUpdated: "2026-09-07T04:40:58.461Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Ecommerce Lead Magnets That Grow Your Holiday Email List Without More Discounts” as a Poptin article.",
+          date: "2026-09-06T06:00:00Z",
+          url: "https://www.poptin.com/blog/ecommerce-lead-magnets-holiday-email-list/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17851,
+          publicationTaskId: "poptin-wordpress-17851",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
