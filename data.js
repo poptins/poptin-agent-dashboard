@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-07T16:27:30.073Z",
+  lastUpdated: "2026-09-08T14:31:59.598Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Scratch Card Template: A Gamified Pop Up That Works” as a Poptin article.",
+          date: "2026-09-08T08:28:59Z",
+          url: "https://www.poptin.com/blog/scratch-card-template-a-gamified-pop-up-that-works/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 9153,
+          publicationTaskId: "poptin-wordpress-9153",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",

@@ -24,6 +24,32 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “Automate Your Support Workflows with Chatway Webhooks” as a Chatway article.",
+          date: "2026-09-08T12:56:19Z",
+          url: "https://chatway.app/blog/automate-your-support-workflows-with-chatway-webhooks",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 5984,
+          publicationTaskId: "chatway-wordpress-5984",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “5 JivoChat Alternatives for Live Chat Support in 2026” as a Chatway article.",
+          date: "2026-09-08T11:43:57Z",
+          url: "https://chatway.app/blog/jivochat-alternatives-for-livechat-support",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 1074,
+          publicationTaskId: "chatway-wordpress-1074",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “Live Chat Customer Support Workflow: A Practical Guide for Faster, Safer Service” as a Chatway article.",
           date: "2026-09-06T09:01:44Z",
           url: "https://chatway.app/blog/live-chat-customer-support-workflow-2",
@@ -490,6 +516,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
+          detail: "Published “Live Chat Software Trends to Watch in 2026” as a Chaty article.",
+          date: "2026-09-08T11:40:45Z",
+          url: "https://chaty.app/blog/live-chat-software-trends/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 994,
+          publicationTaskId: "chaty-wordpress-994",
+          publicationSource: "chaty"
+        },
         {
           type: "past",
           status: "Published",
@@ -1233,6 +1272,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Prospero article",
+          detail: "Published “How to Market Your Freelance Business Without Spending Money” as a Prospero article.",
+          date: "2026-09-08T11:47:18Z",
+          url: "https://goprospero.com/blog/how-to-market-your-freelance-business-without-spending-a-dime/",
+          assetLabel: "View Prospero blog post",
+          wordpressPostId: 240,
+          publicationTaskId: "prospero-wordpress-240",
+          publicationSource: "prospero"
+        },
         {
           type: "past",
           status: "Published",
