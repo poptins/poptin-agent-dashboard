@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-08T21:51:22.328Z",
+  lastUpdated: "2026-09-09T09:45:32.505Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Beyond Traffic: Eddy Enoma on Building Audiences, Trust & Conversions” as a Poptin article.",
+          date: "2026-09-09T07:16:39Z",
+          url: "https://www.poptin.com/blog/beyond-traffic-eddy-enoma-building-audiences-trust-conversions/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17868,
+          publicationTaskId: "poptin-wordpress-17868",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
