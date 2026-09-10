@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-09T09:45:32.505Z",
+  lastUpdated: "2026-09-10T14:26:25.535Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “From Traffic to Trust: Kimberly Reynolds on AI, Search & Better Conversions” as a Poptin article.",
+          date: "2026-09-10T10:16:19Z",
+          url: "https://www.poptin.com/blog/from-traffic-to-trust-kimberly-reynolds-on-ai-search-better-conversions/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17876,
+          publicationTaskId: "poptin-wordpress-17876",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
