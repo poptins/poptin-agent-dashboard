@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-13T11:51:46.593Z",
+  lastUpdated: "2026-09-13T16:17:28.676Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “3 Best Silverstripe Popup and Form Apps for Lead Capture” as a Poptin article.",
+          date: "2026-09-13T09:03:40Z",
+          url: "https://www.poptin.com/blog/3-best-popup-form-apps-silverstripe/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 2227,
+          publicationTaskId: "poptin-wordpress-2227",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",

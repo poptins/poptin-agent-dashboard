@@ -24,6 +24,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “Benefits of Live Chat for Small Businesses: A Practical Guide” as a Chatway article.",
+          date: "2026-09-13T12:16:33Z",
+          url: "https://chatway.app/blog/benefits-of-live-chat-for-small-businesses",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 1135,
+          publicationTaskId: "chatway-wordpress-1135",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “How to Build a Live Chat Customer Support Workflow That Scales” as a Chatway article.",
           date: "2026-09-11T09:14:29Z",
           url: "https://chatway.app/blog/live-chat-customer-support-workflow-that-scales",
@@ -529,6 +542,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
+          detail: "Published “How Website Chat Apps Can Optimize Your Sales Funnel” as a Chaty article.",
+          date: "2026-09-13T12:14:32Z",
+          url: "https://chaty.app/blog/chat-apps-optimize-sales-funnel/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 514,
+          publicationTaskId: "chaty-wordpress-514",
+          publicationSource: "chaty"
+        },
         {
           type: "past",
           status: "Published",
@@ -1298,6 +1324,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Prospero article",
+          detail: "Published “How to Follow Up on a Business Proposal via Email: 6 Effective Ways” as a Prospero article.",
+          date: "2026-09-13T12:21:30Z",
+          url: "https://goprospero.com/blog/post-proposal-effective-ways-follow-up-via-email/",
+          assetLabel: "View Prospero blog post",
+          wordpressPostId: 739,
+          publicationTaskId: "prospero-wordpress-739",
+          publicationSource: "prospero"
+        },
         {
           type: "past",
           status: "Published",
@@ -2134,6 +2173,19 @@
           owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
           instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Premio article",
+          detail: "Published “WordPress Chat Plugins: Benefits, Features, and How to Choose One” as a Premio article.",
+          date: "2026-09-13T12:47:37Z",
+          url: "https://premio.io/blog/wordpress-chat-plugins/",
+          assetLabel: "View Premio blog post",
+          wordpressPostId: 16684,
+          publicationTaskId: "premio-wordpress-16684",
+          publicationSource: "premio"
+        },
         {
           type: "past",
           status: "Published",
