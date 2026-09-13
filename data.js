@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-12T14:07:30.878Z",
+  lastUpdated: "2026-09-13T11:51:46.593Z",
   agents: [
     {
       id: "seo",
@@ -663,6 +663,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Turn Traffic Sources Into Better Leads With a Campaign-Matched Popup Workflow” as a Poptin Academy guide.",
+          date: "2026-09-13T10:49:42Z",
+          url: "https://www.poptin.com/academy/guides/turn-traffic-sources-into-better-leads-with-a-campaign-matched-popup-workflow/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461453,
+          publicationTaskId: "poptin academy-wordpress-461453",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
