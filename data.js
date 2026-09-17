@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-17T19:38:07Z",
+  lastUpdated: "2026-09-17T19:58:25Z",
   agents: [
     {
       id: "seo",
@@ -902,17 +902,17 @@ window.AGENT_DATA = {
       status: "active",
       color: "#dce2f5",
       ink: "#30477f",
-      instructions: ["Check only sent emails created by the Buying Intent Agent.","Send the first follow-up after at least 72 hours without a reply or manual outbound message.","Send one shorter final follow-up after another 72 hours if there is still no response.","Stop immediately after any external reply, manual outbound message, or completed two-step sequence.","Keep both messages in the original Gmail thread.","Offer an extended Poptin trial, use Ben's official Gmail signature, and never use an em dash."],
+      instructions: ["Check only sent emails created by the Buying Intent Agent.","Send up to four threaded follow-ups, each at least 72 hours after the preceding sent email.","Stop after any prospect reply or manual outbound message; leave previously final two-message sequences closed.","Offer an extended Poptin trial when relevant, use Ben's official Gmail signature, and never use an em dash."],
       owner: "Partnerships & Growth",
-      cadence: "Daily at 09:20 UTC",
+      cadence: "Daily at 07:00 Israel time, with 10:07 and 13:07 backups",
       priority: "High",
       activities: [
         {
           type: "scheduled",
           title: "Check eligible Buying Intent follow-ups",
-          detail: "Run the two-step sequence at 72-hour intervals and stop after any prospect reply or manual outreach.",
-          date: "2026-08-23T09:20:00Z",
-          scheduleUtc: "09:20",
+          detail: "Run up to four threaded follow-ups at least 72 hours apart, stopping after any reply or manual outreach.",
+          date: "2026-09-18T04:00:00Z",
+          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 7, minute: 0},
           url: "https://github.com/poptins/poptin-agents/actions/workflows/buying-intent-followup-agent.yml",
           assetLabel: "Open Buying Intent follow-up workflow"
         }
@@ -1150,17 +1150,17 @@ window.AGENT_DATA = {
       status: "active",
       color: "#dcefe5",
       ink: "#285f46",
-      instructions: ["Check sent agency interview invitations once per day.","Send a detailed first follow-up after at least 72 hours.","If there is still no reply, send one shorter final follow-up after another 72 hours.","Stop the sequence after any agency reply or manual outbound message.","Keep both messages in the original Gmail thread.","Mention the free written interview and Poptin social sharing, use Ben's official Gmail signature, and never use an em dash."],
+      instructions: ["Check sent agency interview invitations daily.","Send up to four threaded follow-ups, each at least 72 hours after the preceding sent email.","Stop after any agency reply or manual outbound message; leave previously final two-message sequences closed.","Mention the free written interview and Poptin social sharing, use Ben's official Gmail signature, and never use an em dash."],
       owner: "Partnerships & Growth",
-      cadence: "Daily at 07:05 UTC",
+      cadence: "Daily at 06:15 Israel time, with 09:18 and 12:18 backups",
       priority: "High",
       activities: [
         {
           type: "scheduled",
           title: "Check eligible agency interview follow-ups",
-          detail: "Run the two-step agency follow-up sequence at 72-hour intervals, stopping after any agency reply or manual outreach.",
-          date: "2026-08-23T07:05:00Z",
-          scheduleUtc: "07:05",
+          detail: "Run up to four threaded follow-ups at least 72 hours apart, stopping after any reply or manual outreach.",
+          date: "2026-09-18T03:15:00Z",
+          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 6, minute: 15},
           url: "https://github.com/poptins/poptin-agents/actions/workflows/agency-followup-agent.yml",
           assetLabel: "Open agency follow-up workflow"
         }
@@ -1174,17 +1174,17 @@ window.AGENT_DATA = {
       status: "active",
       color: "#f3e8fa",
       ink: "#6d3c86",
-      instructions: ["Check sent listicle placement emails once per day.","Send the detailed first follow-up after at least 72 hours.","If there is still no reply, send one shorter final follow-up after another 72 hours.","Stop the sequence after any external reply or manual outbound message.","Mention Poptin's 3,000+ independent-platform reviews and link the approved LinkedIn review summary in the first follow-up.","Use Ben's official Gmail signature and never use an em dash."],
+      instructions: ["Check sent listicle placement emails daily.","Send up to four threaded follow-ups, each at least 72 hours after the preceding sent email.","Stop after any publisher reply or manual outbound message; leave previously final two-message sequences closed.","Mention Poptin's 3,000+ independent-platform reviews and link the approved LinkedIn review summary in the first follow-up.","Use Ben's official Gmail signature and never use an em dash."],
       owner: "Partnerships & Growth",
-      cadence: "Daily at 07:20 UTC",
+      cadence: "Daily at 06:30 Israel time, with 09:33 and 12:33 backups",
       priority: "High",
       activities: [
         {
           type: "scheduled",
           title: "Check eligible listicle follow-ups",
-          detail: "Run the two-step threaded sequence at 72-hour intervals, stopping after any publisher reply or manual outreach.",
-          date: "2026-08-23T07:20:00Z",
-          scheduleUtc: "07:20",
+          detail: "Run up to four threaded follow-ups at least 72 hours apart, stopping after any reply or manual outreach.",
+          date: "2026-09-18T03:30:00Z",
+          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 6, minute: 30},
           url: "https://github.com/poptins/poptin-agents/actions/workflows/listicle-followup-agent.yml",
           assetLabel: "Open listicle follow-up workflow"
         }
@@ -1262,7 +1262,7 @@ window.AGENT_DATA = {
       status: "active",
       color: "#e4def5",
       ink: "#4c3a80",
-      instructions: ["Check only sent competitor-affiliate publisher emails; drafts never start a follow-up sequence.","Send a detailed first follow-up in the original Gmail thread after at least 72 hours.","If there is still no reply, send one shorter final follow-up after another 72 hours.","Stop after any reply, manual outbound message, or completed two-step sequence.","Offer a full content piece personalized to the publisher's audience, including its Poptin affiliate link after enrollment.","Use Ben's official Gmail signature."],
+      instructions: ["Check only sent competitor-affiliate publisher emails; drafts never start a follow-up sequence.","Send up to four threaded follow-ups, each at least 72 hours after the preceding sent email.","Stop after any publisher reply or manual outbound message; leave previously final two-message sequences closed.","Offer a full content piece personalized to the publisher's audience, including its Poptin affiliate link after enrollment.","Use Ben's official Gmail signature and never use an em dash."],
       owner: "Partnerships & Growth",
       cadence: "Daily at 07:30 Israel time, with 10:33 and 13:33 backups",
       priority: "High",
@@ -1278,7 +1278,7 @@ window.AGENT_DATA = {
         {
           type: "scheduled",
           title: "Check eligible competitor-affiliate publisher follow-ups",
-          detail: "Send at most two threaded follow-ups, each after at least 72 hours, and stop after any reply or manual message.",
+          detail: "Run up to four threaded follow-ups at least 72 hours apart, stopping after any reply or manual outreach.",
           date: "2026-09-18T04:30:00Z",
           schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 7, minute: 30},
           url: "https://github.com/poptins/poptin-agents/actions/workflows/competitor-affiliate-followup-agent.yml",
@@ -1294,17 +1294,17 @@ window.AGENT_DATA = {
       status: "active",
       color: "#f2dfc2",
       ink: "#704615",
-      instructions: ["Check sent affiliate partnership emails once per day.","Send a detailed first follow-up after at least 72 hours.","If there is still no reply, send one shorter final follow-up after another 72 hours.","Stop the sequence after any affiliate reply or manual outbound message.","Keep both messages in the original Gmail thread and greet the contact by first name.","Use Ben's official Gmail signature and never use an em dash."],
+      instructions: ["Check sent creator-affiliate partnership emails daily.","Send up to four threaded follow-ups, each at least 72 hours after the preceding sent email.","Stop after any affiliate reply or manual outbound message; leave previously final two-message sequences closed.","Greet the contact by first name and offer an audience-personalized content piece with their affiliate link after enrollment.","Use Ben's official Gmail signature and never use an em dash."],
       owner: "Partnerships & Growth",
-      cadence: "Daily at 08:05 UTC",
+      cadence: "Daily at 07:15 Israel time, with 10:18 and 13:18 backups",
       priority: "High",
       activities: [
         {
           type: "scheduled",
           title: "Check eligible affiliate partnership follow-ups",
-          detail: "Run the two-step affiliate sequence at 72-hour intervals, stopping after any affiliate reply or manual outreach.",
-          date: "2026-08-23T08:05:00Z",
-          scheduleUtc: "08:05",
+          detail: "Run up to four threaded follow-ups at least 72 hours apart, stopping after any reply or manual outreach.",
+          date: "2026-09-18T04:15:00Z",
+          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 7, minute: 15},
           url: "https://github.com/poptins/poptin-agents/actions/workflows/affiliate-followup-agent.yml",
           assetLabel: "Open affiliate follow-up workflow"
         }
@@ -1342,17 +1342,17 @@ window.AGENT_DATA = {
       status: "active",
       color: "#d9e8e4",
       ink: "#1f554c",
-      instructions: ["Check sent ecommerce CRO review emails once per day.","Send the first follow-up after at least 72 hours.","Send one shorter final follow-up after another 72 hours if there is still no reply.","Stop after any store reply or manual outbound message.","Keep both messages in the original Gmail thread.","Use Ben's official Gmail signature and never use an em dash."],
+      instructions: ["Check sent ecommerce CRO review emails daily.","Send up to four threaded follow-ups, each at least 72 hours after the preceding sent email.","Stop after any store reply or manual outbound message; leave previously final two-message sequences closed.","Refer to the three store-specific CRO ideas and screenshots, use Ben's official Gmail signature, and never use an em dash."],
       owner: "Partnerships & Growth",
-      cadence: "Daily at 08:40 UTC",
+      cadence: "Daily at 06:45 Israel time, with 09:48 and 12:48 backups",
       priority: "High",
       activities: [
         {
           type: "scheduled",
           title: "Check eligible ecommerce CRO follow-ups",
-          detail: "Run the two-step threaded follow-up sequence at 72-hour intervals and stop after any reply or manual outreach.",
-          date: "2026-08-23T08:40:00Z",
-          scheduleUtc: "08:40",
+          detail: "Run up to four threaded follow-ups at least 72 hours apart, stopping after any reply or manual outreach.",
+          date: "2026-09-18T03:45:00Z",
+          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 6, minute: 45},
           url: "https://github.com/poptins/poptin-agents/actions/workflows/ecommerce-cro-followup-agent.yml",
           assetLabel: "Open ecommerce CRO follow-up workflow"
         }
