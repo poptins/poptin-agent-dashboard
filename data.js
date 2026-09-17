@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-17T19:18:08Z",
+  lastUpdated: "2026-09-17T19:34:47Z",
   agents: [
     {
       id: "seo",
@@ -1229,6 +1229,14 @@ window.AGENT_DATA = {
       activities: [
         {
           type: "past",
+          title: "Created another competitor-affiliate review draft",
+          detail: "A same-day retry checked the 10-draft Israel-day cap, found 1 existing draft, and created 1 more. The total is 2 of 10; no initial email was sent.",
+          date: "2026-09-17T19:32:00Z",
+          url: "https://github.com/poptins/poptin-agents/actions/runs/35265137736",
+          assetLabel: "Open retry production run"
+        },
+        {
+          type: "past",
           title: "Created first competitor-affiliate review draft",
           detail: "The first production run created 1 of 10 targeted drafts after prospect and contact checks. No initial email was sent.",
           date: "2026-09-17T19:16:00Z",
@@ -1243,6 +1251,38 @@ window.AGENT_DATA = {
           schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 13, minute: 30},
           url: "https://github.com/poptins/poptin-agents/actions/workflows/competitor-affiliate-outreach-agent.yml",
           assetLabel: "Open competitor-affiliate workflow"
+        }
+      ]
+    },
+    {
+      id: "competitor-affiliate-followup",
+      name: "Competitor Affiliate Follow-up Agent",
+      role: "Publisher affiliate partnership follow-ups",
+      initials: "PF",
+      status: "active",
+      color: "#e4def5",
+      ink: "#4c3a80",
+      instructions: ["Check only sent competitor-affiliate publisher emails; drafts never start a follow-up sequence.","Send a detailed first follow-up in the original Gmail thread after at least 72 hours.","If there is still no reply, send one shorter final follow-up after another 72 hours.","Stop after any reply, manual outbound message, or completed two-step sequence.","Offer a full content piece personalized to the publisher's audience, including its Poptin affiliate link after enrollment.","Use Ben's official Gmail signature."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 16:15 Israel time, with a 19:18 retry",
+      priority: "High",
+      activities: [
+        {
+          type: "past",
+          title: "Verified competitor-affiliate follow-up workflow",
+          detail: "The first production check succeeded and sent 0 follow-ups because no sent initial message was eligible yet.",
+          date: "2026-09-17T19:33:00Z",
+          url: "https://github.com/poptins/poptin-agents/actions/runs/35265555383",
+          assetLabel: "Open follow-up test run"
+        },
+        {
+          type: "scheduled",
+          title: "Check eligible competitor-affiliate publisher follow-ups",
+          detail: "Send at most two threaded follow-ups, each after at least 72 hours, and stop after any reply or manual message.",
+          date: "2026-09-18T13:15:00Z",
+          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 16, minute: 15},
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/competitor-affiliate-followup-agent.yml",
+          assetLabel: "Open competitor-affiliate follow-up workflow"
         }
       ]
     },
