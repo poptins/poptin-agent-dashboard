@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-16T11:33:29.718Z",
+  lastUpdated: "2026-09-17T01:25:22.610Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Popup Suppression Strategy: When Not to Show Popups to Protect UX, SEO, and Conversions” as a Poptin article.",
+          date: "2026-09-16T06:00:00Z",
+          url: "https://www.poptin.com/blog/popup-suppression-strategy/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17889,
+          publicationTaskId: "poptin-wordpress-17889",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
