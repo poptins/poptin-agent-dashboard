@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-17T19:34:47Z",
+  lastUpdated: "2026-09-17T19:38:07Z",
   agents: [
     {
       id: "seo",
@@ -1224,7 +1224,7 @@ window.AGENT_DATA = {
       ink: "#514185",
       instructions: ["Find independent editorial blogs and websites with a live affiliate link to one of the specified popup or email-marketing competitors.","Verify the exact link in the cited article and a public contact email on the publisher's own site.","Exclude creators covered by the Software Affiliate Agent, existing Poptin-affiliate pages, and contacts or domains already in Gmail outreach.","Create up to 10 audience-personalized Gmail drafts per day for review; do not send the initial email automatically.","Offer Poptin's 25% lifetime recurring commission and 90-day cookie, link independent app reviews, and offer a complete content piece tailored to the publisher's audience with its affiliate link once enrolled.","Do not assert free-to-paid conversion performance or competitor-program superiority without evidence."],
       owner: "Partnerships & Growth",
-      cadence: "Daily at 13:30 Israel time, with a 16:33 retry",
+      cadence: "Daily at 05:45 Israel time, with 08:48 and 11:48 backups",
       priority: "High",
       activities: [
         {
@@ -1247,8 +1247,8 @@ window.AGENT_DATA = {
           type: "scheduled",
           title: "Prepare competitor-affiliate publisher drafts",
           detail: "Seek up to 10 verified editorial publishers promoting competitor affiliate links, deduplicate against Gmail outreach, and create review drafts only.",
-          date: "2026-09-18T10:30:00Z",
-          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 13, minute: 30},
+          date: "2026-09-18T02:45:00Z",
+          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 5, minute: 45},
           url: "https://github.com/poptins/poptin-agents/actions/workflows/competitor-affiliate-outreach-agent.yml",
           assetLabel: "Open competitor-affiliate workflow"
         }
@@ -1264,7 +1264,7 @@ window.AGENT_DATA = {
       ink: "#4c3a80",
       instructions: ["Check only sent competitor-affiliate publisher emails; drafts never start a follow-up sequence.","Send a detailed first follow-up in the original Gmail thread after at least 72 hours.","If there is still no reply, send one shorter final follow-up after another 72 hours.","Stop after any reply, manual outbound message, or completed two-step sequence.","Offer a full content piece personalized to the publisher's audience, including its Poptin affiliate link after enrollment.","Use Ben's official Gmail signature."],
       owner: "Partnerships & Growth",
-      cadence: "Daily at 16:15 Israel time, with a 19:18 retry",
+      cadence: "Daily at 07:30 Israel time, with 10:33 and 13:33 backups",
       priority: "High",
       activities: [
         {
@@ -1279,8 +1279,8 @@ window.AGENT_DATA = {
           type: "scheduled",
           title: "Check eligible competitor-affiliate publisher follow-ups",
           detail: "Send at most two threaded follow-ups, each after at least 72 hours, and stop after any reply or manual message.",
-          date: "2026-09-18T13:15:00Z",
-          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 16, minute: 15},
+          date: "2026-09-18T04:30:00Z",
+          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 7, minute: 30},
           url: "https://github.com/poptins/poptin-agents/actions/workflows/competitor-affiliate-followup-agent.yml",
           assetLabel: "Open competitor-affiliate follow-up workflow"
         }
