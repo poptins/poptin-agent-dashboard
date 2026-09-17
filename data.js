@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-17T13:27:27.172Z",
+  lastUpdated: "2026-09-17T19:18:08Z",
   agents: [
     {
       id: "seo",
@@ -1198,19 +1198,51 @@ window.AGENT_DATA = {
       status: "active",
       color: "#f6ead7",
       ink: "#76501e",
-      instructions: ["Find active software or marketing affiliate creators with established blogs, newsletters, video, podcast, or social channels.","Require direct evidence that they already share third-party SaaS affiliate links.","Exclude agencies, editorial listicle publishers, directories, inactive channels, and Poptin competitors.","Use only a public contact email displayed on the creator's official site or channel.","Check both email and domain across all agency, listicle, and affiliate Gmail drafts and sent mail to prevent duplicate outreach.","Create five personalized Gmail drafts per day offering Poptin's official 25% lifetime monthly commission and 90-day cookie; never send automatically."],
+      instructions: ["Find active software or marketing affiliate creators with established blogs, newsletters, video, podcast, or social channels.","Require direct evidence that they already share third-party SaaS affiliate links.","Exclude agencies, editorial listicle publishers, directories, inactive channels, and Poptin competitors.","Use only a public contact email displayed on the creator's official site or channel.","Check both email and domain across all agency, listicle, and affiliate Gmail drafts and sent mail to prevent duplicate outreach.","Create up to 20 personalized Gmail drafts per day offering Poptin's official 25% lifetime monthly commission and 90-day cookie; never send automatically."],
       owner: "Partnerships & Growth",
-      cadence: "Daily at 07:40 UTC",
+      cadence: "Daily at 05:30 Israel time, with 08:33 and 11:33 retries",
       priority: "High",
       activities: [
         {
           type: "scheduled",
-          title: "Prepare daily affiliate recruitment outreach",
-          detail: "Find five evidenced software or marketing affiliates who have not appeared in any other outreach list and create Gmail drafts for review.",
-          date: "2026-08-23T07:40:00Z",
-          scheduleUtc: "07:40",
+          title: "Prepare up to 20 affiliate recruitment drafts",
+          detail: "Find up to 20 evidenced software or marketing creators absent from other outreach and create Gmail drafts for review.",
+          date: "2026-09-18T02:30:00Z",
+          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 5, minute: 30},
           url: "https://github.com/poptins/poptin-agents/actions/workflows/affiliate-outreach-agent.yml",
           assetLabel: "Open affiliate outreach workflow"
+        }
+      ]
+    },
+    {
+      id: "competitor-affiliate-outreach",
+      name: "Competitor Affiliate Publisher Agent",
+      role: "Recruit editorial publishers linking to competitor affiliate programs",
+      initials: "CA",
+      status: "active",
+      color: "#e9e4f7",
+      ink: "#514185",
+      instructions: ["Find independent editorial blogs and websites with a live affiliate link to one of the specified popup or email-marketing competitors.","Verify the exact link in the cited article and a public contact email on the publisher's own site.","Exclude creators covered by the Software Affiliate Agent, existing Poptin-affiliate pages, and contacts or domains already in Gmail outreach.","Create up to 10 audience-personalized Gmail drafts per day for review; do not send the initial email automatically.","Offer Poptin's 25% lifetime recurring commission and 90-day cookie, link independent app reviews, and offer a complete content piece tailored to the publisher's audience with its affiliate link once enrolled.","Do not assert free-to-paid conversion performance or competitor-program superiority without evidence."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 13:30 Israel time, with a 16:33 retry",
+      priority: "High",
+      activities: [
+        {
+          type: "past",
+          title: "Created first competitor-affiliate review draft",
+          detail: "The first production run created 1 of 10 targeted drafts after prospect and contact checks. No initial email was sent.",
+          date: "2026-09-17T19:16:00Z",
+          url: "https://github.com/poptins/poptin-agents/actions/runs/35263495379",
+          assetLabel: "Open first production run"
+        },
+        {
+          type: "scheduled",
+          title: "Prepare competitor-affiliate publisher drafts",
+          detail: "Seek up to 10 verified editorial publishers promoting competitor affiliate links, deduplicate against Gmail outreach, and create review drafts only.",
+          date: "2026-09-18T10:30:00Z",
+          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 13, minute: 30},
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/competitor-affiliate-outreach-agent.yml",
+          assetLabel: "Open competitor-affiliate workflow"
         }
       ]
     },
