@@ -8,7 +8,35 @@ const $ = (selector) => document.querySelector(selector);
 const dateFormat = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" });
 const timeFormat = new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" });
 
+function datePartsInZone(date, timeZone) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone, year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", hourCycle: "h23"
+  }).formatToParts(date);
+  return Object.fromEntries(parts.filter(part => part.type !== "literal").map(part => [part.type, Number(part.value)]));
+}
+
+function localDailyOccurrence(item, dayOffset = 0, reference = new Date()) {
+  const {timeZone, hour, minute} = item.schedule;
+  const today = datePartsInZone(reference, timeZone);
+  const targetDay = new Date(Date.UTC(today.year, today.month - 1, today.day + dayOffset));
+  const target = {
+    year: targetDay.getUTCFullYear(), month: targetDay.getUTCMonth() + 1,
+    day: targetDay.getUTCDate(), hour, minute
+  };
+  const desired = Date.UTC(target.year, target.month - 1, target.day, hour, minute);
+  let utc = desired;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const actual = datePartsInZone(new Date(utc), timeZone);
+    const delta = desired - Date.UTC(actual.year, actual.month - 1, actual.day, actual.hour, actual.minute);
+    utc += delta;
+    if (delta === 0) break;
+  }
+  return new Date(utc);
+}
+
 function activityDate(item) {
+  if (item.type === "scheduled" && item.schedule?.frequency === "daily-local") return localDailyOccurrence(item);
   if (item.type === "scheduled" && item.schedule?.frequency === "monthly-days") {
     const now = new Date();
     const days = [...(item.schedule.days || [])].sort((a, b) => a - b);
@@ -67,6 +95,7 @@ function workflowFileForActivity(item) {
 }
 
 function nextOccurrenceDate(item, scheduledAt) {
+  if (item.schedule?.frequency === "daily-local") return localDailyOccurrence(item, 1, scheduledAt);
   const next = new Date(scheduledAt);
   if (item.schedule?.frequency === "weekly") next.setUTCDate(next.getUTCDate() + 7);
   else if (item.schedule?.frequency === "hourly") next.setUTCHours(next.getUTCHours() + 1);
