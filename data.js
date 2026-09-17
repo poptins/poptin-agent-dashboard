@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-17T19:58:25Z",
+  lastUpdated: "2026-09-17T20:10:06Z",
   agents: [
     {
       id: "seo",
@@ -1115,6 +1115,54 @@ window.AGENT_DATA = {
           scheduleUtc: "06:20",
           url: "https://github.com/poptins/poptin-agents/actions/workflows/partners-agencies-agent.yml",
           assetLabel: "Open agency outreach workflow"
+        }
+      ]
+    },
+    {
+      id: "marketing-consultant-outreach",
+      name: "Marketing Consultant Partnership Agent",
+      role: "Client-referral partnerships with independent marketing consultants",
+      initials: "MC",
+      status: "active",
+      color: "#e4f0e7",
+      ink: "#285c42",
+      instructions: ["Find independent marketing consultants who advise business clients, not agencies, publishers, or software vendors.","Verify each consultant's specialty on their own services page and a public contact email on their own website.","Deduplicate the consultant, domain, and services page against all Gmail drafts and sent outreach.","Create up to 10 personalized Gmail drafts per Israel day for review; never send the initial email automatically.","Offer a Poptin client-referral partnership with 25% lifetime recurring commission and a 90-day cookie, using client-relevant examples and Ben's current Gmail signature."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 05:00 Israel time, with 08:03 and 11:03 backups",
+      priority: "High",
+      activities: [
+        {
+          type: "scheduled",
+          title: "Prepare marketing consultant partnership drafts",
+          detail: "Find up to 10 verified independent consultants, tailor the offer to the clients they advise, and create Gmail drafts for review only.",
+          date: "2026-09-18T02:00:00Z",
+          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 5, minute: 0},
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/marketing-consultant-outreach-agent.yml",
+          assetLabel: "Open consultant outreach workflow"
+        }
+      ]
+    },
+    {
+      id: "marketing-consultant-followup",
+      name: "Marketing Consultant Follow-up Agent",
+      role: "Four-stage follow-ups for consultant referral partnerships",
+      initials: "MF",
+      status: "active",
+      color: "#dcebe1",
+      ink: "#24563e",
+      instructions: ["Check only sent initial marketing-consultant partnership emails; unsent drafts never start a sequence.","Send up to four replies in the original thread, each at least 72 hours after the preceding sent email.","Stop immediately on a recipient reply, a manual outbound message, or a completed sequence.","Keep the offer consultant-specific, including client-relevant Poptin examples and an optional tailored content piece with their affiliate link after enrollment.","Use Ben's current official Gmail signature."],
+      owner: "Partnerships & Growth",
+      cadence: "Daily at 07:45 Israel time, with 10:48 and 13:48 backups",
+      priority: "High",
+      activities: [
+        {
+          type: "scheduled",
+          title: "Check eligible consultant partnership follow-ups",
+          detail: "Send at most four threaded follow-ups at least 72 hours apart, stopping after any reply or manual outreach.",
+          date: "2026-09-18T04:45:00Z",
+          schedule: {frequency: "daily-local", timeZone: "Asia/Jerusalem", hour: 7, minute: 45},
+          url: "https://github.com/poptins/poptin-agents/actions/workflows/marketing-consultant-followup-agent.yml",
+          assetLabel: "Open consultant follow-up workflow"
         }
       ]
     },
