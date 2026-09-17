@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-17T20:10:06Z",
+  lastUpdated: "2026-09-17T20:26:54Z",
   agents: [
     {
       id: "seo",
@@ -1126,7 +1126,7 @@ window.AGENT_DATA = {
       status: "active",
       color: "#e4f0e7",
       ink: "#285c42",
-      instructions: ["Find independent marketing consultants who advise business clients, not agencies, publishers, or software vendors.","Verify each consultant's specialty on their own services page and a public contact email on their own website.","Deduplicate the consultant, domain, and services page against all Gmail drafts and sent outreach.","Create up to 10 personalized Gmail drafts per Israel day for review; never send the initial email automatically.","Offer a Poptin client-referral partnership with 25% lifetime recurring commission and a 90-day cookie, using client-relevant examples and Ben's current Gmail signature."],
+      instructions: ["Find independent marketing consultants who advise business clients, not agencies, publishers, or software vendors.","Verify each consultant's specialty on their own services page and a public contact email on their own website.","Deduplicate the consultant, domain, and services page against all Gmail drafts and sent outreach.","Create up to 10 personalized Gmail drafts per Israel day for review; never send the initial email automatically.","Offer 25% lifetime recurring commission and a 90-day cookie, plus help with popup creation, implementation, and email automation; use Ben's current Gmail signature."],
       owner: "Partnerships & Growth",
       cadence: "Daily at 05:00 Israel time, with 08:03 and 11:03 backups",
       priority: "High",
@@ -1150,7 +1150,7 @@ window.AGENT_DATA = {
       status: "active",
       color: "#dcebe1",
       ink: "#24563e",
-      instructions: ["Check only sent initial marketing-consultant partnership emails; unsent drafts never start a sequence.","Send up to four replies in the original thread, each at least 72 hours after the preceding sent email.","Stop immediately on a recipient reply, a manual outbound message, or a completed sequence.","Keep the offer consultant-specific, including client-relevant Poptin examples and an optional tailored content piece with their affiliate link after enrollment.","Use Ben's current official Gmail signature."],
+      instructions: ["Check only sent initial marketing-consultant partnership emails; unsent drafts never start a sequence.","Send up to four replies in the original thread, each at least 72 hours after the preceding sent email.","Stop immediately on a recipient reply, a manual outbound message, or a completed sequence.","Keep the offer consultant-specific, including hands-on popup creation, implementation, and email automation help for their clients.","Use Ben's current official Gmail signature."],
       owner: "Partnerships & Growth",
       cadence: "Daily at 07:45 Israel time, with 10:48 and 13:48 backups",
       priority: "High",
