@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-17T20:26:54Z",
+  lastUpdated: "2026-09-18T15:00:09.872Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Top 6 MyOnlineStore Apps to Increase Sales and Website Conversion in 2026” as a Poptin article.",
+          date: "2026-09-18T08:27:56Z",
+          url: "https://www.poptin.com/blog/myonlinestore-apps-to-increase-sales-and-website-conversion/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 6754,
+          publicationTaskId: "poptin-wordpress-6754",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",

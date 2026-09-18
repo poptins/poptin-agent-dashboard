@@ -24,6 +24,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “Smartsupp Alternatives: 7 Live Chat Tools for Customer Support in 2026” as a Chatway article.",
+          date: "2026-09-18T11:57:35Z",
+          url: "https://chatway.app/blog/smartsupp-alternatives-for-live-chat-supp",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 1150,
+          publicationTaskId: "chatway-wordpress-1150",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “Live Chat Customer Support Productivity: How to Help More Customers Without Sacrificing Quality” as a Chatway article.",
           date: "2026-09-16T09:35:54Z",
           url: "https://chatway.app/blog/live-chat-customer-support-productivity-2",
@@ -555,6 +568,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
+          detail: "Published “How Chat Widgets Improve Customer Service: Benefits and Best Practices” as a Chaty article.",
+          date: "2026-09-18T11:42:57Z",
+          url: "https://chaty.app/blog/chat-widgets-improve-customer-service/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 548,
+          publicationTaskId: "chaty-wordpress-548",
+          publicationSource: "chaty"
+        },
         {
           type: "past",
           status: "Published",
@@ -1350,6 +1376,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Prospero article",
+          detail: "Published “How to Increase Negotiation Leverage by Tracking Proposal Views and Time Spent” as a Prospero article.",
+          date: "2026-09-18T11:54:25Z",
+          url: "https://goprospero.com/blog/increase-negotiation-tracking-proposal/",
+          assetLabel: "View Prospero blog post",
+          wordpressPostId: 1119,
+          publicationTaskId: "prospero-wordpress-1119",
+          publicationSource: "prospero"
+        },
         {
           type: "past",
           status: "Published",
@@ -2199,6 +2238,19 @@
           owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
           instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Premio article",
+          detail: "Published “Why Is SEO Important? 10 Reasons Search Engine Optimization Matters” as a Premio article.",
+          date: "2026-09-18T12:24:13Z",
+          url: "https://premio.io/blog/importance-of-seo/",
+          assetLabel: "View Premio blog post",
+          wordpressPostId: 12553,
+          publicationTaskId: "premio-wordpress-12553",
+          publicationSource: "premio"
+        },
         {
           type: "past",
           status: "Published",
