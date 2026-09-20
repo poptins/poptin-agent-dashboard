@@ -24,6 +24,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “Chatway vs Zoho SalesIQ: Which Live Chat and Customer Support Tool Is Better in 2026?” as a Chatway article.",
+          date: "2026-09-20T12:36:14Z",
+          url: "https://chatway.app/blog/chatway-vs-zoho-salesiq-which-live-chat-and-customer-support-tool-is-better",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 6033,
+          publicationTaskId: "chatway-wordpress-6033",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “Smartsupp Alternatives: 7 Live Chat Tools for Customer Support in 2026” as a Chatway article.",
           date: "2026-09-18T11:57:35Z",
           url: "https://chatway.app/blog/smartsupp-alternatives-for-live-chat-supp",
@@ -1376,6 +1389,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Prospero article",
+          detail: "Published “Prospero vs Canva: Which Proposal Software Is Better for Freelancers and Sales Teams in 2026?” as a Prospero article.",
+          date: "2026-09-20T12:38:39Z",
+          url: "https://goprospero.com/blog/prospero-vs-canva/",
+          assetLabel: "View Prospero blog post",
+          wordpressPostId: 6277,
+          publicationTaskId: "prospero-wordpress-6277",
+          publicationSource: "prospero"
+        },
         {
           type: "past",
           status: "Published",
