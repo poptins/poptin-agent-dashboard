@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-19T10:58:37.528Z",
+  lastUpdated: "2026-09-20T11:31:08.274Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,32 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Instinct vs Meta MUSE: Which Personal AI Agent Is Right for You?” as a Poptin article.",
+          date: "2026-09-20T11:20:48Z",
+          url: "https://www.poptin.com/blog/instinct-vs-meta-muse-ai-agents/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17904,
+          publicationTaskId: "poptin-wordpress-17904",
+          publicationSource: "poptin"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Leadpages Alternative: Poptin vs Leadpages for Popups, Forms, and Lead Capture” as a Poptin article.",
+          date: "2026-09-20T10:13:46Z",
+          url: "https://www.poptin.com/blog/leadpages-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17899,
+          publicationTaskId: "poptin-wordpress-17899",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
@@ -702,6 +728,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Improve Popup Conversions Without Annoying Visitors: A Smarter Display-Frequency Workflow” as a Poptin Academy guide.",
+          date: "2026-09-20T10:18:46Z",
+          url: "https://www.poptin.com/academy/guides/improve-popup-conversions-without-annoying-visitors-a-smarter-display-frequency-workflow/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461480,
+          publicationTaskId: "poptin academy-wordpress-461480",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
