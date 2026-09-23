@@ -599,6 +599,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chaty article",
+          detail: "Published “Which eCommerce Chat App Is the Best Alternative to Olark?” as a Chaty article.",
+          date: "2026-09-23T12:02:26Z",
+          url: "https://chaty.app/blog/ecommerce-chat-app-alternative-olark/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 2413,
+          publicationTaskId: "chaty-wordpress-2413",
+          publicationSource: "chaty"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
           detail: "Published “Click-to-Chat Website Engagement: How to Turn More Visitors Into Conversations” as a Chaty article.",
           date: "2026-09-22T11:58:54Z",
           url: "https://chaty.app/blog/click-to-chat-website-engagement-conversations-2/",
@@ -2290,6 +2303,19 @@
           owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
           instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Premio article",
+          detail: "Published “Live Chat Best Practices and Common Mistakes” as a Premio article.",
+          date: "2026-09-23T12:49:49Z",
+          url: "https://premio.io/blog/live-chat-best-practices-and-common-mistakes/",
+          assetLabel: "View Premio blog post",
+          wordpressPostId: 12995,
+          publicationTaskId: "premio-wordpress-12995",
+          publicationSource: "premio"
+        },
         {
           type: "past",
           status: "Published",
