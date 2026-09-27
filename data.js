@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-27T08:09:50.497Z",
+  lastUpdated: "2026-09-27T18:23:43.900Z",
   agents: [
     {
       id: "seo",
@@ -754,6 +754,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Build a Reliable Popup Experiment Loop That Improves Conversions Over Time” as a Poptin Academy guide.",
+          date: "2026-09-27T11:03:53Z",
+          url: "https://www.poptin.com/academy/guides/build-a-reliable-popup-experiment-loop-that-improves-conversions-over-time/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461489,
+          publicationTaskId: "poptin academy-wordpress-461489",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
