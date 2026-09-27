@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-26T13:05:22.291Z",
+  lastUpdated: "2026-09-27T08:09:50.497Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “The Ultimate Guide to High-Converting Pop-Ups: Best Practices for 2026” as a Poptin article.",
+          date: "2026-09-27T07:57:54Z",
+          url: "https://www.poptin.com/blog/the-ultimate-guide-to-high-converting-pop-ups-best-practices-for-2026/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17916,
+          publicationTaskId: "poptin-wordpress-17916",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
