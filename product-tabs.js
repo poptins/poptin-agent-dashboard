@@ -612,6 +612,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chaty article",
+          detail: "Published “12 Chat Button Features Your Customers Will Love” as a Chaty article.",
+          date: "2026-09-28T14:23:40Z",
+          url: "https://chaty.app/blog/chat-button-features/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 469,
+          publicationTaskId: "chaty-wordpress-469",
+          publicationSource: "chaty"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
           detail: "Published “Click-to-Chat Website Engagement: How to Turn More Visitors Into Qualified Leads” as a Chaty article.",
           date: "2026-09-27T12:04:39Z",
           url: "https://chaty.app/blog/click-to-chat-website-engagement-qualified-leads-3/",
@@ -2329,6 +2342,19 @@
           owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
           instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Premio article",
+          detail: "Published “Live Chat Software Integration for WordPress: A Practical Compatibility Checklist” as a Premio article.",
+          date: "2026-09-28T11:21:32Z",
+          url: "https://premio.io/blog/live-chat-software-integration-wordpress-compatibility-checklist/",
+          assetLabel: "View Premio blog post",
+          wordpressPostId: 23366,
+          publicationTaskId: "premio-wordpress-23366",
+          publicationSource: "premio"
+        },
         {
           type: "past",
           status: "Published",
