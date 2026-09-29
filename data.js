@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-28T22:00:35.745Z",
+  lastUpdated: "2026-09-29T15:51:19.097Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,32 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Introducing Poptin API v1.0: Connect Poptin to Your Growth Stack” as a Poptin article.",
+          date: "2026-09-29T09:44:53Z",
+          url: "https://www.poptin.com/blog/introducing-poptin-api-v1/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17958,
+          publicationTaskId: "poptin-wordpress-17958",
+          publicationSource: "poptin"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Free Shipping Bar and Threshold Popup Strategy: How Ecommerce Brands Can Increase AOV Without Blanket Discounts” as a Poptin article.",
+          date: "2026-09-29T06:24:04Z",
+          url: "https://www.poptin.com/blog/free-shipping-bar-threshold-popup-strategy/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17954,
+          publicationTaskId: "poptin-wordpress-17954",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
