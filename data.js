@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-29T15:51:19.097Z",
+  lastUpdated: "2026-09-30T00:27:39.098Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Cart Abandonment Popups and Emails: A Complete Recovery Workflow for Ecommerce Stores” as a Poptin article.",
+          date: "2026-09-29T06:00:00Z",
+          url: "https://www.poptin.com/blog/cart-abandonment-popups-emails-recovery-workflow-ecommerce/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17949,
+          publicationTaskId: "poptin-wordpress-17949",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
