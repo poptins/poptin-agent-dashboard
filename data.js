@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-30T00:27:39.098Z",
+  lastUpdated: "2026-09-30T13:43:09.644Z",
   agents: [
     {
       id: "seo",
