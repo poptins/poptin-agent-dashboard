@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-09-30T13:43:09.644Z",
+  lastUpdated: "2026-10-01T05:53:09.188Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “What’s New in Poptin: September 2026 Product Updates” as a Poptin article.",
+          date: "2026-10-01T05:02:06Z",
+          url: "https://www.poptin.com/blog/poptin-product-updates-september-2026/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17974,
+          publicationTaskId: "poptin-wordpress-17974",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
