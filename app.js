@@ -167,8 +167,8 @@ function activityDisplayDate(item, agent = item.agent, now = Date.now()) {
 function allActivities(sourceData = data) {
   return sourceData.agents.flatMap(agent => agent.activities.map(activity => ({
     ...activity,
-    agent: {...agent, source: sourceData.source},
-    source: sourceData.source
+    agent: {...agent, source: agent.source || sourceData.source},
+    source: agent.source || sourceData.source
   })));
 }
 
@@ -191,12 +191,12 @@ function renderStats() {
   const activities = visibleActivities();
   const completed = activities.filter(item => item.type === "past").length;
   const scheduled = activities.filter(item => isFutureScheduled(item)).length;
-  const active = data.agents.filter(agent => agent.status === "active").length;
+  const manual = data.agents.filter(agent => agent.manualPublishing).length;
   const stats = [
     ["Total agents", data.agents.length, ""],
     ["Completed tasks", completed, "Recorded"],
     ["Scheduled", scheduled, "Upcoming"],
-    ["Coverage", `${Math.round((active / data.agents.length) * 100)}%`, "Online"]
+    ["Manual agents", manual, "Approval required"]
   ];
   $("#statsGrid").innerHTML = stats.map(([label, value, note]) => `
     <article class="stat-card"><span>${label}</span><strong>${value}</strong>${note ? `<small>${note}</small>` : ""}</article>
@@ -207,11 +207,20 @@ function avatarStyle(agent) {
   return `--avatar-bg:${agent.color};--avatar-ink:${agent.ink}`;
 }
 
+function safeExternalUrl(value) {
+  try {
+    const url = new URL(value);
+    return ["https:", "http:"].includes(url.protocol) ? url.href : "";
+  } catch { return ""; }
+}
+
 function renderAsset(item, compact = false) {
-  if (item.url) {
-    return `<a class="asset-link ${compact ? "compact-asset" : ""}" href="${item.url}" target="_blank" rel="noopener">${item.assetLabel || "View published asset"} ↗</a>`;
-  }
-  return item.assetStatus ? `<span class="asset-note">${item.assetStatus}</span>` : "";
+  const url = safeExternalUrl(item.url);
+  const expired = item.expiresAt && new Date(item.expiresAt).getTime() <= Date.now();
+  const label = expired ? "Story expired · historical receipt" : item.assetLabel || "View published asset";
+  if (expired) return `<span class="asset-note">${escapeHtml(label)}</span>`;
+  if (url) return `<a class="asset-link ${compact ? "compact-asset" : ""}" href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(label)} ↗</a>`;
+  return item.assetStatus ? `<span class="asset-note">${escapeHtml(item.assetStatus)}</span>` : "";
 }
 
 function renderAgents(query = "") {
@@ -222,7 +231,7 @@ function renderAgents(query = "") {
     <button class="agent-row ${agent.id === selectedAgentId ? "active" : ""}" data-agent-id="${agent.id}" type="button">
       <span class="avatar" style="${avatarStyle(agent)}">${agent.initials}</span>
       <span><span class="agent-name">${agent.name}</span><span class="agent-role">${agent.role}</span></span>
-      <span class="status-dot ${agent.status}" title="${agent.status}"></span>
+      <span class="status-dot ${agent.status}" title="${escapeHtml(agent.statusLabel || agent.status)}"></span>
     </button>
   `).join("") : `<div class="empty-state">No agents match that search.</div>`;
 
@@ -234,7 +243,8 @@ function renderAgents(query = "") {
         activityProductFilter = activeProductId;
         $("#activityProductFilter").value = activeProductId;
       }
-      activityAgentFilter = selectedAgentId;
+      const selected = data.agents.find(agent => agent.id === selectedAgentId);
+      activityAgentFilter = activityProductFilter === "all" ? selected?.activityGroupId || selectedAgentId : selectedAgentId;
       renderAgents($("#agentSearch").value);
       renderAgentDetail();
       renderActivityAgentFilter();
@@ -247,17 +257,17 @@ function renderAgents(query = "") {
 function renderAgentDetail() {
   const agent = data.agents.find(item => item.id === selectedAgentId) || data.agents[0];
   if (!agent) return;
-  const past = agent.activities.filter(item => item.type === "past").slice(0, 2);
+  const past = agent.activities.filter(item => item.type === "past").sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 2);
   const now = Date.now();
-  const scheduled = agent.activities.filter(item => isFutureScheduled(item, now, {...agent, source: data.source})).slice(0, 2);
+  const scheduled = agent.activities.filter(item => isFutureScheduled(item, now, {...agent, source: agent.source || data.source})).slice(0, 2);
   const compact = (items, type) => items.length ? items.map(item => {
     const state = item.type === "scheduled"
-      ? scheduledActivityState(item, {...agent, source: data.source}, now)
+      ? scheduledActivityState(item, {...agent, source: agent.source || data.source}, now)
       : {status: type, date: activityDate(item)};
     const statusLabel = {delayed: "Delayed", awaiting: "Awaiting status", queued: "Queued", running: "Running", failed: "Failed"}[state.status];
     return `
     <div class="compact-item ${type} ${escapeHtml(state.status)}">
-      <strong>${item.title}</strong>
+      <strong>${escapeHtml(item.title)}</strong>
       <span>${statusLabel ? `${statusLabel} · ` : ""}${dateFormat.format(state.date)} · ${timeFormat.format(state.date)}</span>
       ${renderAsset(item, true)}
     </div>
@@ -270,8 +280,10 @@ function renderAgentDetail() {
         <span class="avatar" style="${avatarStyle(agent)}">${agent.initials}</span>
         <div><h2>${agent.name}</h2><p>${agent.role}</p></div>
       </div>
-      <span class="status-pill"><span class="status-dot ${agent.status}"></span>${agent.status === "active" ? "Active now" : "Standing by"}</span>
+      <span class="status-pill"><span class="status-dot ${agent.status}"></span>${escapeHtml(agent.statusLabel || (agent.status === "active" ? "Active now" : "Standing by"))}</span>
     </div>
+    ${agent.statusNote ? `<p class="publishing-note" role="note">${escapeHtml(agent.statusNote)}</p>` : ""}
+    ${safeExternalUrl(agent.workflowUrl) ? `<a class="asset-link publishing-workflow" href="${escapeHtml(safeExternalUrl(agent.workflowUrl))}" target="_blank" rel="noopener">${escapeHtml(agent.workflowLabel || "Review workflow")} ↗</a>` : ""}
     <div class="task-block">
       <p class="eyebrow">INSTRUCTIONS FOLLOWED</p>
       <h3>What ${agent.name} does each time it runs</h3>
@@ -284,7 +296,7 @@ function renderAgentDetail() {
     </div>
     <div class="detail-columns">
       <div><div class="mini-heading"><h3>Recent work</h3><span>${past.length} shown</span></div><div class="compact-list">${compact(past, "past")}</div></div>
-      <div><div class="mini-heading"><h3>Upcoming schedule</h3><span>${scheduled.length} planned</span></div><div class="compact-list">${compact(scheduled, "scheduled")}</div></div>
+      <div><div class="mini-heading"><h3>Upcoming schedule</h3><span>${scheduled.length} planned</span></div><div class="compact-list">${agent.manualPublishing && !scheduled.length ? `<span class="agent-role">No automatic schedule. Each post needs approval of its video and destination.</span>` : compact(scheduled, "scheduled")}</div></div>
     </div>
   `;
 }
@@ -307,10 +319,10 @@ function renderTimeline() {
       <span class="timeline-icon ${item.type}">${activityIcon(item)}</span>
       <div>
         <div class="activity-heading">
-          <h3>${item.title}</h3>
+          <h3>${escapeHtml(item.title)}</h3>
           ${item.status ? `<span class="property-pill">${escapeHtml(item.status)}</span>` : ""}
         </div>
-        <p>${item.agent.name} · ${item.detail}</p>
+        <p>${escapeHtml(item.agent.name)} · ${escapeHtml(item.detail)}</p>
         ${renderAsset(item)}
       </div>
       <div class="activity-date"><strong>${dateFormat.format(activityDisplayDate(item))}</strong><span>${timeFormat.format(activityDisplayDate(item))}</span></div>
@@ -340,41 +352,41 @@ function renderActivityAgentFilter() {
   $("#activityAgentFilter").value = activityAgentFilter;
 }
 
-function loadLatestData() {
+function loadDataScript(path) {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
-    script.src = `data.js?refresh=${Date.now()}`;
+    script.src = `${path}?refresh=${Date.now()}`;
     script.async = true;
-    script.onload = () => {
-      script.remove();
-      if (!window.AGENT_DATA?.agents) {
-        reject(new Error("The dashboard data is invalid."));
-        return;
-      }
-      const productId = sessionStorage.getItem("marketingBoardProduct") || "poptin";
-      if (window.PRODUCT_AGENT_DATA) {
-        window.PRODUCT_AGENT_DATA.poptin = window.AGENT_DATA;
-        const selectedProductData = window.PRODUCT_AGENT_DATA[productId];
-        if (selectedProductData?.agents) {
-          window.AGENT_DATA = selectedProductData;
-          resolve(selectedProductData);
-          return;
-        }
-      }
-      resolve(window.AGENT_DATA);
-    };
-    script.onerror = () => {
-      script.remove();
-      reject(new Error("The latest dashboard data could not be loaded."));
-    };
+    script.onload = () => { script.remove(); resolve(); };
+    script.onerror = () => { script.remove(); reject(new Error(`The latest ${path} could not be loaded.`)); };
     document.head.appendChild(script);
   });
+}
+
+async function loadLatestData() {
+  await loadDataScript("data.js");
+  if (!window.AGENT_DATA?.agents) throw new Error("The dashboard data is invalid.");
+  const freshPoptin = window.AGENT_DATA;
+  await loadDataScript("publishing-agents.js");
+  window.applyPublishingAgents?.(freshPoptin);
+  window.orderMarketingAgents?.(freshPoptin);
+  const productId = sessionStorage.getItem("marketingBoardProduct") || "poptin";
+  if (window.PRODUCT_AGENT_DATA) {
+    window.PRODUCT_AGENT_DATA.poptin = freshPoptin;
+    window.rebuildMarketingAggregate?.();
+    const selectedProductData = window.PRODUCT_AGENT_DATA[productId];
+    if (selectedProductData?.agents) {
+      window.AGENT_DATA = selectedProductData;
+      return selectedProductData;
+    }
+  }
+  return window.AGENT_DATA;
 }
 
 async function mergeRecentGithubActivity() {
   const token = sessionStorage.getItem("optimizationGithubToken");
   if (!token) return { loaded: false, reason: "no-token" };
-  const products = Object.values(window.PRODUCT_AGENT_DATA || {}).filter(product => product?.source);
+  const products = Object.entries(window.PRODUCT_AGENT_DATA || {}).filter(([id, product]) => id !== "all" && product?.source).map(([, product]) => product);
   const sources = [...new Set(products.map(product => product.source))];
   const headers = {"Accept":"application/vnd.github+json","Authorization":`Bearer ${token}`,"X-GitHub-Api-Version":"2022-11-28"};
   const runGroups = await Promise.all(sources.map(async source => {
@@ -403,11 +415,24 @@ async function mergeRecentGithubActivity() {
     const runs = window.GITHUB_WORKFLOW_RUNS_BY_SOURCE[product.source] || [];
     const seen = new Set(allActivities(product).map(item => item.githubRunId).filter(Boolean));
     const agentForRun = run => {
+      const path = String(run.path || "").toLowerCase();
+      const branch = String(run.head_branch || "").toLowerCase();
+      // Several isolated publishers share shorts-preview.yml. The branch identifies
+      // the publisher; generic workflow success must never become a publication.
+      if (/\/(?:shorts-preview|shorts-youtube|shorts-bfcm)\.yml$/.test(path)) {
+        let id;
+        if (branch.includes("instagram")) {
+          const name = String(run.name || "").toLowerCase();
+          id = name.includes("facebook") ? "facebook-stories" : name.includes("story") || name.includes("stories") ? "instagram-stories" : "instagram-reels";
+        } else if (branch.includes("september-updates")) id = "youtube-video";
+        else if (branch.startsWith("publish/") || path.endsWith("shorts-youtube.yml") || path.endsWith("shorts-bfcm.yml")) id = "youtube-shorts";
+        return product.agents.find(agent => agent.id === id) || null;
+      }
       const name = `${run.name || ""} ${run.display_title || ""}`.toLowerCase();
       const match = mappings.find(([, terms]) => terms.some(term => name.includes(term)));
       return match ? product.agents.find(agent => agent.id === match[0]) : null;
     };
-    const workflowKey = run => String(run.workflow_id || run.path || run.name || "").toLowerCase();
+    const workflowKey = run => `${run.workflow_id || run.path || run.name || ""}:${run.head_branch || ""}`.toLowerCase();
     const latestSuccessByWorkflow = new Map();
     runs
       .filter(run => run.conclusion === "success")
@@ -446,6 +471,7 @@ async function mergeRecentGithubActivity() {
       });
   });
 
+  window.rebuildMarketingAggregate?.();
   document.dispatchEvent(new CustomEvent("marketingActivityUpdated", {detail: {added, reconciled: true}}));
   return { loaded: true, added };
 }
@@ -491,6 +517,7 @@ $("#refreshButton").addEventListener("click", async () => {
     data = await loadLatestData();
     const activitySync = await mergeRecentGithubActivity();
     renderDashboard();
+    document.dispatchEvent(new CustomEvent("marketingActivityUpdated"));
     button.textContent = activitySync.loaded ? `✓ Updated${activitySync.added ? ` + ${activitySync.added} activities` : ""}` : "✓ Updated";
   } catch (error) {
     console.error(error);
@@ -1032,8 +1059,10 @@ renderRecommendationQueue();
 loadPermanentDismissals();
 renderDashboard();
 
-if (sessionStorage.getItem("optimizationGithubToken")) {
-  mergeRecentGithubActivity()
-    .then(() => renderDashboard())
-    .catch(error => console.warn("Live workflow reconciliation unavailable:", error));
-}
+document.addEventListener("marketingProductsReady", () => {
+  if (sessionStorage.getItem("optimizationGithubToken")) {
+    mergeRecentGithubActivity()
+      .then(() => renderDashboard())
+      .catch(error => console.warn("Live workflow reconciliation unavailable:", error));
+  }
+});

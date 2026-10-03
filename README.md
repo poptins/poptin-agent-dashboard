@@ -26,3 +26,15 @@ Open `index.html` directly, or serve the folder with any static web server.
 
 The included GitHub Actions workflow publishes this repository to GitHub Pages whenever `main` is updated.
 
+
+## Manual video publishers
+
+`publishing-agents.js` adds the Poptin YouTube Shorts, YouTube Video, Instagram Reels, Instagram Stories, and Facebook Stories agents. They are approval-led and have no automatic posting schedules. Workflow links open the existing private publishing implementation for review; the dashboard does not dispatch publishing or collect new credentials.
+
+Keep this public module limited to public-safe descriptions and verified publication outcomes. Add `video-publication` history only with `publicationVerified: true`, a real public result URL, a unique platform/object `publicationTaskId`, and a timezone-qualified confirmation timestamp. `dateBasis: publication-confirmed` explicitly means the recorded time is publication confirmation, not an inferred platform timestamp. Preserve the private evidence URL for authorized reviewers, but never copy raw logs, private media, draft captions, account IDs, hashes, tokens or signed asset URLs into this repository. Pending uploads and successful workflow runs are not publication evidence.
+
+For Stories, include `expiresAt` from the verified platform timestamp; the calendar retains the historical outcome while hiding the stale Story link after expiration. Do not record a pending or blocked Story as published.
+
+Data refresh reapplies the publishing module idempotently, rebuilds the all-product aggregate and refreshes calendar filters. The WordPress sync remains independent. To add newer public outcomes, update this module from confirmed publisher receipts; no new recurring publication or data-sharing automation is enabled by this change.
+
+Run `npm ci --ignore-scripts` and `npm test` for the DOM/data regression checks. The runtime dashboard remains dependency-free; jsdom is a development-only test dependency.
