@@ -24,6 +24,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “10 Live Chat Responses for Customer Support: Examples and Best Practices” as a Chatway article.",
+          date: "2026-10-03T12:01:27Z",
+          url: "https://chatway.app/blog/live-chat-responses-examples",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 1170,
+          publicationTaskId: "chatway-wordpress-1170",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “Chatway API for AI Agents: Connect Your AI to Customer Conversations” as a Chatway article.",
           date: "2026-10-03T05:19:52Z",
           url: "https://chatway.app/blog/chatway-api-for-ai-agents-connect-your-ai-to-customer-conversations",
@@ -633,6 +646,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
+          detail: "Published “How to Track Website Chat Conversion: Metrics, Formulas, and GA4 Setup” as a Chaty article.",
+          date: "2026-10-03T11:57:31Z",
+          url: "https://chaty.app/blog/track-website-chat-conversion/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 1901,
+          publicationTaskId: "chaty-wordpress-1901",
+          publicationSource: "chaty"
+        },
         {
           type: "past",
           status: "Published",
@@ -1511,6 +1537,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Prospero article",
+          detail: "Published “Business Proposals for the Telecom Industry: A Complete Guide” as a Prospero article.",
+          date: "2026-10-03T12:06:13Z",
+          url: "https://goprospero.com/blog/business-proposals-telecom-industry/",
+          assetLabel: "View Prospero blog post",
+          wordpressPostId: 1491,
+          publicationTaskId: "prospero-wordpress-1491",
+          publicationSource: "prospero"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Prospero article",
           detail: "Published “Prospero vs Canva: Which Proposal Software Is Better for Freelancers and Sales Teams in 2026?” as a Prospero article.",
           date: "2026-09-20T12:38:39Z",
           url: "https://goprospero.com/blog/prospero-vs-canva/",
@@ -2381,6 +2420,19 @@
           owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
           instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Premio article",
+          detail: "Published “How to Build a WordPress Customer Support Hub with Floating Widgets” as a Premio article.",
+          date: "2026-10-03T10:07:41Z",
+          url: "https://premio.io/blog/wordpress-customer-support-hub-floating-widgets/",
+          assetLabel: "View Premio blog post",
+          wordpressPostId: 23375,
+          publicationTaskId: "premio-wordpress-23375",
+          publicationSource: "premio"
+        },
         {
           type: "past",
           status: "Published",

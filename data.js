@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-03T06:32:29.841Z",
+  lastUpdated: "2026-10-03T12:33:35.541Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “How To Boost Sales and Capture Leads on Umbraco (3 Best Apps To Use)” as a Poptin article.",
+          date: "2026-10-03T08:49:48Z",
+          url: "https://www.poptin.com/blog/boost-sales-capture-leads-umbraco/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 2995,
+          publicationTaskId: "poptin-wordpress-2995",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
