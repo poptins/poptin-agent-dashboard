@@ -2,7 +2,7 @@
 // Never place raw private receipts, credentials, signed asset URLs or drafts here.
 window.PUBLISHING_AGENT_DATA = {
   "source": "poptins/poptin-agents",
-  "lastUpdated": "2026-10-03T16:32:37Z",
+  "lastUpdated": "2026-10-03T16:45:59Z",
   "agents": [
     {
       "id": "youtube-shorts",
@@ -115,8 +115,8 @@ window.PUBLISHING_AGENT_DATA = {
       "name": "Instagram Reels Agent",
       "role": "Short-form video · Instagram",
       "initials": "IR",
-      "status": "blocked",
-      "statusLabel": "Connection renewal required",
+      "status": "manual",
+      "statusLabel": "Manual · approval required",
       "color": "#f5def0",
       "ink": "#853268",
       "owner": "Poptin Video & Social",
@@ -128,10 +128,10 @@ window.PUBLISHING_AGENT_DATA = {
         "Check existing publication state before sending media to prevent duplicate uploads.",
         "Record publication only after the platform confirms the final public result."
       ],
-      "statusNote": "Five Reels have verified public results. New publications are paused until the Meta connection is renewed.",
+      "statusNote": "Five Reels have verified public results. The Meta connection was renewed; every new publication still requires approval.",
       "manualPublishing": true,
-      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37137231674",
-      "workflowLabel": "Review connection check",
+      "workflowUrl": "https://github.com/poptins/poptin-agents/blob/publish/instagram-shorts-20261003/.github/workflows/shorts-preview.yml",
+      "workflowLabel": "Review publishing workflow",
       "activities": [
         {
           "type": "past",
@@ -210,8 +210,8 @@ window.PUBLISHING_AGENT_DATA = {
       "name": "Instagram Stories Agent",
       "role": "24-hour video stories · Instagram",
       "initials": "IS",
-      "status": "blocked",
-      "statusLabel": "Connection renewal required",
+      "status": "manual",
+      "statusLabel": "Manual · approval required",
       "color": "#eee0fb",
       "ink": "#68408b",
       "owner": "Poptin Video & Social",
@@ -223,19 +223,35 @@ window.PUBLISHING_AGENT_DATA = {
         "Check existing publication state before sending media to prevent duplicate uploads.",
         "Record publication only after the platform confirms the final public result."
       ],
-      "statusNote": "Publishing is paused until the Meta connection is renewed and destination permissions are verified. No Story has been published.",
+      "statusNote": "The BFCM Story is verified. Stories remain visible for approximately 24 hours; the calendar keeps their publication history after expiry.",
       "manualPublishing": true,
-      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37137231674",
-      "workflowLabel": "Review connection check",
-      "activities": []
+      "workflowUrl": "https://github.com/poptins/poptin-agents/blob/publish/instagram-shorts-20261003/.github/workflows/shorts-preview.yml",
+      "workflowLabel": "Review publishing workflow",
+      "activities": [
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "instagram-story:3999905595335451754",
+          "title": "Published BFCM Instagram Story",
+          "detail": "Verified as an active Instagram Story. Expected to expire approximately 24 hours after publication.",
+          "date": "2026-10-03T16:45:59Z",
+          "dateBasis": "platform-published",
+          "expiresAt": "2026-10-04T16:45:59Z",
+          "url": "https://www.instagram.com/stories/popt.in/3999905595335451754",
+          "assetLabel": "View Instagram Story",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37137960263"
+        }
+      ]
     },
     {
       "id": "facebook-stories",
       "name": "Facebook Stories Agent",
       "role": "24-hour page stories · Facebook",
       "initials": "FS",
-      "status": "blocked",
-      "statusLabel": "Connection renewal required",
+      "status": "pending",
+      "statusLabel": "Awaiting verified publication",
       "color": "#dceaff",
       "ink": "#285590",
       "owner": "Poptin Video & Social",
@@ -247,10 +263,10 @@ window.PUBLISHING_AGENT_DATA = {
         "Check existing publication state before sending media to prevent duplicate uploads.",
         "Record publication only after the platform confirms the final public result."
       ],
-      "statusNote": "Publishing is paused until the Meta connection is renewed and destination permissions are verified. No Story has been published.",
+      "statusNote": "The connection was renewed. Facebook Story permissions and publication are still being checked; no verified Facebook Story is recorded.",
       "manualPublishing": true,
       "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37137231674",
-      "workflowLabel": "Review connection check",
+      "workflowLabel": "Review readiness check",
       "activities": []
     }
   ]
