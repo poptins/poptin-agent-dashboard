@@ -217,7 +217,8 @@ function safeExternalUrl(value) {
 function renderAsset(item, compact = false) {
   const url = safeExternalUrl(item.url);
   const expired = item.expiresAt && new Date(item.expiresAt).getTime() <= Date.now();
-  const label = expired ? "Story expired · historical receipt" : item.assetLabel || "View published asset";
+  const expiryLabel = item.expiryEstimated ? "Expected Story expiry passed · historical receipt" : "Story expired · historical receipt";
+  const label = expired ? expiryLabel : item.assetLabel || "View published asset";
   if (expired) return `<span class="asset-note">${escapeHtml(label)}</span>`;
   if (url) return `<a class="asset-link ${compact ? "compact-asset" : ""}" href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(label)} ↗</a>`;
   return item.assetStatus ? `<span class="asset-note">${escapeHtml(item.assetStatus)}</span>` : "";

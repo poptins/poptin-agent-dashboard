@@ -12,8 +12,8 @@ async function harness({runs = [], token = false} = {}) {
   const {window:w} = dom;
   const RealDate = w.Date;
   w.Date = class extends RealDate {
-    constructor(...args) { super(...(args.length ? args : ['2026-10-03T17:00:00Z'])); }
-    static now() { return RealDate.parse('2026-10-03T17:00:00Z'); }
+    constructor(...args) { super(...(args.length ? args : ['2026-10-03T20:00:00Z'])); }
+    static now() { return RealDate.parse('2026-10-03T20:00:00Z'); }
   };
   const requests = [];
   w.fetch = async (url, options = {}) => {
@@ -42,19 +42,19 @@ function calendar(w,id) {
 }
 
 // These are source-grounded snapshot expectations, not simulated publication receipts.
-test('five approval-led publishers, ten verified public outcomes, no invented schedules', async () => {
+test('five approval-led publishers, eleven verified public outcomes, no invented schedules', async () => {
  const h=await harness();try {
   const agents=h.w.PRODUCT_AGENT_DATA.poptin.agents.filter(a=>ids.includes(a.id));
-  assert.equal(agents.length,5);assert.equal(agents.flatMap(a=>a.activities).length,10);
+  assert.equal(agents.length,5);assert.equal(agents.flatMap(a=>a.activities).length,11);
   assert.ok(agents.every(a=>a.manualPublishing && a.activities.every(x=>x.type==='past')));
-  const events=agents.flatMap(a=>a.activities);assert.equal(new Set(events.map(e=>e.publicationTaskId)).size,10);
+  const events=agents.flatMap(a=>a.activities);assert.equal(new Set(events.map(e=>e.publicationTaskId)).size,11);
   for(const event of events) {
-   assert.equal(event.publicationVerified,true);assert.ok(['publication-confirmed','platform-published'].includes(event.dateBasis));
+   assert.equal(event.publicationVerified,true);assert.ok(['publication-confirmed','platform-published','platform-created'].includes(event.dateBasis));
    assert.ok(Number.isFinite(new Date(event.date).getTime()));assert.equal(new URL(event.url).protocol,'https:');
    assert.ok(!/token|caption|sha256|account_id|upload_uri|password/i.test(Object.keys(event).join(' ')));
   }
   for(const a of agents.filter(a=>a.id.includes('instagram'))) assert.equal(a.status,'manual');
-  assert.equal(agents.find(a=>a.id==='facebook-stories').status,'pending');
+  assert.equal(agents.find(a=>a.id==='facebook-stories').status,'manual');
  }finally{await h.close();}
 });
 
@@ -68,9 +68,9 @@ test('agent cards expose readiness and safe review links without dispatch contro
  }finally{await h.close();}
 });
 
-test('calendar includes real outcomes for each format and excludes pending Stories',async()=>{
+test('calendar includes verified outcomes for all five publishing formats',async()=>{
  const h=await harness();try {
-  for(const [id,count] of [['youtube-shorts',3],['youtube-video',1],['instagram-reels',5],['instagram-stories',1],['facebook-stories',0]]) assert.equal(calendar(h.w,id).length,count,id);
+  for(const [id,count] of [['youtube-shorts',3],['youtube-video',1],['instagram-reels',5],['instagram-stories',1],['facebook-stories',1]]) assert.equal(calendar(h.w,id).length,count,id);
  }finally{await h.close();}
 });
 
@@ -155,5 +155,27 @@ test('all-product publisher selection preserves a valid format filter',async()=>
   w.document.querySelector('[data-agent-id="poptin-youtube-shorts"]').click();
   assert.equal(w.document.querySelector('#activityAgentFilter').value,'youtube-shorts');
   assert.equal(w.document.querySelectorAll('#activityTimeline .activity-card').length,3);
+ }finally{await h.close();}
+});
+
+
+test('Facebook Story retains verified evidence and qualifies estimated expiry',async()=>{
+ const h=await harness();try {
+  const w=h.w;const agent=w.PRODUCT_AGENT_DATA.poptin.agents.find(a=>a.id==='facebook-stories');
+  const event=agent.activities[0];
+  assert.equal(event.date,'2026-10-03T19:03:58Z');
+  assert.equal(event.dateBasis,'platform-created');
+  assert.equal(event.publicationVerifiedAt,'2026-10-03T19:12:57Z');
+  assert.equal(event.publicationAcceptedAt,'2026-10-03T19:04:00.546060Z');
+  assert.equal(event.platformCreatedAt,'2026-10-03T19:03:58Z');
+  assert.equal(event.expiryEstimated,true);
+  assert.equal(event.expiresAt,'2026-10-04T19:03:58Z');
+  assert.match(agent.statusNote,/displayed label has not been independently verified/);
+  assert.match(event.url,/^https:\/\/facebook\.com\/stories\//);
+  event.expiresAt='2026-10-02T19:03:58Z';
+  const items=calendar(w,'facebook-stories');
+  assert.equal(items.length,1);assert.match(items[0].textContent,/expected expiry passed/);
+  assert.equal(items[0].tagName,'DIV');
+  assert.match(w.renderAsset(event),/Expected Story expiry passed/);
  }finally{await h.close();}
 });
