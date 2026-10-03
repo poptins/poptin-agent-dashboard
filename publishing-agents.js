@@ -2,7 +2,7 @@
 // Never place raw private receipts, credentials, signed asset URLs or drafts here.
 window.PUBLISHING_AGENT_DATA = {
   "source": "poptins/poptin-agents",
-  "lastUpdated": "2026-10-03T16:45:59Z",
+  "lastUpdated": "2026-10-03T19:12:57Z",
   "agents": [
     {
       "id": "youtube-shorts",
@@ -250,8 +250,8 @@ window.PUBLISHING_AGENT_DATA = {
       "name": "Facebook Stories Agent",
       "role": "24-hour page stories · Facebook",
       "initials": "FS",
-      "status": "pending",
-      "statusLabel": "Awaiting verified publication",
+      "status": "manual",
+      "statusLabel": "Manual · approval required",
       "color": "#dceaff",
       "ink": "#285590",
       "owner": "Poptin Video & Social",
@@ -263,11 +263,31 @@ window.PUBLISHING_AGENT_DATA = {
         "Check existing publication state before sending media to prevent duplicate uploads.",
         "Record publication only after the platform confirms the final public result."
       ],
-      "statusNote": "The connection was renewed. Facebook Story permissions and publication are still being checked; no verified Facebook Story is recorded.",
+      "statusNote": "The BFCM Facebook Story is verified as published and ready. Future posts still require approval. Native AI disclosure was sent; the displayed label has not been independently verified.",
       "manualPublishing": true,
-      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37137231674",
-      "workflowLabel": "Review readiness check",
-      "activities": []
+      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37147077989",
+      "workflowLabel": "Review publication verification",
+      "activities": [
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "facebook-story:990423010748826",
+          "title": "Published BFCM Facebook Story",
+          "detail": "Story creation time is 19:03:58 UTC. Facebook accepted publication at 19:04 UTC; published/ready state was verified at 19:12 UTC. Expected expiry is around October 4 at 19:04 UTC, based on the usual 24-hour duration, not an exact API expiry. Native AI disclosure was sent; its displayed label is not independently verified.",
+          "date": "2026-10-03T19:03:58Z",
+          "dateBasis": "platform-created",
+          "publicationAcceptedAt": "2026-10-03T19:04:00.546060Z",
+          "platformCreatedAt": "2026-10-03T19:03:58Z",
+          "expiresAt": "2026-10-04T19:03:58Z",
+          "expiryEstimated": true,
+          "url": "https://facebook.com/stories/174171244298670/UzpfSVNDOjk5MDQyMzAxNDA4MjE1OQ==/?view_single=1",
+          "assetLabel": "View Facebook Story",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37147077989",
+          "publicationVerifiedAt": "2026-10-03T19:12:57Z"
+        }
+      ]
     }
   ]
 };

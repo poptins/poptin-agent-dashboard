@@ -111,7 +111,7 @@
     const failed = item.calendarType === "failed";
     const itemClass = failed ? "failed" : running ? "running" : queued ? "queued" : awaiting ? "awaiting" : delayed ? "delayed" : scheduled ? "scheduled" : "published";
     const expired = item.expiresAt && new Date(item.expiresAt).getTime() <= Date.now();
-    const completedLabel = expired ? "✓ Published · expired" : item.taskType === "article-update" || item.status === "Updated" ? "✓ Updated" : "✓ Published";
+    const completedLabel = expired ? (item.expiryEstimated ? "✓ Published · expected expiry passed" : "✓ Published · expired") : item.taskType === "article-update" || item.status === "Updated" ? "✓ Updated" : "✓ Published";
     const itemLabel = failed ? "! Failed" : running ? "● Running" : queued ? "◌ Queued" : awaiting ? "◌ Awaiting status" : delayed ? "◷ Delayed" : scheduled ? "◷ Scheduled" : completedLabel;
     const taskTime = new Intl.DateTimeFormat("en-US", {hour: "numeric", minute: "2-digit"}).format(item.calendarDate);
     const link = expired ? "" : safeExternalUrl(item.url);
@@ -126,7 +126,7 @@
       : "";
     return `
       <${tag} class="calendar-outcome ${itemClass}" data-product="${escapeHtml(item.productId)}"${linkAttributes}>
-        <span class="calendar-product">${favicon}<span>${itemLabel} · ${escapeHtml(productNames[item.productId] || item.productId)} · ${item.dateBasis === "publication-confirmed" ? "confirmed " : ""}${escapeHtml(taskTime)}</span></span>
+        <span class="calendar-product">${favicon}<span>${itemLabel} · ${escapeHtml(productNames[item.productId] || item.productId)} · ${item.dateBasis === "publication-confirmed" ? "confirmed " : item.dateBasis === "platform-created" ? "created " : ""}${escapeHtml(taskTime)}</span></span>
         <span class="calendar-task-title">${escapeHtml(cleanTitle)}</span>
         <span class="calendar-agent">Agent: ${escapeHtml(item.agentName || "Unassigned")}</span>
       </${tag}>
