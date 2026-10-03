@@ -245,3 +245,10 @@ body.dark { --bg: #121816; --surface: #19211e; --surface-2: #202a26; --ink: #edf
 .product-tabs button { min-width:110px; padding:10px 18px; border:1px solid var(--line); border-radius:999px; color:var(--muted); background:var(--surface); font-weight:700; }
 .product-tabs button.active { color:#fff; border-color:var(--green); background:var(--green); }
 .product-action-link { display:inline-flex; align-items:center; min-height:38px; padding:0 15px; border-radius:9px; color:#fff; text-decoration:none; }
+
+/* Approval-led video publishers: readiness is distinct from scheduled agents. */
+.status-dot.manual { background: #5577c6; }
+.status-dot.pending { background: #b9852d; }
+.status-dot.blocked { background: #b64b44; }
+.publishing-note { color: var(--muted); font-size: 13px; line-height: 1.65; margin: 18px 0 8px; }
+.publishing-workflow { display: inline-block; margin-bottom: 14px; }

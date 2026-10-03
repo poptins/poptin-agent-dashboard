@@ -28,6 +28,10 @@
 
   function isPublicPublishedOutcome(activity) {
     if (activity.type !== "past") return false;
+    if (activity.taskType === "video-publication") {
+      return activity.publicationVerified === true && activity.status === "Published" &&
+        /^https:\/\/(?:www\.)?(?:youtube\.com|instagram\.com|facebook\.com)\//.test(safeExternalUrl(activity.url)) && Number.isFinite(new Date(activity.date).getTime());
+    }
     const signal = `${activity.title || ""} ${activity.assetLabel || ""}`.toLowerCase();
     const publicationSignal =
       activity.status === "Published" ||
@@ -106,12 +110,14 @@
     const running = item.calendarType === "running";
     const failed = item.calendarType === "failed";
     const itemClass = failed ? "failed" : running ? "running" : queued ? "queued" : awaiting ? "awaiting" : delayed ? "delayed" : scheduled ? "scheduled" : "published";
-    const completedLabel = item.taskType === "article-update" || item.status === "Updated" ? "✓ Updated" : "✓ Published";
+    const expired = item.expiresAt && new Date(item.expiresAt).getTime() <= Date.now();
+    const completedLabel = expired ? "✓ Published · expired" : item.taskType === "article-update" || item.status === "Updated" ? "✓ Updated" : "✓ Published";
     const itemLabel = failed ? "! Failed" : running ? "● Running" : queued ? "◌ Queued" : awaiting ? "◌ Awaiting status" : delayed ? "◷ Delayed" : scheduled ? "◷ Scheduled" : completedLabel;
     const taskTime = new Intl.DateTimeFormat("en-US", {hour: "numeric", minute: "2-digit"}).format(item.calendarDate);
-    const tag = item.url ? "a" : "div";
-    const linkAttributes = item.url
-      ? ` href="${escapeHtml(item.url)}" target="_blank" rel="noopener"`
+    const link = expired ? "" : safeExternalUrl(item.url);
+    const tag = link ? "a" : "div";
+    const linkAttributes = link
+      ? ` href="${escapeHtml(link)}" target="_blank" rel="noopener"`
       : "";
     const cleanTitle = String(item.title || "").replace(/^(?:Published|Updated)\s+/i, "");
     const faviconUrl = productFavicons[item.productId];
@@ -120,7 +126,7 @@
       : "";
     return `
       <${tag} class="calendar-outcome ${itemClass}" data-product="${escapeHtml(item.productId)}"${linkAttributes}>
-        <span class="calendar-product">${favicon}<span>${itemLabel} · ${escapeHtml(productNames[item.productId] || item.productId)} · ${escapeHtml(taskTime)}</span></span>
+        <span class="calendar-product">${favicon}<span>${itemLabel} · ${escapeHtml(productNames[item.productId] || item.productId)} · ${item.dateBasis === "publication-confirmed" ? "confirmed " : ""}${escapeHtml(taskTime)}</span></span>
         <span class="calendar-task-title">${escapeHtml(cleanTitle)}</span>
         <span class="calendar-agent">Agent: ${escapeHtml(item.agentName || "Unassigned")}</span>
       </${tag}>
@@ -279,6 +285,7 @@
     saveDashboardState();
   });
   document.addEventListener("marketingActivityUpdated", () => {
+    populateCalendarAgentFilter(agentFilter.value);
     if (calendarOpen) renderCalendar();
   });
   document.querySelector("#calendarPreviousMonth").addEventListener("click", () => {

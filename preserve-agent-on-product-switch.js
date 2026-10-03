@@ -30,7 +30,7 @@
 
     selectedAgentId = nextAgent.id;
     activityProductFilter = productId;
-    activityAgentFilter = nextAgent.id;
+    activityAgentFilter = productId === "all" ? nextAgent.activityGroupId || nextAgent.id : nextAgent.id;
 
     const productFilter = document.querySelector("#activityProductFilter");
     if (productFilter) productFilter.value = productId;

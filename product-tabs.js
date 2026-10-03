@@ -3227,12 +3227,17 @@
       ]
     }
   };
-  const productNames = {poptin: "Poptin", chatway: "Chatway", prospero: "Prospero", premio: "Premio"};
+  const productNames = {poptin: "Poptin", chatway: "Chatway", chaty: "Chaty", prospero: "Prospero", premio: "Premio"};
   const agentOrder = [
     "seo",
     "update-blog",
     "alternatives",
     "social",
+    "youtube-shorts",
+    "youtube-video",
+    "instagram-reels",
+    "instagram-stories",
+    "facebook-stories",
     "academy",
     "glossary",
     "optimization",
@@ -3274,7 +3279,7 @@
     "ecommerce-cro-followup": {color: "#d9e8e4", ink: "#1f554c"},
     "chatway-glossary": {color: "#dcecff", ink: "#265a91"}
   };
-  Object.values(productData).forEach(product => {
+  window.orderMarketingAgents = function orderMarketingAgents(product) {
     product.agents.forEach(agent => {
       if (agentStyles[agent.id]) Object.assign(agent, agentStyles[agent.id]);
     });
@@ -3284,24 +3289,25 @@
       return (aIndex === -1 ? agentOrder.length : aIndex) -
         (bIndex === -1 ? agentOrder.length : bIndex);
     });
-  });
-  productData.all = {
-    source: "all product repositories",
-    lastUpdated: Object.values(productData)
-      .map(product => product.lastUpdated)
-      .filter(Boolean)
-      .sort()
-      .at(-1),
-    agents: Object.entries(productData).flatMap(([productId, product]) =>
-      product.agents.map(agent => ({
+  };
+  Object.values(productData).forEach(window.orderMarketingAgents);
+  window.rebuildMarketingAggregate = function rebuildMarketingAggregate() {
+    const products = Object.entries(productData).filter(([productId]) => productId !== "all");
+    productData.all = {
+      source: "all product repositories",
+      lastUpdated: products.map(([, product]) => product.lastUpdated).filter(Boolean).sort().at(-1),
+      agents: products.flatMap(([productId, product]) => product.agents.map(agent => ({
         ...agent,
         id: `${productId}-${agent.id}`,
         activityGroupId: agent.id,
         productId,
-        name: `${agent.name} · ${productNames[productId]}`
-      }))
-    )
+        source: agent.source || product.source,
+        name: `${agent.name} · ${productNames[productId] || productId}`
+      })))
+    };
+    return productData.all;
   };
+  window.rebuildMarketingAggregate();
   window.PRODUCT_AGENT_DATA = productData;
   let activeProduct = sessionStorage.getItem("marketingBoardProduct") || "poptin";
   function selectProduct(productId) {
@@ -3331,4 +3337,5 @@
     button.addEventListener("click", () => selectProduct(button.dataset.product));
   });
   selectProduct(activeProduct in productData && activeProduct !== "all" ? activeProduct : "poptin");
+  document.dispatchEvent(new CustomEvent("marketingProductsReady"));
 })();

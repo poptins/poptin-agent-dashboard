@@ -1,0 +1,270 @@
+// Public-safe agent descriptions and verified public outcomes only.
+// Never place raw private receipts, credentials, signed asset URLs or drafts here.
+window.PUBLISHING_AGENT_DATA = {
+  "source": "poptins/poptin-agents",
+  "lastUpdated": "2026-10-03T16:32:37Z",
+  "agents": [
+    {
+      "id": "youtube-shorts",
+      "name": "YouTube Shorts Agent",
+      "role": "Short-form video · YouTube",
+      "initials": "YS",
+      "status": "manual",
+      "statusLabel": "Manual · approval required",
+      "color": "#ffe3df",
+      "ink": "#8b322a",
+      "owner": "Poptin Video & Social",
+      "cadence": "On demand · no automatic posting",
+      "priority": "Medium",
+      "instructions": [
+        "Start with the reviewed video and the exact approved destination.",
+        "Require separate approval for each public publication; never infer permission from a previous post.",
+        "Check existing publication state before sending media to prevent duplicate uploads.",
+        "Record publication only after the platform confirms the final public result."
+      ],
+      "statusNote": "YouTube Shorts publishing is verified. Only confirmed publications with timestamps are shown; older pending checkpoints are excluded.",
+      "manualPublishing": true,
+      "workflowUrl": "https://github.com/poptins/poptin-agents/blob/publish/agents-api-20261003/.github/workflows/shorts-preview.yml",
+      "workflowLabel": "Review publishing workflow",
+      "activities": [
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "YouTube Short:SBO0iyBRgAQ",
+          "title": "Published AI agents API Short",
+          "detail": "Public publication confirmed by the publishing workflow. Time shown is the confirmation time.",
+          "date": "2026-10-03T06:08:45Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.youtube.com/shorts/SBO0iyBRgAQ",
+          "assetLabel": "View YouTube Short",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37101978489"
+        },
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "YouTube Short:M4RBRcLFyFc",
+          "title": "Published Poptin upbeat Short",
+          "detail": "Public publication confirmed by the publishing workflow. Time shown is the confirmation time.",
+          "date": "2026-10-02T10:45:43Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.youtube.com/shorts/M4RBRcLFyFc",
+          "assetLabel": "View YouTube Short",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/36995718688"
+        },
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "YouTube Short:_jG-2G3nRE0",
+          "title": "Published Shopify integration Short",
+          "detail": "Public publication confirmed by the publishing workflow. Time shown is the confirmation time.",
+          "date": "2026-10-02T08:44:29Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.youtube.com/shorts/_jG-2G3nRE0",
+          "assetLabel": "View YouTube Short",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/36985723908"
+        }
+      ]
+    },
+    {
+      "id": "youtube-video",
+      "name": "YouTube Video Agent",
+      "role": "Landscape product videos · YouTube",
+      "initials": "YV",
+      "status": "manual",
+      "statusLabel": "Manual · approval required",
+      "color": "#ffe9d8",
+      "ink": "#885521",
+      "owner": "Poptin Video & Social",
+      "cadence": "On demand · no automatic posting",
+      "priority": "Medium",
+      "instructions": [
+        "Start with the reviewed video and the exact approved destination.",
+        "Require separate approval for each public publication; never infer permission from a previous post.",
+        "Check existing publication state before sending media to prevent duplicate uploads.",
+        "Record publication only after the platform confirms the final public result."
+      ],
+      "statusNote": "Produces reviewed long-form landscape videos, chapters, narration and thumbnails. Public publication is confirmed.",
+      "manualPublishing": true,
+      "workflowUrl": "https://github.com/poptins/poptin-agents/blob/publish/september-updates-20261003/.github/workflows/shorts-preview.yml",
+      "workflowLabel": "Review publishing workflow",
+      "activities": [
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "YouTube video:Xm2pNFWOxuU",
+          "title": "Published September 2026 product update video",
+          "detail": "Public publication confirmed by the publishing workflow. Time shown is the confirmation time.",
+          "date": "2026-10-03T10:06:11Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.youtube.com/watch?v=Xm2pNFWOxuU",
+          "assetLabel": "View YouTube video",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37115171124"
+        }
+      ]
+    },
+    {
+      "id": "instagram-reels",
+      "name": "Instagram Reels Agent",
+      "role": "Short-form video · Instagram",
+      "initials": "IR",
+      "status": "blocked",
+      "statusLabel": "Connection renewal required",
+      "color": "#f5def0",
+      "ink": "#853268",
+      "owner": "Poptin Video & Social",
+      "cadence": "On demand · no automatic posting",
+      "priority": "Medium",
+      "instructions": [
+        "Start with the reviewed video and the exact approved destination.",
+        "Require separate approval for each public publication; never infer permission from a previous post.",
+        "Check existing publication state before sending media to prevent duplicate uploads.",
+        "Record publication only after the platform confirms the final public result."
+      ],
+      "statusNote": "Five Reels have verified public results. New publications are paused until the Meta connection is renewed.",
+      "manualPublishing": true,
+      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37137231674",
+      "workflowLabel": "Review connection check",
+      "activities": [
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "Instagram Reel:DeCStVfANsM",
+          "title": "Published BFCM Reel",
+          "detail": "Public publication confirmed by the publishing workflow. Time shown is the confirmation time.",
+          "date": "2026-10-03T14:39:13Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.instagram.com/reel/DeCStVfANsM/",
+          "assetLabel": "View Instagram Reel",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37130088327"
+        },
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "Instagram Reel:DeCSmXPgAKX",
+          "title": "Published AI agents API Reel",
+          "detail": "Public publication confirmed by the publishing workflow. Time shown is the confirmation time.",
+          "date": "2026-10-03T14:38:15Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.instagram.com/reel/DeCSmXPgAKX/",
+          "assetLabel": "View Instagram Reel",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37130088327"
+        },
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "Instagram Reel:DeCSgB4AFE0",
+          "title": "Published Poptin upbeat Reel",
+          "detail": "Public publication confirmed by the publishing workflow. Time shown is the confirmation time.",
+          "date": "2026-10-03T14:37:18Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.instagram.com/reel/DeCSgB4AFE0/",
+          "assetLabel": "View Instagram Reel",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37130088327"
+        },
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "Instagram Reel:DeCSZGRAIXw",
+          "title": "Published Shopify integration Reel",
+          "detail": "Public publication confirmed by the publishing workflow. Time shown is the confirmation time.",
+          "date": "2026-10-03T14:36:25Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.instagram.com/reel/DeCSZGRAIXw/",
+          "assetLabel": "View Instagram Reel",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37130088327"
+        },
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "Instagram Reel:DeCQCT8gNuG",
+          "title": "Published original API launch Reel",
+          "detail": "Public publication confirmed by the publishing workflow. Time shown is the confirmation time.",
+          "date": "2026-10-03T14:15:47Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.instagram.com/reel/DeCQCT8gNuG/",
+          "assetLabel": "View Instagram Reel",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37128926048"
+        }
+      ]
+    },
+    {
+      "id": "instagram-stories",
+      "name": "Instagram Stories Agent",
+      "role": "24-hour video stories · Instagram",
+      "initials": "IS",
+      "status": "blocked",
+      "statusLabel": "Connection renewal required",
+      "color": "#eee0fb",
+      "ink": "#68408b",
+      "owner": "Poptin Video & Social",
+      "cadence": "On demand · no automatic posting",
+      "priority": "Medium",
+      "instructions": [
+        "Start with the reviewed video and the exact approved destination.",
+        "Require separate approval for each public publication; never infer permission from a previous post.",
+        "Check existing publication state before sending media to prevent duplicate uploads.",
+        "Record publication only after the platform confirms the final public result."
+      ],
+      "statusNote": "Publishing is paused until the Meta connection is renewed and destination permissions are verified. No Story has been published.",
+      "manualPublishing": true,
+      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37137231674",
+      "workflowLabel": "Review connection check",
+      "activities": []
+    },
+    {
+      "id": "facebook-stories",
+      "name": "Facebook Stories Agent",
+      "role": "24-hour page stories · Facebook",
+      "initials": "FS",
+      "status": "blocked",
+      "statusLabel": "Connection renewal required",
+      "color": "#dceaff",
+      "ink": "#285590",
+      "owner": "Poptin Video & Social",
+      "cadence": "On demand · no automatic posting",
+      "priority": "Medium",
+      "instructions": [
+        "Start with the reviewed video and the exact approved destination.",
+        "Require separate approval for each public publication; never infer permission from a previous post.",
+        "Check existing publication state before sending media to prevent duplicate uploads.",
+        "Record publication only after the platform confirms the final public result."
+      ],
+      "statusNote": "Publishing is paused until the Meta connection is renewed and destination permissions are verified. No Story has been published.",
+      "manualPublishing": true,
+      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37137231674",
+      "workflowLabel": "Review connection check",
+      "activities": []
+    }
+  ]
+};
+
+window.applyPublishingAgents = function applyPublishingAgents(target) {
+  const publishing = window.PUBLISHING_AGENT_DATA;
+  if (!target || target.source !== publishing.source) return target;
+  const ids = new Set(publishing.agents.map(agent => agent.id));
+  target.agents = [
+    ...target.agents.filter(agent => !ids.has(agent.id)),
+    ...publishing.agents.map(agent => ({...agent, activities: agent.activities.map(item => ({...item}))}))
+  ];
+  if (new Date(publishing.lastUpdated) > new Date(target.lastUpdated)) target.lastUpdated = publishing.lastUpdated;
+  return target;
+};
+window.applyPublishingAgents(window.AGENT_DATA);
