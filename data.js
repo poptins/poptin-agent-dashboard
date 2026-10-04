@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-03T17:16:56.961Z",
+  lastUpdated: "2026-10-04T15:22:12.127Z",
   agents: [
     {
       id: "seo",
@@ -819,6 +819,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Turn Website Behavior Into Actionable Lead-Intent Segments” as a Poptin Academy guide.",
+          date: "2026-10-04T11:32:31Z",
+          url: "https://www.poptin.com/academy/guides/turn-website-behavior-into-actionable-lead-intent-segments/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461501,
+          publicationTaskId: "poptin academy-wordpress-461501",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
