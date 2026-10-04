@@ -2,7 +2,7 @@
 // Never place raw private receipts, credentials, signed asset URLs or drafts here.
 window.PUBLISHING_AGENT_DATA = {
   "source": "poptins/poptin-agents",
-  "lastUpdated": "2026-10-03T19:12:57Z",
+  "lastUpdated": "2026-10-04T11:38:14Z",
   "agents": [
     {
       "id": "youtube-shorts",
@@ -24,9 +24,23 @@ window.PUBLISHING_AGENT_DATA = {
       ],
       "statusNote": "YouTube Shorts publishing is verified. Only confirmed publications with timestamps are shown; older pending checkpoints are excluded.",
       "manualPublishing": true,
-      "workflowUrl": "https://github.com/poptins/poptin-agents/blob/publish/agents-api-20261003/.github/workflows/shorts-preview.yml",
-      "workflowLabel": "Review publishing workflow",
+      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37197079635",
+      "workflowLabel": "Review publication verification",
       "activities": [
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "YouTube Short:J7EvTG2D8kc",
+          "title": "Published Wix integration Short",
+          "detail": "Public publication and completed processing verified. Approved custom thumbnail accepted; Shorts-grid placement is not established by the thumbnail API. Time shown is publication confirmation.",
+          "date": "2026-10-04T11:02:36Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.youtube.com/watch?v=J7EvTG2D8kc",
+          "assetLabel": "View YouTube Short",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37197079635"
+        },
         {
           "type": "past",
           "status": "Published",
@@ -128,11 +142,25 @@ window.PUBLISHING_AGENT_DATA = {
         "Check existing publication state before sending media to prevent duplicate uploads.",
         "Record publication only after the platform confirms the final public result."
       ],
-      "statusNote": "Five Reels have verified public results. The Meta connection was renewed; every new publication still requires approval.",
+      "statusNote": "Six Reels have verified public results. The Meta connection was renewed; every new publication still requires approval.",
       "manualPublishing": true,
-      "workflowUrl": "https://github.com/poptins/poptin-agents/blob/publish/instagram-shorts-20261003/.github/workflows/shorts-preview.yml",
-      "workflowLabel": "Review publishing workflow",
+      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37197079635",
+      "workflowLabel": "Review publication verification",
       "activities": [
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "Instagram Reel:DeEeiDajAM5",
+          "title": "Published Wix integration Reel",
+          "detail": "Published to Poptin Instagram Reels and verified. Time shown is publication confirmation.",
+          "date": "2026-10-04T11:00:56Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.instagram.com/reel/DeEeiDajAM5/",
+          "assetLabel": "View Instagram Reel",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37197079635"
+        },
         {
           "type": "past",
           "status": "Published",
@@ -223,11 +251,28 @@ window.PUBLISHING_AGENT_DATA = {
         "Check existing publication state before sending media to prevent duplicate uploads.",
         "Record publication only after the platform confirms the final public result."
       ],
-      "statusNote": "The BFCM Story is verified. Stories remain visible for approximately 24 hours; the calendar keeps their publication history after expiry.",
+      "statusNote": "Wix and BFCM Stories have verified publications. Stories remain visible for approximately 24 hours; the calendar keeps their publication history after expiry.",
       "manualPublishing": true,
-      "workflowUrl": "https://github.com/poptins/poptin-agents/blob/publish/instagram-shorts-20261003/.github/workflows/shorts-preview.yml",
+      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37199218069",
       "workflowLabel": "Review publishing workflow",
       "activities": [
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "instagram-story:4000475374639230018",
+          "title": "Published Wix integration Instagram Story",
+          "detail": "Verified as an active Instagram Story with native AI disclosure. Expected expiry is approximately 24 hours after publication, not an exact API expiry.",
+          "date": "2026-10-04T11:38:05Z",
+          "dateBasis": "platform-published",
+          "expiresAt": "2026-10-05T11:38:05Z",
+          "expiryEstimated": true,
+          "publicationVerifiedAt": "2026-10-04T11:38:14.390540Z",
+          "url": "https://www.instagram.com/stories/popt.in/4000475374639230018",
+          "assetLabel": "View Instagram Story",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37199218069"
+        },
         {
           "type": "past",
           "status": "Published",
@@ -263,11 +308,30 @@ window.PUBLISHING_AGENT_DATA = {
         "Check existing publication state before sending media to prevent duplicate uploads.",
         "Record publication only after the platform confirms the final public result."
       ],
-      "statusNote": "The BFCM Facebook Story is verified as published and ready. Future posts still require approval. Native AI disclosure was sent; the displayed label has not been independently verified.",
+      "statusNote": "Facebook Stories publishing is verified. Future posts still require approval. Native AI disclosure was sent; the displayed label has not been independently verified.",
       "manualPublishing": true,
-      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37147077989",
+      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37197079635",
       "workflowLabel": "Review publication verification",
       "activities": [
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "facebook-story:2888113721566988",
+          "title": "Published Wix integration Facebook Story",
+          "detail": "Published and active Story verified. Expected expiry is around October 5 at 11:01 UTC, based on the usual 24-hour duration, not an exact API expiry. Native AI disclosure was sent; its displayed label is not independently verified.",
+          "date": "2026-10-04T11:01:15Z",
+          "dateBasis": "platform-created",
+          "publicationAcceptedAt": "2026-10-04T11:01:17.583701Z",
+          "platformCreatedAt": "2026-10-04T11:01:15Z",
+          "expiresAt": "2026-10-05T11:01:15Z",
+          "expiryEstimated": true,
+          "url": "https://facebook.com/stories/174171244298670/UzpfSVNDOjI4ODgxMTM3MjgyMzM2NTQ=/?view_single=1",
+          "assetLabel": "View Facebook Story",
+          "publicationVerifiedAt": "2026-10-04T11:02:21.843078Z",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37197079635"
+        },
         {
           "type": "past",
           "status": "Published",
@@ -286,6 +350,45 @@ window.PUBLISHING_AGENT_DATA = {
           "assetLabel": "View Facebook Story",
           "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37147077989",
           "publicationVerifiedAt": "2026-10-03T19:12:57Z"
+        }
+      ]
+    },
+    {
+      "id": "facebook-reels",
+      "name": "Facebook Reels Agent",
+      "role": "Short-form page video · Facebook",
+      "initials": "FR",
+      "status": "manual",
+      "statusLabel": "Manual · approval required",
+      "color": "#dceaff",
+      "ink": "#285590",
+      "owner": "Poptin Video & Social",
+      "cadence": "On demand · no automatic posting",
+      "priority": "Medium",
+      "instructions": [
+        "Start with the reviewed video and the exact approved destination.",
+        "Require separate approval for each public publication; never infer permission from a previous post.",
+        "Check existing publication state before sending media to prevent duplicate uploads.",
+        "Record publication only after the platform confirms the final public result."
+      ],
+      "statusNote": "Facebook Reel publication is verified. Native AI disclosure was sent; the displayed label and thumbnail selection have not been independently verified.",
+      "manualPublishing": true,
+      "workflowUrl": "https://github.com/poptins/poptin-agents/actions/runs/37198435678",
+      "workflowLabel": "Review publication verification",
+      "activities": [
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "facebook-reel:1619078793232073",
+          "title": "Published Wix integration Facebook Reel",
+          "detail": "Published to the Poptin Page and verified ready. Time shown is publication confirmation. Native AI disclosure was sent; displayed label and thumbnail selection are not independently verified.",
+          "date": "2026-10-04T11:25:07Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.facebook.com/reel/1619078793232073/",
+          "assetLabel": "View Facebook Reel",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37198435678"
         }
       ]
     }

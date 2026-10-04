@@ -5,15 +5,15 @@ import {JSDOM} from 'jsdom';
 import {Script} from 'node:vm';
 
 const source = file => readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
-const ids = ['youtube-shorts','youtube-video','instagram-reels','instagram-stories','facebook-stories'];
+const ids = ['youtube-shorts','youtube-video','instagram-reels','instagram-stories','facebook-stories','facebook-reels'];
 const files = ['data.js','publishing-agents.js','app.js','product-tabs.js','preserve-agent-on-product-switch.js','calendar-view.js'];
 async function harness({runs = [], token = false} = {}) {
   const dom = new JSDOM(source('dashboard.html'), {url:'https://dashboard.example/dashboard.html',runScripts:'outside-only'});
   const {window:w} = dom;
   const RealDate = w.Date;
   w.Date = class extends RealDate {
-    constructor(...args) { super(...(args.length ? args : ['2026-10-03T20:00:00Z'])); }
-    static now() { return RealDate.parse('2026-10-03T20:00:00Z'); }
+    constructor(...args) { super(...(args.length ? args : ['2026-10-04T12:00:00Z'])); }
+    static now() { return RealDate.parse('2026-10-04T12:00:00Z'); }
   };
   const requests = [];
   w.fetch = async (url, options = {}) => {
@@ -42,12 +42,12 @@ function calendar(w,id) {
 }
 
 // These are source-grounded snapshot expectations, not simulated publication receipts.
-test('five approval-led publishers, eleven verified public outcomes, no invented schedules', async () => {
+test('six approval-led publishers, sixteen verified public outcomes, no invented schedules', async () => {
  const h=await harness();try {
   const agents=h.w.PRODUCT_AGENT_DATA.poptin.agents.filter(a=>ids.includes(a.id));
-  assert.equal(agents.length,5);assert.equal(agents.flatMap(a=>a.activities).length,11);
+  assert.equal(agents.length,6);assert.equal(agents.flatMap(a=>a.activities).length,16);
   assert.ok(agents.every(a=>a.manualPublishing && a.activities.every(x=>x.type==='past')));
-  const events=agents.flatMap(a=>a.activities);assert.equal(new Set(events.map(e=>e.publicationTaskId)).size,11);
+  const events=agents.flatMap(a=>a.activities);assert.equal(new Set(events.map(e=>e.publicationTaskId)).size,16);
   for(const event of events) {
    assert.equal(event.publicationVerified,true);assert.ok(['publication-confirmed','platform-published','platform-created'].includes(event.dateBasis));
    assert.ok(Number.isFinite(new Date(event.date).getTime()));assert.equal(new URL(event.url).protocol,'https:');
@@ -68,9 +68,9 @@ test('agent cards expose readiness and safe review links without dispatch contro
  }finally{await h.close();}
 });
 
-test('calendar includes verified outcomes for all five publishing formats',async()=>{
+test('calendar includes verified outcomes for all six publishing formats',async()=>{
  const h=await harness();try {
-  for(const [id,count] of [['youtube-shorts',3],['youtube-video',1],['instagram-reels',5],['instagram-stories',1],['facebook-stories',1]]) assert.equal(calendar(h.w,id).length,count,id);
+  for(const [id,count] of [['youtube-shorts',4],['youtube-video',1],['instagram-reels',6],['instagram-stories',2],['facebook-stories',2],['facebook-reels',1]]) assert.equal(calendar(h.w,id).length,count,id);
  }finally{await h.close();}
 });
 
@@ -79,11 +79,11 @@ test('repeated refresh, calendar selection and product switching keep exactly on
   const w=h.w;calendar(w,'instagram-reels');const allCount=w.PRODUCT_AGENT_DATA.all.agents.length;
   for(let i=0;i<2;i++) {
    await w.loadLatestData();w.eval('data = window.PRODUCT_AGENT_DATA.poptin');w.renderDashboard();w.document.dispatchEvent(new w.CustomEvent('marketingActivityUpdated'));
-   assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.filter(a=>ids.includes(a.id)).length,5);
+   assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.filter(a=>ids.includes(a.id)).length,6);
    assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length,allCount);
-   assert.equal(w.PRODUCT_AGENT_DATA.all.agents.filter(a=>a.manualPublishing).length,5);
+   assert.equal(w.PRODUCT_AGENT_DATA.all.agents.filter(a=>a.manualPublishing).length,6);
    assert.equal(w.document.querySelector('#calendarAgentFilter').value,'instagram-reels');
-   assert.equal(w.document.querySelectorAll('.calendar-outcome').length,5);
+   assert.equal(w.document.querySelectorAll('.calendar-outcome').length,6);
   }
   w.selectMarketingProduct('chatway');await w.loadLatestData();assert.equal(w.AGENT_DATA.source,'poptins/chatway-agents');
   w.selectMarketingProduct('poptin');assert.equal(w.document.querySelectorAll('[data-agent-id="instagram-reels"]').length,1);
@@ -143,7 +143,7 @@ test('switching product during the publishing refresh never replaces Poptin with
   const current=await w.loadLatestData();
   assert.equal(current.source,'poptins/chatway-agents');
   assert.equal(w.PRODUCT_AGENT_DATA.poptin.source,'poptins/poptin-agents');
-  assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.filter(a=>a.manualPublishing).length,5);
+  assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.filter(a=>a.manualPublishing).length,6);
   assert.equal(w.PRODUCT_AGENT_DATA.chatway.agents.filter(a=>a.manualPublishing).length,0);
  }finally{await h.close();}
 });
@@ -154,7 +154,7 @@ test('all-product publisher selection preserves a valid format filter',async()=>
   const w=h.w;w.selectMarketingProduct('all');
   w.document.querySelector('[data-agent-id="poptin-youtube-shorts"]').click();
   assert.equal(w.document.querySelector('#activityAgentFilter').value,'youtube-shorts');
-  assert.equal(w.document.querySelectorAll('#activityTimeline .activity-card').length,3);
+  assert.equal(w.document.querySelectorAll('#activityTimeline .activity-card').length,4);
  }finally{await h.close();}
 });
 
@@ -162,7 +162,7 @@ test('all-product publisher selection preserves a valid format filter',async()=>
 test('Facebook Story retains verified evidence and qualifies estimated expiry',async()=>{
  const h=await harness();try {
   const w=h.w;const agent=w.PRODUCT_AGENT_DATA.poptin.agents.find(a=>a.id==='facebook-stories');
-  const event=agent.activities[0];
+  const event=agent.activities.find(e=>e.publicationTaskId==='facebook-story:990423010748826');
   assert.equal(event.date,'2026-10-03T19:03:58Z');
   assert.equal(event.dateBasis,'platform-created');
   assert.equal(event.publicationVerifiedAt,'2026-10-03T19:12:57Z');
@@ -174,8 +174,19 @@ test('Facebook Story retains verified evidence and qualifies estimated expiry',a
   assert.match(event.url,/^https:\/\/facebook\.com\/stories\//);
   event.expiresAt='2026-10-02T19:03:58Z';
   const items=calendar(w,'facebook-stories');
-  assert.equal(items.length,1);assert.match(items[0].textContent,/expected expiry passed/);
-  assert.equal(items[0].tagName,'DIV');
+  assert.equal(items.length,2);const expired=items.find(i=>i.textContent.includes('BFCM'));assert.match(expired.textContent,/expected expiry passed/);
+  assert.equal(expired.tagName,'DIV');
   assert.match(w.renderAsset(event),/Expected Story expiry passed/);
  }finally{await h.close();}
 });
+
+
+test('Wix publication receipts match three verified destinations without duplicates',async()=>{
+ const h=await harness();try {
+  const checks=[['youtube-shorts','YouTube Short:J7EvTG2D8kc','https://www.youtube.com/watch?v=J7EvTG2D8kc'],['instagram-reels','Instagram Reel:DeEeiDajAM5','https://www.instagram.com/reel/DeEeiDajAM5/'],['facebook-stories','facebook-story:2888113721566988','https://facebook.com/stories/174171244298670/UzpfSVNDOjI4ODgxMTM3MjgyMzM2NTQ=/?view_single=1']];
+  for(const [id,task,url] of checks){const a=h.w.PRODUCT_AGENT_DATA.poptin.agents.find(a=>a.id===id);const matches=a.activities.filter(e=>e.publicationTaskId===task);assert.equal(matches.length,1);assert.equal(matches[0].url,url);assert.equal(matches[0].publicationVerified,true);assert.match(matches[0].evidenceUrl,/37197079635$/);}
+  const fb=h.w.PRODUCT_AGENT_DATA.poptin.agents.find(a=>a.id==='facebook-stories').activities.find(e=>e.publicationTaskId==='facebook-story:2888113721566988');assert.equal(fb.expiresAt,'2026-10-05T11:01:15Z');assert.equal(fb.expiryEstimated,true);
+ }finally{await h.close();}
+});
+
+ test('Wix supplemental destinations preserve exact verified links and Story expiry',async()=>{const h=await harness();try {const agents=h.w.PRODUCT_AGENT_DATA.poptin.agents;const ig=agents.find(a=>a.id==='instagram-stories').activities.find(e=>e.title.includes('Wix'));assert.equal(ig.url,'https://www.instagram.com/stories/popt.in/4000475374639230018');assert.equal(ig.date,'2026-10-04T11:38:05Z');assert.equal(ig.expiresAt,'2026-10-05T11:38:05Z');assert.equal(ig.expiryEstimated,true);const fb=agents.find(a=>a.id==='facebook-reels').activities[0];assert.equal(fb.url,'https://www.facebook.com/reel/1619078793232073/');assert.equal(fb.date,'2026-10-04T11:25:07Z');assert.equal(agents.flatMap(a=>a.activities).filter(e=>e.title.includes('Wix')).length,5);}finally{await h.close();}});
