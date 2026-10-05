@@ -1,0 +1,39 @@
+name: Company tree visual smoke
+on:
+  pull_request:
+    paths:
+      - 'dashboard.html'
+      - '*.js'
+      - '*.css'
+      - 'tests/**'
+      - 'package*.json'
+      - '.github/workflows/company-tree-visual.yml'
+permissions:
+  contents: read
+jobs:
+  component-screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Install pinned browser test tooling
+        run: npm install --no-save --package-lock=false --ignore-scripts playwright@1.62.1
+      - run: npx playwright install --with-deps chromium
+      - name: Render isolated offline component fixtures
+        env:
+          SCREENSHOT_DIR: ${{ runner.temp }}/company-tree-visual
+        run: node tests/company-tree-visual.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: company-tree-screenshots
+          path: ${{ runner.temp }}/company-tree-visual
+          retention-days: 3
+          if-no-files-found: warn

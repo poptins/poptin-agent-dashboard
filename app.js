@@ -1,5 +1,5 @@
 let data = window.AGENT_DATA;
-let selectedAgentId = data.agents[0]?.id;
+let selectedAgentId = typeof window.companyTree?.render === 'function' ? null : data.agents[0]?.id;
 let activityFilter = "all";
 let activityAgentFilter = "all";
 let activityProductFilter = "poptin";
@@ -225,6 +225,7 @@ function renderAsset(item, compact = false) {
 }
 
 function renderAgents(query = "") {
+  if (typeof window.companyTree?.render === 'function') return window.companyTree.render(query);
   const normalized = query.trim().toLowerCase();
   const agents = data.agents.filter(agent => `${agent.name} ${agent.role}`.toLowerCase().includes(normalized));
   $("#agentCount").textContent = agents.length;
@@ -256,8 +257,11 @@ function renderAgents(query = "") {
 }
 
 function renderAgentDetail() {
+  if (typeof window.companyTree?.render === 'function' && selectedAgentId == null) return window.companyTree.renderRootDetail();
   const agent = data.agents.find(item => item.id === selectedAgentId) || data.agents[0];
   if (!agent) return;
+  if (typeof window.companyTree?.render === 'function') window.companyTree.updateSidebar(agent);
+  const triggerPaused = window.companyTree?.getTriggerMetadata?.(agent)?.paused;
   const past = agent.activities.filter(item => item.type === "past").sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 2);
   const now = Date.now();
   const scheduled = agent.activities.filter(item => isFutureScheduled(item, now, {...agent, source: agent.source || data.source})).slice(0, 2);
@@ -281,10 +285,11 @@ function renderAgentDetail() {
         <span class="avatar" style="${avatarStyle(agent)}">${agent.initials}</span>
         <div><h2>${agent.name}</h2><p>${agent.role}</p></div>
       </div>
-      <span class="status-pill"><span class="status-dot ${agent.status}"></span>${escapeHtml(agent.statusLabel || (agent.status === "active" ? "Active now" : "Standing by"))}</span>
+      <span class="status-pill${triggerPaused ? " paused" : ""}"><span class="status-dot ${triggerPaused ? "paused" : agent.status}"></span>${escapeHtml(triggerPaused ? "Paused" : agent.statusLabel || (agent.status === "active" ? "Active now" : "Standing by"))}</span>
     </div>
     ${agent.statusNote ? `<p class="publishing-note" role="note">${escapeHtml(agent.statusNote)}</p>` : ""}
     ${safeExternalUrl(agent.workflowUrl) ? `<a class="asset-link publishing-workflow" href="${escapeHtml(safeExternalUrl(agent.workflowUrl))}" target="_blank" rel="noopener">${escapeHtml(agent.workflowLabel || "Review workflow")} ↗</a>` : ""}
+    ${typeof window.companyTree?.render === 'function' ? window.companyTree.renderTriggers(agent) : ""}
     <div class="task-block">
       <p class="eyebrow">INSTRUCTIONS FOLLOWED</p>
       <h3>What ${agent.name} does each time it runs</h3>
@@ -369,6 +374,7 @@ async function loadLatestData() {
   if (!window.AGENT_DATA?.agents) throw new Error("The dashboard data is invalid.");
   const freshPoptin = window.AGENT_DATA;
   await loadDataScript("publishing-agents.js");
+  if (typeof window.companyTree?.render === "function") await loadDataScript("trigger-metadata.js");
   window.applyPublishingAgents?.(freshPoptin);
   window.orderMarketingAgents?.(freshPoptin);
   const productId = sessionStorage.getItem("marketingBoardProduct") || "poptin";
@@ -498,8 +504,8 @@ function synchronizeSeoDependentActivities() {
 
 function renderDashboard() {
   synchronizeSeoDependentActivities();
-  if (!data.agents.some(agent => agent.id === selectedAgentId)) {
-    selectedAgentId = data.agents[0]?.id;
+  if (selectedAgentId != null && !data.agents.some(agent => agent.id === selectedAgentId)) {
+    selectedAgentId = typeof window.companyTree?.render === 'function' ? null : data.agents[0]?.id;
   }
   renderStats();
   renderAgents($("#agentSearch").value);

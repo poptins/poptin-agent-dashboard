@@ -1,4 +1,6 @@
 (() => {
+  // Company selection is coordinated by selectMarketingProduct for all callers.
+  if (typeof window.companyTree?.render === 'function') return;
   let agentTypeBeforeSwitch = "seo";
 
   function selectedAgentType() {
