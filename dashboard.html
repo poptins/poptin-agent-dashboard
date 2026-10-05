@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20261003-video-agents1">
   <link rel="stylesheet" href="calendar-view.css?v=20260902-product-favicons1">
+  <link rel="stylesheet" href="company-tree.css?v=20261005-company1">
 </head>
 <body>
   <div class="page-shell">
@@ -55,16 +56,27 @@
       <div id="operationsView">
         <section class="stats-grid" id="statsGrid" aria-label="Agent summary"></section>
 
-        <section class="workspace-grid">
-          <aside class="panel agent-panel">
-            <div class="panel-heading">
-              <div><p class="eyebrow">TEAM</p><h2>Agents</h2></div>
-              <span class="count-badge" id="agentCount">0</span>
+        <section class="workspace-grid company-workspace">
+          <section class="panel company-panel" aria-labelledby="companyTitle">
+            <div class="company-heading">
+              <div><p class="eyebrow">YOUR AGENTIC COMPANY</p><h2 id="companyTitle">Team structure</h2></div>
+              <span class="count-badge" id="agentCount" aria-label="Agent count">0</span>
             </div>
-            <label class="search-box"><span aria-hidden="true">⌕</span><input id="agentSearch" type="search" placeholder="Search agents" autocomplete="off"></label>
-            <div class="agent-list" id="agentList"></div>
-          </aside>
-          <section class="panel detail-panel" id="agentDetail" aria-live="polite"></section>
+            <label class="search-box"><span aria-hidden="true">⌕</span><input id="agentSearch" type="search" placeholder="Find an agent or responsibility" aria-label="Search agents" autocomplete="off"></label>
+            <div class="trigger-legend" aria-label="Agent trigger legend">
+              <span><span aria-hidden="true">◷</span> Scheduled</span>
+              <span><span aria-hidden="true">▷</span> On demand</span>
+              <span><span aria-hidden="true">ϟ</span> Event-triggered</span>
+            </div>
+            <div class="company-tree" id="companyTree" aria-label="Agent company hierarchy"><div class="agent-list" id="agentList"></div></div>
+            <p class="tree-note">Trigger badges describe the inspected workflow configuration. They do not confirm that a workflow is enabled or that a publication is due.</p>
+          </section>
+          <aside class="company-sidebar" id="companySidebar" aria-label="Agent details and activity">
+            <nav class="sidebar-navigation" aria-label="Company navigation">
+              <button type="button" id="companyBack" hidden>← Back to company</button>
+              <span class="sidebar-context" id="sidebarContext">Company overview</span>
+            </nav>
+            <section class="panel detail-panel" id="agentDetail" aria-live="polite" tabindex="-1"></section>
 
           <section class="activity-section">
             <div class="section-heading">
@@ -94,6 +106,7 @@
             <div class="recommendation-grid" id="recommendationGrid" hidden></div>
             <p class="approval-status" id="approvalStatus" hidden aria-live="polite"></p>
           </section>
+          </aside>
         </section>
       </div>
 
@@ -128,8 +141,10 @@
   <script src="auth.js?v=20260727-redirect-loop1"></script>
   <script src="data.js?v=20260822-outreach-agents1"></script>
   <script src="publishing-agents.js?v=20261003-facebook-story1"></script>
-  <script src="app.js?v=20261003-facebook-story1"></script>
-  <script src="product-tabs.js?v=20261003-video-agents1"></script>
+  <script src="trigger-metadata.js?v=20261005-company1"></script>
+  <script src="company-tree.js?v=20261005-company1"></script>
+  <script src="app.js?v=20261005-company1"></script>
+  <script src="product-tabs.js?v=20261005-company1"></script>
   <script src="preserve-agent-on-product-switch.js"></script>
   <script src="calendar-view.js?v=20261003-facebook-story1"></script>
   <script src="glossary-activity-links.js"></script>

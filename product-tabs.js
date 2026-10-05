@@ -3325,13 +3325,19 @@
   window.PRODUCT_AGENT_DATA = productData;
   let activeProduct = sessionStorage.getItem("marketingBoardProduct") || "poptin";
   function selectProduct(productId) {
+    const priorAgentId = selectedAgentId;
     activeProduct = productId;
     sessionStorage.setItem("marketingBoardProduct", productId);
     data = productData[productId];
     window.AGENT_DATA = data;
-    selectedAgentId = data.agents[0]?.id;
+    selectedAgentId = typeof window.companyTree?.render === 'function'
+      ? (data.agents.some(agent => agent.id === priorAgentId) ? priorAgentId : null)
+      : data.agents[0]?.id;
     activityProductFilter = productId;
-    activityAgentFilter = "all";
+    const selectedAgent = data.agents.find(agent => agent.id === selectedAgentId);
+    activityAgentFilter = typeof window.companyTree?.render === 'function' && selectedAgent
+      ? (productId === 'all' ? selectedAgent.activityGroupId || selectedAgent.id : selectedAgent.id)
+      : "all";
     const activityProductSelect = document.querySelector("#activityProductFilter");
     if (activityProductSelect) activityProductSelect.value = productId;
     document.querySelectorAll("[data-product]").forEach(button => {
