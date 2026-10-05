@@ -27,6 +27,18 @@ test('tutorial importer refuses unverified, malformed, duplicate or conflicting 
   assert.throws(()=>importTutorialPublications(source,{...catalog,publications:[catalog.publications[0],catalog.publications[0]]}));
 });
 
+test('tutorial history sorts mixed timezone offsets by instant rather than text',()=>{
+  const newer = {...catalog.publications[0],video_id:'AbCdEfGhIjK',youtube_url:'https://www.youtube.com/watch?v=AbCdEfGhIjK',title:'Newer tutorial',verified_at:'2026-10-05T08:00:00-02:00'};
+  const older = {...catalog.publications[0],video_id:'LmNoPqRsTuV',youtube_url:'https://www.youtube.com/watch?v=LmNoPqRsTuV',title:'Older tutorial',verified_at:'2026-10-05T11:00:00+03:00'};
+  const result=importTutorialPublications(source,{...catalog,publications:[older,newer]});
+  const imported=JSON.parse(result.split('window.PUBLISHING_AGENT_DATA = ')[1].split(';\n\nwindow.applyPublishingAgents')[0]);
+  const dates=imported.agents.find(item=>item.id==='tutorial-video').activities.map(event=>event.date);
+  assert.equal(dates[0],newer.verified_at);
+  assert.ok(dates.indexOf(older.verified_at)>dates.indexOf('2026-10-05T08:46:34Z'));
+  assert.ok(dates.every((date,index)=>index===0||Date.parse(dates[index-1])>=Date.parse(date)));
+  assert.equal(imported.lastUpdated,newer.verified_at);
+});
+
 test('WordPress sync cannot replace publishing module and runtime refresh reapplies it',()=>{
   const sync=readFileSync(new URL('../scripts/sync-wordpress-posts.mjs',import.meta.url),'utf8');
   assert.ok(!sync.includes('publishing-agents.js'));

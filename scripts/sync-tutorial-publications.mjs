@@ -62,7 +62,7 @@ export function importTutorialPublications(moduleText, catalog) {
     if (data.agents.some(other => other.id !== agent.id && other.activities.some(item => item.publicationTaskId === event.publicationTaskId || item.url === event.url))) throw new Error('Publication already belongs to another agent');
     events.set(event.publicationTaskId, event);
   }
-  agent.activities = [...events.values()].sort((a,b) => b.date.localeCompare(a.date));
+  agent.activities = [...events.values()].sort((a,b) => Date.parse(b.date) - Date.parse(a.date));
   data.agents = data.agents.filter(item => item.id !== agent.id);
   data.agents.splice(data.agents.findIndex(item => item.id === 'youtube-video') + 1, 0, agent);
   for (const event of agent.activities) if (Date.parse(event.date) > Date.parse(data.lastUpdated)) data.lastUpdated = event.date;
