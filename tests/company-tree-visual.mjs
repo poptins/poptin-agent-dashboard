@@ -66,6 +66,8 @@ try {
   await page.setViewportSize({width: 390, height: 844});
   await page.locator('[data-agent-id="tutorial-video"]').click();
   assert.ok(await page.locator('#companyBack').isVisible());
+  const backBox = await page.locator('#companyBack').boundingBox();
+  assert.ok(backBox && backBox.y >= 0 && backBox.y + backBox.height <= 844, 'Mobile selection keeps Back to company in the viewport');
   await screenshot('video-mobile', 390, 844);
   // Viewport screenshot verifies automatic selection scroll reaches the inspector.
   await page.screenshot({path: join(directory, 'video-mobile-inspector.png')});

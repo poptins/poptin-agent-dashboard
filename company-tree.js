@@ -114,7 +114,7 @@
     if (focus) {
       const target = id == null ? document.querySelector('#companyRoot') : document.querySelector('#agentDetail');
       target?.focus({preventScroll: true});
-      if (id != null && window.matchMedia?.('(max-width: 1050px)').matches) target?.scrollIntoView?.({block: 'start'});
+      if (id != null && window.matchMedia?.('(max-width: 1050px)').matches) (sidebar || target)?.scrollIntoView?.({block: 'start'});
     }
   }
   function backToCompany() {
