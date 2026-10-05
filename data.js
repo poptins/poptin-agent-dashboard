@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-04T15:22:12.127Z",
+  lastUpdated: "2026-10-05T18:27:48.516Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Beyond the Click: Abhay Mirchandani on Conversions, Follow-Up & AI” as a Poptin article.",
+          date: "2026-10-05T10:32:40Z",
+          url: "https://www.poptin.com/blog/beyond-the-click-abhay-mirchandani-conversions-follow-up-ai/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17994,
+          publicationTaskId: "poptin-wordpress-17994",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
