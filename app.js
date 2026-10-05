@@ -425,7 +425,8 @@ async function mergeRecentGithubActivity() {
         if (branch.includes("instagram")) {
           const name = String(run.name || "").toLowerCase();
           id = name.includes("facebook") ? "facebook-stories" : name.includes("story") || name.includes("stories") ? "instagram-stories" : "instagram-reels";
-        } else if (branch.includes("september-updates")) id = "youtube-video";
+        } else if (/fixed-coupon-tutorial|sender-domain-tutorial|dmarc-tutorial/.test(branch)) id = "tutorial-video";
+        else if (branch.includes("september-updates")) id = "youtube-video";
         else if (branch.startsWith("publish/") || path.endsWith("shorts-youtube.yml") || path.endsWith("shorts-bfcm.yml")) id = "youtube-shorts";
         return product.agents.find(agent => agent.id === id) || null;
       }

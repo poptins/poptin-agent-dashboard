@@ -2,7 +2,7 @@
 // Never place raw private receipts, credentials, signed asset URLs or drafts here.
 window.PUBLISHING_AGENT_DATA = {
   "source": "poptins/poptin-agents",
-  "lastUpdated": "2026-10-04T11:38:14Z",
+  "lastUpdated": "2026-10-05T08:46:34Z",
   "agents": [
     {
       "id": "youtube-shorts",
@@ -121,6 +121,74 @@ window.PUBLISHING_AGENT_DATA = {
           "url": "https://www.youtube.com/watch?v=Xm2pNFWOxuU",
           "assetLabel": "View YouTube video",
           "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37115171124"
+        }
+      ]
+    },
+    {
+      "id": "tutorial-video",
+      "name": "Tutorial Video Agent",
+      "role": "Step-by-step product tutorials · YouTube",
+      "initials": "TV",
+      "status": "manual",
+      "statusLabel": "On demand · review required",
+      "color": "#e6e0ff",
+      "ink": "#56408c",
+      "owner": "Poptin Video & Social",
+      "cadence": "On demand · interactive capture and approval",
+      "priority": "Medium",
+      "instructions": [
+        "Start from a reviewed tutorial topic and verified product instructions.",
+        "Capture the real product UI interactively; review each demonstrated step before rendering.",
+        "Reuse the tutorial production pipeline for narration, timing, video and thumbnail preparation.",
+        "Review the finished video and approve its destination before using the existing publishing workflow.",
+        "Check publication history before uploading and record only confirmed public results."
+      ],
+      "statusNote": "Reusable tutorial production with an interactive UI-capture handoff and manual review. No autonomous capture or automatic posting schedule. Historical tutorials below were published through the existing reviewed workflows.",
+      "manualPublishing": true,
+      "workflowUrl": "https://github.com/poptins/poptin-agents/tree/main/tutorial-agent",
+      "workflowLabel": "Review tutorial agent",
+      "activities": [
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "YouTube video:1YxuDCbWVRI",
+          "title": "How to Generate a DMARC Record in Poptin",
+          "detail": "Public YouTube publication and completed processing verified. Time shown is publication confirmation. Produced with interactive UI capture and review.",
+          "date": "2026-10-05T08:46:34Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.youtube.com/watch?v=1YxuDCbWVRI",
+          "assetLabel": "View YouTube tutorial",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37285561819"
+        },
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "YouTube video:QTIRXgPsO34",
+          "title": "Setting Up Your Sender Domain in Poptin",
+          "detail": "Public YouTube publication and completed processing verified. Time shown is publication confirmation. Produced with interactive UI capture and review.",
+          "date": "2026-10-05T07:08:14Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.youtube.com/watch?v=QTIRXgPsO34",
+          "assetLabel": "View YouTube tutorial",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37275016745"
+        },
+        {
+          "type": "past",
+          "status": "Published",
+          "taskType": "video-publication",
+          "publicationVerified": true,
+          "publicationTaskId": "YouTube video:OuSy-21Bp5Y",
+          "title": "How to Create a Fixed Coupon Code in Poptin",
+          "detail": "Public YouTube publication and completed processing verified. Time shown is publication confirmation. Produced with interactive UI capture and review.",
+          "date": "2026-10-04T21:16:00Z",
+          "dateBasis": "publication-confirmed",
+          "url": "https://www.youtube.com/watch?v=OuSy-21Bp5Y",
+          "assetLabel": "View YouTube tutorial",
+          "evidenceUrl": "https://github.com/poptins/poptin-agents/actions/runs/37235249876"
         }
       ]
     },

@@ -3248,6 +3248,7 @@
     "social",
     "youtube-shorts",
     "youtube-video",
+    "tutorial-video",
     "instagram-reels",
     "instagram-stories",
     "facebook-stories",

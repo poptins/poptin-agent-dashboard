@@ -5,15 +5,15 @@ import {JSDOM} from 'jsdom';
 import {Script} from 'node:vm';
 
 const source = file => readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
-const ids = ['youtube-shorts','youtube-video','instagram-reels','instagram-stories','facebook-stories','facebook-reels'];
+const ids = ['youtube-shorts','youtube-video','instagram-reels','instagram-stories','facebook-stories','facebook-reels','tutorial-video'];
 const files = ['data.js','publishing-agents.js','app.js','product-tabs.js','preserve-agent-on-product-switch.js','calendar-view.js'];
 async function harness({runs = [], token = false} = {}) {
   const dom = new JSDOM(source('dashboard.html'), {url:'https://dashboard.example/dashboard.html',runScripts:'outside-only'});
   const {window:w} = dom;
   const RealDate = w.Date;
   w.Date = class extends RealDate {
-    constructor(...args) { super(...(args.length ? args : ['2026-10-04T12:00:00Z'])); }
-    static now() { return RealDate.parse('2026-10-04T12:00:00Z'); }
+    constructor(...args) { super(...(args.length ? args : ['2026-10-05T12:00:00Z'])); }
+    static now() { return RealDate.parse('2026-10-05T12:00:00Z'); }
   };
   const requests = [];
   w.fetch = async (url, options = {}) => {
@@ -42,12 +42,12 @@ function calendar(w,id) {
 }
 
 // These are source-grounded snapshot expectations, not simulated publication receipts.
-test('six approval-led publishers, sixteen verified public outcomes, no invented schedules', async () => {
+test('seven approval-led publishers, nineteen verified public outcomes, no invented schedules', async () => {
  const h=await harness();try {
   const agents=h.w.PRODUCT_AGENT_DATA.poptin.agents.filter(a=>ids.includes(a.id));
-  assert.equal(agents.length,6);assert.equal(agents.flatMap(a=>a.activities).length,16);
+  assert.equal(agents.length,7);assert.equal(agents.flatMap(a=>a.activities).length,19);
   assert.ok(agents.every(a=>a.manualPublishing && a.activities.every(x=>x.type==='past')));
-  const events=agents.flatMap(a=>a.activities);assert.equal(new Set(events.map(e=>e.publicationTaskId)).size,16);
+  const events=agents.flatMap(a=>a.activities);assert.equal(new Set(events.map(e=>e.publicationTaskId)).size,19);
   for(const event of events) {
    assert.equal(event.publicationVerified,true);assert.ok(['publication-confirmed','platform-published','platform-created'].includes(event.dateBasis));
    assert.ok(Number.isFinite(new Date(event.date).getTime()));assert.equal(new URL(event.url).protocol,'https:');
@@ -68,9 +68,9 @@ test('agent cards expose readiness and safe review links without dispatch contro
  }finally{await h.close();}
 });
 
-test('calendar includes verified outcomes for all six publishing formats',async()=>{
+test('calendar includes verified outcomes for all seven publishing formats',async()=>{
  const h=await harness();try {
-  for(const [id,count] of [['youtube-shorts',4],['youtube-video',1],['instagram-reels',6],['instagram-stories',2],['facebook-stories',2],['facebook-reels',1]]) assert.equal(calendar(h.w,id).length,count,id);
+  for(const [id,count] of [['youtube-shorts',4],['youtube-video',1],['instagram-reels',6],['instagram-stories',2],['facebook-stories',2],['facebook-reels',1],['tutorial-video',3]]) assert.equal(calendar(h.w,id).length,count,id);
  }finally{await h.close();}
 });
 
@@ -79,9 +79,9 @@ test('repeated refresh, calendar selection and product switching keep exactly on
   const w=h.w;calendar(w,'instagram-reels');const allCount=w.PRODUCT_AGENT_DATA.all.agents.length;
   for(let i=0;i<2;i++) {
    await w.loadLatestData();w.eval('data = window.PRODUCT_AGENT_DATA.poptin');w.renderDashboard();w.document.dispatchEvent(new w.CustomEvent('marketingActivityUpdated'));
-   assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.filter(a=>ids.includes(a.id)).length,6);
+   assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.filter(a=>ids.includes(a.id)).length,7);
    assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length,allCount);
-   assert.equal(w.PRODUCT_AGENT_DATA.all.agents.filter(a=>a.manualPublishing).length,6);
+   assert.equal(w.PRODUCT_AGENT_DATA.all.agents.filter(a=>a.manualPublishing).length,7);
    assert.equal(w.document.querySelector('#calendarAgentFilter').value,'instagram-reels');
    assert.equal(w.document.querySelectorAll('.calendar-outcome').length,6);
   }
@@ -118,6 +118,21 @@ test('unverified video receipt and unsafe links cannot become public calendar ou
  }finally{await h.close();}
 });
 
+test('tutorial runs reconcile under tutorial agent without implying another publication',async()=>{
+ const runs=['fixed-coupon','sender-domain','dmarc'].map((topic,index)=>({id:800+index,name:'Approved tutorial publisher',path:'.github/workflows/shorts-preview.yml',head_branch:`publish/${topic}-tutorial-20261005`,created_at:'2026-10-05T08:00:00Z',updated_at:'2026-10-05T08:01:00Z',status:'completed',conclusion:'success',html_url:`https://github.com/poptins/poptin-agents/actions/runs/${800+index}`}));
+ const h=await harness({runs});try {
+  const w=h.w;w.sessionStorage.setItem('optimizationGithubToken','fixture-token');await w.mergeRecentGithubActivity();await w.mergeRecentGithubActivity();
+  const agent=w.PRODUCT_AGENT_DATA.poptin.agents.find(a=>a.id==='tutorial-video');
+  assert.equal(agent.activities.filter(e=>e.githubRunId).length,3);
+  assert.equal(calendar(w,'tutorial-video').length,3);
+  await w.loadLatestData();
+  assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.filter(a=>a.id==='tutorial-video').length,1);
+  w.selectMarketingProduct('all');w.document.querySelector('[data-agent-id="poptin-tutorial-video"]').click();
+  assert.equal(w.document.querySelector('#activityAgentFilter').value,'tutorial-video');
+  assert.match(w.document.querySelector('#agentDetail').textContent,/interactive UI-capture handoff/);
+ }finally{await h.close();}
+});
+
 test('expired Stories retain historical calendar outcomes without stale clickable links',async()=>{
  const h=await harness();try {
   const agent=h.w.PRODUCT_AGENT_DATA.poptin.agents.find(a=>a.id==='instagram-stories');
@@ -143,7 +158,7 @@ test('switching product during the publishing refresh never replaces Poptin with
   const current=await w.loadLatestData();
   assert.equal(current.source,'poptins/chatway-agents');
   assert.equal(w.PRODUCT_AGENT_DATA.poptin.source,'poptins/poptin-agents');
-  assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.filter(a=>a.manualPublishing).length,6);
+  assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.filter(a=>a.manualPublishing).length,7);
   assert.equal(w.PRODUCT_AGENT_DATA.chatway.agents.filter(a=>a.manualPublishing).length,0);
  }finally{await h.close();}
 });
