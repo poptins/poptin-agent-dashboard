@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20261003-video-agents1">
   <link rel="stylesheet" href="calendar-view.css?v=20260902-product-favicons1">
-  <link rel="stylesheet" href="company-tree.css?v=20261005-company1">
+  <link rel="stylesheet" href="company-tree.css?v=20261005-followups1">
 </head>
 <body>
   <div class="page-shell">
@@ -60,7 +60,7 @@
           <section class="panel company-panel" aria-labelledby="companyTitle">
             <div class="company-heading">
               <div><p class="eyebrow">YOUR AGENTIC COMPANY</p><h2 id="companyTitle">Team structure</h2></div>
-              <span class="count-badge" id="agentCount" aria-label="Agent count">0</span>
+              <span class="count-badge" id="agentCount" aria-label="Operational agent count">0</span>
             </div>
             <label class="search-box"><span aria-hidden="true">⌕</span><input id="agentSearch" type="search" placeholder="Find an agent or responsibility" aria-label="Search agents" autocomplete="off"></label>
             <div class="trigger-legend" aria-label="Agent trigger legend">
@@ -69,6 +69,17 @@
               <span><span aria-hidden="true">ϟ</span> Event-triggered</span>
             </div>
             <div class="company-tree" id="companyTree" aria-label="Agent company hierarchy"><div class="agent-list" id="agentList"></div></div>
+            <section class="local-agent-references" id="localAgentReferences" aria-labelledby="localAgentsTitle">
+              <div><p class="reference-eyebrow">LOCAL CODEX AGENTS</p><h3 id="localAgentsTitle">DB-connected agents</h3></div>
+              <span class="reference-label">Reference only</span>
+              <ul class="local-agent-list" aria-label="Local Codex agent names">
+                <li>2-days follow ups</li>
+                <li>Daily signed up enterprise demo outreach</li>
+                <li>Daily popup/form creation draft - not published</li>
+                <li>Daily upgrade qualified users agent</li>
+              </ul>
+              <p>Names only. These references are excluded from the calendar, activity and run lists, and connection or health checks.</p>
+            </section>
             <p class="tree-note">Trigger badges describe the inspected workflow configuration. They do not confirm that a workflow is enabled or that a publication is due.</p>
           </section>
           <aside class="company-sidebar" id="companySidebar" aria-label="Agent details and activity">
@@ -142,7 +153,7 @@
   <script src="data.js?v=20260822-outreach-agents1"></script>
   <script src="publishing-agents.js?v=20261003-facebook-story1"></script>
   <script src="trigger-metadata.js?v=20261005-company1"></script>
-  <script src="company-tree.js?v=20261005-company1"></script>
+  <script src="company-tree.js?v=20261005-followups1"></script>
   <script src="app.js?v=20261005-company1"></script>
   <script src="product-tabs.js?v=20261005-company1"></script>
   <script src="preserve-agent-on-product-switch.js"></script>

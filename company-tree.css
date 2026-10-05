@@ -463,3 +463,40 @@ body.dark .company-sidebar .compact-item.awaiting .asset-link { color: #b1bdcd; 
   html { scroll-behavior: auto; }
   .company-workspace *, .company-workspace *::before, .company-workspace *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Follow-up agents remain selectable leaves within their originating agent family. */
+.agent-family { min-width: 0; }
+.followup-list { margin: 0 0 3px 17px; padding: 9px 0 0 15px; list-style: none; border-left: 1px solid var(--line); }
+.followup-node { position: relative; min-width: 0; }
+.followup-node + .followup-node { margin-top: 10px; }
+.followup-node::before { content: ''; position: absolute; top: 32px; left: -15px; width: 14px; height: 1px; background: var(--line); }
+.followup-label { display: block; margin: 0 0 5px 3px; color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.followup-list .company-agent { border-style: dashed; }
+.followup-list .company-agent.active { border-style: solid; }
+@media (max-width: 600px) {
+  .followup-list { margin-left: 18px; padding-left: 12px; }
+  .followup-node::before { left: -12px; width: 11px; }
+  .followup-list .company-agent { grid-template-columns: 30px minmax(0, 1fr); gap: 8px; padding: 12px 10px; }
+  .followup-list .company-agent .avatar { width: 30px; height: 30px; font-size: 11px; }
+}
+
+/* Workflow references are informational, separate from operational agent cards. */
+.workflow-references { display: grid; gap: 7px; padding-top: 9px; margin-top: 6px; border-top: 1px solid var(--line); }
+.reference-eyebrow { margin: 0; color: var(--muted); font-size: 9px; font-weight: 700; line-height: 1.5; letter-spacing: .07em; text-transform: uppercase; }
+.workflow-reference-card { min-width: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); overflow: hidden; }
+.workflow-reference-card > summary { padding: 13px 11px; cursor: pointer; font-size: 12px; line-height: 1.5; }
+.workflow-reference-card > summary::marker { color: var(--green); }
+.workflow-reference-card > summary > strong { font-size: 12px; }
+.workflow-reference-card > summary > small { display: block; color: var(--muted); font-size: 10px; margin-top: 5px; }
+.workflow-reference-card .trigger-badges { margin-top: 7px; }
+.reference-label { display: inline-flex; align-items: center; padding: 4px 7px; margin-top: 7px; color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; font-size: 9px; line-height: 1.4; }
+.workflow-reference-content { padding: 0 11px 13px; border-top: 1px solid var(--line); }
+.workflow-reference-content p { color: var(--muted); font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; }
+.workflow-reference-content .asset-link { display: block; font-size: 10px; line-height: 1.5; overflow-wrap: anywhere; }
+.local-agent-references { margin-top: 24px; padding: 20px; border: 1px dashed var(--line); border-radius: 13px; background: var(--surface-2); }
+.local-agent-references h3 { margin-top: 5px; font-size: 17px; }
+.local-agent-references p:last-child { color: var(--muted); font-size: 12px; line-height: 1.7; margin-bottom: 0; }
+
+.local-agent-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+.local-agent-list li { padding: 12px 14px; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: var(--surface); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .local-agent-list { grid-template-columns: 1fr; } }

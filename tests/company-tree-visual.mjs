@@ -54,6 +54,13 @@ async function screenshot(name, width, height) {
 try {
   assert.equal(await page.locator('#companyTree [data-agent-id]').count(), 29);
   await screenshot('root-desktop', 1600, 1100);
+  assert.equal(await page.locator('.agent-family').count(), 7);
+  assert.equal(await page.locator('[data-workflow-reference]').count(), 2);
+  await page.locator('[data-workflow-reference="monthly-updates"] > summary').click();
+  await page.locator('.workflow-references').screenshot({path: join(directory, 'publishing-references-desktop.png')});
+  await page.locator('[data-workflow-reference="monthly-updates"] > summary').click();
+  await page.locator('#localAgentReferences').screenshot({path: join(directory, 'local-reference-desktop.png')});
+  await page.locator('.department:has([data-department="partnerships"])').screenshot({path: join(directory, 'followups-desktop.png')});
   await page.locator('[data-agent-id="seo"]').click();
   assert.match(await page.locator('#agentDetail').innerText(), /SEO Agent/);
   await page.locator('.trigger-details > summary').click();
@@ -73,6 +80,11 @@ try {
   await page.screenshot({path: join(directory, 'video-mobile-inspector.png')});
   await page.locator('#companyBack').click();
   assert.equal(await page.evaluate(() => document.activeElement?.dataset.agentId), 'tutorial-video');
+  await page.locator('[data-agent-id="agency-followup"]').click();
+  assert.match(await page.locator('#agentDetail').innerText(), /Agency Follow-up Agent/);
+  await screenshot('followup-mobile', 390, 844);
+  await page.locator('#companyBack').click();
+  await page.locator('.agent-family[data-parent-agent="partners-agencies"]').screenshot({path: join(directory, 'followup-family-mobile.png')});
   await page.locator('[data-department="partnerships"]').click();
   assert.equal(await page.locator('[data-department="partnerships"]').getAttribute('aria-expanded'), 'false');
   await screenshot('root-mobile', 390, 844);
