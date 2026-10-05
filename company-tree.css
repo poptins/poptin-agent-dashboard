@@ -496,3 +496,7 @@ body.dark .company-sidebar .compact-item.awaiting .asset-link { color: #b1bdcd; 
 .local-agent-references { margin-top: 24px; padding: 20px; border: 1px dashed var(--line); border-radius: 13px; background: var(--surface-2); }
 .local-agent-references h3 { margin-top: 5px; font-size: 17px; }
 .local-agent-references p:last-child { color: var(--muted); font-size: 12px; line-height: 1.7; margin-bottom: 0; }
+
+.local-agent-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+.local-agent-list li { padding: 12px 14px; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: var(--surface); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .local-agent-list { grid-template-columns: 1fr; } }

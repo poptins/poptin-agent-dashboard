@@ -869,7 +869,7 @@ test('the local Codex reference panel remains separate from agents, triggers, ac
     assert.match(panel.textContent, /reference/i);
     assert.equal(panel.closest('#companyTree'), null, 'The local reference panel is separate from the operational company tree');
     assert.equal(panel.querySelectorAll('[data-agent-id], [data-trigger], [data-workflow-reference]').length, 0);
-    assert.equal(panel.querySelectorAll('button, input, select, iframe').length, 0, 'The placeholder has no connection, run, or credential controls');
+    assert.equal(panel.querySelectorAll('button, input, select, iframe').length, 0, 'The reference panel has no connection, run, or credential controls');
     assert.ok(w.PRODUCT_AGENT_DATA.all.agents.every(agent => !/local.*codex|codex.*local/i.test(`${agent.id} ${agent.name}`)));
     assert.ok([...w.document.querySelectorAll('#activityAgentFilter option, #calendarAgentFilter option')].every(option => !/local.*codex|codex.*local/i.test(option.textContent)));
     const before = JSON.stringify(w.PRODUCT_AGENT_DATA);
@@ -881,5 +881,28 @@ test('the local Codex reference panel remains separate from agents, triggers, ac
     assert.equal(JSON.stringify(w.PRODUCT_AGENT_DATA), before);
     assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.length, 29);
     assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length, 44);
+  } finally { await h.close(); }
+});
+
+test('four user-supplied local names are displayed literally without schedule or status inference', async () => {
+  const h = await harness();
+  try {
+    const {w} = h;
+    const names = ['2-days follow ups', 'Daily signed up enterprise demo outreach',
+      'Daily popup/form creation draft - not published', 'Daily upgrade qualified users agent'];
+    const panel = w.document.querySelector('#localAgentReferences');
+    assert.deepEqual([...panel.querySelectorAll('.local-agent-list li')].map(item => item.textContent.trim()), names);
+    assert.equal(panel.querySelectorAll('[data-trigger], .status-pill, .status-dot, [data-agent-id]').length, 0);
+    assert.doesNotMatch(panel.textContent, /names pending|not been supplied/i);
+    for (const name of names) {
+      assert.equal(w.PRODUCT_AGENT_DATA.all.agents.some(agent => agent.name === name), false);
+      assert.equal([...w.document.querySelectorAll('#activityAgentFilter option, #calendarAgentFilter option')].some(option => option.textContent === name), false);
+    }
+    for (const productId of Object.keys(inventory)) {
+      clickProduct(w, productId);
+      assert.deepEqual([...panel.querySelectorAll('.local-agent-list li')].map(item => item.textContent.trim()), names);
+    }
+    assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length, 44);
+    assert.ok(h.requests.every(request => request.method === 'GET'));
   } finally { await h.close(); }
 });
