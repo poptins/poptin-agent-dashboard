@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-05T18:27:48.516Z",
+  lastUpdated: "2026-10-06T00:49:06.602Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “BFCM Email Deliverability Checklist: How to Protect Holiday Revenue Before You Hit Send” as a Poptin article.",
+          date: "2026-10-05T06:00:00Z",
+          url: "https://www.poptin.com/blog/bfcm-email-deliverability-checklist/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 17992,
+          publicationTaskId: "poptin-wordpress-17992",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
