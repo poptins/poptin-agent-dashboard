@@ -24,6 +24,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “Live Chat Customer Support Productivity: How to Help More Customers Without Sacrificing Quality” as a Chatway article.",
+          date: "2026-10-07T11:25:52Z",
+          url: "https://chatway.app/blog/live-chat-customer-support-productivity-3",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 6414,
+          publicationTaskId: "chatway-wordpress-6414",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “Chatway vs HubSpot Service Hub: Which Customer Support Platform Is Better in 2026?” as a Chatway article.",
           date: "2026-10-05T21:42:08Z",
           url: "https://chatway.app/blog/chatway-vs-hubspot-service-hub",
@@ -659,6 +672,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
+          detail: "Published “Click-to-Chat Website Engagement: A Practical Guide to More Conversations and Leads” as a Chaty article.",
+          date: "2026-10-07T13:25:47Z",
+          url: "https://chaty.app/blog/click-to-chat-website-engagement-more-conversations-leads/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 6149,
+          publicationTaskId: "chaty-wordpress-6149",
+          publicationSource: "chaty"
+        },
         {
           type: "past",
           status: "Published",
