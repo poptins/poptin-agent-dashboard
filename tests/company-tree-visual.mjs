@@ -13,7 +13,7 @@ fixture.window.document.querySelectorAll('script, link').forEach(element => elem
 const style = fixture.window.document.createElement('style');
 style.textContent = ['styles.css', 'calendar-view.css', 'company-tree.css'].map(source).join('\n');
 fixture.window.document.head.append(style);
-const browser = await chromium.launch();
+const browser = await chromium.launch(process.env.CHROMIUM_EXECUTABLE_PATH ? {executablePath: process.env.CHROMIUM_EXECUTABLE_PATH} : {});
 const page = await browser.newPage({reducedMotion: 'reduce'});
 const errors = [];
 page.on('pageerror', error => errors.push(error.message));
@@ -52,7 +52,7 @@ async function screenshot(name, width, height) {
   await page.screenshot({path: join(directory, `${name}.png`), fullPage: true});
 }
 try {
-  assert.equal(await page.locator('#companyTree [data-agent-id]').count(), 29);
+  assert.equal(await page.locator('#companyTree [data-agent-id]').count(), 30);
   await screenshot('root-desktop', 1600, 1100);
   assert.equal(await page.locator('.agent-family').count(), 7);
   assert.equal(await page.locator('[data-workflow-reference]').count(), 2);
@@ -65,6 +65,11 @@ try {
   assert.match(await page.locator('#agentDetail').innerText(), /SEO Agent/);
   await page.locator('.trigger-details > summary').click();
   await screenshot('seo-desktop', 1440, 1100);
+  await page.locator('[data-agent-id="quarterly-benchmark"]').click();
+  assert.match(await page.locator('#agentDetail').innerText(), /Awaiting verified aggregate data/);
+  await screenshot('quarterly-benchmark-desktop', 1440, 1100);
+  await screenshot('quarterly-benchmark-mobile', 390, 844);
+  await page.locator('[data-agent-id="seo"]').click();
   await page.locator('#themeToggle').click();
   await screenshot('seo-dark', 1440, 1100);
   await page.locator('#themeToggle').click();

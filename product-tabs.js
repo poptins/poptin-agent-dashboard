@@ -3284,6 +3284,7 @@
     "seo",
     "update-blog",
     "alternatives",
+    "quarterly-benchmark",
     "social",
     "youtube-shorts",
     "youtube-video",
@@ -3310,6 +3311,7 @@
     "chatway-glossary"
   ];
   const agentStyles = {
+    "quarterly-benchmark": {color: "#e4eafb", ink: "#374a80"},
     seo: {color: "#d9eee4", ink: "#18543d"},
     "update-blog": {color: "#e7ecff", ink: "#384c96"},
     alternatives: {color: "#ffe8dc", ink: "#8a4325"},

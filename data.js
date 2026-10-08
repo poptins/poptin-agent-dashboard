@@ -5,6 +5,27 @@ window.AGENT_DATA = {
   lastUpdated: "2026-10-07T14:33:18.604Z",
   agents: [
     {
+      "id": "quarterly-benchmark",
+      "name": "Quarterly Benchmark Report Agent",
+      "role": "Verified aggregate benchmarks · preparation only",
+      "initials": "QB",
+      "status": "manual",
+      "statusLabel": "Awaiting verified aggregate data",
+      "color": "#e4eafb",
+      "ink": "#374a80",
+      "owner": "Poptin Content & Research",
+      "cadence": "Planned: first week of January, April, July and October · not scheduled",
+      "priority": "Medium",
+      "instructions": [
+        "Accept only verified, anonymized aggregate data with documented definitions, reporting period and minimum sample checks.",
+        "Prepare a quarterly report and methodology for review; never invent benchmark results or reuse unverified draft numbers.",
+        "First planned report: Q4 2026, targeted for January 1–7, 2027, subject to verified aggregate data and review.",
+        "Keep execution and publishing disabled until the required data, review and separate activation approval are in place."
+      ],
+      "statusNote": "Preparation only. Awaiting verified aggregate data. First planned report: Q4 2026, targeted for January 1–7, 2027. No active schedule, data connection or publisher. This quarterly agent has not generated or published a report.",
+      "activities": []
+    },
+    {
       id: "seo",
       name: "SEO Agent",
       role: "SEO research & publishing",

@@ -3,6 +3,15 @@
 // No dispatch, credentials, private drafts, or publication permissions are added.
 window.AGENT_TRIGGER_METADATA = {
   "poptin": {
+    "quarterly-benchmark": {
+      "modes": [],
+      "paused": false,
+      "enabledState": "disabled",
+      "schedules": [],
+      "events": [],
+      "sources": [],
+      "note": "Preparation only; awaiting verified aggregate data. Planned cadence is the first week of January, April, July and October, starting with Q4 2026 on January 1–7, 2027. No workflow, active schedule, data connection or publisher is enabled."
+    },
     "seo": {
       "modes": [
         "scheduled",
