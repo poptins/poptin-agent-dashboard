@@ -3,6 +3,15 @@
 // No dispatch, credentials, private drafts, or publication permissions are added.
 window.AGENT_TRIGGER_METADATA = {
   "poptin": {
+    "quarterly-benchmark": {
+      "modes": [],
+      "paused": false,
+      "enabledState": "disabled",
+      "schedules": [],
+      "events": [],
+      "sources": [],
+      "note": "On-demand preparation after an explicit user request; verified aggregate data is required. The separate quarterly reminder does not trigger this agent. No report workflow or schedule is active; data connectors and publishing are unimplemented."
+    },
     "seo": {
       "modes": [
         "scheduled",

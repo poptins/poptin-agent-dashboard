@@ -6,7 +6,7 @@ import {Script} from 'node:vm';
 
 const source = file => readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
 const inventory = {
-  poptin: ['seo', 'update-blog', 'alternatives', 'social', 'youtube-shorts',
+  poptin: ['quarterly-benchmark', 'seo', 'update-blog', 'alternatives', 'social', 'youtube-shorts',
     'youtube-video', 'tutorial-video', 'instagram-reels', 'instagram-stories',
     'facebook-stories', 'academy', 'glossary', 'optimization', 'quora',
     'partners-agencies', 'agency-followup', 'marketing-consultant-outreach',
@@ -25,7 +25,7 @@ const publisherCounts = {
   'facebook-reels': 1
 };
 const departments = {
-  content: ['seo', 'update-blog', 'alternatives', 'optimization'],
+  content: ['seo', 'update-blog', 'alternatives', 'optimization', 'quarterly-benchmark'],
   education: ['academy', 'glossary'],
   social: ['social', 'quora'],
   video: ['youtube-shorts', 'youtube-video', 'tutorial-video', 'instagram-reels',
@@ -157,7 +157,7 @@ function calendar(w, id) {
   return [...w.document.querySelectorAll('.calendar-outcome')];
 }
 
-test('company tree preserves the exact 44-record product inventory and 29 Poptin agents', async () => {
+test('company tree preserves the exact 45-record product inventory and 30 Poptin agents', async () => {
   const h = await harness();
   try {
     const {w} = h;
@@ -171,14 +171,14 @@ test('company tree preserves the exact 44-record product inventory and 29 Poptin
       assert.equal(selectedId(w), null, 'Product switches preserve root selection');
     }
     const expectedAll = Object.entries(inventory).flatMap(([productId, ids]) => ids.map(id => `${productId}-${id}`));
-    assert.equal(expectedAll.length, 44);
-    assert.equal(inventory.poptin.length, 29);
+    assert.equal(expectedAll.length, 45);
+    assert.equal(inventory.poptin.length, 30);
     assert.deepEqual(sorted(w.PRODUCT_AGENT_DATA.all.agents.map(agent => agent.id)), sorted(expectedAll));
-    assert.equal(new Set(w.PRODUCT_AGENT_DATA.all.agents.map(agent => agent.id)).size, 44);
+    assert.equal(new Set(w.PRODUCT_AGENT_DATA.all.agents.map(agent => agent.id)).size, 45);
     assert.ok(w.PRODUCT_AGENT_DATA.all.agents.every(agent => !agent.name.includes('undefined')));
     w.selectMarketingProduct('all');
     assert.deepEqual(sorted([...w.document.querySelectorAll('#companyTree [data-agent-id]')].map(button => button.dataset.agentId)), sorted(expectedAll));
-    assert.equal(Number(w.document.querySelector('#agentCount').textContent), 44);
+    assert.equal(Number(w.document.querySelector('#agentCount').textContent), 45);
   } finally { await h.close(); }
 });
 
@@ -193,9 +193,9 @@ test('Poptimus Prime is the initial root and never an extra agent record', async
     assert.match(root.textContent, /Poptimus Prime/);
     assert.equal(root.hasAttribute('data-agent-id'), false);
     assert.equal(w.document.querySelectorAll('#companyRoot').length, 1);
-    assert.equal(Number(w.document.querySelector('#agentCount').textContent), 29);
+    assert.equal(Number(w.document.querySelector('#agentCount').textContent), 30);
     assert.ok(w.PRODUCT_AGENT_DATA.all.agents.every(agent => !/Poptimus Prime/i.test(`${agent.id} ${agent.name}`)));
-    assert.equal(w.document.querySelector('#statsGrid .stat-card strong').textContent.trim(), '29');
+    assert.equal(w.document.querySelector('#statsGrid .stat-card strong').textContent.trim(), '30');
   } finally { await h.close(); }
 });
 
@@ -266,9 +266,9 @@ test('refresh and repeated rendering preserve publishers, calendar selection, an
       assert.equal(selectedId(w), 'instagram-reels');
       assert.equal(w.document.querySelector('#calendarAgentFilter').value, 'instagram-reels');
       assert.equal(w.document.querySelectorAll('.calendar-outcome').length, 6);
-      assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.length, 29);
-      assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length, 44);
-      assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 29);
+      assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.length, 30);
+      assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length, 45);
+      assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 30);
       assert.equal(w.document.querySelectorAll('#companyRoot').length, 1);
       for (const [id, count] of Object.entries(publisherCounts)) {
         const agents = w.PRODUCT_AGENT_DATA.poptin.agents.filter(agent => agent.id === id);
@@ -294,6 +294,12 @@ test('trigger inventory covers all real records without inventing enabled workfl
       assert.deepEqual(sorted(Object.keys(metadata)), sorted(ids), productId);
       for (const id of ids) {
         const trigger = metadata[id];
+        if (productId === 'poptin' && id === 'quarterly-benchmark') {
+          assert.equal(trigger.enabledState, 'disabled');
+          for (const key of ['modes', 'schedules', 'events', 'sources']) assert.equal(trigger[key].length, 0);
+          assert.equal(trigger.verifiedAt, undefined, 'No workflow inspection date is invented');
+          continue;
+        }
         assert.equal(trigger.enabledState, 'unverified', `${productId}/${id}`);
         assert.equal(typeof trigger.paused, 'boolean');
         assert.equal(new Set(trigger.modes).size, trigger.modes.length);
@@ -343,7 +349,7 @@ test('department membership is exact and expansion controls expose the correct b
       department(w, id).click();
       assert.equal(w.document.getElementById(`department-${id}`).hidden, false);
     }
-    assert.equal(new Set(Object.values(departments).flat()).size, 29);
+    assert.equal(new Set(Object.values(departments).flat()).size, 30);
   } finally { await h.close(); }
 });
 
@@ -367,7 +373,7 @@ test('search temporarily expands matching branches and restores product-specific
     assert.equal(w.document.querySelectorAll('#companyRoot').length, 1);
     assert.match(w.document.querySelector('#companyTree [role="status"]').textContent, /No agents match/);
     search(w, '');
-    assert.equal(w.document.querySelector('#agentCount').textContent, '29');
+    assert.equal(w.document.querySelector('#agentCount').textContent, '30');
     assert.equal(department(w, 'video').getAttribute('aria-expanded'), 'false');
     assert.equal(department(w, 'content').getAttribute('aria-expanded'), 'false');
     clickProduct(w, 'chatway');
@@ -403,7 +409,7 @@ test('root and back navigation restore a useful focus target without changing in
     w.document.querySelector('#companyRoot').click();
     assert.equal(selectedId(w), null);
     assert.equal(w.document.activeElement.id, 'companyRoot');
-    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 29);
+    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 30);
     w.companyTree.selectAgent('not-an-agent');
     assert.equal(selectedId(w), null, 'An invalid selection cannot invent an agent');
   } finally { await h.close(); }
@@ -535,9 +541,9 @@ test('all seven follow-ups nest under their exact parent without changing the so
       assert.equal(w.document.querySelectorAll(`#companyTree [data-agent-id="${parentId}"]`).length, 1);
     }
     assert.equal(w.document.querySelectorAll('#companyTree ul.followup-list').length, 7);
-    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 29);
-    assert.equal(w.document.querySelector('#agentCount').textContent, '29');
-    assert.equal(w.document.querySelector('#statsGrid .stat-card strong').textContent.trim(), '29');
+    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 30);
+    assert.equal(w.document.querySelector('#agentCount').textContent, '30');
+    assert.equal(w.document.querySelector('#statsGrid .stat-card strong').textContent.trim(), '30');
     w.companyTree.render();
     assert.equal(JSON.stringify(w.PRODUCT_AGENT_DATA), before, 'Nesting is view-only and never rewrites agent records');
   } finally { await h.close(); }
@@ -567,7 +573,7 @@ test('search keeps the exact parent and follow-up together for either side of ev
     assert.equal(w.document.querySelectorAll('#companyTree .followup-list').length, 0);
     assert.equal(w.document.querySelector('#agentCount').textContent, '0');
     search(w, '');
-    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 29);
+    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 30);
     assert.equal(w.document.querySelectorAll('#companyTree .followup-list').length, 7);
   } finally { await h.close(); }
 });
@@ -587,7 +593,7 @@ test('missing parents and unmapped follow-ups remain standalone without dropping
     assert.equal(card(w, unknown.id).closest('.department-agents').id, 'department-other');
     assert.equal(w.document.querySelector('[data-parent-agent="partners-agencies"]'), null);
     assert.deepEqual(sorted([...w.document.querySelectorAll('#companyTree [data-agent-id]')].map(button => button.dataset.agentId)), sorted(product.agents.map(agent => agent.id)));
-    assert.equal(w.document.querySelector('#agentCount').textContent, '29');
+    assert.equal(w.document.querySelector('#agentCount').textContent, '30');
     search(w, 'Agency Follow-up Agent');
     assert.deepEqual(sorted([...w.document.querySelectorAll('#companyTree [data-agent-id]')].map(button => button.dataset.agentId)), ['agency-followup', 'unmapped-followup']);
     card(w, 'agency-followup').click();
@@ -596,14 +602,14 @@ test('missing parents and unmapped follow-ups remain standalone without dropping
   } finally { await h.close(); }
 });
 
-test('aggregate families preserve 44 real records and never attach a child to another product', async () => {
+test('aggregate families preserve 45 real records and never attach a child to another product', async () => {
   const h = await harness();
   try {
     const {w} = h;
     w.selectMarketingProduct('all');
     for (const [childId, parentId] of Object.entries(followupParents)) family(w, `poptin-${parentId}`, `poptin-${childId}`);
-    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 44);
-    assert.equal(w.document.querySelector('#agentCount').textContent, '44');
+    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 45);
+    assert.equal(w.document.querySelector('#agentCount').textContent, '45');
     assert.equal(w.document.querySelectorAll('#companyTree .followup-list').length, 7);
     const agents = w.PRODUCT_AGENT_DATA.all.agents;
     const parent = agents.find(agent => agent.id === 'poptin-partners-agencies');
@@ -748,18 +754,18 @@ test('refresh preserves a selected nested child, its search context, calendar ch
       assert.equal(w.document.querySelector('#calendarAgentFilter').value, childId);
       assert.equal(w.document.querySelectorAll('.calendar-outcome').length, calendarCount);
       assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 2);
-      assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.length, 29);
-      assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length, 44);
+      assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.length, 30);
+      assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length, 45);
     }
     search(w, '');
-    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 29);
+    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 30);
     assert.equal(w.document.querySelectorAll('#companyTree .followup-list').length, 7);
     w.selectMarketingProduct('all');
     assert.equal(selectedId(w), null, 'An unavailable concrete child ID returns to root on product switch');
     card(w, `poptin-${childId}`).click();
     assert.equal(selectedId(w), `poptin-${childId}`);
     assert.equal(w.document.querySelector('#activityAgentFilter').value, childId);
-    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 44);
+    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 45);
     assert.ok(h.requests.every(request => request.method === 'GET'));
   } finally { await h.close(); }
 });
@@ -791,9 +797,9 @@ test('Poptin workflow references are read-only details outside the operational i
     assert.equal(JSON.stringify(h.requests), requestsBefore, 'Reading reference details never starts network work');
     assert.equal(selectedId(w), selectedBefore);
     assert.equal(JSON.stringify(w.PRODUCT_AGENT_DATA), before);
-    assert.equal(w.document.querySelector('#agentCount').textContent, '29');
-    assert.equal(w.document.querySelector('#statsGrid .stat-card strong').textContent.trim(), '29');
-    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 29);
+    assert.equal(w.document.querySelector('#agentCount').textContent, '30');
+    assert.equal(w.document.querySelector('#statsGrid .stat-card strong').textContent.trim(), '30');
+    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 30);
     assert.equal(calendar(w, 'youtube-shorts').length, 4, 'Reference entries do not add calendar outcomes');
     const calendarAgentIds = [...w.document.querySelectorAll('#calendarAgentFilter option')].map(option => option.value);
     assert.deepEqual(sorted(calendarAgentIds.filter(id => id !== 'all')), sorted(inventory.poptin));
@@ -821,9 +827,9 @@ test('workflow references are scoped to Poptin and its aggregate context across 
     const aggregateReferences = [...w.document.querySelectorAll('#companyTree [data-workflow-reference]')];
     assert.equal(aggregateReferences.length, 2);
     for (const reference of aggregateReferences) assert.match(reference.closest('.workflow-references').querySelector('.reference-eyebrow').textContent, /Poptin/i, 'Aggregate reference groups clearly identify their Poptin context');
-    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 44);
-    assert.equal(w.document.querySelector('#agentCount').textContent, '44');
-    assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length, 44);
+    assert.equal(w.document.querySelectorAll('#companyTree [data-agent-id]').length, 45);
+    assert.equal(w.document.querySelector('#agentCount').textContent, '45');
+    assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length, 45);
   } finally { await h.close(); }
 });
 
@@ -847,7 +853,7 @@ test('monthly reference search exposes Content and SEO with zero matching operat
     search(w, '');
     assert.equal(department(w, 'content').getAttribute('aria-expanded'), 'false', 'The original department collapse state is restored');
     assert.equal(w.document.querySelectorAll('#companyTree [data-workflow-reference]').length, 2);
-    assert.equal(w.document.querySelector('#agentCount').textContent, '29');
+    assert.equal(w.document.querySelector('#agentCount').textContent, '30');
     clickProduct(w, 'chatway');
     search(w, 'monthly');
     assert.equal(w.document.querySelectorAll('#companyTree [data-workflow-reference]').length, 0);
@@ -879,8 +885,8 @@ test('the local Codex reference panel remains separate from agents, triggers, ac
     assert.equal(selectedId(w), null);
     assert.equal(JSON.stringify(h.requests), requestsBefore);
     assert.equal(JSON.stringify(w.PRODUCT_AGENT_DATA), before);
-    assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.length, 29);
-    assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length, 44);
+    assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.length, 30);
+    assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length, 45);
   } finally { await h.close(); }
 });
 
@@ -902,7 +908,37 @@ test('four user-supplied local names are displayed literally without schedule or
       clickProduct(w, productId);
       assert.deepEqual([...panel.querySelectorAll('.local-agent-list li')].map(item => item.textContent.trim()), names);
     }
-    assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length, 44);
+    assert.equal(w.PRODUCT_AGENT_DATA.all.agents.length, 45);
+    assert.ok(h.requests.every(request => request.method === 'GET'));
+  } finally { await h.close(); }
+});
+
+test('quarterly benchmark is Poptin-only, disabled, truthful and survives refresh', async () => {
+  const h = await harness();
+  try {
+    const {w} = h;
+    card(w, 'quarterly-benchmark').click();
+    const detail = w.document.querySelector('#agentDetail');
+    assert.match(detail.textContent, /On demand — data required/);
+    assert.match(detail.textContent, /only when the user requests it/);
+    assert.match(detail.textContent, /separate quarterly reminder/i);
+    assert.match(detail.textContent, /data connectors and publishing are unimplemented/i);
+    assert.doesNotMatch(detail.textContent, /Q4 2026|January 1–7|first week|First planned report/);
+    assert.match(detail.textContent, /Execution and publishing are not enabled/);
+    assert.equal(detail.querySelectorAll('[data-trigger="scheduled"], [data-trigger="manual"], .publishing-workflow').length, 0);
+    assert.equal(detail.querySelectorAll('[data-trigger="disabled"]').length, 1);
+    const original = w.PRODUCT_AGENT_DATA.poptin.agents.find(a => a.id === 'quarterly-benchmark');
+    assert.equal(original.activities.length, 0);
+    assert.equal(original.status, 'on-demand-data-required');
+    assert.equal(original.name, 'On-Demand Benchmark Report Agent');
+    for (const product of ['chatway', 'chaty', 'prospero', 'premio']) {
+      assert.equal(w.PRODUCT_AGENT_DATA[product].agents.some(a => a.id === original.id), false);
+    }
+    await w.eval('loadLatestData()');
+    await w.eval('loadLatestData()');
+    assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.filter(a => a.id === original.id).length, 1);
+    assert.equal(w.PRODUCT_AGENT_DATA.all.agents.filter(a => a.activityGroupId === original.id).length, 1);
+    assert.equal(w.PRODUCT_AGENT_DATA.poptin.agents.find(a => a.id === original.id).activities.length, 0);
     assert.ok(h.requests.every(request => request.method === 'GET'));
   } finally { await h.close(); }
 });

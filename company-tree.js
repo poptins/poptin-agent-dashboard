@@ -1,7 +1,7 @@
 // Company navigation is a view of the existing product inventory, never a new agent registry.
 (() => {
   const departments = [
-    {id: 'content', name: 'Content & SEO', icon: '↗', agents: ['seo', 'update-blog', 'alternatives', 'optimization']},
+    {id: 'content', name: 'Content & SEO', icon: '↗', agents: ['seo', 'update-blog', 'alternatives', 'optimization', 'quarterly-benchmark']},
     {id: 'education', name: 'Education', icon: '▤', agents: ['academy', 'glossary']},
     {id: 'social', name: 'Social & Community', icon: '◎', agents: ['social', 'quora']},
     {id: 'video', name: 'Video', icon: '▷', agents: ['youtube-shorts', 'youtube-video', 'tutorial-video', 'instagram-reels', 'instagram-stories', 'facebook-reels', 'facebook-stories']},
@@ -48,7 +48,7 @@
       ]
     }
   ];
-  const labels = {scheduled: ['◷', 'Scheduled'], manual: ['▷', 'On demand'], event: ['ϟ', 'Event-triggered'], paused: ['Ⅱ', 'Paused'], unknown: ['?', 'Not verified']};
+  const labels = {disabled: ['Ⅱ', 'Not enabled'], scheduled: ['◷', 'Scheduled'], manual: ['▷', 'On demand'], event: ['ϟ', 'Event-triggered'], paused: ['Ⅱ', 'Paused'], unknown: ['?', 'Not verified']};
   const collapsed = new Map();
   let previousAgent = null;
   let lastQuery = '';
@@ -61,10 +61,10 @@
   };
   const badges = agent => {
     const meta = metadataFor(agent);
-    const modes = meta.paused ? ['paused'] : meta.modes.length ? meta.modes : ['unknown'];
+    const modes = meta.enabledState === 'disabled' ? ['disabled'] : meta.paused ? ['paused'] : meta.modes.length ? meta.modes : ['unknown'];
     return `<span class="trigger-badges">${modes.map(mode => {
       const [icon, label] = labels[mode] || labels.unknown;
-      const note = mode === 'paused' ? 'Execution explicitly paused in the workflow' : mode === 'unknown' ? 'Trigger configuration not verified' : `${label} trigger configured; workflow enabled state not verified`;
+      const note = mode === 'disabled' ? 'No active schedule or publisher' : mode === 'paused' ? 'Execution explicitly paused in the workflow' : mode === 'unknown' ? 'Trigger configuration not verified' : `${label} trigger configured; workflow enabled state not verified`;
       return `<span class="trigger-badge" data-trigger="${html(mode)}" title="${html(note)}"><span aria-hidden="true">${icon}</span> ${label}</span>`;
     }).join('')}</span>`;
   };
@@ -164,7 +164,7 @@
       <ul class="trigger-detail-list">${(meta.schedules || []).map(schedule => `<li><strong>Scheduled:</strong> ${html(scheduleDescription(schedule))}<small>Cron: ${html(schedule.cron)} · ${html(schedule.timezone)}</small></li>`).join('')}
       ${meta.modes.includes('manual') ? '<li><strong>On demand:</strong> Started manually through the reviewed workflow.</li>' : ''}
       ${(meta.events || []).map(event => `<li><strong>Event-triggered:</strong> GitHub ${html(event.event)}${event.paths?.length ? ` when ${event.paths.map(path => `<span class="trigger-path">${html(path)}</span>`).join(', ')} changes` : ''}.</li>`).join('')}</ul>
-      <p class="trigger-note">${html(meta.note)}</p><p class="trigger-state">${meta.paused ? 'Paused in the inspected workflow.' : 'Workflow enabled state: not verified.'}${meta.verifiedAt ? ` Configuration checked ${html(new Date(meta.verifiedAt).toISOString().slice(0, 10))}.` : ''}</p>${sourceLinks}
+      <p class="trigger-note">${html(meta.note)}</p><p class="trigger-state">${meta.enabledState === 'disabled' ? 'Execution and publishing are not enabled.' : meta.paused ? 'Paused in the inspected workflow.' : 'Workflow enabled state: not verified.'}${meta.verifiedAt ? ` Configuration checked ${html(new Date(meta.verifiedAt).toISOString().slice(0, 10))}.` : ''}</p>${sourceLinks}
     </div></details>`;
   }
   function selectAgent(id, {focus = true} = {}) {

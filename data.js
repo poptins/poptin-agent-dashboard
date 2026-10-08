@@ -5,6 +5,27 @@ window.AGENT_DATA = {
   lastUpdated: "2026-10-07T14:33:18.604Z",
   agents: [
     {
+      "id": "quarterly-benchmark",
+      "name": "On-Demand Benchmark Report Agent",
+      "role": "Verified aggregate benchmarks · on-demand preparation",
+      "initials": "QB",
+      "status": "on-demand-data-required",
+      "statusLabel": "On demand — data required",
+      "color": "#e4eafb",
+      "ink": "#374a80",
+      "owner": "Poptin Content & Research",
+      "cadence": "On demand after a user request · separate quarterly reminder",
+      "priority": "Medium",
+      "instructions": [
+        "Accept only verified, anonymized aggregate data with documented definitions, reporting period and minimum sample checks.",
+        "Prepare a quarterly report and methodology for review only when the user requests it; never invent benchmark results or reuse unverified draft numbers.",
+        "A separate quarterly reminder prompts a decision; it does not start report generation or publishing.",
+        "Require verified aggregate data and review for each requested report; data connectors and publishing remain unimplemented."
+      ],
+      "statusNote": "On-demand preparation after a user request; verified aggregate data is required. A separate quarterly reminder does not run this agent. There is no active report schedule, implemented data connector or publisher. This quarterly agent has not generated or published a report.",
+      "activities": []
+    },
+    {
       id: "seo",
       name: "SEO Agent",
       role: "SEO research & publishing",
