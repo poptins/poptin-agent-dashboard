@@ -24,6 +24,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “Best Formilla Alternatives to Consider in 2026” as a Chatway article.",
+          date: "2026-10-08T14:01:22Z",
+          url: "https://chatway.app/blog/best-formilla-alternatives-in-2024",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 1436,
+          publicationTaskId: "chatway-wordpress-1436",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “Live Chat Customer Support Productivity: How to Help More Customers Without Sacrificing Quality” as a Chatway article.",
           date: "2026-10-07T11:25:52Z",
           url: "https://chatway.app/blog/live-chat-customer-support-productivity-3",
@@ -672,6 +685,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
+          detail: "Published “Why Chaty Is a Strong Alternative to Tidio” as a Chaty article.",
+          date: "2026-10-08T13:56:32Z",
+          url: "https://chaty.app/blog/chaty-best-alternative-to-tidio/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 1741,
+          publicationTaskId: "chaty-wordpress-1741",
+          publicationSource: "chaty"
+        },
         {
           type: "past",
           status: "Published",
@@ -1576,6 +1602,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Prospero article",
+          detail: "Published “Do Websites Have to Be ADA Compliant? What Businesses Need to Know in 2026” as a Prospero article.",
+          date: "2026-10-08T14:05:44Z",
+          url: "https://goprospero.com/blog/do-websites-have-to-be-ada-compliant/",
+          assetLabel: "View Prospero blog post",
+          wordpressPostId: 1154,
+          publicationTaskId: "prospero-wordpress-1154",
+          publicationSource: "prospero"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Prospero article",
           detail: "Published “Business Proposals for the Telecom Industry: A Complete Guide” as a Prospero article.",
           date: "2026-10-03T12:06:13Z",
           url: "https://goprospero.com/blog/business-proposals-telecom-industry/",
@@ -2459,6 +2498,32 @@
           owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
           instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Premio article",
+          detail: "Published “5 Tactics to Close More Black Friday Sales with Live Chat” as a Premio article.",
+          date: "2026-10-08T14:41:46Z",
+          url: "https://premio.io/blog/black-friday-sales-on-live-chat/",
+          assetLabel: "View Premio blog post",
+          wordpressPostId: 17063,
+          publicationTaskId: "premio-wordpress-17063",
+          publicationSource: "premio"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Premio article",
+          detail: "Published “Live Chat Software Pricing for WordPress: What to Budget Before You Buy” as a Premio article.",
+          date: "2026-10-08T11:41:15Z",
+          url: "https://premio.io/blog/live-chat-software-pricing-wordpress-budget/",
+          assetLabel: "View Premio blog post",
+          wordpressPostId: 23482,
+          publicationTaskId: "premio-wordpress-23482",
+          publicationSource: "premio"
+        },
         {
           type: "past",
           status: "Published",
