@@ -6,23 +6,23 @@ window.AGENT_DATA = {
   agents: [
     {
       "id": "quarterly-benchmark",
-      "name": "Quarterly Benchmark Report Agent",
-      "role": "Verified aggregate benchmarks · preparation only",
+      "name": "On-Demand Benchmark Report Agent",
+      "role": "Verified aggregate benchmarks · on-demand preparation",
       "initials": "QB",
-      "status": "manual",
-      "statusLabel": "Awaiting verified aggregate data",
+      "status": "on-demand-data-required",
+      "statusLabel": "On demand — data required",
       "color": "#e4eafb",
       "ink": "#374a80",
       "owner": "Poptin Content & Research",
-      "cadence": "Planned: first week of January, April, July and October · not scheduled",
+      "cadence": "On demand after a user request · separate quarterly reminder",
       "priority": "Medium",
       "instructions": [
         "Accept only verified, anonymized aggregate data with documented definitions, reporting period and minimum sample checks.",
-        "Prepare a quarterly report and methodology for review; never invent benchmark results or reuse unverified draft numbers.",
-        "First planned report: Q4 2026, targeted for January 1–7, 2027, subject to verified aggregate data and review.",
-        "Keep execution and publishing disabled until the required data, review and separate activation approval are in place."
+        "Prepare a quarterly report and methodology for review only when the user requests it; never invent benchmark results or reuse unverified draft numbers.",
+        "A separate quarterly reminder prompts a decision; it does not start report generation or publishing.",
+        "Require verified aggregate data and review for each requested report; data connectors and publishing remain unimplemented."
       ],
-      "statusNote": "Preparation only. Awaiting verified aggregate data. First planned report: Q4 2026, targeted for January 1–7, 2027. No active schedule, data connection or publisher. This quarterly agent has not generated or published a report.",
+      "statusNote": "On-demand preparation after a user request; verified aggregate data is required. A separate quarterly reminder does not run this agent. There is no active report schedule, implemented data connector or publisher. This quarterly agent has not generated or published a report.",
       "activities": []
     },
     {

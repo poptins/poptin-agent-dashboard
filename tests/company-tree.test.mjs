@@ -919,16 +919,18 @@ test('quarterly benchmark is Poptin-only, disabled, truthful and survives refres
     const {w} = h;
     card(w, 'quarterly-benchmark').click();
     const detail = w.document.querySelector('#agentDetail');
-    assert.match(detail.textContent, /Awaiting verified aggregate data/);
-    assert.match(detail.textContent, /Q4 2026/);
-    assert.match(detail.textContent, /January 1–7, 2027/);
-    assert.match(detail.textContent, /January, April, July and October/);
+    assert.match(detail.textContent, /On demand — data required/);
+    assert.match(detail.textContent, /only when the user requests it/);
+    assert.match(detail.textContent, /separate quarterly reminder/i);
+    assert.match(detail.textContent, /data connectors and publishing are unimplemented/i);
+    assert.doesNotMatch(detail.textContent, /Q4 2026|January 1–7|first week|First planned report/);
     assert.match(detail.textContent, /Execution and publishing are not enabled/);
     assert.equal(detail.querySelectorAll('[data-trigger="scheduled"], [data-trigger="manual"], .publishing-workflow').length, 0);
     assert.equal(detail.querySelectorAll('[data-trigger="disabled"]').length, 1);
     const original = w.PRODUCT_AGENT_DATA.poptin.agents.find(a => a.id === 'quarterly-benchmark');
     assert.equal(original.activities.length, 0);
-    assert.equal(original.status, 'manual');
+    assert.equal(original.status, 'on-demand-data-required');
+    assert.equal(original.name, 'On-Demand Benchmark Report Agent');
     for (const product of ['chatway', 'chaty', 'prospero', 'premio']) {
       assert.equal(w.PRODUCT_AGENT_DATA[product].agents.some(a => a.id === original.id), false);
     }

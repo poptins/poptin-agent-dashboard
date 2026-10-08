@@ -10,7 +10,7 @@ window.AGENT_TRIGGER_METADATA = {
       "schedules": [],
       "events": [],
       "sources": [],
-      "note": "Preparation only; awaiting verified aggregate data. Planned cadence is the first week of January, April, July and October, starting with Q4 2026 on January 1–7, 2027. No workflow, active schedule, data connection or publisher is enabled."
+      "note": "On-demand preparation after an explicit user request; verified aggregate data is required. The separate quarterly reminder does not trigger this agent. No report workflow or schedule is active; data connectors and publishing are unimplemented."
     },
     "seo": {
       "modes": [

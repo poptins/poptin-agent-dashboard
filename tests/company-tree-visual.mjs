@@ -66,7 +66,7 @@ try {
   await page.locator('.trigger-details > summary').click();
   await screenshot('seo-desktop', 1440, 1100);
   await page.locator('[data-agent-id="quarterly-benchmark"]').click();
-  assert.match(await page.locator('#agentDetail').innerText(), /Awaiting verified aggregate data/);
+  assert.match(await page.locator('#agentDetail').innerText(), /On demand — data required/);
   await screenshot('quarterly-benchmark-desktop', 1440, 1100);
   await screenshot('quarterly-benchmark-mobile', 390, 844);
   await page.locator('[data-agent-id="seo"]').click();
