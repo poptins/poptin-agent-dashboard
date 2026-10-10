@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-10T00:50:54.153Z",
+  lastUpdated: "2026-10-10T13:41:11.119Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Best Email Marketing Plugins for WordPress” as a Poptin article.",
+          date: "2026-10-10T07:13:18Z",
+          url: "https://www.poptin.com/blog/best-email-marketing-plugins-wordpress/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18049,
+          publicationTaskId: "poptin-wordpress-18049",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
