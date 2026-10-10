@@ -9,24 +9,23 @@ const agents = context.window.AGENT_DATA.agents;
 const agent = id => agents.find(item => item.id === id);
 const scheduledText = id => agent(id).activities.filter(item => item.type === 'scheduled').map(item => `${item.title} ${item.detail}`).join(' ');
 
-test('initial outreach descriptions match the approved 30/20/20/20 draft targets', () => {
-  assert.match(agent('affiliate-outreach').instructions.join(' '), /30 personalized Gmail drafts per run/);
-  assert.match(scheduledText('affiliate-outreach'), /30 affiliate recruitment drafts/);
-  assert.match(agent('marketing-consultant-outreach').instructions.join(' '), /20 personalized Gmail drafts per Israel day/);
+test('initial outreach descriptions match the approved 30/20/20/20 daily targets', () => {
+  assert.match(agent('affiliate-outreach').instructions.join(' '), /30 eligible new contacts per Israel day/);
+  assert.match(scheduledText('affiliate-outreach'), /target of 30 new contacts/);
+  assert.match(agent('marketing-consultant-outreach').instructions.join(' '), /20 eligible new independent-consultant contacts per Israel day/);
   assert.match(scheduledText('marketing-consultant-outreach'), /20 verified independent consultants/);
-  assert.match(agent('competitor-affiliate-outreach').instructions.join(' '), /20 audience-personalized Gmail drafts per Israel day/);
+  assert.match(agent('competitor-affiliate-outreach').instructions.join(' '), /20 eligible new editorial-publisher contacts per Israel day/);
   assert.match(scheduledText('competitor-affiliate-outreach'), /20 verified editorial publishers/);
-  assert.match(agent('ecommerce-cro').instructions.join(' '), /20 active independent ecommerce stores per Israel day/);
+  assert.match(agent('ecommerce-cro').instructions.join(' '), /20 eligible new independent ecommerce stores per Israel day/);
   assert.match(scheduledText('ecommerce-cro'), /20 ecommerce CRO reviews/);
 });
 
-test('draft-only behavior and affiliate per-run limit remain explicit', () => {
-  assert.match(agent('affiliate-outreach').instructions.join(' '), /never send automatically/);
-  assert.match(agent('affiliate-outreach').instructions.join(' '), /manual runs and partial-failure retries can add more drafts/);
-  assert.match(agent('marketing-consultant-outreach').instructions.join(' '), /never send the initial email automatically/);
-  assert.match(agent('competitor-affiliate-outreach').instructions.join(' '), /do not send the initial email automatically/);
-  assert.match(agent('ecommerce-cro').instructions.join(' '), /create drafts only/);
-  assert.match(agent('ecommerce-cro').instructions.join(' '), /remaining capacity after counting today's matching draft and sent initial messages/);
+test('current target descriptions are mode-neutral and do not promise daily output', () => {
+  for (const id of ['affiliate-outreach', 'marketing-consultant-outreach', 'competitor-affiliate-outreach', 'ecommerce-cro']) {
+    const instructions = agent(id).instructions.join(' ');
+    assert.match(instructions, /actual output depends on qualification and remaining capacity/i);
+    assert.doesNotMatch(instructions + ' ' + scheduledText(id), /never send|drafts only|review.only|automatically|manual runs and partial-failure retries/i);
+  }
 });
 
 test('historical competitor counts remain 1 of 10 and 2 of 10', () => {
