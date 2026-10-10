@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-08T15:36:44.583Z",
+  lastUpdated: "2026-10-10T00:50:54.153Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Post-Purchase Popup Strategy: How to Turn Buyers Into Repeat Customers, Reviews, and Referrals” as a Poptin article.",
+          date: "2026-10-09T06:00:00Z",
+          url: "https://www.poptin.com/blog/post-purchase-popup-strategy/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18018,
+          publicationTaskId: "poptin-wordpress-18018",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
