@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-10T13:41:11.119Z",
+  lastUpdated: "2026-10-10T18:35:38.158Z",
   agents: [
     {
       id: "seo",
@@ -884,6 +884,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Advanced Email Automation in Poptin: Build Smarter Customer Journeys” as a Poptin Academy guide.",
+          date: "2026-10-10T17:35:34Z",
+          url: "https://www.poptin.com/academy/guides/advanced-email-automation-in-poptin-build-smarter-customer-journeys/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461525,
+          publicationTaskId: "poptin academy-wordpress-461525",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
