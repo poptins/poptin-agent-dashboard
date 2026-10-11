@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-11T08:50:28.132Z",
+  lastUpdated: "2026-10-11T15:40:55.502Z",
   agents: [
     {
       id: "seo",
@@ -897,6 +897,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Turn Anonymous Visitors Into Actionable Segments With a One-Question Survey Popup” as a Poptin Academy guide.",
+          date: "2026-10-11T11:50:03Z",
+          url: "https://www.poptin.com/academy/guides/turn-anonymous-visitors-into-actionable-segments-with-a-one-question-survey-popup/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461533,
+          publicationTaskId: "poptin academy-wordpress-461533",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
