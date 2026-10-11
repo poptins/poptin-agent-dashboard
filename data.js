@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-10T18:35:38.158Z",
+  lastUpdated: "2026-10-11T08:50:28.132Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Poptin for Enterprise: Popups, Email and Automation at Scale” as a Poptin article.",
+          date: "2026-10-11T03:46:09Z",
+          url: "https://www.poptin.com/blog/poptin-for-enterprise/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18067,
+          publicationTaskId: "poptin-wordpress-18067",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
