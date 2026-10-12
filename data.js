@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-11T15:40:55.502Z",
+  lastUpdated: "2026-10-12T15:24:52.734Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Best Email Marketing Apps for Wix” as a Poptin article.",
+          date: "2026-10-12T06:32:46Z",
+          url: "https://www.poptin.com/blog/best-email-marketing-apps-wix/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18073,
+          publicationTaskId: "poptin-wordpress-18073",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
