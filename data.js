@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-12T22:59:11.954Z",
+  lastUpdated: "2026-10-13T11:47:45.655Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “5 Best Free Live Chat Software to Grow Your Business” as a Poptin article.",
+          date: "2026-10-13T06:35:47Z",
+          url: "https://www.poptin.com/blog/5-best-free-live-chat-software-to-grow-your-business/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 14019,
+          publicationTaskId: "poptin-wordpress-14019",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
