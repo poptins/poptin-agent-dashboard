@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-17T09:20:39.715Z",
+  lastUpdated: "2026-10-17T13:43:00.082Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “theMarketer Alternative: Why Poptin Is the Best Choice for Emails, Forms, and Popups” as a Poptin article.",
+          date: "2026-10-17T10:57:50Z",
+          url: "https://www.poptin.com/blog/themarketer-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18091,
+          publicationTaskId: "poptin-wordpress-18091",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
