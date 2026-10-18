@@ -24,6 +24,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “How to Reduce Cart Abandonment With Live Chat: 10 Practical Strategies” as a Chatway article.",
+          date: "2026-10-18T11:42:14Z",
+          url: "https://chatway.app/blog/reduce-cart-abandonment-with-live-chat",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 1450,
+          publicationTaskId: "chatway-wordpress-1450",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “Best Email Marketing Apps in 2026: Poptin, Mailchimp, and MailerLite” as a Chatway article.",
           date: "2026-10-17T14:42:46Z",
           url: "https://chatway.app/blog/best-email-marketing-apps-2026",
@@ -750,6 +763,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
+          detail: "Published “Zendesk Chat Alternatives: 7 Options for Live Chat and Customer Support” as a Chaty article.",
+          date: "2026-10-18T11:37:29Z",
+          url: "https://chaty.app/blog/zendesk-chat-alternatives/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 1032,
+          publicationTaskId: "chaty-wordpress-1032",
+          publicationSource: "chaty"
+        },
         {
           type: "past",
           status: "Published",
@@ -1701,6 +1727,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Prospero article",
+          detail: "Published “What Makes a Story Go Viral? An 8-Step Content Formula” as a Prospero article.",
+          date: "2026-10-18T11:47:36Z",
+          url: "https://goprospero.com/blog/what-makes-a-story-go-viral-8-step-formula/",
+          assetLabel: "View Prospero blog post",
+          wordpressPostId: 1439,
+          publicationTaskId: "prospero-wordpress-1439",
+          publicationSource: "prospero"
+        },
         {
           type: "past",
           status: "Published",
