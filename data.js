@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-17T17:10:06.091Z",
+  lastUpdated: "2026-10-18T11:04:09.239Z",
   agents: [
     {
       id: "seo",
@@ -949,6 +949,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Capture More High-Intent Leads With an Ethical Content-Gate Workflow” as a Poptin Academy guide.",
+          date: "2026-10-18T10:07:04Z",
+          url: "https://www.poptin.com/academy/guides/capture-more-high-intent-leads-with-an-ethical-content-gate-workflow/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461548,
+          publicationTaskId: "poptin academy-wordpress-461548",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
