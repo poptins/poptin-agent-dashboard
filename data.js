@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-20T10:04:18.550Z",
+  lastUpdated: "2026-10-20T15:05:30.364Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Instapage Alternative: Poptin vs Instapage for Landing Pages, Popups, Forms, and Lead Capture” as a Poptin article.",
+          date: "2026-10-20T10:16:18Z",
+          url: "https://www.poptin.com/blog/instapage-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18105,
+          publicationTaskId: "poptin-wordpress-18105",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
