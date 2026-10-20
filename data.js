@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-18T14:34:07.031Z",
+  lastUpdated: "2026-10-20T04:50:19.143Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Popup Analytics: How to Track Revenue, Lead Quality, and UX Impact Beyond Conversion Rate” as a Poptin article.",
+          date: "2026-10-19T06:00:00Z",
+          url: "https://www.poptin.com/blog/popup-analytics-revenue-lead-quality-ux-impact/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18097,
+          publicationTaskId: "poptin-wordpress-18097",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
