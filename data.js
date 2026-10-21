@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-20T15:05:30.364Z",
+  lastUpdated: "2026-10-21T07:39:11.312Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Choosing The Right Popup Builder For Your Needs: Poptin vs. Privy” as a Poptin article.",
+          date: "2026-10-21T06:27:05Z",
+          url: "https://www.poptin.com/blog/choosing-the-right-popup-builder-for-your-needs-poptin-vs-privy/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 14944,
+          publicationTaskId: "poptin-wordpress-14944",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
