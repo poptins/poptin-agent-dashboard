@@ -794,6 +794,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chaty article",
+          detail: "Published “Click-to-Chat Lead Generation: How to Turn Website Conversations Into Customers” as a Chaty article.",
+          date: "2026-10-22T11:55:32Z",
+          url: "https://chaty.app/blog/click-to-chat-lead-generation-website-conversations-customers-2/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 6203,
+          publicationTaskId: "chaty-wordpress-6203",
+          publicationSource: "chaty"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
           detail: "Published “Zendesk Chat Alternatives: 7 Options for Live Chat and Customer Support” as a Chaty article.",
           date: "2026-10-18T11:37:29Z",
           url: "https://chaty.app/blog/zendesk-chat-alternatives/",
@@ -2693,6 +2706,19 @@
           owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
           instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Premio article",
+          detail: "Published “How to Turn a WordPress Chat Widget Into a Measurable Lead Capture System” as a Premio article.",
+          date: "2026-10-22T09:44:29Z",
+          url: "https://premio.io/blog/wordpress-chat-widget-lead-capture-system/",
+          assetLabel: "View Premio blog post",
+          wordpressPostId: 23792,
+          publicationTaskId: "premio-wordpress-23792",
+          publicationSource: "premio"
+        },
         {
           type: "past",
           status: "Published",
