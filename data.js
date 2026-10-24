@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-23T13:26:20.611Z",
+  lastUpdated: "2026-10-24T14:32:41.947Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Manago AI Alternative: Poptin vs Manago AI for Popups, Forms, Email, and Customer Engagement” as a Poptin article.",
+          date: "2026-10-24T12:53:20Z",
+          url: "https://www.poptin.com/blog/manago-ai-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18128,
+          publicationTaskId: "poptin-wordpress-18128",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
