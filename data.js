@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-25T01:11:49.645Z",
+  lastUpdated: "2026-10-25T11:28:10.915Z",
   agents: [
     {
       id: "seo",
@@ -1014,6 +1014,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Turn Popup Submissions Into Next Steps With a Conversion-Focused Form Workflow” as a Poptin Academy guide.",
+          date: "2026-10-25T10:24:52Z",
+          url: "https://www.poptin.com/academy/guides/turn-popup-submissions-into-next-steps-with-a-conversion-focused-form-workflow/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461558,
+          publicationTaskId: "poptin academy-wordpress-461558",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
