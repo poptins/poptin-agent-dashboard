@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-24T14:32:41.947Z",
+  lastUpdated: "2026-10-25T01:11:49.645Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Black Friday Popup Campaigns: A 30-Day On-Site Playbook for Teasers, VIP Access, and Last-Chance Sales” as a Poptin article.",
+          date: "2026-10-24T06:00:00Z",
+          url: "https://www.poptin.com/blog/black-friday-popup-campaigns/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18123,
+          publicationTaskId: "poptin-wordpress-18123",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
