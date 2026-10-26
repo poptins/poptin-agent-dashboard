@@ -22,6 +22,14 @@ const SOURCES = [
     kind: "guide"
   },
   {
+    name: "Poptin Glossary",
+    endpoint: "https://www.poptin.com/wp-json/wp/v2/popt_glossary",
+    linkPrefix: "https://www.poptin.com/academy/glossary/",
+    assetLabel: "View glossary term",
+    agentId: "glossary",
+    kind: "term"
+  },
+  {
     name: "Chatway",
     endpoint: "https://chatway.app/wp-json/wp/v2/post",
     linkPrefix: "https://chatway.app/blog/",
@@ -29,6 +37,15 @@ const SOURCES = [
     agentId: "seo",
     productId: "chatway",
     kind: "article"
+  },
+  {
+    name: "Chatway Glossary",
+    endpoint: "https://chatway.app/wp-json/wp/v2/chatway_glossary",
+    linkPrefix: "https://chatway.app/glossary/",
+    assetLabel: "View glossary term",
+    agentId: "glossary",
+    productId: "chatway",
+    kind: "term"
   },
   {
     name: "Chaty",
