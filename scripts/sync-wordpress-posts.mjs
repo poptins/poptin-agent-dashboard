@@ -199,7 +199,7 @@ for (const source of SOURCES) {
 }
 
 if (successfulSources === 0) {
-  console.error("::warning title=WordPress sync deferred::All WordPress sources were temporarily unavailable; event payloads and the next scheduled run will reconcile the calendar.");
+  console.error("::warning title=WordPress sync deferred::All WordPress sources were temporarily unavailable; publication coverage is unverified. Existing history is retained; a later successful read is needed to reconcile the calendar.");
 }
 
 let socialPosts = [];
@@ -324,7 +324,13 @@ for (const productId of ["chatway", "prospero", "premio"]) {
 }
 
 if (additions.length === 0 && socialAdditions.length === 0 && migratedProductPublications.length === 0) {
-  console.log("Dashboard is already synchronized; no new publications found.");
+  if (successfulSources === SOURCES.length) {
+    console.log("All WordPress sources checked; no new publications found.");
+  } else if (successfulSources === 0) {
+    console.log(`WordPress synchronization deferred: 0 of ${SOURCES.length} sources available; no publication coverage verified. Existing dashboard history retained.`);
+  } else {
+    console.log(`WordPress synchronization partial: ${successfulSources} of ${SOURCES.length} sources checked; no new publications found in available sources. Unavailable sources remain unverified.`);
+  }
   process.exit(0);
 }
 
@@ -338,4 +344,7 @@ if (migratedProductPublications.length || additions.some(item => item.source.pro
   await writeFile(PRODUCT_DATA_PATH, productData, "utf8");
 }
 console.log(`Added ${additions.length} WordPress publication(s) and ${socialAdditions.length} social publication(s) to the dashboard.`);
+if (successfulSources < SOURCES.length) {
+  console.log(`WordPress publication coverage remains incomplete: ${successfulSources} of ${SOURCES.length} sources checked. Saved additions do not verify unavailable sources.`);
+}
 for (const { post, source } of additions) console.log(`- ${source.name}: ${post.link}`);
