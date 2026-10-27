@@ -24,6 +24,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “New in Chatway: Track Live Chat Conversions with GA4 and Google Ads” as a Chatway article.",
+          date: "2026-10-27T10:41:28Z",
+          url: "https://chatway.app/blog/chatway-ga4-google-analytics-google-ads-conversion-tracking",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 6803,
+          publicationTaskId: "chatway-wordpress-6803",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “Live Chat Customer Support Workflow: A Practical Guide for Faster, Safer Service” as a Chatway article.",
           date: "2026-10-26T10:39:55Z",
           url: "https://chatway.app/blog/live-chat-customer-support-workflow-guide",
@@ -815,6 +828,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
+          detail: "Published “After-Hours Website Messaging: Set Clear Response Expectations” as a Chaty article.",
+          date: "2026-10-27T12:38:27Z",
+          url: "https://chaty.app/blog/after-hours-website-messaging-response-expectations/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 6207,
+          publicationTaskId: "chaty-wordpress-6207",
+          publicationSource: "chaty"
+        },
         {
           type: "past",
           status: "Published",

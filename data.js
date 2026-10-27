@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-27T10:33:42.564Z",
+  lastUpdated: "2026-10-27T16:38:38.565Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “5 Best Email Marketing Apps for Shopify in 2026” as a Poptin article.",
+          date: "2026-10-27T11:39:11Z",
+          url: "https://www.poptin.com/blog/best-email-marketing-apps-shopify/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18133,
+          publicationTaskId: "poptin-wordpress-18133",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
