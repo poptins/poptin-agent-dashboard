@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-28T08:31:52.223Z",
+  lastUpdated: "2026-10-30T00:58:43.375Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Email Signup Form Placement: Where to Put Forms, Popups, and Sticky Bars to Grow Your List Without Annoying Visitors” as a Poptin article.",
+          date: "2026-10-29T07:00:00Z",
+          url: "https://www.poptin.com/blog/email-signup-form-placement/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18140,
+          publicationTaskId: "poptin-wordpress-18140",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
