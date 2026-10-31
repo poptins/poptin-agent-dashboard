@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-10-30T14:07:32.789Z",
+  lastUpdated: "2026-10-31T12:28:19.316Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Brevo Alternatives: Top Email Service Providers” as a Poptin article.",
+          date: "2026-10-31T11:47:24Z",
+          url: "https://www.poptin.com/blog/sendinblue-alternatives/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 3834,
+          publicationTaskId: "poptin-wordpress-3834",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
