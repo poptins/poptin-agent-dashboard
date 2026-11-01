@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-01T07:31:27.777Z",
+  lastUpdated: "2026-11-01T15:07:27.582Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,32 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “6 Mailpoet Alternatives for a More Competitive Email Marketing” as a Poptin article.",
+          date: "2026-11-01T10:49:35Z",
+          url: "https://www.poptin.com/blog/mailpoet-alternatives/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 4787,
+          publicationTaskId: "poptin-wordpress-4787",
+          publicationSource: "poptin"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Holiday Shipping Deadline Popups: How Ecommerce Stores Can Reduce Last-Minute Abandonment and Capture More December Sales” as a Poptin article.",
+          date: "2026-11-01T07:00:00Z",
+          url: "https://www.poptin.com/blog/holiday-shipping-deadline-popups/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18171,
+          publicationTaskId: "poptin-wordpress-18171",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
@@ -1066,6 +1092,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Build a Campaign-Ready Email List With Interest-Based Signup Routing” as a Poptin Academy guide.",
+          date: "2026-11-01T12:19:57Z",
+          url: "https://www.poptin.com/academy/guides/build-a-campaign-ready-email-list-with-interest-based-signup-routing/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461574,
+          publicationTaskId: "poptin academy-wordpress-461574",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
