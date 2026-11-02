@@ -24,6 +24,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “New in Chatway: Balance Agent Workloads with Smart Routing” as a Chatway article.",
+          date: "2026-11-02T07:49:14Z",
+          url: "https://chatway.app/blog/chatway-smart-routing-balance-agent-workloads",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 6857,
+          publicationTaskId: "chatway-wordpress-6857",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “Live Chat Customer Support Workflow: A Practical System for Faster, Safer Service” as a Chatway article.",
           date: "2026-10-30T11:06:16Z",
           url: "https://chatway.app/blog/live-chat-customer-support-workflow-faster-safer-service",
@@ -2797,6 +2810,19 @@
           owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
           instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Premio article",
+          detail: "Published “WordPress Live Chat Routing: How to Send Every Conversation to the Right Person” as a Premio article.",
+          date: "2026-11-02T12:57:06Z",
+          url: "https://premio.io/blog/wordpress-live-chat-routing-right-person/",
+          assetLabel: "View Premio blog post",
+          wordpressPostId: 23808,
+          publicationTaskId: "premio-wordpress-23808",
+          publicationSource: "premio"
+        },
         {
           type: "past",
           status: "Published",
