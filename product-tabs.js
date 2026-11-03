@@ -24,6 +24,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “5 ProProfs Live Chat Alternatives to Consider in 2026” as a Chatway article.",
+          date: "2026-11-03T14:39:11Z",
+          url: "https://chatway.app/blog/5-proprofs-live-chat-alternatives-to-consider-in-2024",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 1750,
+          publicationTaskId: "chatway-wordpress-1750",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “New in Chatway: Balance Agent Workloads with Smart Routing” as a Chatway article.",
           date: "2026-11-02T07:49:14Z",
           url: "https://chatway.app/blog/chatway-smart-routing-balance-agent-workloads",
@@ -867,6 +880,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
+          detail: "Published “12 Ways to Use Social Media for Small Business Growth” as a Chaty article.",
+          date: "2026-11-03T14:35:56Z",
+          url: "https://chaty.app/blog/12-ways-to-use-social-media-for-small-businesses-growth/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 3137,
+          publicationTaskId: "chaty-wordpress-3137",
+          publicationSource: "chaty"
+        },
         {
           type: "past",
           status: "Published",
@@ -1857,6 +1883,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Prospero article",
+          detail: "Published “Email Marketing Copywriting Methods That Still Work in 2026” as a Prospero article.",
+          date: "2026-11-03T14:41:43Z",
+          url: "https://goprospero.com/blog/email-marketing-copywriting-methods-to-start-utilizing/",
+          assetLabel: "View Prospero blog post",
+          wordpressPostId: 1240,
+          publicationTaskId: "prospero-wordpress-1240",
+          publicationSource: "prospero"
+        },
         {
           type: "past",
           status: "Published",

@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-02T15:51:03.924Z",
+  lastUpdated: "2026-11-03T15:06:14.002Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “How to Create MuxEmail Popups to Grow Your Subscriber List” as a Poptin article.",
+          date: "2026-11-03T12:28:26Z",
+          url: "https://www.poptin.com/blog/muxemail-popups/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 7062,
+          publicationTaskId: "poptin-wordpress-7062",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
