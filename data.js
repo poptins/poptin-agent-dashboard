@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-05T20:39:37.271Z",
+  lastUpdated: "2026-11-06T23:07:29.484Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Messaro Alternative: Poptin for Lead Capture and Email Marketing” as a Poptin article.",
+          date: "2026-11-06T21:09:40Z",
+          url: "https://www.poptin.com/blog/messaro-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18181,
+          publicationTaskId: "poptin-wordpress-18181",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
