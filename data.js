@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-06T23:07:29.484Z",
+  lastUpdated: "2026-11-07T10:07:28.891Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Maestra Alternative: Poptin for Popups, Segmentation, and Email Automation” as a Poptin article.",
+          date: "2026-11-07T07:11:08Z",
+          url: "https://www.poptin.com/blog/maestra-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18197,
+          publicationTaskId: "poptin-wordpress-18197",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
