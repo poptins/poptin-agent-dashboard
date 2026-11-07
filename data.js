@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-07T10:07:28.891Z",
+  lastUpdated: "2026-11-07T16:25:56.307Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,32 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “8 Drip Alternatives for Email Marketing (Free and Paid)” as a Poptin article.",
+          date: "2026-11-07T16:12:49Z",
+          url: "https://www.poptin.com/blog/top-5-drip-alternatives-free-paid-options/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 3178,
+          publicationTaskId: "poptin-wordpress-3178",
+          publicationSource: "poptin"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Smaily Alternative: Poptin for Popups, Segmentation, and Email Automation” as a Poptin article.",
+          date: "2026-11-07T14:36:18Z",
+          url: "https://www.poptin.com/blog/smaily-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18203,
+          publicationTaskId: "poptin-wordpress-18203",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
