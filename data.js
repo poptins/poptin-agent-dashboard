@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-08T00:35:00.799Z",
+  lastUpdated: "2026-11-08T15:11:14.000Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,32 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Pop Up Teaser: What it is and How it Works” as a Poptin article.",
+          date: "2026-11-08T11:38:52Z",
+          url: "https://www.poptin.com/blog/pop-up-teaser-what-it-is-and-how-it-works/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 8881,
+          publicationTaskId: "poptin-wordpress-8881",
+          publicationSource: "poptin"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Buttondown Alternative: Poptin for Lead Capture and Email Marketing” as a Poptin article.",
+          date: "2026-11-08T07:58:58Z",
+          url: "https://www.poptin.com/blog/buttondown-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18222,
+          publicationTaskId: "poptin-wordpress-18222",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
