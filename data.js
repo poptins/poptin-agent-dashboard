@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-07T16:25:56.307Z",
+  lastUpdated: "2026-11-08T00:35:00.799Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Accessible Popups: How to Capture Leads Without Excluding Visitors or Hurting UX” as a Poptin article.",
+          date: "2026-11-07T07:00:00Z",
+          url: "https://www.poptin.com/blog/accessible-popups/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18186,
+          publicationTaskId: "poptin-wordpress-18186",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
