@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-10T17:49:47.849Z",
+  lastUpdated: "2026-11-11T15:11:17.726Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Introducing A/B Testing for Poptin Email Campaigns” as a Poptin article.",
+          date: "2026-11-11T10:18:39Z",
+          url: "https://www.poptin.com/blog/poptin-email-campaign-ab-testing/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18237,
+          publicationTaskId: "poptin-wordpress-18237",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
