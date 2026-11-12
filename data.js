@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-12T02:58:50.595Z",
+  lastUpdated: "2026-11-12T11:07:59.946Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Introducing Poptin MCP: Bring Your Marketing Into Your AI Conversations” as a Poptin article.",
+          date: "2026-11-12T10:21:13Z",
+          url: "https://www.poptin.com/blog/introducing-poptin-mcp/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18247,
+          publicationTaskId: "poptin-wordpress-18247",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
