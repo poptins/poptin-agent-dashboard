@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-11T15:11:17.726Z",
+  lastUpdated: "2026-11-12T02:58:50.595Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Email Referral Programs for Ecommerce: How to Turn Holiday Subscribers Into List Growth Without More Ad Spend” as a Poptin article.",
+          date: "2026-11-11T07:00:00Z",
+          url: "https://www.poptin.com/blog/email-referral-program-ecommerce-holiday-list-growth/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18233,
+          publicationTaskId: "poptin-wordpress-18233",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
