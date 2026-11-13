@@ -24,6 +24,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “Avoid These Live Chat Mistakes: What Not to Do” as a Chatway article.",
+          date: "2026-11-13T14:54:16Z",
+          url: "https://chatway.app/blog/avoid-these-live-chat-mistakes-what-not-to-do",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 1787,
+          publicationTaskId: "chatway-wordpress-1787",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “New in Chatway: Manage Customer Support with the Ticket Center” as a Chatway article.",
           date: "2026-11-12T11:21:01Z",
           url: "https://chatway.app/blog/chatway-ticket-center-manage-customer-support",
@@ -945,6 +958,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
+          detail: "Published “8 Customer Service Trends That Still Matter in 2026” as a Chaty article.",
+          date: "2026-11-13T14:51:41Z",
+          url: "https://chaty.app/blog/8-customer-service-trends-that-are-still-relevant-today/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 2841,
+          publicationTaskId: "chaty-wordpress-2841",
+          publicationSource: "chaty"
+        },
         {
           type: "past",
           status: "Published",
@@ -1953,6 +1979,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Prospero article",
+          detail: "Published “4 Types of Business Proposals That Get Rejected Within Minutes—and How to Improve Them” as a Prospero article.",
+          date: "2026-11-13T14:57:11Z",
+          url: "https://goprospero.com/blog/types-of-business-proposals-rejected/",
+          assetLabel: "View Prospero blog post",
+          wordpressPostId: 1264,
+          publicationTaskId: "prospero-wordpress-1264",
+          publicationSource: "prospero"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Prospero article",
           detail: "Published “19 Productivity Hacks for Small Online Businesses” as a Prospero article.",
           date: "2026-11-08T13:55:51Z",
           url: "https://goprospero.com/blog/productivity-hacks-online-businesses/",
@@ -2927,6 +2966,32 @@
           owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
           instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Premio article",
+          detail: "Published “Best WordPress Maintenance and Management Services in 2026” as a Premio article.",
+          date: "2026-11-13T15:31:54Z",
+          url: "https://premio.io/blog/wordpress-maintenance-and-management-services/",
+          assetLabel: "View Premio blog post",
+          wordpressPostId: 11888,
+          publicationTaskId: "premio-wordpress-11888",
+          publicationSource: "premio"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Premio article",
+          detail: "Published “WordPress Floating Widgets: How to Build a Clear, Accessible Contact Layer” as a Premio article.",
+          date: "2026-11-13T12:43:24Z",
+          url: "https://premio.io/blog/wordpress-floating-widgets-contact-layer/",
+          assetLabel: "View Premio blog post",
+          wordpressPostId: 23822,
+          publicationTaskId: "premio-wordpress-23822",
+          publicationSource: "premio"
+        },
         {
           type: "past",
           status: "Published",
