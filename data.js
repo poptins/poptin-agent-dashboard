@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-13T16:22:57.830Z",
+  lastUpdated: "2026-11-14T10:31:25.380Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Best MCP servers for growing your online business” as a Poptin article.",
+          date: "2026-11-14T09:22:12Z",
+          url: "https://www.poptin.com/blog/best-mcp-servers-growing-online-business/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18268,
+          publicationTaskId: "poptin-wordpress-18268",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
