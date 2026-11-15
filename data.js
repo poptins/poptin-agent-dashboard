@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-14T10:31:25.380Z",
+  lastUpdated: "2026-11-15T17:10:08.999Z",
   agents: [
     {
       id: "seo",
@@ -1261,6 +1261,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Improve Email Campaign Results With a Repeatable Test-and-Refine Workflow” as a Poptin Academy guide.",
+          date: "2026-11-15T13:10:58Z",
+          url: "https://www.poptin.com/academy/guides/improve-email-campaign-results-with-a-repeatable-test-and-refine-workflow/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461644,
+          publicationTaskId: "poptin academy-wordpress-461644",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
