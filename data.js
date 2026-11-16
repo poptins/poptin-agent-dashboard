@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-15T17:10:08.999Z",
+  lastUpdated: "2026-11-16T20:28:36.280Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Resend Alternative: Poptin vs Resend for Lead Capture, Email Marketing, and Developer Email Delivery” as a Poptin article.",
+          date: "2026-11-16T17:06:48Z",
+          url: "https://www.poptin.com/blog/resend-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18280,
+          publicationTaskId: "poptin-wordpress-18280",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
