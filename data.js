@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-17T22:23:39.797Z",
+  lastUpdated: "2026-11-18T04:19:58.838Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Post-BFCM Email Strategy: How to Turn One-Time Holiday Shoppers Into Repeat Customers” as a Poptin article.",
+          date: "2026-11-17T07:00:00Z",
+          url: "https://www.poptin.com/blog/post-bfcm-email-strategy-repeat-customers/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18275,
+          publicationTaskId: "poptin-wordpress-18275",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
