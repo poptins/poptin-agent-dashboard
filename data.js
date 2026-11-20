@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-20T11:43:57.188Z",
+  lastUpdated: "2026-11-20T20:18:27.728Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Icegram Engage Alternative: Poptin vs Icegram Engage for Popups, Forms, and Lead Capture” as a Poptin article.",
+          date: "2026-11-20T14:15:23Z",
+          url: "https://www.poptin.com/blog/icegram-engage-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18292,
+          publicationTaskId: "poptin-wordpress-18292",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
