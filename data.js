@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-19T21:36:04.039Z",
+  lastUpdated: "2026-11-20T11:43:57.188Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “MailCheap Alternative: Poptin’s Complete Suite for Growing Your Business” as a Poptin article.",
+          date: "2026-11-20T08:19:33Z",
+          url: "https://www.poptin.com/blog/mailcheap-alternative/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18286,
+          publicationTaskId: "poptin-wordpress-18286",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
