@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-20T20:18:27.728Z",
+  lastUpdated: "2026-11-22T19:39:13.202Z",
   agents: [
     {
       id: "seo",
@@ -1313,6 +1313,19 @@ window.AGENT_DATA = {
       cadence: "Weekly, Sundays at 09:00 IDT",
       priority: "Medium",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin Academy guide",
+          detail: "Published “Turn First-Time Buyers Into Repeat Customers With a Post-Purchase Email Workflow” as a Poptin Academy guide.",
+          date: "2026-11-22T13:47:37Z",
+          url: "https://www.poptin.com/academy/guides/turn-first-time-buyers-into-repeat-customers-with-a-post-purchase-email-workflow/",
+          assetLabel: "View Academy guide",
+          wordpressPostId: 461654,
+          publicationTaskId: "poptin academy-wordpress-461654",
+          publicationSource: "poptin academy"
+        },
         {
           type: "past",
           status: "Published",
