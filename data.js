@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-23T09:03:57.794Z",
+  lastUpdated: "2026-11-23T21:23:43.243Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Convert More Visitors with Loja Integrada Pop Ups in 2026” as a Poptin article.",
+          date: "2026-11-23T16:29:00Z",
+          url: "https://www.poptin.com/blog/convert-more-visitors-with-loja-integrada-pop-ups/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 4613,
+          publicationTaskId: "poptin-wordpress-4613",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",

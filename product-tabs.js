@@ -24,6 +24,32 @@
           status: "Published",
           taskType: "publication",
           title: "Published Chatway article",
+          detail: "Published “Best Practices for Using Canned Responses in Live Chat Support” as a Chatway article.",
+          date: "2026-11-23T18:44:15Z",
+          url: "https://chatway.app/blog/best-practices-for-using-canned-responses-in-live-chat-support",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 1895,
+          publicationTaskId: "chatway-wordpress-1895",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
+          detail: "Published “How to Build an Accessible Live Chat Customer Support Workflow” as a Chatway article.",
+          date: "2026-11-23T15:30:46Z",
+          url: "https://chatway.app/blog/accessible-live-chat-customer-support-workflow-2",
+          assetLabel: "View Chatway blog post",
+          wordpressPostId: 7478,
+          publicationTaskId: "chatway-wordpress-7478",
+          publicationSource: "chatway"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chatway article",
           detail: "Published “How to Manage Customer Support with ChatGPT and Chatway” as a Chatway article.",
           date: "2026-11-22T12:22:31Z",
           url: "https://chatway.app/blog/how-to-manage-customer-support-with-chatgpt-and-chatway",
@@ -1010,6 +1036,19 @@
           cadence: "Every 4-5 days + on demand",
           priority: "High",
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Chaty article",
+          detail: "Published “Scale Your Customer Service with the Best Sirena Alternatives” as a Chaty article.",
+          date: "2026-11-23T18:41:13Z",
+          url: "https://chaty.app/blog/sirena-alternatives-live-chat/",
+          assetLabel: "View Chaty blog post",
+          wordpressPostId: 1367,
+          publicationTaskId: "chaty-wordpress-1367",
+          publicationSource: "chaty"
+        },
         {
           type: "past",
           status: "Published",
@@ -2044,6 +2083,19 @@
           status: "Published",
           taskType: "publication",
           title: "Published Prospero article",
+          detail: "Published “How to Choose the Best Proposal Software for Your Business” as a Prospero article.",
+          date: "2026-11-23T18:47:44Z",
+          url: "https://goprospero.com/blog/best-proposal-software-for-business/",
+          assetLabel: "View Prospero blog post",
+          wordpressPostId: 2028,
+          publicationTaskId: "prospero-wordpress-2028",
+          publicationSource: "prospero"
+        },
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Prospero article",
           detail: "Published “7 SaaS Email Marketing Tips to Increase Activation, Retention, and Revenue” as a Prospero article.",
           date: "2026-11-18T16:00:05Z",
           url: "https://goprospero.com/blog/saas-email-marketing-tips/",
@@ -3044,6 +3096,19 @@
           owner: "Premio Content & SEO", cadence: "Every 4-5 days + on demand", priority: "High",
           instructions: ["Analyze Premio Search Console queries, page performance, CTR, position, and content gaps before choosing a non-duplicate topic.","Research relevant Premio Help Center pages and treat them as the primary source for product setup, features, integrations, limitations, and troubleshooting.","Add natural links to verified Help Center pages when relevant, and never invent Help Center URLs or unsupported product claims.","Write an original 2,000-3,000 word SEO, GEO, and AEO article using trustworthy non-competitor sources.","Use descriptive HTML links only, remove utm_source=openai, and block raw URLs or visible Markdown links.","Choose one existing WordPress category and attach 3-6 relevant tags.","Add an answer summary, 4-6 key takeaways, and direct FAQ answers.","Audit the complete rendered article before and after publishing."],
           activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Premio article",
+          detail: "Published “WordPress File Upload Forms: A Secure Setup and UX Checklist” as a Premio article.",
+          date: "2026-11-23T15:29:43Z",
+          url: "https://premio.io/blog/wordpress-file-upload-forms-secure-setup-ux-checklist/",
+          assetLabel: "View Premio blog post",
+          wordpressPostId: 23840,
+          publicationTaskId: "premio-wordpress-23840",
+          publicationSource: "premio"
+        },
         {
           type: "past",
           status: "Published",
