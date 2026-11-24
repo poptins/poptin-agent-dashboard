@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-23T21:23:43.243Z",
+  lastUpdated: "2026-11-24T06:01:54.975Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Email List Hygiene After the Holidays: How to Clean, Segment, and Re-Engage New Subscribers Without Losing Revenue” as a Poptin article.",
+          date: "2026-11-23T07:00:00Z",
+          url: "https://www.poptin.com/blog/email-list-hygiene-after-holidays/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18297,
+          publicationTaskId: "poptin-wordpress-18297",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
