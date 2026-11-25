@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-24T17:43:55.823Z",
+  lastUpdated: "2026-11-25T12:54:11.230Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “Your Email List Is a Business Asset, Not Just a Marketing Channel: How to Value and Protect It” as a Poptin article.",
+          date: "2026-11-25T10:36:29Z",
+          url: "https://www.poptin.com/blog/email-list-business-asset/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18316,
+          publicationTaskId: "poptin-wordpress-18316",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
