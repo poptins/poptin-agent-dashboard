@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-25T12:54:11.230Z",
+  lastUpdated: "2026-11-26T23:53:11.692Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “How to Send Email Marketing Campaigns With ChatGPT and Poptin” as a Poptin article.",
+          date: "2026-11-26T07:12:37Z",
+          url: "https://www.poptin.com/blog/send-email-marketing-campaigns-chatgpt-poptin/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18327,
+          publicationTaskId: "poptin-wordpress-18327",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
