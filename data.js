@@ -2,7 +2,7 @@
 // Refresh this file from repository issues, run state, and workflow schedules.
 window.AGENT_DATA = {
   source: "poptins/poptin-agents",
-  lastUpdated: "2026-11-26T23:53:11.692Z",
+  lastUpdated: "2026-11-28T01:59:09.105Z",
   agents: [
     {
       id: "seo",
@@ -17,6 +17,19 @@ window.AGENT_DATA = {
       cadence: "Every 4-5 days + on demand",
       priority: "High",
       activities: [
+        {
+          type: "past",
+          status: "Published",
+          taskType: "publication",
+          title: "Published Poptin article",
+          detail: "Published “How to Send Email Marketing Campaigns With OpenClaw and Poptin” as a Poptin article.",
+          date: "2026-11-27T14:14:01Z",
+          url: "https://www.poptin.com/blog/send-email-marketing-campaigns-openclaw-poptin/",
+          assetLabel: "View Poptin blog post",
+          wordpressPostId: 18339,
+          publicationTaskId: "poptin-wordpress-18339",
+          publicationSource: "poptin"
+        },
         {
           type: "past",
           status: "Published",
